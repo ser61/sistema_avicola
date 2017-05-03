@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 //SERGIO WEIMAR
-
+Route::get('facturar','FacturaController@create');
 
 
 

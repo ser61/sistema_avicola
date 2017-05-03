@@ -21,7 +21,7 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $productos)
+    public function create()
     {
         return view('factura.facturar');
     }
