@@ -36,7 +36,7 @@
 
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-          Sistema ser
+          Sistema Avicola
         </a>
       </div>
 
