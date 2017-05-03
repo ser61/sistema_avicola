@@ -36,7 +36,7 @@
 
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-          Sistema Avicola
+          Sistema Eliot Avícola - Humcorp
         </a>
       </div>
 
