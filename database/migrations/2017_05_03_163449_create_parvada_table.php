@@ -21,7 +21,7 @@ class CreateParvadaTable extends Migration
             $table->float('pesoPromedio');
             $table->string('caracteristicas');
             $table->int('productividad')->nullable();
-            $table->char('visible');
+            $table->char('visible',1);
             $table->timestamps();
         });
     }

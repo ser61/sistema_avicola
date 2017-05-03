@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCargoTable extends Migration
+class CreateTipoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCargoTable extends Migration
      */
     public function up()
     {
-        Schema::table('Cargo', function (Blueprint $table) {
+        Schema::create('Tipo', function (Blueprint $table) {
             $table->increments('id');
             $table->varchar('nombre',50);
             $table->char('visible',1);
@@ -28,8 +28,6 @@ class CreateCargoTable extends Migration
      */
     public function down()
     {
-        Schema::table('Cargo', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('Tipo');
     }
 }
