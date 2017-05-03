@@ -1,0 +1,23 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Tipo extends Model
+{
+    protected $table ='Tipo';
+
+    protected $primaryKey = 'id';
+
+    public $timestamps=false;
+
+    protected $fillable = [
+        'nombre',
+        'visible'
+    ];
+
+    protected $hidden = [
+
+    ];
+}
