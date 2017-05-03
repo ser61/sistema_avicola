@@ -8,10 +8,6 @@ class DetalleFactura extends Model
 {
     protected $table ='Detalle_Factura';
 
-    protected $primaryKey = 'id';
-
-    public $timestamps=false;
-
     protected $fillable = [
         'idFactura',
         'idProducto',

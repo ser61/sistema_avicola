@@ -20,10 +20,12 @@ class CreateFacturaTable extends Migration
             $table->date('fecha');
             $table->float('monto');
             $table->integer('idCliente')->unsigned();
+            $table->integer('idEmpleado')->unsigned();
             $table->char('visible',1);
             $table->timestamps();
 
             $table->foreign('idCliente')->references('id')->on('persona');
+            $table->foreign('idEmpleado')->references('id')->on('empleado');
         });
     }
 
