@@ -24,7 +24,11 @@ class FacturaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'nit' => 'digits_between:5,10',
+          'nombre' => 'required|max:100',
+          'fecha' => 'required|date',
+          'monto' => 'required',
+          'idCliente' => 'required'
         ];
     }
 }

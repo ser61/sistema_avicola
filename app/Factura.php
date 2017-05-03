@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model
 {
-    protected $table ='Factura';
+    protected $table ='factura';
 
     protected $primaryKey = 'id';
 
@@ -17,6 +17,7 @@ class Factura extends Model
         'nombre',
         'fecha',
         'monto',
+        'idCliente',
         'visible'
     ];
 
