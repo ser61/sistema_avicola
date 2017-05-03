@@ -36,7 +36,7 @@
 
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-          Sistema Rodrigo
+          Sistema Avicola
         </a>
       </div>
 
