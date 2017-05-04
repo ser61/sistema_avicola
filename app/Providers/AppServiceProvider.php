@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace sisAvicola\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

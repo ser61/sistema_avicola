@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\CargoFormRequest;
-use App\Cargo;
+use sisAvicola\Http\Requests\CargoFormRequest;
+use sisAvicola\Cargo;
 use DB;
 
 class CargoController extends Controller

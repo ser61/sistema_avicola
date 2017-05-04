@@ -173,11 +173,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        sisAvicola\Providers\AppServiceProvider::class,
+        sisAvicola\Providers\AuthServiceProvider::class,
+        // sisAvicola\Providers\BroadcastServiceProvider::class,
+        sisAvicola\Providers\EventServiceProvider::class,
+        sisAvicola\Providers\RouteServiceProvider::class,
 
     ],
 

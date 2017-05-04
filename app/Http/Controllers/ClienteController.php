@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PersonaFormRequest;
+use sisAvicola\Http\Requests\PersonaFormRequest;
 use DB;
 
 class ClienteController extends Controller

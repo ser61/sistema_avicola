@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace sisAvicola\Http\Controllers;
 
+use sisAvicola\Http\Requests\HuevoFormRequest;
 use Illuminate\Http\Request;
 
 class HuevoController extends Controller
@@ -11,9 +12,24 @@ class HuevoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(HuevoFormRequest $request)
     {
-        //
+        if ($request) {
+            $query = trim($request->get('searchText'));
+            $productos=DB::table('producto as p')
+                ->join('categoria_producto as c','p.idcategoria_producto','=','c.idcategoria_producto')
+                ->select('p.idproducto','p.nombre','c.descripcion as categoria','p.imagen','p.precio','p.tiempo_prep','info','estado')
+                ->where('p.nombre','LIKE','%'.$query.'%')
+                ->orwhere('c.descripcion','LIKE','%'.$query.'%')
+                ->orderBy('c.descripcion','asc')
+                ->paginate(3);
+            /*if (Auth::user()->rol==8) {
+                return view('productos.producto.index',["productos"=>$productos,"searchText"=>$query]);
+            }else {
+                return view('productosc.producto.index',["productos"=>$productos,"searchText"=>$query]);
+            }*/
+            return view('productos.producto.index',["productos"=>$productos,"searchText"=>$query]);
+        }
     }
 
     /**

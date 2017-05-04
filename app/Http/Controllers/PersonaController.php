@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\PersonaFormRequest;
-use App\Persona;
+use sisAvicola\Http\Requests\PersonaFormRequest;
+use sisAvicola\Persona;
 use DB;
 
 class PersonaController extends Controller
