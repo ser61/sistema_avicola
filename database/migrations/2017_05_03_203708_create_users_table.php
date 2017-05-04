@@ -19,9 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->char('state');
+            $table->int('idEmpleado');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+          
+            $table->foreign('idEmpleado')->references('id')->on('Persona');
         });
     }
 

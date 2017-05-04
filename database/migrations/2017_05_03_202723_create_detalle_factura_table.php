@@ -20,6 +20,9 @@ class CreateDetalleFacturaTable extends Migration
             $table->int('cantidad');
             $table->char('visible');
             $table->timestamps();
+          
+            $table->foreign('idFactura')->references('id')->on('Factura');
+            $table->foreign('idProducto')->references('id')->on('Producto');
         });
     }
 
