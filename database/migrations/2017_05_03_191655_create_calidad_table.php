@@ -15,8 +15,8 @@ class CreateCalidadTable extends Migration
     {
         Schema::create('Calidad', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('nombre',100);
-            $table->varchar('descripcion',100);
+            $table->string('nombre',100);
+            $table->string('descripcion',100);
             $table->float('pesoIntervaloSuperior');
             $table->float('pesoIntervaloInferior');
             $table->char('visible',1);

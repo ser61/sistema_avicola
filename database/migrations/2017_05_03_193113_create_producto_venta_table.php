@@ -28,9 +28,9 @@ class CreateProductoVentaTable extends Migration
             $table->int('idGranja');
             $table->timestamps();
 
-            $table->foreign('idCalidad')->references('id')->on('calidads');
-            $table->foreign('idTipo')->references('id')->on('tipos');
-            $table->foreign('idGranja')->references('id')->on('granjas');
+            $table->foreign('idCalidad')->references('id')->on('Calidad');
+            $table->foreign('idTipo')->references('id')->on('Tipo');
+            $table->foreign('idGranja')->references('id')->on('Granja');
         });
     }
 

@@ -15,7 +15,7 @@ class CreateGranjaTable extends Migration
     {
         Schema::table('Granja', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('ubicacion',100);
+            $table->string('ubicacion',100);
             $table->char('tipo');
             $table->char('visible',1);
             $table->timestamps();
