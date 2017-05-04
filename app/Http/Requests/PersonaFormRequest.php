@@ -23,8 +23,15 @@ class PersonaFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+            return [
             'nombre'=>'max:250',
+            'apellido'=>'max:250',
+            'direccion'=>'max:250',
+            'email'=>'max:250',
+            'empresa'=>'max:250',
+            'fechaingreso'=>'max:250',
+            'fechasalida'=>'max:250',
+            'tipo'=>'max:250',
         ];
     }
 }
