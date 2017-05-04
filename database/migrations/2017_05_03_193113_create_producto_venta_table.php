@@ -21,7 +21,7 @@ class CreateProductoVentaTable extends Migration
             $table->int('pesoPromedio')->nullable();
             $table->int('productividad')->nullable();
             $table->string('caractaresticas')->nullable();
-            $table->char('visible')->nullable();
+            $table->char('visible',1);
             $table->char('tipo',1);
             $table->int('idCalidad');
             $table->int('idTipo');
