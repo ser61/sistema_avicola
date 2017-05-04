@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrivilegiosTable extends Migration
+class CreateBitacoraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePrivilegiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Privilegio', function (Blueprint $table) {
+        Schema::create('Bitacora', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('idCaso_Uso');
-            $table->int('idCargo');
-            $table->char('visible');
+            $table->int('idCuenta');
+            $table->char('visible',1);
             $table->timestamps();
 
-            $table->foreign('idCaso_Uso')->references('id')->on('Caso_Uso');
-            $table->foreign('idCargo')->references('id')->on('Cargo');
+            $table->foreign('idCuenta')->references('id')->on('users');
         });
     }
 
@@ -32,6 +30,6 @@ class CreatePrivilegiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Privilegio');
+        Schema::dropIfExists('Bitacora');
     }
 }
