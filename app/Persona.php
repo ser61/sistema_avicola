@@ -4,16 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Persona extends Model
 {
-    protected $table ='Cargo';
+    protected $table ='Persona';
 
     protected $primaryKey = 'id';
 
     public $timestamps=false;
 
     protected $fillable = [
+        'nit/ci',
         'nombre',
+        'apellido',
+        'direccion',
+        'email',
+        'empresa',
+        'fechaIngreso',
+        'fechaSalida',
+        'tipo',
         'visible'
     ];
 

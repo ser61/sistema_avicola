@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Calidad extends Model
 {
-    protected $table ='Cargo';
+    protected $table ='Calidad';
 
     protected $primaryKey = 'id';
 
@@ -14,6 +14,9 @@ class Cargo extends Model
 
     protected $fillable = [
         'nombre',
+        'descripcion',
+        'pesoIntervaloSuperior',
+        'pesoIntervaloInferior',
         'visible'
     ];
 

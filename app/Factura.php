@@ -4,16 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Factura extends Model
 {
-    protected $table ='Cargo';
+    protected $table ='Factura';
 
     protected $primaryKey = 'id';
 
     public $timestamps=false;
 
     protected $fillable = [
+        'nit',
         'nombre',
+        'fecha',
+        'monto',
         'visible'
     ];
 

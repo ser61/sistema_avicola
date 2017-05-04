@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Privilegio extends Model
 {
-    protected $table ='Cargo';
+    protected $table ='Privilegio';
 
     protected $primaryKey = 'id';
 
     public $timestamps=false;
 
     protected $fillable = [
-        'nombre',
+        'privilegio',
         'visible'
     ];
 
