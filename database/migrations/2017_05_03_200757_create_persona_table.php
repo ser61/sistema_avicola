@@ -25,7 +25,7 @@ class CreatePersonaTable extends Migration
             //Cliente
             $table->date('fechaIngreso');
             $table->date('fechaSalida');
-          
+
             $table->char('tipo',1);
             $table->char('visible',1);
             $table->timestamps();
