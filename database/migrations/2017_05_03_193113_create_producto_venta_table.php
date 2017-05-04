@@ -13,7 +13,7 @@ class CreateProductoVentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Producto_Venta', function (Blueprint $table) {
+        Schema::create('Producto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->int('edad')->nullable();
