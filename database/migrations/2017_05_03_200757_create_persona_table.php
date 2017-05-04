@@ -20,11 +20,11 @@ class CreatePersonaTable extends Migration
             $table->string('apellido');
             $table->string('direccion');
             //Proveedor
-            $table->string('email');
-            $table->string('empresa');
-            //Cliente
-            $table->date('fechaIngreso');
-            $table->date('fechaSalida');
+            $table->string('email')->nullable();
+            $table->string('empresa')->nullalble();
+            //Empleado
+            $table->date('fechaIngreso')->nullable();
+            $table->date('fechaSalida')->nullable();
           
             $table->char('tipo',1);
             $table->char('visible',1);

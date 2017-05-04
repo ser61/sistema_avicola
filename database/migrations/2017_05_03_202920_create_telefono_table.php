@@ -19,6 +19,8 @@ class CreateTelefonoTable extends Migration
             $table->int('idPersona');
             $table->char('visible');
             $table->timestamps();
+          
+            $table->foreign('idPersona')->references('id')->on('Persona');
         });
     }
 

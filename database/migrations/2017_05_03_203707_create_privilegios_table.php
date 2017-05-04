@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrivilegioTable extends Migration
+class CreatePrivilegiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreatePrivilegioTable extends Migration
      */
     public function up()
     {
-        Schema::table('Privilegio', function (Blueprint $table) {
+        Schema::create('Privilegio', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('privilegio');
-            $table->char('visible',1);
+            $table->int('idCaso_Uso');
+            $table->int('idCargo');
             $table->timestamps();
+
+            $table->foreign('idCaso_Uso')->references('id')->on('Caso_Uso');
+            $table->foreign('idCargo')->references('id')->on('Cargo');
         });
     }
 
@@ -28,8 +31,6 @@ class CreatePrivilegioTable extends Migration
      */
     public function down()
     {
-        Schema::table('Privilegio', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('Privilegio');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacturaTable extends Migration
+class CreatePrivilegioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateFacturaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Factura', function (Blueprint $table) {
+        Schema::table('Caso_Uso', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('nit')->unsigned();
             $table->string('nombre');
-            $table->date('fecha');
-            $table->float('monto');
-            $table->int('idCliente');
             $table->char('visible',1);
             $table->timestamps();
-
-            $table->foreign('idCliente')->references('id')->on('Persona');
         });
     }
 
@@ -34,6 +28,8 @@ class CreateFacturaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Factura');
+        Schema::table('Privilegio', function (Blueprint $table) {
+            //
+        });
     }
 }
