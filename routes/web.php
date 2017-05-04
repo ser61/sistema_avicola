@@ -48,3 +48,32 @@ Route::get('/home', 'HomeController@index');
 
 
 //FIN DE ROUTES DE SERGIO WEIMAR
+//SERGIO FRANCO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FIN DE ROUTES DE SERGIO WEIMAR
