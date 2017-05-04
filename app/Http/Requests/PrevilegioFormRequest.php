@@ -24,7 +24,17 @@ class PrevilegioFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'previlegio'=>'max:250', 
+            $table->string('nombre');
+            $table->int('edad')->nullable();
+            $table->char('sexo',1)->nullable();
+            $table->int('pesoPromedio')->nullable();
+            $table->int('productividad')->nullable();
+            $table->string('caractaresticas')->nullable();
+            $table->char('visible')->nullable();
+            $table->char('tipo',1);
+            $table->int('idCalidad');
+            $table->int('idTipo');
+            $table->int('idGranja'); 
         ];
     }
 }
