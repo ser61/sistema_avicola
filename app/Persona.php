@@ -13,14 +13,12 @@ class Persona extends Model
     public $timestamps=false;
 
     protected $fillable = [
-        'nit/ci',
+        'nit',
         'nombre',
         'apellido',
         'direccion',
         'email',
         'empresa',
-        'fechaIngreso',
-        'fechaSalida',
         'tipo',
         'visible'
     ];

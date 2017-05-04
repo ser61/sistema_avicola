@@ -49,9 +49,9 @@ Route::get('facturar','FacturaController@create');
 
 //FIN DE ROUTES DE SERGIO WEIMAR
 //SERGIO FRANCO
-
-
-
+Route::resource('administracion/persona','PersonaController');
+Route::resource('administracion/cargo','CargoController');
+Route::resource('administracion/empleado','EmpleadoController');
 
 
 

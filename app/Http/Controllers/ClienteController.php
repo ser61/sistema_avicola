@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PersonaFormRequest;
+use DB;
 
 class ClienteController extends Controller
 {
@@ -11,9 +13,9 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -23,7 +25,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view("administracion.cliente.create");
     }
 
     /**

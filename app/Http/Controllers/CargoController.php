@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CargoFormRequest;
+use App\Cargo;
+use DB;
+
 class CargoController extends Controller
 {
     /**
@@ -11,9 +16,16 @@ class CargoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request){
+            $query = trim($request->get('searchText'));
+            $cargos=DB::table('cargo')
+            ->where('id','LIKE','%'.$query.'%')
+            ->where('visible','=','v')
+            ->paginate(15);
+            return view('administracion.cargo.index',["cargos"=>$cargos,"searchText"=>$query]);
+        }
     }
 
     /**
@@ -23,7 +35,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        return view("administracion.cargo.create");
     }
 
     /**
@@ -32,9 +44,13 @@ class CargoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CargoFormRequest $request)
     {
-        //
+        $cargo=new Cargo;
+        $cargo->nombre=$request->get('nombre');
+        $cargo->visible='v';
+        $cargo->save();
+        return Redirect::to('administracion/cargo');
     }
 
     /**
