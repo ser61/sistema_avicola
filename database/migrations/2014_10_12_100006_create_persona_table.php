@@ -15,17 +15,25 @@ class CreatePersonaTable extends Migration
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nit')->unsigned();
+            $table->integer('ci')->unsigned();
             $table->string('nombre');
             $table->string('apellido');
             $table->string('direccion');
             //Proveedor
             $table->string('email')->nullable();
-            $table->string('empresa')->nullable();
+            $table->string('nombreEmpresa')->nullable();
+            //Empleado
+            $table->date('fechaNacimiento')->nullable();
+            $table->date('fechaIngreso')->nullable();
+            $table->string('foto')->nullable();
+            $table->integer('idCargo')->nullable()->unsigned();
+            //Cliente
 
-            $table->char('tipo',1);
-            $table->char('visible',1);
+            $table->char('tipo');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idCargo')->references('id')->on('cargo');
         });
     }
 

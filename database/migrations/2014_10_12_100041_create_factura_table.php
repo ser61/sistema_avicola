@@ -18,14 +18,14 @@ class CreateFacturaTable extends Migration
             $table->integer('nit')->unsigned();
             $table->string('nombre');
             $table->date('fecha');
-            $table->float('monto');
+            $table->float('montoTotal');
             $table->integer('idCliente')->unsigned();
             $table->integer('idEmpleado')->unsigned();
-            $table->char('visible',1);
+            $table->char('visible');
             $table->timestamps();
 
             $table->foreign('idCliente')->references('id')->on('persona');
-            $table->foreign('idEmpleado')->references('id')->on('empleado');
+            $table->foreign('idEmpleado')->references('id')->on('persona');
         });
     }
 

@@ -15,7 +15,14 @@ class CreatePrivilegioUsuarioTable extends Migration
     {
         Schema::create('privilegio_usuario', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idModulo')->unsigned();
+            $table->char('permiso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idUsuario')->references('id')->on('users');
+            $table->foreign('idModulo')->references('id')->on('modulo');
         });
     }
 

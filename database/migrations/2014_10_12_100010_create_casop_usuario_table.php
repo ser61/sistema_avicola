@@ -15,7 +15,14 @@ class CreateCasopUsuarioTable extends Migration
     {
         Schema::create('casop_usuario', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idPrivilegio')->unsigned();
+            $table->integer('idCaso')->unsigned();
+            $table->char('permiso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idPrivilegio')->references('id')->on('privilegio_usuario');
+            $table->foreign('idCaso')->references('id')->on('caso_uso');
         });
     }
 

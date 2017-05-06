@@ -15,7 +15,13 @@ class CreateDetalleSanitizacionTable extends Migration
     {
         Schema::create('detalle_sanitizacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idProcesoSanitario')->unsigned();
+            $table->integer('idRegistroSanitizacion')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idProcesoSanitario')->references('id')->on('proceso_sanitario');
+            $table->foreign('idRegistroSanitizacion')->references('id')->on('registro_sanitizacion');
         });
     }
 

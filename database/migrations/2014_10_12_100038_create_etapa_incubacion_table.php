@@ -15,6 +15,8 @@ class CreateEtapaIncubacionTable extends Migration
     {
         Schema::create('etapa_incubacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->char('visible');
             $table->timestamps();
         });
     }

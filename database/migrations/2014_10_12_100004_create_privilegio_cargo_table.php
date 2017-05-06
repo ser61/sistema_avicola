@@ -15,7 +15,14 @@ class CreatePrivilegioCargoTable extends Migration
     {
         Schema::create('privilegio_cargo', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idCargo')->unsigned();
+            $table->integer('idModulo')->unsigned();
+            $table->char('permiso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idCargo')->references('id')->on('cargo');
+            $table->foreign('idModulo')->references('id')->on('modulo');
         });
     }
 

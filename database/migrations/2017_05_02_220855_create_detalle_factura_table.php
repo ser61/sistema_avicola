@@ -22,7 +22,7 @@ class CreateDetalleFacturaTable extends Migration
             $table->timestamps();
 
             $table->foreign('idFactura')->references('id')->on('factura');
-            $table->foreign('idProducto')->references('id')->on('producto');
+            $table->foreign('idProducto')->references('id')->on('producto_venta');
         });
     }
 

@@ -15,7 +15,17 @@ class CreateTraspasoHuevoTable extends Migration
     {
         Schema::create('traspaso_huevo', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idLoteHuevoIncubable')->unsigned();
+            $table->integer('idEtapaIncubacion')->unsigned();
+            $table->integer('cantidad');
+            $table->date('fecha');
+            $table->integer('idEquipo')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idLoteHuevoIncubable')->references('id')->on('lote_huevo_incubable');
+            $table->foreign('idEtapaIncubacion')->references('id')->on('etapa_incubacion');
+            $table->foreign('idEquipo')->references('id')->on('equipo');
         });
     }
 

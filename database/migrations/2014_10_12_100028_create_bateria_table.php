@@ -15,7 +15,12 @@ class CreateBateriaTable extends Migration
     {
         Schema::create('bateria', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('capacidad');
+            $table->integer('idGalpon')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idGalpon')->references('id')->on('infraestructura');
         });
     }
 

@@ -15,6 +15,9 @@ class CreateProcesoSanitarioTable extends Migration
     {
         Schema::create('proceso_sanitario', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->char('visible');
             $table->timestamps();
         });
     }

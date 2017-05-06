@@ -15,7 +15,13 @@ class CreateTraspasoParvadaTable extends Migration
     {
         Schema::create('traspaso_parvada', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->integer('cantidad');
+            $table->integer('idGalpon')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idGalpon')->references('id')->on('infraestructura');
         });
     }
 

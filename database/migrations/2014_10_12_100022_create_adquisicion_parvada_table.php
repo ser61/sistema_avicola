@@ -15,7 +15,16 @@ class CreateAdquisicionParvadaTable extends Migration
     {
         Schema::create('adquisicion_parvada', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->string('observaciones');
+            $table->integer('idProveedor')->unsigned();
+            $table->integer('idParvada')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idProveedor')->references('id')->on('persona');
+            $table->foreign('idParvada')->references('id')->on('parvada');
         });
     }
 

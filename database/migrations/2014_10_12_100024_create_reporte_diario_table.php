@@ -15,7 +15,22 @@ class CreateReporteDiarioTable extends Migration
     {
         Schema::create('reporte_diario', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->integer('mortalidad');
+            $table->integer('cantidadHuevos');
+            $table->float('pesoPromedio');
+            $table->string('observaciones');
+            $table->integer('idDietaAlimenticia')->unsigned();
+            $table->integer('idEmpleado')->unsigned();
+            $table->integer('idEtapa')->unsigned();
+            $table->integer('idParvada')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idDietaAlimenticia')->references('id')->on('dieta_alimenticia');
+            $table->foreign('idEmpleado')->references('id')->on('persona');
+            $table->foreign('idEtapa')->references('id')->on('etapa');
+            $table->foreign('idParvada')->references('id')->on('parvada');
         });
     }
 

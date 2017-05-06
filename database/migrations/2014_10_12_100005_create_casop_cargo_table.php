@@ -15,7 +15,14 @@ class CreateCasopCargoTable extends Migration
     {
         Schema::create('casop_cargo', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idPrivilegio')->unsigned();
+            $table->integer('idCaso')->unsigned();
+            $table->char('permiso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idPrivilegio')->references('id')->on('privilegio_cargo');
+            $table->foreign('idCaso')->references('id')->on('caso_uso');
         });
     }
 

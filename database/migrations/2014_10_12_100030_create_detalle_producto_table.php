@@ -15,7 +15,14 @@ class CreateDetalleProductoTable extends Migration
     {
         Schema::create('detalle_producto', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idProductoSanitario')->unsigned();
+            $table->integer('idProcesoSanitario')->unsigned();
+            $table->integer('cantidad');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idProductoSanitario')->references('id')->on('insumo');
+            $table->foreign('idProcesoSanitario')->references('id')->on('proceso_sanitario');
         });
     }
 

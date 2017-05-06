@@ -15,7 +15,15 @@ class CreateDetalleMedicacionTable extends Migration
     {
         Schema::create('detalle_medicacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idMedicamento')->unsigned();
+            $table->integer('idReporteMedicacion')->unsigned();
+            $table->float('dosis');
+            $table->string('viaDeAplicacion');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idMedicamento')->references('id')->on('insumo');
+            $table->foreign('idReporteMedicacion')->references('id')->on('reporte_medicacion');
         });
     }
 

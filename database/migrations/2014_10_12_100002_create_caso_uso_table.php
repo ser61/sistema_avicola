@@ -15,9 +15,12 @@ class CreateCasoUsoTable extends Migration
     {
         Schema::create('caso_uso', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idModulo')->unsigned();
             $table->string('nombre');
-            $table->char('visible',1);
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idModulo')->references('id')->on('modulo');
         });
     }
 

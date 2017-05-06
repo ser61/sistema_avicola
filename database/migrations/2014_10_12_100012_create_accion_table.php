@@ -20,8 +20,8 @@ class CreateAccionTable extends Migration
             $table->string('accion');
             $table->string('tabla');
             $table->integer('idTupla');
-            $table->char('visible',1);
             $table->integer('idBitacora')->unsigned();
+            $table->char('visible');
             $table->timestamps();
 
             $table->foreign('idBitacora')->references('id')->on('bitacora');

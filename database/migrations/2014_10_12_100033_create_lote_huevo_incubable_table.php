@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLoteHuevoIncuvableTable extends Migration
+class CreateLoteHuevoIncubableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,12 @@ class CreateLoteHuevoIncuvableTable extends Migration
     {
         Schema::create('lote_huevo_incubable', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cantidad');
+            $table->integer('idPlantaIncubacion')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idPlantaIncubacion')->references('id')->on('infraestructura');
         });
     }
 

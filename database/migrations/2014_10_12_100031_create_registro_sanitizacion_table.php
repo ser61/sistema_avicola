@@ -15,7 +15,12 @@ class CreateRegistroSanitizacionTable extends Migration
     {
         Schema::create('registro_sanitizacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->integer('idInfraestructura')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idInfraestructura')->references('id')->on('infraestructura');
         });
     }
 

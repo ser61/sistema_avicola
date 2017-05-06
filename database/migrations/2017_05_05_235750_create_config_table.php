@@ -15,6 +15,13 @@ class CreateConfigTable extends Migration
     {
         Schema::create('config', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('background');
+            $table->string('logo');
+            $table->string('font');
+            $table->string('theme');
+            $table->string('titulo');
+            $table->char('visible');
             $table->timestamps();
         });
     }

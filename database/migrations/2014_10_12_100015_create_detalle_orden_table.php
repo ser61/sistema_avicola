@@ -15,7 +15,14 @@ class CreateDetalleOrdenTable extends Migration
     {
         Schema::create('detalle_orden', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idOrdenProduccion')->unsigned();
+            $table->integer('idAlimento')->unsigned();
+            $table->float('peso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idOrdenProduccion')->references('id')->on('orden_produccion');
+            $table->foreign('idAlimento')->references('id')->on('alimento');
         });
     }
 

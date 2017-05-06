@@ -15,7 +15,14 @@ class CreateInfraestructuraTable extends Migration
     {
         Schema::create('infraestructura', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('capacidad');
+            $table->string('estado');
+            $table->char('tipo');
+            $table->integer('idGranja')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idGranja')->references('id')->on('granja');
         });
     }
 

@@ -15,7 +15,13 @@ class CreateIngresoHuevoIncubableTable extends Migration
     {
         Schema::create('ingreso_huevo_incubable', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idReporteDiario')->unsigned();
+            $table->integer('idPlantaIncubacion')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idReporteDiario')->references('id')->on('reporte_diario');
+            $table->foreign('idPlantaIncubacion')->references('id')->on('infraestructura');
         });
     }
 

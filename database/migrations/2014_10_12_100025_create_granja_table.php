@@ -16,8 +16,8 @@ class CreateGranjaTable extends Migration
         Schema::create('granja', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ubicacion',100);
-            $table->char('tipo');
-            $table->char('visible',1);
+            $table->string('tipo');
+            $table->char('visible');
             $table->timestamps();
         });
     }

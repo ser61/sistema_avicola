@@ -15,11 +15,11 @@ class CreateBitacoraTable extends Migration
     {
         Schema::create('bitacora', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idCuenta')->unsigned();
-            $table->char('visible',1);
+            $table->integer('idUser')->unsigned();
+            $table->char('visible');
             $table->timestamps();
 
-            $table->foreign('idCuenta')->references('id')->on('users');
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

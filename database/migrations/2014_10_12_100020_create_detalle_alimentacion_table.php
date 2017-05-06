@@ -15,7 +15,14 @@ class CreateDetalleAlimentacionTable extends Migration
     {
         Schema::create('detalle_alimentacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idAlimento')->unsigned();
+            $table->integer('idDietaAlimenticia')->unsigned();
+            $table->float('cantidadAlimento');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idAlimento')->references('id')->on('alimento');
+            $table->foreign('idDietaAlimenticia')->references('id')->on('dieta_alimenticia');
         });
     }
 

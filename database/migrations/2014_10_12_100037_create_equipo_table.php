@@ -15,7 +15,14 @@ class CreateEquipoTable extends Migration
     {
         Schema::create('equipo', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->integer('capacidad');
+            $table->integer('idPlantaIncubacion')->unsigned();
+            $table->char('tipo');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idPlantaIncubacion')->references('id')->on('infraestructura');
         });
     }
 

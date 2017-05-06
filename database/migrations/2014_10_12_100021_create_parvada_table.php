@@ -15,6 +15,15 @@ class CreateParvadaTable extends Migration
     {
         Schema::create('parvada', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cantidadPollos');
+            $table->char('sexo');
+            $table->tinyInteger('edad');
+            $table->float('pesoPromedio');
+            $table->string('caracteristicas');
+            $table->integer('productividad');
+            $table->string('tipo');
+            $table->integer('mortalidad');
+            $table->char('visible');
             $table->timestamps();
         });
     }

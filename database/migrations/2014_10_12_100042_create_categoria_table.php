@@ -15,6 +15,11 @@ class CreateCategoriaTable extends Migration
     {
         Schema::create('categoria', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->float('pesoIntervaloSuperior');
+            $table->float('pesoIntervaloInferior');
+            $table->char('visible');
             $table->timestamps();
         });
     }

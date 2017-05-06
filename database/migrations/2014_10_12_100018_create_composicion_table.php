@@ -15,7 +15,14 @@ class CreateComposicionTable extends Migration
     {
         Schema::create('composicion', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idAlimento')->unsigned();
+            $table->integer('idMateriaPrima')->unsigned();
+            $table->float('peso');
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idAlimento')->references('id')->on('alimento');
+            $table->foreign('idMateriaPrima')->references('id')->on('insumo');
         });
     }
 

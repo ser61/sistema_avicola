@@ -15,7 +15,14 @@ class CreateOrdenProduccionTable extends Migration
     {
         Schema::create('orden_produccion', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->string('observacion');
+            $table->integer('idEmpleado')->unsigned();
+            $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idEmpleado')->references('id')->on('persona');
         });
     }
 
