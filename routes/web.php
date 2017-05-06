@@ -22,15 +22,15 @@ Route::resource('venta/tipo','TipoController');
 Route::get('/home', 'HomeController@index');
 
 //24 - SERGIO WEIMAR
+//Route::get('cargo', 'CargoController@index');
+Route::resource('cargo', 'CargoController');
 Route::get('facturar','FacturaController@create');
 Route::get('fondo', function(){
   return view('layouts.fondo');
 });
-
-
-
-
-
+Route::get('casa', function(){
+  return view('seguridad.cargo.index');
+});
 
 
 

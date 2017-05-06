@@ -11,90 +11,43 @@ use DB;
 
 class CargoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        if($request){
-            $query = trim($request->get('searchText'));
-            $cargos=DB::table('cargo')
-            ->where('id','LIKE','%'.$query.'%')
-            ->where('visible','=','v')
-            ->paginate(15);
-            return view('administracion.cargo.index',["cargos"=>$cargos,"searchText"=>$query]);
-        }
-    }
+  public function index()
+  {
+    $cargos = Cargo::_allCargos()->get();
+    return view('seguridad.cargo.index', compact('cargos'));
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view("administracion.cargo.create");
-    }
+  public function create()
+  {
+    return view("administracion.cargo.create");
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CargoFormRequest $request)
-    {
-        $cargo=new Cargo;
-        $cargo->nombre=$request->get('nombre');
-        $cargo->visible='v';
-        $cargo->save();
-        return Redirect::to('administracion/cargo');
-    }
+  public function store(CargoFormRequest $request)
+  {
+    $cargo = new Cargo;
+    $cargo->nombre = $request->get('nombre');
+    $cargo->visible = 'v';
+    $cargo->save();
+    return Redirect::to('administracion/cargo');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  public function show($id)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  public function edit($id)
+  {
+    //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  public function update(Request $request, $id)
+  {
+    //
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  public function destroy($id)
+  {
+    //
+  }
 }

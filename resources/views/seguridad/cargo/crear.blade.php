@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
 		<title>Sistema Avicola</title>
 		<!-- start: META -->
 		<meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" />
+		<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -13,35 +14,23 @@
 		<meta content="" name="author" />
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
-    {!!Html::style('plugins/animate.css/animate.min.css')!!}
-    {!!Html::style('plugins/bootstrap/css/bootstrap.min.css')!!}
-    {!!Html::style('plugins/bootstrap-daterangepicker/daterangepicker-bs3.css')!!}
-    {!!Html::style('plugins/bootstrap-fileupload/bootstrap-fileupload.min.css')!!}
-    {!!Html::style('plugins/bootstrap-select/bootstrap-select.min.css')!!}
-    {!!Html::style('plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css')!!}
-    {!!Html::style('plugins/DataTables/media/css/DT_bootstrap.css')!!}
-    {!!Html::style('plugins/font-awesome/css/font-awesome.min.css')!!}
-    {!!Html::style('plugins/fullcalendar/fullcalendar/fullcalendar.css')!!}
-    {!!Html::style('plugins/iCheck/skins/all.css')!!}
-    {!!Html::style('plugins/owl-carousel/owl-carousel/owl.carousel.css')!!}
-    {!!Html::style('plugins/owl-carousel/owl-carousel/owl.theme.css')!!}
-    {!!Html::style('plugins/owl-carousel/owl-carousel/owl.transitions.css')!!}
-    {!!Html::style('plugins/perfect-scrollbar/src/perfect-scrollbar.css')!!}
-    {!!Html::style('plugins/summernote/dist/summernote.css')!!}
-    {!!Html::style('plugins/toastr/toastr.min.css')!!}
-    {!!Html::style('css/styles.css')!!}
-    {!!Html::style('css/styles-responsive.css')!!}
-      <!-- end: MAIN CSS -->
+		<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/plugins/iCheck/skins/all.css">
+		<link rel="stylesheet" href="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
+		<link rel="stylesheet" href="../assets/plugins/animate.css/animate.min.css">
+		<!-- end: MAIN CSS -->
 		
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
-    {!!Html::style('plugins/nvd3/nv.d3.min.css')!!}
+		<link rel="stylesheet" href="../assets/plugins/nvd3/nv.d3.min.css">
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-      <!-- start: CORE CSS -->
-    {!!Html::style('css/plugins.css')!!}
-    {!!Html::style('css/styles.css')!!}
-    {!!Html::style('css/styles-responsive.css')!!}
-    <link rel="stylesheet" href={{ asset('css/print.css') }} type="text/css" media="print"/>
-    <link rel="stylesheet" href={{ asset('css/themes/theme-default.css') }} type="text/css" id="skin_color">
+		<!-- start: CORE CSS -->
+		<link rel="stylesheet" href="../assets/css/styles.css">
+		<link rel="stylesheet" href="../assets/css/styles-responsive.css">
+		<link rel="stylesheet" href="../assets/css/plugins.css">
+		<link rel="stylesheet" href="../assets/css/themes/theme-default.css" type="text/css" id="skin_color">
+		<link rel="stylesheet" href="../assets/css/print.css" type="text/css" media="print"/>
 		<!-- end: CORE CSS -->
 		
 	</head>
@@ -59,7 +48,7 @@
 						</a>
 						<!-- start: LOGO -->
 						<a class="navbar-brand" href="index.html">
-							<img src="images/logo.png" alt="Rapido"/>
+							<img src="../assets/images/logo_sistema.png" alt="Rapido"/>
 						</a>
 						<!-- end: LOGO -->
 					</div>
@@ -69,7 +58,7 @@
 							<!-- start: USER DROPDOWN -->
 							<li class="dropdown current-user">
 								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-									<img src="images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs">Peter Clark</span> <i class="fa fa-caret-down "></i>
+									<img src="../assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs">Peter Clark</span> <i class="fa fa-caret-down "></i>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
@@ -110,7 +99,7 @@
 						</div>
 						<div class="user-profile border-top padding-horizontal-10 block">
 							<div class="inline-block">
-								<img src="images/avatar-1.jpg" alt="">
+								<img src="../assets/images/avatar-1.jpg" alt="">
 							</div>
 							<div class="inline-block">
 								<h5 class="no-margin"> Binevenido </h5>
@@ -127,7 +116,7 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="{{ url('/cargo')}}">
+										<a href="#">
 											<span class="title"> Cargo </span>
 										</a>
 									</li>
@@ -377,7 +366,6 @@
 				<div class="right-wrapper">
 					<div id="style_selector">
 						<div id="style_selector_container">
-              <br>
 							<div class="pageslide-title">
 								Configuracion del Entorno
 							</div>
@@ -425,26 +413,26 @@
 								10 Predefined Color Schemes
 							</div>
 							<div class="images icons-color">
-								<a href="#" id="default"><img src={{ asset('images/color-1.png') }} alt="" class="active"></a>
-								<a href="#" id="style2"><img src={{ asset('images/color-2.png') }} alt=""></a>
-								<a href="#" id="style3"><img src="images/color-3.png" alt=""></a>
-								<a href="#" id="style4"><img src="images/color-4.png" alt=""></a>
-								<a href="#" id="style5"><img src="images/color-5.png" alt=""></a>
-								<a href="#" id="style6"><img src="images/color-6.png" alt=""></a>
-								<a href="#" id="style7"><img src="images/color-7.png" alt=""></a>
-								<a href="#" id="style8"><img src="images/color-8.png" alt=""></a>
-								<a href="#" id="style9"><img src="images/color-9.png" alt=""></a>
-								<a href="#" id="style10"><img src="images/color-10.png" alt=""></a>
+								<a href="#" id="default"><img src="../assets/images/color-1.png" alt="" class="active"></a>
+								<a href="#" id="style2"><img src="../assets/images/color-2.png" alt=""></a>
+								<a href="#" id="style3"><img src="../assets/images/color-3.png" alt=""></a>
+								<a href="#" id="style4"><img src="../assets/images/color-4.png" alt=""></a>
+								<a href="#" id="style5"><img src="../assets/images/color-5.png" alt=""></a>
+								<a href="#" id="style6"><img src="../assets/images/color-6.png" alt=""></a>
+								<a href="#" id="style7"><img src="../assets/images/color-7.png" alt=""></a>
+								<a href="#" id="style8"><img src="../assets/images/color-8.png" alt=""></a>
+								<a href="#" id="style9"><img src="../assets/images/color-9.png" alt=""></a>
+								<a href="#" id="style10"><img src="../assets/images/color-10.png" alt=""></a>
 							</div>
 							<div class="box-title">
 								Backgrounds for Boxed Version
 							</div>
 							<div class="images boxed-patterns">
-								<a href="#" id="bg_style_1"><img src="images/bg.png" alt=""></a>
-								<a href="#" id="bg_style_2"><img src="images/bg_2.png" alt=""></a>
-								<a href="#" id="bg_style_3"><img src="images/bg_3.png" alt=""></a>
-								<a href="#" id="bg_style_4"><img src="images/bg_4.png" alt=""></a>
-								<a href="#" id="bg_style_5"><img src="images/bg_5.png" alt=""></a>
+								<a href="#" id="bg_style_1"><img src="../assets/images/bg.png" alt=""></a>
+								<a href="#" id="bg_style_2"><img src="../assets/images/bg_2.png" alt=""></a>
+								<a href="#" id="bg_style_3"><img src="../assets/images/bg_3.png" alt=""></a>
+								<a href="#" id="bg_style_4"><img src="../assets/images/bg_4.png" alt=""></a>
+								<a href="#" id="bg_style_5"><img src="../assets/images/bg_5.png" alt=""></a>
 							</div>
 							<div class="style-options">
 								<a href="#" class="clear_style">
@@ -465,10 +453,72 @@
 				<!-- start: PAGE -->
 				<div class="main-content">
 					<div class="container">
+						<!-- start: PAGE HEADER -->
+						<!-- start: TOOLBAR -->
+						<div class="toolbar row">
+							<div class="page-header">
+								<h1 style="text-align: center;">Bienvenido <small> Pagina principal </small></h1>
+							</div>
+						</div>
+						<!-- end: TOOLBAR -->
+						<!-- end: PAGE HEADER -->
+						<br>
+						
+						<div class="row">
+							<div class="col-sm-10 col-sm-offset-1">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<h2 class="panel-title center">Panel de Registro de <span class="text-bold">Cargos</span></h2>
+										<div class="panel-tools">										
+											<div class="dropdown">
+											<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
+												<i class="fa fa-cog"></i>
+											</a>
+											<ul class="dropdown-menu dropdown-light pull-right" role="menu">
+												<li>
+													<a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+												</li>
+												<li>
+													<a class="panel-expand" href="#"> <i class="fa fa-expand"></i> <span>Fullscreen</span></a>
+												</li>										
+											</ul>
+											</div>
+										</div>
+									</div>
+									<div class="panel-body">
 
-            @yield('content')
+										<div class="form-group">
+											<div class="col-sm-8 col-sm-offset-2">
+												<input type="text" placeholder="Ingrese el nombre del cargo aqui..." id="form-field-1" class="form-control">
+											</div>
+											<br><br>
+										</div>
 
-          </div>
+										<div class="form-group">
+											<div class="col-sm-8 col-sm-offset-2">
+												<label for="form-field-24">
+													Escriba una breve description:
+												</label>
+												<textarea class="autosize form-control" id="form-field-24"></textarea>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="col-sm-8 col-sm-offset-2">
+												<br>
+												<button class="btn btn-blue btn-block">
+													Registrar Cargo <i class="fa fa-arrow-circle-right"></i>
+												</button>
+												<br>
+											</div>
+										</div>
+
+									</div>
+								</div>								
+							</div>
+						</div>
+						
+					</div>
 				</div>
 				<!-- end: PAGE -->
 			</div>
@@ -486,57 +536,32 @@
 			</footer>
 			<!-- end: FOOTER -->
 		</div>
-
-    <!-- start: MAIN JAVASCRIPTS -->
-    {!!Html::script('plugins/bootbox/bootbox.min.js')!!}
-    {!!Html::script('plugins/excanvas.min.js')!!}
-    {!!Html::script('plugins/respond.min.js')!!}
-    {!!Html::script('plugins/jQuery/jquery-2.1.1.min.js')!!}
-    {!!Html::script('plugins/jQuery/jquery-1.11.1.min.js')!!}
-    {!!Html::script('plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js')!!}
-    {!!Html::script('plugins/jquery.transit/jquery.transit.js')!!}
-    {!!Html::script('plugins/jquery.scrollTo/jquery.scrollTo.min.js')!!}
-    {!!Html::script('plugins/jquery.appear/jquery.appear.js')!!}
-    {!!Html::script('plugins/jquery-cookie/jquery.cookie.js')!!}
-    {!!Html::script('plugins/bootstrap/js/bootstrap.min.js')!!}
-    {!!Html::script('plugins/blockUI/jquery.blockUI.js')!!}
-    {!!Html::script('plugins/iCheck/jquery.icheck.min.js')!!}
-    {!!Html::script('plugins/moment/min/moment.min.js')!!}
-    {!!Html::script('plugins/perfect-scrollbar/src/jquery.mousewheel.js')!!}
-    {!!Html::script('plugins/perfect-scrollbar/src/perfect-scrollbar.js')!!}
-    {!!Html::script('plugins/ScrollToFixed/jquery-scrolltofixed-min.js')!!}
-    {!!Html::script('plugins/TouchSwipe/jquery.touchSwipe.min.js')!!}
-    {!!Html::script('plugins/velocity/jquery.velocity.min.js')!!}
-    <!-- end: MAIN JAVASCRIPTS -->
-    <!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
-    {!!Html::script('plugins/owl-carousel/owl-carousel/owl.carousel.js')!!}
-    {!!Html::script('plugins/jquery-mockjax/jquery.mockjax.js')!!}
-    {!!Html::script('plugins/toastr/toastr.js')!!}
-    {!!Html::script('plugins/bootstrap-modal/js/bootstrap-modal.js')!!}
-    {!!Html::script('plugins/bootstrap-modal/js/bootstrap-modalmanager.js')!!}
-    {!!Html::script('plugins/fullcalendar/fullcalendar/fullcalendar.min.js')!!}
-    {!!Html::script('plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js')!!}
-    {!!Html::script('plugins/bootstrap-select/bootstrap-select.min.js')!!}
-    {!!Html::script('plugins/jquery-validation/dist/jquery.validate.min.js')!!}
-    {!!Html::script('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')!!}
-    {!!Html::script('plugins/DataTables/media/js/jquery.dataTables.min.js')!!}
-    {!!Html::script('plugins/DataTables/media/js/DT_bootstrap.js')!!}
-    {!!Html::script('plugins/truncate/jquery.truncate.js')!!}
-    {!!Html::script('plugins/summernote/dist/summernote.min.js')!!}
-    {!!Html::script('plugins/bootstrap-daterangepicker/daterangepicker.js')!!}
-    {!!Html::script('js/subview.js')!!}
-    {!!Html::script('js/subview-examples.js')!!}
-    <!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
+		
+		<script src="../assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+		<!--<![endif]-->
+		<script src="../assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/plugins/blockUI/jquery.blockUI.js"></script>
+		<script src="../assets/plugins/iCheck/jquery.icheck.min.js"></script>
+		<script src="../assets/plugins/moment/min/moment.min.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+		<script src="../assets/plugins/bootbox/bootbox.min.js"></script>
+		<script src="../assets/plugins/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+		<script src="../assets/plugins/ScrollToFixed/jquery-scrolltofixed-min.js"></script>
+		<script src="../assets/plugins/jquery.appear/jquery.appear.js"></script>
+		<script src="../assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+		<script src="../assets/plugins/velocity/jquery.velocity.min.js"></script>
+		<script src="../assets/plugins/TouchSwipe/jquery.touchSwipe.min.js"></script>
+		<!-- end: MAIN JAVASCRIPTS -->
 		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    {!!Html::script('plugins/nvd3/lib/d3.v3.js')!!}
-    {!!Html::script('plugins/nvd3/nv.d3.min.js')!!}
-    {!!Html::script('js/charts.js')!!}
+		<script src="../assets/plugins/nvd3/lib/d3.v3.js"></script>
+		<script src="../assets/js/charts.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    {!!Html::script('js/main.js')!!}
+		<script src="../assets/js/main.js"></script>
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();
-        Charts.init();
 			});
 		</script>
 	</body>
