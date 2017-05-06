@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalidadTable extends Migration
+class CreateAdquisicionParvadaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateCalidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('calidad', function (Blueprint $table) {
+        Schema::create('adquisicion_parvada', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',100);
-            $table->string('descripcion',100);
-            $table->float('pesoIntervaloSuperior');
-            $table->float('pesoIntervaloInferior');
-            $table->char('visible',1);
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateCalidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calidad');
+        Schema::dropIfExists('adquisicion_parvada');
     }
 }
