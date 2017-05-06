@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('venta/tipo','TipoController');
+
 Route::get('/home', 'HomeController@index');
 
 //SERGIO WEIMAR

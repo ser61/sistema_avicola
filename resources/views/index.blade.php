@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://127.0.0.1:8000" class="site_title"><i class="fa fa-laptop"></i> <span>Delivery</span></a>
+              <a href="http://127.0.0.1:8000" class="site_title"><i class="fa fa-laptop"></i> <span>Avícola</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -170,7 +170,7 @@
               <div class="dashboard_graph">
                 <div class="row x_title">
                   <div class="col-md-6">
-                    <h3>Delivery System</h3>
+                    <h3>Avícola System</h3>
                   </div>
                 </div>
                 <div class="box-body">

@@ -10,7 +10,7 @@ class Calidad extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps=false;
+    //public $timestamps=false;
 
     protected $fillable = [
         'nombre',
