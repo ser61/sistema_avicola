@@ -56,7 +56,7 @@ var UIElements = function() {
 					// (string | mandatory) the text inside the notification
 					text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" style="color:#ccc">magnis dis parturient</a> montes, nascetur ridiculus mus.',
 					// (string | optional) the image to display on the left
-					image : 'assets/images/avatar-1.jpg',
+					image : 'images/avatar-1.jpg',
 					// (bool | optional) if you want it to fade out on its own or just sit there
 					sticky : true,
 					// (int | optional) the time you want it to be alive for before fading out
@@ -82,7 +82,7 @@ var UIElements = function() {
 					// (string | mandatory) the text inside the notification
 					text : 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" style="color:#ccc">magnis dis parturient</a> montes, nascetur ridiculus mus.',
 					// (string | optional) the image to display on the left
-					image : 'assets/images/avatar-2.jpg',
+					image : 'images/avatar-2.jpg',
 					// (bool | optional) if you want it to fade out on its own or just sit there
 					sticky : false,
 					// (int | optional) the time you want it to be alive for before fading out

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index2');
 });
 
 Auth::routes();
@@ -23,9 +23,9 @@ Route::get('/home', 'HomeController@index');
 
 //24 - SERGIO WEIMAR
 Route::get('facturar','FacturaController@create');
-
-
-
+Route::get('fondo', function(){
+  return view('layouts.fondo');
+});
 
 
 

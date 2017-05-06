@@ -1051,13 +1051,13 @@ var Main = function() {"use strict";
 				$('#skin_color').attr("rel", "stylesheet");
 
 			}
-			$('#skin_color').attr("href", "assets/css/themes/theme-" + $(this).attr('id') + ".css");
+			$('#skin_color').attr("href", "css/themes/theme-" + $(this).attr('id') + ".css");
 			switch ($(this).attr('id')) {
 				case "style3":
-					$(".navbar-brand img").attr("src", "assets/images/logo_dark.png");
+					$(".navbar-brand img").attr("src", "images/logo_dark.png");
 					break;
 				default:
-					$(".navbar-brand img").attr("src", "assets/images/logo.png");
+					$(".navbar-brand img").attr("src", "images/logo.png");
 					break;
 			};
 		});

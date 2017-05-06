@@ -484,7 +484,7 @@
 			gender : 'M',
 			permits : 'View and Edit',
 			password : 'password',
-			avatar : "assets/images/avatar-1.jpg"
+			avatar : "images/avatar-1.jpg"
 		}, {
 			firstName : 'Nicole',
 			lastName : 'Bell',
@@ -492,7 +492,7 @@
 			gender : 'F',
 			permits : 'View and Edit',
 			password : 'password',
-			avatar : "assets/images/avatar-2.jpg"
+			avatar : "images/avatar-2.jpg"
 		}, {
 			firstName : 'Steven',
 			lastName : 'Thompson',
@@ -500,7 +500,7 @@
 			gender : 'M',
 			permits : 'View Only',
 			password : 'password',
-			avatar : "assets/images/avatar-3.jpg"
+			avatar : "images/avatar-3.jpg"
 		}, {
 			firstName : 'Ella',
 			lastName : 'Patterson',
@@ -508,7 +508,7 @@
 			gender : 'F',
 			permits : 'View Only',
 			password : 'password',
-			avatar : "assets/images/avatar-4.jpg"
+			avatar : "images/avatar-4.jpg"
 		}, {
 			firstName : 'Kenneth',
 			lastName : 'Ross',
@@ -516,7 +516,7 @@
 			gender : 'M',
 			permits : 'View and Edit',
 			password : 'password',
-			avatar : "assets/images/avatar-5.jpg"
+			avatar : "images/avatar-5.jpg"
 		}];
 	}; 
 
@@ -551,7 +551,7 @@
 				if (aData[0] !== "") {
 					$('td:eq(0)', nRow).html('<img src="' + aData[0] + '" width="50">');
 				} else {
-					$('td:eq(0)', nRow).html('<img src="assets/images/anonymous.jpg" width="50" height ="50">');
+					$('td:eq(0)', nRow).html('<img src="images/anonymous.jpg" width="50" height ="50">');
 				}
 				var contributorIndex = aData[5];
 				$("td:eq(5)", nRow).empty();
@@ -676,7 +676,7 @@
 			} else {
 				$(".contributor-avatar").removeClass("fileupload-exists").addClass("fileupload-new");
 
-				$(".contributor-avatar .fileupload-preview").empty().append("<img src='assets/images/anonymous.jpg'>");				
+				$(".contributor-avatar .fileupload-preview").empty().append("<img src='images/anonymous.jpg'>");				
 			}
 			$(".contributor-message").val("");
 
@@ -1006,7 +1006,7 @@
 				var noteToSave = new Object;
 				noteToSave.title = $('.form-note .note-title').val(), noteToSave.shortContent = jQuery.truncate($note.code(), {
 					length : 200
-				}), noteToSave.content = $note.code(), noteToSave.author = "Peter Clark", noteToSave.avatar = "assets/images/avatar-1-small.jpg", noteToSave.date = new Date();
+				}), noteToSave.content = $note.code(), noteToSave.author = "Peter Clark", noteToSave.avatar = "images/avatar-1-small.jpg", noteToSave.date = new Date();
 				$.mockjax({
 					url : '/note/new/webservice',
 					dataType : 'json',
