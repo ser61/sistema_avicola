@@ -22,15 +22,15 @@ Route::resource('venta/tipo','TipoController');
 Route::get('/home', 'HomeController@index');
 
 //24 - SERGIO WEIMAR
-//Route::get('cargo', 'CargoController@index');
 Route::resource('cargo', 'CargoController');
 Route::get('facturar','FacturaController@create');
 Route::get('fondo', function(){
-  return view('layouts.fondo');
+  return view('seguridad.cargo.crear');
 });
-Route::get('casa', function(){
-  return view('seguridad.cargo.index');
-});
+
+
+
+
 
 
 
@@ -52,7 +52,7 @@ Route::get('casa', function(){
 //52 - FIN DE ROUTES DE SERGIO WEIMAR
 //53 - SERGIO FRANCO
 Route::resource('administracion/persona','PersonaController');
-Route::resource('administracion/cargo','CargoController');
+//Route::resource('administracion/cargo','CargoController');
 Route::resource('administracion/empleado','EmpleadoController');
 
 

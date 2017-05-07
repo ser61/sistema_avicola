@@ -59,7 +59,7 @@
 						</a>
 						<!-- start: LOGO -->
 						<a class="navbar-brand" href="index.html">
-							<img src="images/logo.png" alt="Rapido"/>
+							<img src={{ asset('images/logo.png')}} alt="Rapido"/>
 						</a>
 						<!-- end: LOGO -->
 					</div>
@@ -69,7 +69,7 @@
 							<!-- start: USER DROPDOWN -->
 							<li class="dropdown current-user">
 								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-									<img src="images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs">Peter Clark</span> <i class="fa fa-caret-down "></i>
+									<img src={{ asset('images/avatar-1-small.jpg')}} class="img-circle" alt=""> <span class="username hidden-xs">Peter Clark</span> <i class="fa fa-caret-down "></i>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
@@ -110,7 +110,7 @@
 						</div>
 						<div class="user-profile border-top padding-horizontal-10 block">
 							<div class="inline-block">
-								<img src="images/avatar-1.jpg" alt="">
+								<img src={{ asset('images/avatar-1.jpg')}} alt="">
 							</div>
 							<div class="inline-block">
 								<h5 class="no-margin"> Binevenido </h5>
@@ -427,24 +427,24 @@
 							<div class="images icons-color">
 								<a href="#" id="default"><img src={{ asset('images/color-1.png') }} alt="" class="active"></a>
 								<a href="#" id="style2"><img src={{ asset('images/color-2.png') }} alt=""></a>
-								<a href="#" id="style3"><img src="images/color-3.png" alt=""></a>
-								<a href="#" id="style4"><img src="images/color-4.png" alt=""></a>
-								<a href="#" id="style5"><img src="images/color-5.png" alt=""></a>
-								<a href="#" id="style6"><img src="images/color-6.png" alt=""></a>
-								<a href="#" id="style7"><img src="images/color-7.png" alt=""></a>
-								<a href="#" id="style8"><img src="images/color-8.png" alt=""></a>
-								<a href="#" id="style9"><img src="images/color-9.png" alt=""></a>
-								<a href="#" id="style10"><img src="images/color-10.png" alt=""></a>
+								<a href="#" id="style3"><img src={{ asset('images/color-3.png')}} alt=""></a>
+								<a href="#" id="style4"><img src={{ asset('images/color-4.png')}} alt=""></a>
+								<a href="#" id="style5"><img src={{ asset('images/color-5.png')}} alt=""></a>
+								<a href="#" id="style6"><img src={{ asset('images/color-6.png')}} alt=""></a>
+								<a href="#" id="style7"><img src={{ asset('images/color-7.png')}} alt=""></a>
+								<a href="#" id="style8"><img src={{ asset('images/color-8.png')}} alt=""></a>
+								<a href="#" id="style9"><img src={{ asset('images/color-9.png')}} alt=""></a>
+								<a href="#" id="style10"><img src={{ asset('images/color-10.png')}} alt=""></a>
 							</div>
 							<div class="box-title">
 								Backgrounds for Boxed Version
 							</div>
 							<div class="images boxed-patterns">
-								<a href="#" id="bg_style_1"><img src="images/bg.png" alt=""></a>
-								<a href="#" id="bg_style_2"><img src="images/bg_2.png" alt=""></a>
-								<a href="#" id="bg_style_3"><img src="images/bg_3.png" alt=""></a>
-								<a href="#" id="bg_style_4"><img src="images/bg_4.png" alt=""></a>
-								<a href="#" id="bg_style_5"><img src="images/bg_5.png" alt=""></a>
+								<a href="#" id="bg_style_1"><img src={{ asset('images/bg.png')}} alt=""></a>
+								<a href="#" id="bg_style_2"><img src={{ asset('images/bg_2.png')}} alt=""></a>
+								<a href="#" id="bg_style_3"><img src={{ asset('images/bg_3.png')}} alt=""></a>
+								<a href="#" id="bg_style_4"><img src={{ asset('images/bg_4.png')}} alt=""></a>
+								<a href="#" id="bg_style_5"><img src={{ asset('images/bg_5.png')}} alt=""></a>
 							</div>
 							<div class="style-options">
 								<a href="#" class="clear_style">
@@ -496,7 +496,7 @@
     {!!Html::script('plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js')!!}
     {!!Html::script('plugins/jquery.transit/jquery.transit.js')!!}
     {!!Html::script('plugins/jquery.scrollTo/jquery.scrollTo.min.js')!!}
-    {!!Html::script('plugins/jquery.appear/jquery.appear.js')!!}
+
     {!!Html::script('plugins/jquery-cookie/jquery.cookie.js')!!}
     {!!Html::script('plugins/bootstrap/js/bootstrap.min.js')!!}
     {!!Html::script('plugins/blockUI/jquery.blockUI.js')!!}
@@ -528,7 +528,7 @@
     {!!Html::script('js/subview-examples.js')!!}
     <!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-    {!!Html::script('plugins/nvd3/lib/d3.v3.js')!!}
+    <script src={{ asset('plugins/nvd3/lib/d3.v3.js') }}></script>
     {!!Html::script('plugins/nvd3/nv.d3.min.js')!!}
     {!!Html::script('js/charts.js')!!}
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

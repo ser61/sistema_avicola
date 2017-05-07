@@ -15,4 +15,11 @@ class Cargo extends Model
     $cargos = $query->where('visible',1);
     return $cargos;
   }
+
+  public function scope_eliminarCargo($query, $id)
+  {
+    $query->where('id',$id)->update(['visible' => '0']);
+    $cargo = $this->find($id);
+    return $cargo;
+  }
 }

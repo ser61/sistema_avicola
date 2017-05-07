@@ -19,16 +19,14 @@ class CargoController extends Controller
 
   public function create()
   {
-    return view("administracion.cargo.create");
+    return view('seguridad.cargo.crear');
   }
 
   public function store(CargoFormRequest $request)
   {
-    $cargo = new Cargo;
-    $cargo->nombre = $request->get('nombre');
-    $cargo->visible = 'v';
-    $cargo->save();
-    return Redirect::to('administracion/cargo');
+    $request['visible'] = '1';
+    Cargo::create($request->all());
+    return redirect('cargo/')->with('msj','El cargo: '.$request['nombre'].' se creo exitosamente.');
   }
 
   public function show($id)
@@ -38,16 +36,23 @@ class CargoController extends Controller
 
   public function edit($id)
   {
-    //
+    $cargo = Cargo::find($id);
+    return view('seguridad.cargo.editar', compact('cargo'));
   }
 
-  public function update(Request $request, $id)
+  public function update(CargoFormRequest $request, $id)
   {
-    //
+    $cargo = Cargo::find($id);
+    $name = $cargo->nombre;
+    $request['visible'] = '1';
+    $cargo->update($request->all());
+    $cargo->save();
+    return redirect('cargo/')->with('msj','El cargo: '.$name.' se edito exitosamente.');
   }
 
   public function destroy($id)
   {
-    //
+    $cargo = Cargo::_eliminarCargo($id);
+    return back()->with('msj', 'El Cargo: '.$cargo->nombre.' se elimino exitosamente.');
   }
 }

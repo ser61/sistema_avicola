@@ -4,8 +4,8 @@
   <!-- start: TOOLBAR -->
   <div class="toolbar row">
     <div class="page-header">
-      <h1 style="text-align: center;">Bienvenido a Cargos
-        <small> Pagina de los Cargos</small>
+      <h1 style="text-align: center;">* * * S E G U R I D A D * * *
+        <small> Sección de los Cargos </small>
       </h1>
     </div>
   </div>
@@ -39,21 +39,21 @@
           </div>
         </div>
         <div class="panel-body">
-
+          @include('alertas.logrado')
           <div class="panel panel-blue">
             <div class="panel-body">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar por Nombre">
-                            <span class="input-group-btn">
-                              <button class="btn btn-main-color btn-squared" type="button">
-                                <i class="fa fa-search"></i>
-                              </button> </span>
+                <span class="input-group-btn">
+                  <button class="btn btn-main-color btn-squared" type="button">
+                    <i class="fa fa-search"></i>
+                  </button> </span>
                 </span>
-                            <span class="input-group-btn">
-                              <button class="btn btn-red btn-squared" type="button">
-                                <i class="fa fa-plus"></i>
-                              </button>
-                            </span>
+                <span class="input-group-btn">
+                  <a href="{{ url('/cargo/create') }}" class="btn btn-red btn-squared">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </span>
               </div>
             </div>
           </div>
@@ -77,10 +77,14 @@
                 <td>15</td>
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a href="#" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit"><i
-                        class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove"><i
-                        class="fa fa-times fa fa-white"></i></a>
+                    {!! Form::open(['method'=>'DELETE', 'route'=>['cargo.destroy',$cargo->id]]) !!}
+                      <a href="{{ route('cargo.edit', $cargo->id) }}" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <button class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove">
+                        <i class="fa fa-times fa fa-white"></i>
+                      </button>
+                    {!! Form::close() !!}
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group">
@@ -89,7 +93,7 @@
                       </a>
                       <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
                         <li>
-                          <a role="menuitem" tabindex="-1" href="#">
+                          <a role="menuitem" tabindex="-1">
                             <i class="fa fa-edit"></i> Edit
                           </a>
                         </li>
