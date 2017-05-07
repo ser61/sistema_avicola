@@ -25,7 +25,7 @@ class CreateConfigTable extends Migration
             $table->char('visible');
             $table->timestamps();
 
-            $table->foreign('idSuperAdmin')->references('id')->on('super_admin');
+            $table->foreign('idSuperAdmin')->references('id')->on('users');
         });
     }
 

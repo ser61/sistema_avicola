@@ -4,6 +4,7 @@ namespace sisAvicola\Http\Controllers\Auth;
 
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/homeCondicional';
 
     /**
      * Create a new controller instance.
@@ -37,8 +38,16 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+  protected function validateLogin(Request $request)
+  {
+    $this->validate($request, [
+      $this->username() => 'required', 'password' => 'required','idEmpresa' => 'required|exists:users,idEmpresa'
+    ]);
+  }
+
   public function username()
   {
     return 'name';
   }
+
 }

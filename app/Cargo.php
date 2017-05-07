@@ -9,7 +9,7 @@ class Cargo extends Model
 {
   protected $table = 'cargo';
 
-  protected $fillable = ['nombre', 'descripcion', 'visible'];
+  protected $fillable = ['nombre', 'descripcion', 'idEmpresa','visible'];
 
   public function scope_allCargos($query)
   {

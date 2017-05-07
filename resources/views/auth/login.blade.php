@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading" style="text-align: center">Inicio de Sesion de Administradores</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -23,6 +23,20 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('idEmpresa') ? ' has-error' : '' }}">
+                          <label for="idEmpresa" class="col-md-4 control-label">Codigo de Empresa</label>
+
+                          <div class="col-md-6">
+                            <input id="idEmpresa" type="text" class="form-control" name="idEmpresa" value="{{ old('idEmpresa') }}" required autofocus>
+
+                            @if ($errors->has('idEmpresa'))
+                              <span class="help-block">
+                                          <strong>{{ $errors->first('idEmpresa') }}</strong>
+                                      </span>
+                            @endif
+                          </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

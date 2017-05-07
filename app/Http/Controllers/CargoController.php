@@ -3,6 +3,7 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
@@ -23,6 +24,7 @@ class CargoController extends Controller
   public function store(CargoFormRequest $request)
   {
     $request['visible'] = '1';
+    $request['idEmpresa'] = Auth::uses()->cod_Empresa;
     Cargo::create($request->all());
     return redirect('cargo/')->with('msj','El cargo: '.$request['nombre'].' se creo exitosamente.');
   }

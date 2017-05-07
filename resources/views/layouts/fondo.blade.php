@@ -50,7 +50,11 @@
     <link rel="stylesheet" href={{ asset('css/print.css') }} type="text/css" media="print"/>
     <link rel="stylesheet" href={{ asset('css/themes/theme-default.css') }} type="text/css" id="skin_color">
 		<!-- end: CORE CSS -->
-		
+    <script>
+      window.Laravel = <?php echo json_encode([
+        'csrfToken' => csrf_token(),
+      ]); ?>
+    </script>
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
@@ -85,9 +89,14 @@
 										</a>
 									</li>
 									<li>
-										<a href="login_example1.html">
+                    <a href="{{ url('/logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
 											Cerrar Sesión
 										</a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
 									</li>
 								</ul>
 							</li>
