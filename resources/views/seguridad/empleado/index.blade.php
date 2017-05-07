@@ -43,14 +43,14 @@
         <div class="panel panel-blue">
           <div class="panel-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar por Nombre">
+              <input type="text" class="form-control" placeholder="Buscar por Nombre...">
                 <span class="input-group-btn">
                   <button class="btn btn-main-color btn-squared" type="button">
                     <i class="fa fa-search"></i>
                   </button> </span>
               </span>
                 <span class="input-group-btn">
-                  <a href="{{ url('/cargo/create') }}" class="btn btn-red btn-squared">
+                  <a href="{{ url('/empleado/create') }}" class="btn btn-red btn-squared">
                     <i class="fa fa-plus"></i>
                   </a>
                 </span>
@@ -61,24 +61,32 @@
         <table class="table table-hover" id="sample-table-1">
           <thead>
           <tr>
-            <th class="center">id</th>
+            <th class="center">ci</th>
+            <th class="hidden-xs">Foto</th>
+            <th>Nombre(s)</th>
+            <th>Apellido(s)</th>
+            <th class="hidden-xs">Direccion</th>
+            <th class="hidden-xs">Fecha Nacimiento</th>
+            <th>Fecha Ingreso</th>
             <th>Cargo</th>
-            <th class="hidden-xs">Descripcion</th>
-            <th>Nro. Empleados</th>
             <th></th>
           </tr>
           </thead>
           <tbody>
-          @foreach($cargos as $cargo)
+          @foreach($empleados as $empleado)
             <tr>
-              <td class="center">{{$cargo->id}}</td>
-              <td>{{$cargo->nombre}}</td>
-              <td class="hidden-xs">{{$cargo->descripcion}}</td>
-              <td>{{$cargo->nro}}</td>
+              <td class="center">{{$empleado->ci}}</td>
+              <td class="hidden-xs">{{$empleado->foto}}</td>
+              <td>{{$empleado->nombre}}</td>
+              <td>{{$empleado->apellido}}</td>
+              <td class="hidden-xs">{{$empleado->direccion}}</td>
+              <td class="hidden-xs">{{$empleado->fechaNacimiento}}</td>
+              <td>{{$empleado->fechaIngreso}}</td>
+              <td>{{$empleado->idCargo}}</td>
               <td class="center">
                 <div class="visible-md visible-lg hidden-sm hidden-xs">
-                  {!! Form::open(['method'=>'DELETE', 'route'=>['cargo.destroy',$cargo->id]]) !!}
-                  <a href="{{ route('cargo.edit', $cargo->id) }}" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit">
+                  {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id]]) !!}
+                  <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit">
                     <i class="fa fa-edit"></i>
                   </a>
                   <button class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove">

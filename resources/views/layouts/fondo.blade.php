@@ -34,6 +34,13 @@
       <!-- end: MAIN CSS -->
 		
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    {!!Html::style('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css')!!}
+    {!!Html::style('plugins/select2/select2.css')!!}
+    {!!Html::style('plugins/datepicker/css/datepicker.css')!!}
+    {!!Html::style('plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')!!}
+    {!!Html::style('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')!!}
+    {!!Html::style('plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css')!!}
+    {!!Html::style('plugins/jQuery-Tags-Input/jquery.tagsinput.css')!!}
     {!!Html::style('plugins/nvd3/nv.d3.min.css')!!}
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
       <!-- start: CORE CSS -->
@@ -132,7 +139,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{{ url('/empleado') }}">
 											<span class="title"> Empleado </span>
 										</a>
 									</li>	
@@ -528,6 +535,23 @@
     {!!Html::script('js/subview-examples.js')!!}
     <!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    {!!Html::script('plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js')!!}
+    {!!Html::script('plugins/autosize/jquery.autosize.min.js')!!}
+    {!!Html::script('plugins/select2/select2.min.js')!!}
+    {!!Html::script('plugins/jquery.maskedinput/src/jquery.maskedinput.js')!!}
+    {!!Html::script('plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js')!!}
+    {!!Html::script('plugins/jquery-maskmoney/jquery.maskMoney.js')!!}
+    {!!Html::script('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')!!}
+    {!!Html::script('plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')!!}
+    {!!Html::script('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')!!}
+    {!!Html::script('plugins/bootstrap-colorpicker/js/commits.js')!!}
+    {!!Html::script('plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js')!!}
+    {!!Html::script('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')!!}
+    {!!Html::script('plugins/jQuery-Tags-Input/jquery.tagsinput.js')!!}
+    {!!Html::script('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')!!}
+    {!!Html::script('plugins/ckeditor/ckeditor.js')!!}
+    {!!Html::script('plugins/ckeditor/adapters/jquery.js')!!}
+    {!!Html::script('js/form-elements.js')!!}
     <script src={{ asset('plugins/nvd3/lib/d3.v3.js') }}></script>
     {!!Html::script('plugins/nvd3/nv.d3.min.js')!!}
     {!!Html::script('js/charts.js')!!}
@@ -537,6 +561,7 @@
 			jQuery(document).ready(function() {
 				Main.init();
         Charts.init();
+        FormElements.init();
 			});
 		</script>
 	</body>

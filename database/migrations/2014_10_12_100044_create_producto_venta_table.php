@@ -15,6 +15,7 @@ class CreateProductoVentaTable extends Migration
     {
         Schema::create('producto_venta', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->string('imagen');
             $table->integer('stock');
             $table->float('precioUnitario');

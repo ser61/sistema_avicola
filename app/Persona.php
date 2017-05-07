@@ -3,6 +3,8 @@
 namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class Persona extends Model
 {
@@ -17,5 +19,20 @@ class Persona extends Model
   {
     $empleados = $query->where('idCargo',$idCargo)->where('visible','1');
     return $empleados;
+  }
+
+  public function scope_allEmpleados($query)
+  {
+    $empleados = $query->where('visible','1')->where('tipo','e');
+    return $empleados;
+  }
+
+  public function setFotoAttribute($foto)
+  {
+    if (!empty($foto)) {
+      $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
+      $name = Carbon::now()->second.$foto->getClientOriginalName();
+      Storage::disk('local')->put($name, \File::get($foto));
+    }
   }
 }

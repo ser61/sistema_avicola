@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index2');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -23,11 +23,11 @@ Route::get('/home', 'HomeController@index');
 
 //24 - SERGIO WEIMAR
 Route::resource('cargo', 'CargoController');
+Route::resource('empleado', 'EmpleadoController');
 Route::get('facturar','FacturaController@create');
 Route::get('fondo', function(){
   return view('seguridad.cargo.crear');
 });
-
 
 
 

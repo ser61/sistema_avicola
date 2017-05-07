@@ -24,7 +24,12 @@ class EmpleadoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'ci' => 'required|digits_between:5,10',
+          'nombre'=>'required|max:100',
+          'apellido' => 'required|max:100',
+          'direccion' => 'required|max:200',
+          'fechaNacimiento' => 'required|date',
+          'idCargo' => 'required|exists:cargo,id',
         ];
     }
 }
