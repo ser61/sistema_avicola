@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
 use DB;
+use sisAvicola\Persona;
 
 class CargoController extends Controller
 {

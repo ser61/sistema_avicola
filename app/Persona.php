@@ -6,24 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
-    protected $table ='Persona';
+  protected $table = 'Persona';
 
-    protected $primaryKey = 'id';
+  protected $fillable = ['ci', 'nombre', 'apellido',
+    'direccion', 'email', 'nombreEmpresa', 'fechaNacimiento',
+    'fechaIngreso', 'foto', 'idCargo', 'tipo', 'visible'
+  ];
 
-    //public $timestamps=false;
-
-    protected $fillable = [
-        'nit',
-        'nombre',
-        'apellido',
-        'direccion',
-        'email',
-        'empresa',
-        'tipo',
-        'visible'
-    ];
-
-    protected $hidden = [
-
-    ];
+  public function scope_nroEmpleados($query, $idCargo)
+  {
+    $empleados = $query->where('idCargo',$idCargo)->where('visible','1');
+    return $empleados;
+  }
 }

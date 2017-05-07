@@ -3,6 +3,7 @@
 namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Cargo extends Model
 {
@@ -12,7 +13,12 @@ class Cargo extends Model
 
   public function scope_allCargos($query)
   {
-    $cargos = $query->where('visible',1);
+    //$cargos = $query->where('visible',1);
+    $cargos = $query->where('visible',1)
+                    ->select('cargo.id as id',
+                      'cargo.nombre as nombre',
+                      'cargo.descripcion as descripcion',
+                      DB::raw(count(Persona::_nroEmpleados('cargo.id')->get()).' as nro'));
     return $cargos;
   }
 
@@ -22,4 +28,5 @@ class Cargo extends Model
     $cargo = $this->find($id);
     return $cargo;
   }
+
 }

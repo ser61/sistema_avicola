@@ -74,7 +74,7 @@
                 <td class="center">{{$cargo->id}}</td>
                 <td>{{$cargo->nombre}}</td>
                 <td class="hidden-xs">{{$cargo->descripcion}}</td>
-                <td>15</td>
+                <td>{{$cargo->nro}}</td>
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
                     {!! Form::open(['method'=>'DELETE', 'route'=>['cargo.destroy',$cargo->id]]) !!}
