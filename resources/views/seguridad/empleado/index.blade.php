@@ -76,7 +76,9 @@
           @foreach($empleados as $empleado)
             <tr>
               <td class="center">{{$empleado->ci}}</td>
-              <td class="hidden-xs">{{$empleado->foto}}</td>
+              <td class="hidden-xs">
+                  <img src='usuarios/{{$empleado->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
+              </td>
               <td>{{$empleado->nombre}}</td>
               <td>{{$empleado->apellido}}</td>
               <td class="hidden-xs">{{$empleado->direccion}}</td>

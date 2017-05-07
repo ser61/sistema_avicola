@@ -12,7 +12,7 @@ class Persona extends Model
 
   protected $fillable = ['ci', 'nombre', 'apellido',
     'direccion', 'email', 'nombreEmpresa', 'fechaNacimiento',
-    'fechaIngreso', 'foto', 'idCargo', 'tipo', 'visible'
+    'fechaIngreso', 'foto', 'idCargo', 'tipo', 'idEmpresa', 'visible'
   ];
 
   public function scope_nroEmpleados($query, $idCargo)

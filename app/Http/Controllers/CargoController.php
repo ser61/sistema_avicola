@@ -24,7 +24,7 @@ class CargoController extends Controller
   public function store(CargoFormRequest $request)
   {
     $request['visible'] = '1';
-    $request['idEmpresa'] = Auth::uses()->cod_Empresa;
+    $request['idEmpresa'] = Auth::user()->idEmpresa;
     Cargo::create($request->all());
     return redirect('cargo/')->with('msj','El cargo: '.$request['nombre'].' se creo exitosamente.');
   }
