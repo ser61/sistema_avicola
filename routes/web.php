@@ -79,3 +79,52 @@ Route::resource('administracion/empleado','EmpleadoController');
 
 
 //81 - FIN DE ROUTES DE SERGIO FRANCO
+//82 - Rodrigo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 30 - FIN DE ROUTES DE RODRIGO
