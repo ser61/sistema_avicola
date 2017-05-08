@@ -19,6 +19,7 @@ class CreateReporteMedicacionTable extends Migration
             $table->integer('idEmpleado')->unsigned();
             $table->integer('idParvada')->unsigned();
             $table->integer('idLoteHuevoIncubable')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

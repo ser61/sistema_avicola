@@ -20,6 +20,7 @@ class CreateAdquisicionParvadaTable extends Migration
             $table->string('observaciones');
             $table->integer('idProveedor')->unsigned();
             $table->integer('idParvada')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

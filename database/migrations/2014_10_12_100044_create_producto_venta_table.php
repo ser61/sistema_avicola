@@ -29,6 +29,7 @@ class CreateProductoVentaTable extends Migration
             $table->integer('idTipo')->unsigned()->nullable();
 
             $table->char('tipo');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

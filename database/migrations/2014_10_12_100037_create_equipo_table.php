@@ -19,6 +19,7 @@ class CreateEquipoTable extends Migration
             $table->integer('capacidad');
             $table->integer('idPlantaIncubacion')->unsigned();
             $table->char('tipo');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

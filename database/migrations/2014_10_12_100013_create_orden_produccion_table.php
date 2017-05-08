@@ -19,6 +19,7 @@ class CreateOrdenProduccionTable extends Migration
             $table->time('hora');
             $table->string('observacion');
             $table->integer('idEmpleado')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

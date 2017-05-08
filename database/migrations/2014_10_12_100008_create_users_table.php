@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->char('estado');
             $table->integer('idEmpleado')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->rememberToken();
             $table->timestamps();

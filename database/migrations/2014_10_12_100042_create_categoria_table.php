@@ -19,6 +19,7 @@ class CreateCategoriaTable extends Migration
             $table->string('descripcion');
             $table->float('pesoIntervaloSuperior');
             $table->float('pesoIntervaloInferior');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

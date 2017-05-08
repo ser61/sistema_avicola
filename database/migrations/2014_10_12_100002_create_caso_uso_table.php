@@ -17,6 +17,7 @@ class CreateCasoUsoTable extends Migration
             $table->increments('id');
             $table->integer('idModulo')->unsigned();
             $table->string('nombre');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

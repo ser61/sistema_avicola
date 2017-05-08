@@ -17,6 +17,7 @@ class CreateRegistroSanitizacionTable extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->integer('idInfraestructura')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

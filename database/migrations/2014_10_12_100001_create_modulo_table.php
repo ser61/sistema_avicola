@@ -16,6 +16,7 @@ class CreateModuloTable extends Migration
         Schema::create('modulo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

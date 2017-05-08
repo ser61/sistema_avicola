@@ -23,6 +23,7 @@ class CreateParvadaTable extends Migration
             $table->integer('productividad');
             $table->string('tipo');
             $table->integer('mortalidad');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

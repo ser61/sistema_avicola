@@ -18,6 +18,7 @@ class CreatePrivilegioUsuarioTable extends Migration
             $table->integer('idUsuario')->unsigned();
             $table->integer('idModulo')->unsigned();
             $table->char('permiso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

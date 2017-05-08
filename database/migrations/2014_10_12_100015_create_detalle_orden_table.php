@@ -18,6 +18,7 @@ class CreateDetalleOrdenTable extends Migration
             $table->integer('idOrdenProduccion')->unsigned();
             $table->integer('idAlimento')->unsigned();
             $table->float('peso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

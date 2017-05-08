@@ -18,6 +18,7 @@ class CreateDetalleFacturaTable extends Migration
             $table->integer('idFactura')->unsigned();
             $table->integer('idProducto')->unsigned();
             $table->integer('cantidad');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

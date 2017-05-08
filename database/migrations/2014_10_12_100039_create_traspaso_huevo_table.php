@@ -20,6 +20,7 @@ class CreateTraspasoHuevoTable extends Migration
             $table->integer('cantidad');
             $table->date('fecha');
             $table->integer('idEquipo')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

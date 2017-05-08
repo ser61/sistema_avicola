@@ -16,6 +16,8 @@ class CreateDietaAlimenticiaTable extends Migration
         Schema::create('dieta_alimenticia', function (Blueprint $table) {
             $table->increments('id');
             $table->float('cantidadAgua');
+            $table->string('idEmpresa');
+            $table->char('visible');
             $table->timestamps();
         });
     }

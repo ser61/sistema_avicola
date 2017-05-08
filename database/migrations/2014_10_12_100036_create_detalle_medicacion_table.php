@@ -19,6 +19,7 @@ class CreateDetalleMedicacionTable extends Migration
             $table->integer('idReporteMedicacion')->unsigned();
             $table->float('dosis');
             $table->string('viaDeAplicacion');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

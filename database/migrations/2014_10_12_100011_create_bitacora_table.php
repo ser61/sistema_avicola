@@ -16,6 +16,7 @@ class CreateBitacoraTable extends Migration
         Schema::create('bitacora', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idUser')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

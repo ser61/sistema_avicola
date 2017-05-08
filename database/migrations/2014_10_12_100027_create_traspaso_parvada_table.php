@@ -18,6 +18,7 @@ class CreateTraspasoParvadaTable extends Migration
             $table->date('fecha');
             $table->integer('cantidad');
             $table->integer('idGalpon')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

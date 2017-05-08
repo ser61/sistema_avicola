@@ -17,6 +17,7 @@ class CreateBateriaTable extends Migration
             $table->increments('id');
             $table->integer('capacidad');
             $table->integer('idGalpon')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

@@ -20,6 +20,7 @@ class CreateReporteHuevoTable extends Migration
             $table->integer('idEmpleado')->unsigned();
             $table->integer('idLoteHuevoIncubable')->unsigned();
             $table->integer('idEtapaIncubacion')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

@@ -18,6 +18,7 @@ class CreateCasopCargoTable extends Migration
             $table->integer('idPrivilegio')->unsigned();
             $table->integer('idCaso')->unsigned();
             $table->char('permiso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

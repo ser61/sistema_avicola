@@ -18,6 +18,7 @@ class CreatePrivilegioCargoTable extends Migration
             $table->integer('idCargo')->unsigned();
             $table->integer('idModulo')->unsigned();
             $table->char('permiso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

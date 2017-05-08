@@ -21,8 +21,11 @@ class CreateConfigTable extends Migration
             $table->string('font');
             $table->string('theme');
             $table->string('titulo');
+            $table->integer('idSuperAdmin')->unsigned();
             $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idSuperAdmin')->references('id')->on('super_admin');
         });
     }
 

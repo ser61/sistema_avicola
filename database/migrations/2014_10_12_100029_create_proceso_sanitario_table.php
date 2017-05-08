@@ -17,6 +17,7 @@ class CreateProcesoSanitarioTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

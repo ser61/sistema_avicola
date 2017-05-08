@@ -17,6 +17,7 @@ class CreateDetalleSanitizacionTable extends Migration
             $table->increments('id');
             $table->integer('idProcesoSanitario')->unsigned();
             $table->integer('idRegistroSanitizacion')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

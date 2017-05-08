@@ -24,6 +24,7 @@ class CreateInsumoTable extends Migration
             $table->char('tipo')->nullable();
             $table->char('tipoInsumo');
             $table->integer('idUnidadMedida')->nullable()->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

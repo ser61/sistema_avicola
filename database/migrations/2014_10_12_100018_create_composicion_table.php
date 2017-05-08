@@ -18,6 +18,7 @@ class CreateComposicionTable extends Migration
             $table->integer('idAlimento')->unsigned();
             $table->integer('idMateriaPrima')->unsigned();
             $table->float('peso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

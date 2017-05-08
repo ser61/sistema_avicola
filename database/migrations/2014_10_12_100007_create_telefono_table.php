@@ -17,6 +17,7 @@ class CreateTelefonoTable extends Migration
             $table->increments('id');
             $table->integer('numero')->unsigned();
             $table->integer('idPersona')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

@@ -18,6 +18,7 @@ class CreateDetalleAlimentacionTable extends Migration
             $table->integer('idAlimento')->unsigned();
             $table->integer('idDietaAlimenticia')->unsigned();
             $table->float('cantidadAlimento');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

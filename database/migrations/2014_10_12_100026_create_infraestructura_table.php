@@ -19,6 +19,7 @@ class CreateInfraestructuraTable extends Migration
             $table->string('estado');
             $table->char('tipo');
             $table->integer('idGranja')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

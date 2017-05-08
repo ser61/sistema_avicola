@@ -17,6 +17,7 @@ class CreateIngresoHuevoIncubableTable extends Migration
             $table->increments('id');
             $table->integer('idReporteDiario')->unsigned();
             $table->integer('idPlantaIncubacion')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

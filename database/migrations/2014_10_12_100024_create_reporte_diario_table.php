@@ -24,6 +24,7 @@ class CreateReporteDiarioTable extends Migration
             $table->integer('idEmpleado')->unsigned();
             $table->integer('idEtapa')->unsigned();
             $table->integer('idParvada')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

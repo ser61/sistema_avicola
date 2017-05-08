@@ -18,6 +18,7 @@ class CreateDetalleProductoTable extends Migration
             $table->integer('idProductoSanitario')->unsigned();
             $table->integer('idProcesoSanitario')->unsigned();
             $table->integer('cantidad');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

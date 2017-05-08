@@ -16,6 +16,7 @@ class CreateTipoTable extends Migration
         Schema::create('tipo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

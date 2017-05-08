@@ -21,6 +21,7 @@ class CreateAccionTable extends Migration
             $table->string('tabla');
             $table->integer('idTupla');
             $table->integer('idBitacora')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

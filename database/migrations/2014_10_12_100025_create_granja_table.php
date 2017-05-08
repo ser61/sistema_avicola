@@ -17,6 +17,7 @@ class CreateGranjaTable extends Migration
             $table->increments('id');
             $table->string('ubicacion',100);
             $table->string('tipo');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

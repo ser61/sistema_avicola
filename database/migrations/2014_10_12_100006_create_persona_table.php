@@ -30,6 +30,7 @@ class CreatePersonaTable extends Migration
             //Cliente
 
             $table->char('tipo');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 

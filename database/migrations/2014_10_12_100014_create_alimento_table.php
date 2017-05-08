@@ -17,6 +17,7 @@ class CreateAlimentoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->float('peso');
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
         });

@@ -21,6 +21,7 @@ class CreateFacturaTable extends Migration
             $table->float('montoTotal');
             $table->integer('idCliente')->unsigned();
             $table->integer('idEmpleado')->unsigned();
+            $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 
