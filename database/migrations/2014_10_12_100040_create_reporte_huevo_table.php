@@ -17,6 +17,8 @@ class CreateReporteHuevoTable extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->integer('mortalidad');
+            $table->integer('cantidadMachos')->unsigned();
+            $table->integer('cantidadHembras')->unsigned();
             $table->integer('idEmpleado')->unsigned();
             $table->integer('idLoteHuevoIncubable')->unsigned();
             $table->integer('idEtapaIncubacion')->unsigned();
