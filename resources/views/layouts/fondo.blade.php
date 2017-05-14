@@ -69,7 +69,7 @@
 							<i class="fa fa-bars"></i>
 						</a>
 						<!-- start: LOGO -->
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="{{url('/home')}}">
 							<img src={{ asset('images/logo.png')}} alt="Rapido"/>
 						</a>
 						<!-- end: LOGO -->

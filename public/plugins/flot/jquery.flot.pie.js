@@ -69,6 +69,7 @@ More detail and specific examples can be found in the included HTML file.
 
 		var canvas = null,
 			target = null,
+			options = null,
 			maxRadius = null,
 			centerLeft = null,
 			centerTop = null,
@@ -293,14 +294,13 @@ More detail and specific examples can be found in the included HTML file.
 				} else {
 					centerLeft -= legendWidth / 2;
 				}
+				if (centerLeft < maxRadius) {
+					centerLeft = maxRadius;
+				} else if (centerLeft > canvasWidth - maxRadius) {
+					centerLeft = canvasWidth - maxRadius;
+				}
 			} else {
 				centerLeft += options.series.pie.offset.left;
-			}
-
-			if (centerLeft < maxRadius) {
-				centerLeft = maxRadius;
-			} else if (centerLeft > canvasWidth - maxRadius) {
-				centerLeft = canvasWidth - maxRadius;
 			}
 
 			var slices = plot.getData(),
@@ -318,7 +318,7 @@ More detail and specific examples can be found in the included HTML file.
 				if (options.series.pie.tilt <= 0.8) {
 					drawShadow();
 				}
-			} while (!drawPie() && attempts < REDRAW_ATTEMPTS)
+			} while (!drawPie() && attempts < REDRAW_ATTEMPTS);
 
 			if (attempts >= REDRAW_ATTEMPTS) {
 				clear();
