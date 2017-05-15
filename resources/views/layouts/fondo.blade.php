@@ -14,26 +14,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
   {!!Html::style('plugins/jvectormap/jquery-jvectormap-1.2.2.css')!!}
+  {!!Html::style('plugins/iCheck/all.css')!!}
+  {!!Html::style('plugins/select2/select2.min.css')!!}
   <!-- Theme style -->
   {!!Html::style('dist/css/AdminLTE.min.css')!!}
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   {!!Html::style('dist/css/skins/_all-skins.min.css')!!}
-
+  {!!Html::style('css/fileinput.css')!!}
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  {!!Html::script('js/fileinput.min.js')!!}
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    <header class="main-header">
+  <header class="main-header">
 
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="{{  url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>S</b>AVI</span>
         <!-- logo for regular state and mobile devices -->
@@ -89,7 +92,7 @@
       </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
+  <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -364,7 +367,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @yield('content')
+      @yield('content')
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -389,6 +392,7 @@
     </div>
   </aside>
   <!-- /.control-sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -396,22 +400,44 @@
 {!!Html::script('plugins/jQuery/jquery-2.2.3.min.js')!!}
 <!-- Bootstrap 3.3.6 -->
 {!!Html::script('bootstrap/js/bootstrap.min.js')!!}
-<!-- FastClick -->
+  <!-- Select2 -->
+{!!Html::script('plugins/select2/select2.full.min.js')!!}
+  <!-- InputMask -->
+{!!Html::script('plugins/input-mask/jquery.inputmask.js')!!}
+{!!Html::script('plugins/input-mask/jquery.inputmask.date.extensions.js')!!}
+{!!Html::script('plugins/input-mask/jquery.inputmask.extensions.js')!!}
+{!!Html::script('js/fileinput.min.js')!!}
+{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
+{!!Html::script('plugins/iCheck/icheck.min.js')!!}
 {!!Html::script('plugins/fastclick/fastclick.js')!!}
-<!-- AdminLTE App -->
+  <!-- AdminLTE App -->
 {!!Html::script('dist/js/app.min.js')!!}
-<!-- Sparkline -->
+  <!-- Sparkline -->
 {!!Html::script('plugins/sparkline/jquery.sparkline.min.js')!!}
-<!-- jvectormap -->
+  <!-- jvectormap -->
 {!!Html::script('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')!!}
 {!!Html::script('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')!!}
-<!-- SlimScroll 1.3.0 -->
-{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
-<!-- ChartJS 1.0.1 -->
+
+
+  <!-- ChartJS 1.0.1 -->
 {!!Html::script('plugins/chartjs/Chart.min.js')!!}
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {!!Html::script('dist/js/pages/dashboard2.js')!!}
-<!-- AdminLTE for demo purposes -->
+  <!-- AdminLTE for demo purposes -->
 {!!Html::script('dist/js/demo.js')!!}
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
+    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+  });
+</script>
 </body>
 </html>

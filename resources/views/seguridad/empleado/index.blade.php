@@ -12,16 +12,16 @@
   <br>
 
   <section class="content">
-    <div class="box box-primary">
-      <!-- TITULO DE PANEL -->
-      <div class="box-header with-border">
-        <h3 align="center">Panel de control de los <span class="text-bold">Empleados</span></h3>
-      </div>
-      @include('seguridad.cargo.modals.create')
+    <div class="row">
+      <div class="box box-primary">
+        <!-- TITULO DE PANEL -->
+        <div class="box-header with-border">
+          <h3 align="center">Panel de control de los <span class="text-bold">Empleados</span></h3>
+        </div>
         <!-- fin-> TITULO DE PANEL -->
-      @if(count($empleados) > 0)
-        <!-- CUADRO DE BUSQUEDA -->
-        <div class="panel panel-blue">
+        @if(count($empleados) > 0)
+          <!-- CUADRO DE BUSQUEDA -->
+          <div class="panel panel-blue">
           <div class="panel-body">
             @include('alertas.logrado')
             @include('alertas.request')
@@ -31,17 +31,17 @@
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
                   </button>
-                  <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                  <a href="{{ url('empleado/create') }}" class="btn btn-danger btn-flat">
                     <i class="fa fa-plus"></i>
-                  </button>
+                  </a>
                 </span>
             </div>
           </div>
         </div>
-        <!-- fin-> CUADRO DE BUSQUEDA -->
+          <!-- fin-> CUADRO DE BUSQUEDA -->
 
-        <!-- TABLA DE DATOS -->
-        <div class="box-body">
+          <!-- TABLA DE DATOS -->
+          <div class="box-body">
           <table class="table table-hover" style="border-top-color: #00AEFF">
             <thead>
             <tr>
@@ -108,25 +108,26 @@
             </tbody>
           </table>
         </div>
-        <!-- fin-> TABLA DE DATOS -->
-      @else
-        <div class="box">
-          <div class="box-header">
-            <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
-          </div>
-          <div class="box-body">
-            <br>
-            <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
-            <br>
-            <div class="col-md-6 col-sm-offset-3">
-              <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
-                <i class="fa fa-plus"></i>
-              </button>
+          <!-- fin-> TABLA DE DATOS -->
+        @else
+          <div class="box">
+            <div class="box-header">
+              <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
+            </div>
+            <div class="box-body">
+              <br>
+              <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
+              <br>
+              <div class="col-md-6 col-sm-offset-3">
+                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                  <i class="fa fa-plus"></i>
+                </button>
 
+              </div>
             </div>
           </div>
-        </div>
-      @endif
+        @endif
+      </div>
     </div>
     <br>
   </section>

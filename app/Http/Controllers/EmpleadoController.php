@@ -41,7 +41,7 @@ class EmpleadoController extends Controller
 
   public function edit($id)
   {
-    //
+    return 'hola';
   }
 
   public function update(Request $request, $id)
