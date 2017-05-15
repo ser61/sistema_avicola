@@ -22,9 +22,9 @@
 
           <div class="box-body">
 
-            @include('alertas.request')
             {!! Form::open(['route' => 'empleado.store','method' => 'POST','files' => true]) !!}
             <div class="col-sm-8 col-sm-offset-2">
+              @include('alertas.request')
 
               <div class="form-group">
                 <label for="ci">Ingrese el ci del empleado:</label>
@@ -68,12 +68,12 @@
 
               <div class="form-group">
                 <label>Seleccion la foto de la persona a contratar:</label>
-                <input id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
+                <input name="foto" id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
               </div>
 
               <div class="form-group">
                 <label for="idCargo">Seleccione un Cargo para la persona a contratar:</label>
-                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control', 'style' => '"width: 100%;"', 'id' => 'idCargo']) !!}
+                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control', 'id' => 'idCargo']) !!}
               </div>
 
             </div>
