@@ -52,6 +52,7 @@ class CargoController extends Controller
 
   public function destroy($id)
   {
+    return 'hola';
     $cargo = Cargo::_eliminarCargo($id);
     return back()->with('msj', 'El Cargo: '.$cargo->nombre.' se elimino exitosamente.');
   }

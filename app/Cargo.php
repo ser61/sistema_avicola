@@ -4,6 +4,7 @@ namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Cargo extends Model
 {
@@ -14,7 +15,7 @@ class Cargo extends Model
   public function scope_allCargos($query)
   {
     //$cargos = $query->where('visible',1);
-    $cargos = $query->where('visible',1)
+    $cargos = $query->where('visible',1)->where('idEmpresa',Auth::user()->idEmpresa)
                     ->select('cargo.id as id',
                       'cargo.nombre as nombre',
                       'cargo.descripcion as descripcion',

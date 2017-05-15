@@ -1,73 +1,55 @@
 @extends('layouts.fondo')
 @section('content')
-  <!-- start: PAGE HEADER -->
-<!-- start: TOOLBAR -->
-<div class="toolbar row">
-  <div class="page-header">
-    <h1 style="text-align: center;">* * * S E G U R I D A D * * *
-      <small> Sección de los Cargos </small>
+  <section class="content-header">
+    <h1 align="center">
+      * * * * * <b>S E G U R I D A D</b> * * * * *
     </h1>
-  </div>
-</div>
-<!-- end: TOOLBAR -->
-<!-- end: PAGE HEADER -->
-<br>
+    <ol class="breadcrumb">
+      <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="{{url('/home')}}">Index</a></li>
+      <li><a href="{{url('/home')}}">Editar</a></li>
+    </ol>
+  </section>
+  <br>
 
-<div class="row">
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="panel panel-white">
+  <section class="content">
+    <div class="col-md-10 col-sm-offset-1">
+      <div class="box box-primary">
+        <!-- TITULO DE PANEL -->
+        <div class="box-header with-border">
+          <h3 align="center">Panel de control de los <span class="text-bold">Cargos</span></h3>
+        </div>
 
-      <div class="panel-heading">
-        <h2 class="panel-title center">Panel de edicion del Cargo: <span class="text-bold">{{$cargo->nombre}}</span></h2>
-        <div class="panel-tools">
-          <div class="dropdown">
-            <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-              <i class="fa fa-cog"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-light pull-right" role="menu">
-              <li>
-                <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-              </li>
-              <li>
-                <a class="panel-expand" href="#"> <i class="fa fa-expand"></i> <span>Fullscreen</span></a>
-              </li>
-            </ul>
+        <div class="box-body">
+
+          @include('alertas.request')
+          {!!Form::model($cargo, ['route'=> ['cargo.update', $cargo->id], 'method'=>'PUT'])!!}
+          <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+              <label for="nombre">Nombre de Cargo:</label>
+              {!! Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del cargo aqui...','id'=>'nombre']) !!}
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Escriba una breve descriptión:</label>
+              <textarea name="descripcion" id="descripcion" class="form-control" rows="3">{{$cargo->descripcion}}</textarea>
+            </div>
           </div>
+
+          <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+              <br>
+              <button class="btn btn-primary btn-block">
+                Registrar Cargo <i class="fa fa-arrow-circle-right"></i>
+              </button>
+              <br>
+            </div>
+          </div>
+          {!! Form::close() !!}
+
         </div>
       </div>
+      <br>
 
-      <div class="panel-body">
-        @include('alertas.request')
-        {!!Form::model($cargo, ['route'=> ['cargo.update', $cargo->id], 'method'=>'PUT'])!!}
-        <div class="form-group">
-          <div class="col-sm-8 col-sm-offset-2">
-            {!! Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del cargo aqui...','id'=>'form-field-1']) !!}
-          </div>
-          <br><br>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-8 col-sm-offset-2">
-            <label for="descripcion">
-              Escriba una breve description:
-            </label>
-            <textarea class="autosize form-control" id="descripcion" name="descripcion">{{$cargo->descripcion}}</textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-8 col-sm-offset-2">
-            <br>
-            <button class="btn btn-blue btn-block">
-              Registrar Cargo <i class="fa fa-arrow-circle-right"></i>
-            </button>
-            <br>
-          </div>
-        </div>
-        {!! Form::close() !!}
-      </div>
     </div>
-  </div>
-</div>
-
+  </section>
 @endsection

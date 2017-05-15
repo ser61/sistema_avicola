@@ -1,17 +1,25 @@
 @extends('layouts.fondo')
 @section('content')
-  <!-- start: PAGE HEADER -->
-  <!-- start: TOOLBAR -->
-  <div class="toolbar row">
-    <div class="page-header">
-      <h1 style="text-align: center;">* * * S E G U R I D A D * * *
-        <small> Sección de los Cargos </small>
-      </h1>
-    </div>
-  </div>
-  <!-- end: TOOLBAR -->
-  <!-- end: PAGE HEADER -->
+  <section class="content-header">
+    <h1 align="center">
+      * * * * * <b>S E G U R I D A D</b> * * * * *
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="{{url('/home')}}">index</a></li>
+    </ol>
+  </section>
   <br>
+
+  <section class="content">
+    <div class="box box-primary">
+      <!-- TITULO DE PANEL -->
+      <div class="box-header with-border">
+        <h3 align="center">Panel de Registro de <span class="text-bold">Cargos</span></h3>
+      </div>
+    </div>
+
+  </section>
 
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
