@@ -123,6 +123,3 @@
     <br>
   </section>
 @endsection
-<script>
-  $('#create').modal({backdrop: 'static'});
-</script>
