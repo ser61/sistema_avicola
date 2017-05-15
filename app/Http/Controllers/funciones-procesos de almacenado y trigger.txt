@@ -1,0 +1,12 @@
+delimiter //
+create function nroEmpleados(cargo int, empresa int) returns tinyint
+BEGIN
+	return(
+		select COUNT(*)
+		from persona as p
+		where p.tipo = 'e'
+		and p.visible = '1'
+		and p.idEmpresa = empresa
+		and p.idCargo = cargo
+		);
+END//

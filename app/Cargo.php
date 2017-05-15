@@ -10,16 +10,15 @@ class Cargo extends Model
 {
   protected $table = 'cargo';
 
-  protected $fillable = ['nombre', 'descripcion', 'idEmpresa','visible'];
+  protected $fillable = ['id','nombre', 'descripcion', 'idEmpresa','visible'];
 
   public function scope_allCargos($query)
   {
-    //$cargos = $query->where('visible',1);
-    $cargos = $query->where('visible',1)->where('idEmpresa',Auth::user()->idEmpresa)
+    $cargos = $query->where('visible','1')->where('idEmpresa',Auth::user()->idEmpresa)
                     ->select('cargo.id as id',
                       'cargo.nombre as nombre',
                       'cargo.descripcion as descripcion',
-                      DB::raw(count(Persona::_nroEmpleados('cargo.id')->get()).' as nro'));
+                      DB::raw('(select nroEmpleados(id,'.Auth::user()->idEmpresa.')) as nro'));
     return $cargos;
   }
 

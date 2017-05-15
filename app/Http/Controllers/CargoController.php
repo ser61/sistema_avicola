@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
+use sisAvicola\Persona;
 
 class CargoController extends Controller
 {
