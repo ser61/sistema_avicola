@@ -73,7 +73,18 @@
 
               <div class="form-group">
                 <label for="idCargo">Seleccione un Cargo para la persona a contratar:</label>
-                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control', 'id' => 'idCargo']) !!}
+                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control select2', 'id' => 'idCargo']) !!}
+              </div>
+
+              <div class="form-group">
+                <label>Ingrese el telefono del empleado:</label>
+                <div id="telefonoBody">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="button" value="Agregar Telefono" class="btn btn-primary" id="add"/>
               </div>
 
             </div>
@@ -95,43 +106,36 @@
       </div>
     </div>
   </section>
+
 @endsection
+@push('scripts')
 <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-
-    //Datemask dd/mm/yyyy
-    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-    //Datemask2 mm/dd/yyyy
-    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-    //Money Euro
-    $("[data-mask]").inputmask();
-
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass: 'iradio_minimal-blue'
+  var indice = 0;
+  function comenzar(){
+    $('#add').click(function(){
+      agregar();
     });
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass: 'iradio_minimal-red'
-    });
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass: 'iradio_flat-green'
-    });
+  }
 
-    //Colorpicker
-    $(".my-colorpicker1").colorpicker();
-    //color picker with addon
-    $(".my-colorpicker2").colorpicker();
+  function agregar(){
+    var div =$("<div class=\"input-group\" style=\"margin-bottom: 10px\" id=\"miInput"+indice+"\"></div>");
+    var button = '' +
+      '<div class="input-group-btn" id="miInput'+indice+'">'+
+        '<button type="button" class="btn btn-danger" onclick="eliminar('+indice+');">Quitar</button>'+
+      '</div>';
+    var input = '<input type="number" name="telefono[]" id="miInput'+indice+'" class="form-control" placeholder="Ingrese el telefono del empleado aqui...">';
 
-    //Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
-  });
+    div.append(button);
+    div.append(input);
+    $('#telefonoBody').append(div);
+    indice++;
+  }
+
+  function eliminar(index){
+    $("#miInput" + index).remove();
+    indice--;
+  }
+
+  window.addEventListener("load",comenzar, false);
 </script>
+@endpush

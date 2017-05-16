@@ -4,6 +4,8 @@ namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use League\Flysystem\Exception;
 use sisAvicola\Http\Requests\EmpleadoFormRequest;
 use sisAvicola\Cargo;
 use sisAvicola\Persona;
@@ -25,13 +27,31 @@ class EmpleadoController extends Controller
 
   public function store(EmpleadoFormRequest $request)
   {
-    if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
-    if ($request['foto'] == '') {$request['foto'] = null;}
-    $request['tipo'] = 'e';
-    $request['idEmpresa'] = Auth::user()->idEmpresa;
-    $request['visible'] = '1';
-    Persona::create($request->all());
-    return redirect('empleado/')->with('msj','El empleado: '.$request['nombre'].' se registro exitosamente.');
+    try {
+      DB::beginTransaction();
+        if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
+        if ($request['foto'] == '') {$request['foto'] = null;}
+        Persona::create([
+          'nombre' => $request['nombre'],
+          'apellido' => $request['apellido'],
+          'direccion' => $request['direccion'],
+          'email' => $request['email'],
+        ]);
+        $request['tipo'] = 'e';
+        $request['idEmpresa'] = Auth::user()->idEmpresa;
+        $request['visible'] = '1';
+        Persona::create($request->all());
+
+        $empleado = Persona::where('tipo','e')->where('idEmpresa',Auth::user()->idEmpresa)->get()->last();
+
+      return redirect('empleado/')->with('msj','El empleado: '.$request['nombre'].' se registro exitosamente.');
+
+
+    } catch (Exception $e) {
+
+    }
+
+
   }
 
   public function show($id)

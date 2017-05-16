@@ -13,7 +13,8 @@
 
   <section class="content">
     <div class="row">
-      <div class="box box-primary">
+      <div class="col-sm-12 col-xs-12">
+        <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de los <span class="text-bold">Cargos</span></h3>
@@ -120,6 +121,7 @@
             </div>
           </div>
         @endif
+      </div>
       </div>
     </div>
     <br>
