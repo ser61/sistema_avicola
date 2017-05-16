@@ -26,10 +26,9 @@ Route::get('homeCondicional', 'Controller@home');
 Route::resource('admin', 'AdminUsersController');
 Route::resource('cargo', 'CargoController');
 Route::resource('empleado', 'EmpleadoController');
+Route::resource('telefono', 'TelefonoController');
 Route::get('facturar','FacturaController@create');
-Route::get('fondo', function(){
-  return view('seguridad.cargo.crear');
-});
+
 
 
 

@@ -25,7 +25,7 @@
             {!! Form::open(['route' => 'empleado.store','method' => 'POST','files' => true]) !!}
             <div class="col-sm-8 col-sm-offset-2">
               @include('alertas.request')
-
+              @include('alertas.error')
               <div class="form-group">
                 <label for="ci">Ingrese el ci del empleado:</label>
                 {!! Form::number('ci',null,['class'=>'form-control','placeholder'=>'Ingrese el ci del empleado aqui...','id'=>'ci']) !!}
@@ -73,7 +73,7 @@
 
               <div class="form-group">
                 <label for="idCargo">Seleccione un Cargo para la persona a contratar:</label>
-                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control select2', 'id' => 'idCargo']) !!}
+                {!! Form::select('idCargo',$cargos, null, ['class'=>'form-control select2', 'id' => 'idCargo', 'placeholder'=>'Seleccion un cargo...']) !!}
               </div>
 
               <div class="form-group">

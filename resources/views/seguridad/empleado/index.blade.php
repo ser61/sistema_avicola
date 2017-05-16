@@ -83,6 +83,9 @@
                       <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash"></i>
                       </button>
+                      <a href="#" class="btn btn-xs btn-success">
+                        <i class="fa fa-eye"></i>
+                      </a>
                       {!! Form::close() !!}
                     </div>
                     <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -103,6 +106,11 @@
                             </a>
                             {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
                             {!! Form::close() !!}
+                          </li>
+                          <li>
+                            <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
+                              <i class="fa fa-eye"></i> Ver
+                            </a>
                           </li>
                         </ul>
                       </div>

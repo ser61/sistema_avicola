@@ -35,6 +35,12 @@ class Persona extends Model
     return $empleados;
   }
 
+  public function scope_eliminarEmpleado($query, $id)
+  {
+    $query->where('id',$id)->update(['visible' => '0']);
+    return;
+  }
+
   public function setFotoAttribute($foto)
   {
     if (!empty($foto)) {

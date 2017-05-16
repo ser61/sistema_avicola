@@ -71,6 +71,9 @@
                     <button class="btn btn-danger">
                       <i class="fa fa-trash"></i>
                     </button>
+                    <a href="#" class="btn btn-success">
+                      <i class="fa fa-eye"></i>
+                    </a>
                     {!! Form::close() !!}
                   </div>
                   <!-- CUANDO ESTE EN MODO CELL -->
@@ -92,6 +95,11 @@
                           </a>
                           {!! Form::open(['method'=>'DELETE', 'route'=>['cargo.destroy',$cargo->id], 'id'=>'delete']) !!}
                           {!! Form::close() !!}
+                        </li>
+                        <li>
+                          <a href="#" role="menuitem" tabindex="-1">
+                            <i class="fa fa-eye"></i> Editar
+                          </a>
                         </li>
                       </ul>
                     </div>
