@@ -53,23 +53,17 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-      if ($data['idEmpresa']) {// Es administrados
-        return User::create([
-          'name' => $data['name'],
-          'email' => $data['email'],
-          'password' => bcrypt($data['password']),
-          'estado' => '1',
-          'idEmpleado' => null,
-          'idEmpresa' => $data['idEmpresa'],
-          'tipoUser' => 'a', //a= admin; u= usuario; s= superAdmin
-          'visible' => '1',
-        ]);
-      }else{
-        return User::create([
-          'name' => $data['name'],
-          'email' => $data['email'],
-          'password' => bcrypt($data['password']),
-        ]);
-      }
+      if (!array_key_exists('foto', $data)) {$data['foto'] = 'user.png';}
+      return User::create([
+        'name' => $data['name'],
+        'foto' => $data['foto'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+        'estado' => '1',
+        'idEmpleado' => null,
+        'idEmpresa' => $data['idEmpresa'],
+        'tipoUser' => 'a', //a= admin; u= usuario; s= superAdmin
+        'visible' => '1',
+      ]);
     }
 }

@@ -46,10 +46,12 @@ class Persona extends Model
 
   public function setFotoAttribute($foto)
   {
-    if (!empty($foto)) {
+    if (!empty($foto) && $foto != 'user.png') {
       $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
       $name = Carbon::now()->second.$foto->getClientOriginalName();
       Storage::disk('local')->put($name, \File::get($foto));
+    }else{
+      $this->attributes['foto'] = 'user.png';
     }
   }
 }

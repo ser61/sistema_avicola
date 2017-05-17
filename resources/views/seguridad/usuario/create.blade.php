@@ -25,6 +25,7 @@
             {!! Form::open(['route' => 'admin.store','method' => 'POST']) !!}
             <div class="col-sm-8 col-sm-offset-2">
               @include('alertas.request')
+              @include('alertas.error')
               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name">Ingrese el nombre de usuario:</label>
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>

@@ -2,9 +2,11 @@
 
 namespace sisAvicola;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -40,4 +42,15 @@ class User extends Authenticatable
   protected $hidden = [
     'password', 'remember_token',
   ];
+
+  public function setFotoAttribute($foto)
+  {
+    if (!empty($foto) && $foto != 'user.png') {
+      $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
+      $name = Carbon::now()->second.$foto->getClientOriginalName();
+      Storage::disk('local')->put($name, \File::get($foto));
+    }else{
+      $this->attributes['foto'] = 'user.png';
+    }
+  }
 }

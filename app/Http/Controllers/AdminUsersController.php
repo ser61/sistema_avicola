@@ -29,22 +29,22 @@ class AdminUsersController extends Controller
 
   public function store(UserRequest $request)
   {
-    $persona = Persona::find($request['idEmpleado']);
-    $request['visible'] = '1';
-    $request['password'] = bcrypt($request['password']);
-    $request['estado'] = '0';
-    $request['idEmpresa'] = Auth::user()->idEmpresa;
-    $request['tipoUser'] = 'u';
-    $request['foto'] = $persona['foto'];
-    UserEmpleado::create($request->all());
-    return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
-    /*try {
+    try {
       DB::beginTransaction();
+      $persona = Persona::find($request['idEmpleado']);
+      $request['visible'] = '1';
+      $request['password'] = bcrypt($request['password']);
+      $request['estado'] = '0';
+      $request['idEmpresa'] = Auth::user()->idEmpresa;
+      $request['tipoUser'] = 'u';
+      $request['foto'] = $persona['foto'];
+      UserEmpleado::create($request->all());
+      return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
       DB::commit();
     } catch (Exception $e) {
       DB::rollback();
       return back()->with('error', 'Hubo un problema al intentar registra el usuario.');
-    }*/
+    }
   }
 
   public function show($id)

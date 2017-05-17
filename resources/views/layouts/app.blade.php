@@ -12,13 +12,16 @@
 
   <!-- Styles -->
   {!!Html::style('/css/app.css') !!}
+  {!!Html::style('bootstrap/css/bootstrap.min.css')!!}
+  {!!Html::style('css/fileinput.css')!!}
 
   <!-- Scripts -->
   <script>
-    window.Laravel = <?php echo json_encode([
+      window.Laravel = <?php echo json_encode([
       'csrfToken' => csrf_token(),
     ]); ?>
   </script>
+  {!!Html::script('js/fileinput.min.js')!!}
 </head>
 <body>
 <div id="app">
@@ -83,5 +86,7 @@
 
 <!-- Scripts -->
 {!!Html::script('/js/app.js') !!}
+{!!Html::script('bootstrap/js/bootstrap.min.js')!!}
+{!!Html::script('js/fileinput.min.js')!!}
 </body>
 </html>
