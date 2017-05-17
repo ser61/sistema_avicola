@@ -29,11 +29,13 @@ class AdminUsersController extends Controller
 
   public function store(UserRequest $request)
   {
+    $persona = Persona::find($request['idEmpleado']);
     $request['visible'] = '1';
     $request['password'] = bcrypt($request['password']);
     $request['estado'] = '0';
     $request['idEmpresa'] = Auth::user()->idEmpresa;
     $request['tipoUser'] = 'u';
+    $request['foto'] = $persona['foto'];
     UserEmpleado::create($request->all());
     return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
     /*try {

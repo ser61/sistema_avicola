@@ -30,7 +30,7 @@ class EmpleadoController extends Controller
     try {
       DB::beginTransaction();
         if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
-        if ($request['foto'] == '') {$request['foto'] = null;}
+        if ($request['foto'] == '') {$request['foto'] = 'user.png';}
         $request['tipo'] = 'e';
         $request['idEmpresa'] = Auth::user()->idEmpresa;
         $request['visible'] = '1';

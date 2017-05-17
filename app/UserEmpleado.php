@@ -9,7 +9,7 @@ class UserEmpleado extends Model
   protected $table ='users';
 
   protected $fillable = [
-    'name', 'email', 'password', 'estado', 'idEmpleado',
+    'name', 'foto', 'email', 'password', 'estado', 'idEmpleado',
     'idEmpresa', 'tipoUser', 'visible'
   ];
 
