@@ -17,67 +17,61 @@
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
-            <h3 align="center">Panel de control de los <span class="text-bold">Empleados</span></h3>
+            <h3 align="center">Panel de control de los <span class="text-bold">Usuarios</span></h3>
           </div>
           <!-- fin-> TITULO DE PANEL -->
           <div class="box-body table-responsive">
-            @if(count($empleados) > 0)
+            @if(count($usuarios) > 0)
               <!-- CUADRO DE BUSQUEDA -->
-              <div class="panel panel-blue">
-                <div class="panel-body">
-                  @include('alertas.logrado')
-                  @include('alertas.request')
-                  <div class="input-group margin">
-                    <input type="text" class="form-control" placeholder="Buscar por Nombre">
+            <div class="panel panel-blue">
+              <div class="panel-body">
+                @include('alertas.logrado')
+                @include('alertas.error')
+                <div class="input-group margin">
+                  <input type="text" class="form-control" placeholder="Buscar por Nombre">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
                   </button>
-                  <a href="{{ url('empleado/create') }}" class="btn btn-danger btn-flat">
+                  <a href="{{ url('admin/create') }}" class="btn btn-danger btn-flat">
                     <i class="fa fa-plus"></i>
                   </a>
                 </span>
-                  </div>
                 </div>
               </div>
-              <!-- fin-> CUADRO DE BUSQUEDA -->
+            </div>
+            <!-- fin-> CUADRO DE BUSQUEDA -->
 
-              <!-- TABLA DE DATOS -->
-              <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
-                <thead>
+            <!-- TABLA DE DATOS -->
+            <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+              <thead>
               <tr>
-                <th class="center">ci</th>
+                <th>Nombre</th>
                 <th class="hidden-xs">Foto</th>
-                <th>Nombre(s)</th>
-                <th>Apellido(s)</th>
-                <th class="hidden-xs">Direccion</th>
-                <th class="hidden-xs">Fecha Nacimiento</th>
-                <th>Fecha Ingreso</th>
+                <th>Email</th>
+                <th>Estado</th>
                 <th>Cargo</th>
                 <th></th>
               </tr>
               </thead>
-                <tbody>
-              @foreach($empleados as $empleado)
+              <tbody>
+              @foreach($usuarios as $usuario)
                 <tr>
-                  <td class="center">{{$empleado->ci}}</td>
+                  <td class="center">{{$usuario->name}}</td>
                   <td class="hidden-xs">
-                    @if($empleado->foto == null)
+                    @if($usuario->foto == null)
                       <img src='usuarios/user.png' class="img-circle" alt=""  style="width: 60px; height: 60px;">
                     @else
-                      <img src='usuarios/{{$empleado->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
+                      <img src='usuarios/{{$usuario->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
                     @endif
                   </td>
-                  <td>{{$empleado->nombre}}</td>
-                  <td>{{$empleado->apellido}}</td>
-                  <td class="hidden-xs">{{$empleado->direccion}}</td>
-                  <td class="hidden-xs">{{$empleado->fechaNacimiento}}</td>
-                  <td>{{$empleado->fechaIngreso}}</td>
-                  <td>{{$empleado->cargo}}</td>
+                  <td>{{$usuario->email}}</td>
+                  <td>{{$usuario->estado}}</td>
+                  <td>{{$usuario->cargo}}</td>
                   <td class="center">
                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                      {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id]]) !!}
-                      <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-xs btn-info">
+                      {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id]]) !!}
+                      <a href="{{ route('admin.edit', $usuario->id) }}" class="btn btn-xs btn-info">
                         <i class="fa fa-edit"></i>
                       </a>
                       <button class="btn btn-xs btn-danger">
@@ -95,20 +89,20 @@
                         </a>
                         <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
                           <li>
-                            <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
+                            <a href="{{ route('admin.edit', $usuario->id) }}" role="menuitem" tabindex="-1">
                               <i class="fa fa-edit"></i> Edit
                             </a>
                           </li>
                           <li>
-                            <a href="{{ route('empleado.destroy', $empleado->id) }}"
+                            <a href="{{ route('admin.destroy', $usuario->id) }}"
                                onclick="event.preventDefault();document.getElementById('delete').submit();">
                               <i class="fa fa-trash"></i> Remove
                             </a>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
+                            {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id], 'id'=>'delete']) !!}
                             {!! Form::close() !!}
                           </li>
                           <li>
-                            <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
+                            <a href="{{ route('admin.show', $usuario->id) }}" role="menuitem" tabindex="-1">
                               <i class="fa fa-eye"></i> Ver
                             </a>
                           </li>
@@ -119,22 +113,21 @@
                 </tr>
               @endforeach
               </tbody>
-              </table>
-              <!-- fin-> TABLA DE DATOS -->
+            </table>
+            <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
                 <div class="box-header">
-                  <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
+                  <h3 align="center"><b>Aun no tiene ningun Usuario...</b></h3>
                 </div>
                 <div class="box-body">
                   <br>
-                  <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
+                  <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario, haga click en icono de mas.</p>
                   <br>
                   <div class="col-md-6 col-sm-offset-3">
-                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                    <a type="button" href="{{ url('admin/create') }}" class="btn btn-danger btn-block">
                       <i class="fa fa-plus"></i>
-                    </button>
-
+                    </a>
                   </div>
                 </div>
               </div>

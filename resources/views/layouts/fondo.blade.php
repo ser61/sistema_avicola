@@ -127,7 +127,7 @@
                 </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/admin') }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Usuarios </span>
                 </a>
               </li>
@@ -361,7 +361,7 @@
         </ul>
       </section>
       <!-- /.sidebar -->
-    </aside>
+  </aside>
 
 
   <!-- Content Wrapper. Contains page content -->

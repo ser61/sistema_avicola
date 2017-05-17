@@ -6,7 +6,6 @@ use sisAvicola\User;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -48,7 +47,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'idEmpresa' => 'min:6',
+            'idEmpresa' => 'min:6|unique:users',
         ]);
     }
 

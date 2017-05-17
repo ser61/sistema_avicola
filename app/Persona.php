@@ -29,9 +29,12 @@ class Persona extends Model
 
   public function scope_allEmpleados($query)
   {
-    $empleados = $query->where('visible','1')
-                        ->where('tipo','e')
-                        ->where('idEmpresa',Auth::user()->idEmpresa);
+    $empleados = $query->select('persona.id as id', 'persona.ci as ci', 'persona.nombre as nombre', 'persona.apellido as apellido',
+                                'persona.foto as foto', 'persona.direccion as direccion', 'persona.fechaNacimiento as fechaNacimiento',
+                                'persona.fechaIngreso as fechaIngreso', 'c.nombre as cargo')
+                        ->join('cargo as c','c.id', '=', 'persona.idCargo')
+                        ->where('persona.visible','1')->where('persona.tipo','e')->where('persona.idEmpresa',Auth::user()->idEmpresa)
+                        ->where('c.visible', '1')->where('c.idEmpresa', Auth::user()->idEmpresa);
     return $empleados;
   }
 
