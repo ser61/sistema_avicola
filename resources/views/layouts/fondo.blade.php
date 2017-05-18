@@ -132,12 +132,12 @@
                 </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/privilegio') }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Privilegios </span>
                 </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/bitacora') }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Bitacora </span>
                 </a>
               </li>
