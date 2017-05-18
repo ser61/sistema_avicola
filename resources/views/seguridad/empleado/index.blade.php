@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{url('/home')}}">index</a></li>
+      <li><a href="#">index</a></li>
     </ol>
   </section>
   <br>
@@ -135,6 +135,7 @@
                 </div>
               </div>
             @endif
+            <br><br><br><br>
           </div>
         </div>
       </div>

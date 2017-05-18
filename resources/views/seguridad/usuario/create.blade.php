@@ -62,7 +62,7 @@
               </div>
 
               <div class="form-group">
-                <label for="idEmpleado">Seleccione un Cargo para la persona a contratar:</label>
+                <label for="idEmpleado">Seleccione un Empleado para la cuenta:</label>
                 {!! Form::select('idEmpleado',$empleados, null, ['class'=>'form-control select2', 'id' => 'idEmpleado', 'placeholder'=>'Seleccion un empleado...']) !!}
               </div>
             </div>

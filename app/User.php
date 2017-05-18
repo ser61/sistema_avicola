@@ -53,4 +53,10 @@ class User extends Authenticatable
       $this->attributes['foto'] = 'user.png';
     }
   }
+
+  public function scope_eliminar($query, $id)
+  {
+    $query->where('id', $id)->update(['visible' => '0']);
+    return;
+  }
 }

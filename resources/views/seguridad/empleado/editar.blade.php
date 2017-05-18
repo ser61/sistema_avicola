@@ -22,11 +22,7 @@
 
           <div class="box-body">
             <div class="col-sm-8 col-sm-offset-2" align="center" style="margin-bottom: 20px">
-              @if($empleado->foto == null)
-                <img src={{ asset('usuarios/user.png') }} class="img-circle" alt=""  style="width: 100px; height: 100px;">
-              @else
-                <img src={{ asset('usuarios/'.$empleado->foto) }} class="img-circle" alt=""  style="width: 100px; height: 100px; border: 3px solid#3C8DBC;">
-              @endif
+              <img src={{ asset('usuarios/'.$empleado->foto) }} class="img-circle" alt=""  style="width: 100px; height: 100px; border: 3px solid#3C8DBC;">
             </div>
 
             {!!Form::model($empleado, ['route'=> ['empleado.update', $empleado->id], 'method'=>'PUT','files' => true])!!}

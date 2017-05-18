@@ -4,7 +4,7 @@ namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PrevilegioController extends Controller
+class BitacoraController extends Controller
 {
     public function index()
     {

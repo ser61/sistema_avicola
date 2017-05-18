@@ -59,11 +59,7 @@
                 <tr>
                   <td class="center">{{$usuario->name}}</td>
                   <td class="hidden-xs">
-                    @if($usuario->foto == null)
-                      <img src='usuarios/user.png' class="img-circle" alt=""  style="width: 60px; height: 60px;">
-                    @else
-                      <img src='usuarios/{{$usuario->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
-                    @endif
+                    <img src='usuarios/{{$usuario->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
                   </td>
                   <td>{{$usuario->email}}</td>
                   <td>{{$usuario->estado}}</td>
@@ -132,10 +128,10 @@
                 </div>
               </div>
             @endif
+            <br><br><br><br>
           </div>
         </div>
       </div>
     </div>
-    <br>
   </section>
 @endsection

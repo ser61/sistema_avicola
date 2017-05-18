@@ -2,12 +2,11 @@
 
 namespace sisAvicola\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
-use sisAvicola\AdminUsers;
 use sisAvicola\Http\Requests\UserRequest;
+use sisAvicola\Http\Requests\UserUpdateRequest;
 use sisAvicola\Persona;
 use sisAvicola\User;
 use sisAvicola\UserEmpleado;
@@ -54,16 +53,27 @@ class AdminUsersController extends Controller
 
   public function edit($id)
   {
-    //
+    $empleados = Persona::_allEmpleados()->pluck('nombre','id');
+    $usuario = User::find($id);
+    return view('seguridad.usuario.edit', compact('usuario', 'empleados'));
   }
 
-  public function update(Request $request, $id)
+  public function update(UserUpdateRequest $request, $id)
   {
-    //
+    $usuraio = User::find($id);
+    if ($request['password'] == '') {
+      $request['password'] = $usuraio['password'];
+    }else{
+      $request['password'] = bcrypt($request['password']);
+    }
+    $usuraio->update($request->all());
+    $usuraio->save();
+    return redirect('admin/')->with('msj', 'El Usuario '.$request['name'].' fue actualizado exitosamente.');
   }
 
   public function destroy($id)
   {
-    //
+    User::_eliminar($id);
+    return back()->with('msj', 'El usuario fue eliminado exitosamente.');
   }
 }

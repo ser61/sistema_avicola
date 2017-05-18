@@ -27,9 +27,9 @@ Route::resource('admin', 'AdminUsersController');
 Route::resource('cargo', 'CargoController');
 Route::resource('empleado', 'EmpleadoController');
 Route::resource('telefono', 'TelefonoController');
+Route::resource('privilegio', 'PrivilegioController');
+Route::resource('bitacora', 'BitacoraController');
 Route::get('facturar','FacturaController@create');
-
-
 
 
 
