@@ -1,3 +1,55 @@
+INSERT INTO modulo VALUES(null, 'seguridad', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 1, 'Cargo', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 1, 'Empleado', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 1, 'Usuarios', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 1, 'Privilegios', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 1, 'Bitacora', '0', '1', null, null);
+
+INSERT INTO modulo VALUES(null, 'compra', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 2, 'Proveedores', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 2, 'Insumos', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 2, 'Adquisición de Parvada', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 2, 'Unidad de Medidas', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 2, 'Registro de Compras', '0', '1', null, null);
+
+INSERT INTO modulo VALUES(null, 'venta', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Clientes', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Facturas', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Productos', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Categorias', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Tipo de Pollo', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 3, 'Inventarios', '0', '1', null, null);
+
+INSERT INTO modulo VALUES(null, 'infraestructura', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Equipos', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Planta de Incubación', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Galpones', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Baterias', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Granja', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Procesos de Sanitización', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 4, 'Registro Sanitario', '0', '1', null, null);
+
+INSERT INTO modulo VALUES(null, 'reporte', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 5, 'Reportes Diarios', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 5, 'Reportes de Midicación', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 5, 'Reportes de Huevos', '0', '1', null, null);
+
+INSERT INTO modulo VALUES(null, 'procesos', '0', '1',null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Engorde', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Ponedoras', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Reproductora', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Dieta Alimentacia', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Lote de Huevo Incubables', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Medicación', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Producción de Alimento', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Traspasos de Parvada', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Etapas de Parvada', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Etapas de Incubación', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Traspasos de Huevos', '0', '1', null, null);
+INSERT INTO caso_uso VALUES(null, 6, 'Orden de Producción', '0', '1', null, null);
+
+
+
 delimiter //
 create function nroEmpleados(cargo int, empresa int) returns tinyint
 BEGIN

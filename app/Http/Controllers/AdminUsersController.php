@@ -2,7 +2,6 @@
 
 namespace sisAvicola\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use sisAvicola\Http\Requests\UserRequest;
@@ -30,14 +29,7 @@ class AdminUsersController extends Controller
   {
     try {
       DB::beginTransaction();
-      $persona = Persona::find($request['idEmpleado']);
-      $request['visible'] = '1';
-      $request['password'] = bcrypt($request['password']);
-      $request['estado'] = '0';
-      $request['idEmpresa'] = Auth::user()->idEmpresa;
-      $request['tipoUser'] = 'u';
-      $request['foto'] = $persona['foto'];
-      UserEmpleado::create($request->all());
+      UserEmpleado::_createUsuarioEmpleado($request);
       return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
       DB::commit();
     } catch (Exception $e) {
@@ -60,14 +52,7 @@ class AdminUsersController extends Controller
 
   public function update(UserUpdateRequest $request, $id)
   {
-    $usuraio = User::find($id);
-    if ($request['password'] == '') {
-      $request['password'] = $usuraio['password'];
-    }else{
-      $request['password'] = bcrypt($request['password']);
-    }
-    $usuraio->update($request->all());
-    $usuraio->save();
+    UserEmpleado::_updateUsuarioEmpleado($request, $id);
     return redirect('admin/')->with('msj', 'El Usuario '.$request['name'].' fue actualizado exitosamente.');
   }
 

@@ -342,7 +342,7 @@
                 </a>
               </li>
               <li>
-                <a href="pages_blank_page.html">
+                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
                   <span class="title">Etapas de Incubación</span>
                 </a>
               </li>

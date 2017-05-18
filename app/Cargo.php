@@ -29,4 +29,21 @@ class Cargo extends Model
     return $cargo;
   }
 
+  public function scope_insertCargo($query, $request)
+  {
+    $request['visible'] = '1';
+    $request['idEmpresa'] = Auth::user()->idEmpresa;
+    $this->create($request->all());
+    return;
+  }
+
+  public function scope_updateCargo($query, $request, $id)
+  {
+    $cargo = $this->find($id);
+    $name = $cargo->nombre;
+    $request['visible'] = '1';
+    $cargo->update($request->all());
+    $cargo->save();
+    return $name;
+  }
 }

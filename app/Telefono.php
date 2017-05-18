@@ -29,4 +29,39 @@ class Telefono extends Model
     $query->where('id',$id)->update(['visible' => '0']);
     return;
   }
+
+  public function scope_createTelefonos($query, $telefonos, $empleado)
+  {
+    if ($telefonos != null) {
+      $cont = 0;
+      while ($cont < count($telefonos)) {
+        $this->create([
+          'numero' => $telefonos[$cont],
+          'idPersona' => $empleado->id,
+          'idEmpresa' => Auth::user()->idEmpresa,
+          'visible' => '1'
+        ]);
+        $cont = $cont + 1;
+      }
+    }
+    return;
+  }
+
+  public function scope_updateTelefonos($query, $telefonoEditar, $empleado, $id)
+  {
+    if ($telefonoEditar != null) {
+      $telefonosEmpleado = $this->_getTelefonos($id)->get();
+      $cont = 0;
+      foreach ($telefonosEmpleado as $telefonoEmpleado) {
+        $telefonoEmpleado->update([
+          'numero' => $telefonoEditar[$cont],
+          'idPersona' => $empleado->id,
+          'idEmpresa' => Auth::user()->idEmpresa,
+          'visible' => '1'
+        ]);
+        $telefonoEmpleado->save();
+        $cont = $cont + 1;
+      }
+    }
+  }
 }

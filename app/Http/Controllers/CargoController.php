@@ -2,12 +2,8 @@
 
 namespace sisAvicola\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
-use sisAvicola\Persona;
 
 class CargoController extends Controller
 {
@@ -24,9 +20,7 @@ class CargoController extends Controller
 
   public function store(CargoFormRequest $request)
   {
-    $request['visible'] = '1';
-    $request['idEmpresa'] = Auth::user()->idEmpresa;
-    Cargo::create($request->all());
+    Cargo::_insertCargo($request);
     return redirect('cargo/')->with('msj','El cargo: '.$request['nombre'].' se creo exitosamente.');
   }
 
@@ -43,11 +37,7 @@ class CargoController extends Controller
 
   public function update(CargoFormRequest $request, $id)
   {
-    $cargo = Cargo::find($id);
-    $name = $cargo->nombre;
-    $request['visible'] = '1';
-    $cargo->update($request->all());
-    $cargo->save();
+    $name = Cargo::_updateCargo($request, $id);
     return redirect('cargo/')->with('msj','El cargo: '.$name.' se edito exitosamente.');
   }
 

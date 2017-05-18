@@ -54,4 +54,34 @@ class Persona extends Model
       $this->attributes['foto'] = 'user.png';
     }
   }
+
+  public function scope_createEmpleado($query, $request)
+  {
+    if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
+    if ($request['foto'] == '') {$request['foto'] = 'user.png';}
+    $request['tipo'] = 'e';
+    $request['idEmpresa'] = Auth::user()->idEmpresa;
+    $request['visible'] = '1';
+    $this->create($request->all());
+    return;
+  }
+
+  public function scope_lastAdded($query)
+  {
+    $empleado = $query->where('tipo','e')->where('idEmpresa',Auth::user()->idEmpresa)->get()->last();
+    return $empleado;
+  }
+
+  public function scope_updateEmpleado($query, $request, $id)
+  {
+    if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
+    if ($request['foto'] == '') {$request['foto'] = null;}
+    $request['tipo'] = 'e';
+    $request['idEmpresa'] = Auth::user()->idEmpresa;
+    $request['visible'] = '1';
+    $empleado = $this->find($id);
+    $empleado->update($request->all());
+    $empleado->save();
+    return $empleado;
+  }
 }
