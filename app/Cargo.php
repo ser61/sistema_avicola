@@ -46,4 +46,10 @@ class Cargo extends Model
     $cargo->save();
     return $name;
   }
+
+  public function scope_getLastAdded($query)
+  {
+    $cargo = $query->where('idEmpresa',Auth::user()->idEmpresa)->get()->last();
+    return $cargo;
+  }
 }

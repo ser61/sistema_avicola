@@ -14,368 +14,98 @@
   <section class="content">
     <div class="row">
       <div class="col-sm-12 col-xs-12">
-
-        @if(count($cargos) > 0)
-
-          @foreach($cargos as $cargo)
-
-            <div class="box box-primary collapsed-box">
-
-            <div class="box-header with-border">
-              <h4 align="center">Cargo: <b>{{ $cargo->nombre }}</b></h4>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        <div class="box box-primary">
+          <!-- TITULO DE PANEL -->
+          <div class="box-header with-border">
+            <h3 align="center">Panel de Privilegios de los <span class="text-bold">Cargos</span></h3>
+          </div>
+            <!-- fin-> TITULO DE PANEL -->
+          @if(count($cargos) > 0)
+            <!-- CUADRO DE BUSQUEDA -->
+          <div class="panel panel-blue">
+            <div class="panel-body">
+              @include('alertas.logrado')
+              @include('alertas.request')
+              <div class="input-group margin">
+                <input type="text" class="form-control" placeholder="Buscar por Nombre">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-info btn-flat">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-6">
+          </div>
+          <!-- fin-> CUADRO DE BUSQUEDA -->
 
-                  <div class="box box-danger">
-                    <div class="box-header">
-                      <h3 class="box-title">Input masks</h3>
+          <!-- TABLA DE DATOS -->
+          <div class="box-body">
+            <table class="table table-bordered" style="border-top-color: #00AEFF">
+              <thead>
+              <tr>
+                <th>Cargo</th>
+                <th>Privilegio</th>
+                <th>Opciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($cargos as $cargo)
+                <tr>
+                  <td>{{$cargo->nombre}}</td>
+                  {!!Form::open(['route'=> ['privilegio.edit', $cargo->id], 'method'=>'GET'])!!}
+                  <td>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group-lg">
+                          {!! Form::select('privilegio',$privilegios[$cargo->id], null, [
+                          'class'=>'form-control select2',
+                          'placeholder'=>'Seleccion un privilegio...',
+                          'style' => '"width: 100px;"'
+                          ]) !!}
+                        </div>
+                      </div>
                     </div>
-                    <div class="box-body">
-                      <!-- Date dd/mm/yyyy -->
-                      <div class="form-group">
-                        <label>Date masks:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- Date mm/dd/yyyy -->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>Intl US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- IP mask -->
-                      <div class="form-group">
-                        <label>IP mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-laptop"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-
-                  <div class="box box-danger">
-                    <div class="box-header">
-                      <h3 class="box-title">Input masks</h3>
-                    </div>
-                    <div class="box-body">
-                      <!-- Date dd/mm/yyyy -->
-                      <div class="form-group">
-                        <label>Date masks:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- Date mm/dd/yyyy -->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>Intl US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- IP mask -->
-                      <div class="form-group">
-                        <label>IP mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-laptop"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-
-                </div>
-                <div class="col-md-6">
-
-                  <div class="box box-danger">
-                    <div class="box-header">
-                      <h3 class="box-title">Input masks</h3>
-                    </div>
-                    <div class="box-body">
-                      <!-- Date dd/mm/yyyy -->
-                      <div class="form-group">
-                        <label>Date masks:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- Date mm/dd/yyyy -->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>Intl US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- IP mask -->
-                      <div class="form-group">
-                        <label>IP mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-laptop"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-
-                  <div class="box box-danger">
-                    <div class="box-header">
-                      <h3 class="box-title">Input masks</h3>
-                    </div>
-                    <div class="box-body">
-                      <!-- Date dd/mm/yyyy -->
-                      <div class="form-group">
-                        <label>Date masks:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- Date mm/dd/yyyy -->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- phone mask -->
-                      <div class="form-group">
-                        <label>Intl US phone mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                      <!-- IP mask -->
-                      <div class="form-group">
-                        <label>IP mask:</label>
-
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-laptop"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
+                  </td>
+                  <td class="center">
+                    <button class="btn btn-info">
+                      <i class="fa fa-edit"></i>
+                    </button>
+                  </td>
+                  {!! Form::close() !!}
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- fin-> TABLA DE DATOS -->
+          @else
+            <div class="box">
+              <div class="box-header">
+                <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
+              </div>
+              <div class="box-body">
+                <br>
+                <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
+                <br>
+                <div class="col-md-6 col-sm-offset-3">
+                  <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                    <i class="fa fa-plus"></i>
+                  </button>
 
                 </div>
               </div>
             </div>
-
-            <div class="box-footer">
-              Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-              the plugin.
-            </div>
-          </div>
-
-          @endforeach
-
-        @else
-
-          <div class="box">
-            <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ningun Cargo al cual asignar privilegios...</b></h3>
-            </div>
-            <div class="box-body">
-              <br>
-              <p align="center">Bienvenido a la seccion de Privilegios, parece que aun no tiene ningun cargo, para agregar un nuevo Cargo, haga click en icono de mas.</p>
-              <br>
-              <div class="col-md-6 col-sm-offset-3">
-                <a type="button" href="#" class="btn btn-danger btn-block">
-                  <i class="fa fa-plus"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        @endif
-
+          @endif
+        </div>
       </div>
     </div>
   </section>
 @endsection
+@push('scripts')
+<script>
+  function comenzar(){
+    $(".select2").select2();
+  }
+  window.addEventListener("load",comenzar, false);
+</script>
+@endpush

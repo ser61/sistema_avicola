@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Telefono extends Model
 {
-    protected $table ='Telefono';
+    protected $table ='telefono';
 
     protected $fillable = [
         'numero',

@@ -2,8 +2,12 @@
 
 namespace sisAvicola\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use sisAvicola\CasoPCargo;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
+use sisAvicola\Modulo;
+use sisAvicola\PrivilegioCargo;
 
 class CargoController extends Controller
 {
@@ -21,6 +25,11 @@ class CargoController extends Controller
   public function store(CargoFormRequest $request)
   {
     Cargo::_insertCargo($request);
+    $cargo = Cargo::_getLastAdded();
+    $modulos = Modulo::all();
+    PrivilegioCargo::_createPrivilegiosDefault($cargo->id, $modulos);
+    $privilegios = PrivilegioCargo::_getPrivilegios($cargo->id, Auth::user()->idEmpresa)->get();
+    CasoPCargo::_createCasoUsoDefault($privilegios, Auth::user()->idEmpresa);
     return redirect('cargo/')->with('msj','El cargo: '.$request['nombre'].' se creo exitosamente.');
   }
 
