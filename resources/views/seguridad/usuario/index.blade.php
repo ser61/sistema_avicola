@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{url('/home')}}">index</a></li>
+      <li><a href="#">index</a></li>
     </ol>
   </section>
   <br>
@@ -21,7 +21,7 @@
           </div>
           <!-- fin-> TITULO DE PANEL -->
           <div class="box-body table-responsive">
-            @if(count($usuarios) > 0)
+            @if(count($empleados) > 0 && count($usuarios) > 0)
               <!-- CUADRO DE BUSQUEDA -->
             <div class="panel panel-blue">
               <div class="panel-body">
@@ -113,19 +113,37 @@
             <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
-                <div class="box-header">
-                  <h3 align="center"><b>Aun no tiene ningun Usuario...</b></h3>
-                </div>
-                <div class="box-body">
-                  <br>
-                  <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario, haga click en icono de mas.</p>
-                  <br>
-                  <div class="col-md-6 col-sm-offset-3">
-                    <a type="button" href="{{ url('admin/create') }}" class="btn btn-danger btn-block">
-                      <i class="fa fa-plus"></i>
-                    </a>
+                @if(count($empleados) == 0)
+                  <div class="box-header">
+                    <h3 align="center"><b>Aun no tiene ningun Empleado...</b></h3>
                   </div>
-                </div>
+                  <div class="box-body">
+                    <br>
+                    <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario,</p>
+                    <p align="center">es necesario que registre al menos a un empleado.</p>
+                    <p align="center">Para registra un nuevo empleado haga click en el icono de más.</p>
+                    <br>
+                    <div class="col-md-6 col-sm-offset-3">
+                      <a type="button" href="{{ url('empleado/create') }}" class="btn btn-danger btn-block">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                @elseif(count($usuarios) == 0)
+                  <div class="box-header">
+                    <h3 align="center"><b>Aun no tiene ningun Usuario...</b></h3>
+                  </div>
+                  <div class="box-body">
+                    <br>
+                    <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario, haga click en el icono de mas.</p>
+                    <br>
+                    <div class="col-md-6 col-sm-offset-3">
+                      <a type="button" href="{{ url('admin/create') }}" class="btn btn-danger btn-block">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                @endif
               </div>
             @endif
             <br><br><br><br>

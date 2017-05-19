@@ -3,6 +3,7 @@
 namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class UserEmpleado extends Model
 {

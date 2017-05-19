@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class Persona extends Model
 {
@@ -46,13 +47,13 @@ class Persona extends Model
 
   public function setFotoAttribute($foto)
   {
-    if (!empty($foto) && $foto != 'user.png') {
-      $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
-      $name = Carbon::now()->second.$foto->getClientOriginalName();
-      Storage::disk('local')->put($name, \File::get($foto));
-    }else{
-      $this->attributes['foto'] = 'user.png';
-    }
+      if (!empty($foto) && $foto != 'user.png') {
+        $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
+        $name = Carbon::now()->second.$foto->getClientOriginalName();
+        Storage::disk('local')->put($name, \File::get($foto));
+      }else{
+        $this->attributes['foto'] = 'user.png';
+      }
   }
 
   public function scope_createEmpleado($query, $request)
@@ -75,7 +76,6 @@ class Persona extends Model
   public function scope_updateEmpleado($query, $request, $id)
   {
     if ($request['fechaIngreso'] == '') {$request['fechaIngreso'] = null;}
-    if ($request['foto'] == '') {$request['foto'] = null;}
     $request['tipo'] = 'e';
     $request['idEmpresa'] = Auth::user()->idEmpresa;
     $request['visible'] = '1';

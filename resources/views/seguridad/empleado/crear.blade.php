@@ -112,6 +112,7 @@
 <script>
   var indice = 0;
   function comenzar(){
+    $(".select2").select2();
     $('#add').click(function(){
       agregar();
     });

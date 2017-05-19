@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Exception;
 
 class User extends Authenticatable
 {
@@ -45,13 +46,14 @@ class User extends Authenticatable
 
   public function setFotoAttribute($foto)
   {
-    if (!empty($foto) && $foto != 'user.png') {
-      $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
-      $name = Carbon::now()->second.$foto->getClientOriginalName();
-      Storage::disk('local')->put($name, \File::get($foto));
-    }else{
-      $this->attributes['foto'] = 'user.png';
-    }
+      if (!empty($foto) && !Storage::disk('local')->exists($foto)) {
+        $this->attributes['foto'] = Carbon::now()->second.$foto->getClientOriginalName();
+        $name = Carbon::now()->second.$foto->getClientOriginalName();
+        Storage::disk('local')->put($name, \File::get($foto));
+      }else{
+        $this->attributes['foto'] = $foto;
+      }
+
   }
 
   public function scope_eliminar($query, $id)

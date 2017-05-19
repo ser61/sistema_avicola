@@ -3,6 +3,7 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Exception;
 use sisAvicola\Http\Requests\UserRequest;
 use sisAvicola\Http\Requests\UserUpdateRequest;
@@ -16,7 +17,8 @@ class AdminUsersController extends Controller
   public function index()
   {
     $usuarios = User::_getUsuarios()->get();
-    return view('seguridad.usuario.index', compact('usuarios'));
+    $empleados = Persona::_allEmpleados()->get();
+    return view('seguridad.usuario.index', compact('usuarios','empleados'));
   }
 
   public function create()
@@ -27,10 +29,11 @@ class AdminUsersController extends Controller
 
   public function store(UserRequest $request)
   {
+    UserEmpleado::_createUsuarioEmpleado($request);
+    return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
     try {
       DB::beginTransaction();
-      UserEmpleado::_createUsuarioEmpleado($request);
-      return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
+
       DB::commit();
     } catch (Exception $e) {
       DB::rollback();

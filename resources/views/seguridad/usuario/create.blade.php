@@ -6,8 +6,8 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{url('/home')}}">Index</a></li>
-      <li><a href="{{url('/home')}}">Crear</a></li>
+      <li><a href="{{url('/admin')}}">Index</a></li>
+      <li><a href="#">Crear</a></li>
     </ol>
   </section>
   <br>
@@ -17,7 +17,7 @@
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
-            <h3 align="center">Panel de Registro de <span class="text-bold">Empleados</span></h3>
+            <h3 align="center">Panel de Registro de <span class="text-bold">Usuarios</span></h3>
           </div>
 
           <div class="box-body">
@@ -78,6 +78,10 @@
             </div>
             {!! Form::close() !!}
 
+          </div>
+
+          <div class="box-footer">
+            <p><b>NOTA:</b> Se recomienda anotar la sigla de su compania como prefijo de los nombres de usuarios.</p>
           </div>
         </div>
         <br>

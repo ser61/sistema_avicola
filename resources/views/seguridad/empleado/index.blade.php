@@ -21,7 +21,7 @@
           </div>
           <!-- fin-> TITULO DE PANEL -->
           <div class="box-body table-responsive">
-            @if(count($empleados) > 0)
+            @if(count($cargos) > 0 && count($empleados) > 0)
               <!-- CUADRO DE BUSQUEDA -->
               <div class="panel panel-blue">
                 <div class="panel-body">
@@ -119,20 +119,37 @@
               <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
-                <div class="box-header">
-                  <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
-                </div>
-                <div class="box-body">
-                  <br>
-                  <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
-                  <br>
-                  <div class="col-md-6 col-sm-offset-3">
-                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
-                      <i class="fa fa-plus"></i>
-                    </button>
-
+                @if(count($cargos) == 0)
+                  <div class="box-header">
+                    <h3 align="center"><b>Aun no tiene ninguna Cargo...</b></h3>
                   </div>
-                </div>
+                  <div class="box-body">
+                    <br>
+                    <p align="center">Bienvenido a la seccion de Empleados, para agregar un nuevo Empleado,</p>
+                    <p align="center">es necesario que cree al menos un cargo</p>
+                    <p align="center">haga click en el icono de más.</p>
+                    <br>
+                    <div class="col-md-6 col-sm-offset-3">
+                      <a href="{{ url('cargo/') }}" type="button" class="btn btn-danger btn-block">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                @elseif(count($empleados) == 0)
+                  <div class="box-header">
+                    <h3 align="center"><b>Aun no tiene ninguna Empleado...</b></h3>
+                  </div>
+                  <div class="box-body">
+                    <br>
+                    <p align="center">Bienvenido a la seccion de Empleados, para agregar un nuevo Empleado, haga click en icono de más.</p>
+                    <br>
+                    <div class="col-md-6 col-sm-offset-3">
+                      <a href="{{ url('empleado/create') }}" type="button" class="btn btn-danger btn-block">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                @endif
               </div>
             @endif
             <br><br><br><br>

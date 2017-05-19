@@ -14,7 +14,8 @@ class EmpleadoController extends Controller
   public function index()
   {
     $empleados = Persona::_allEmpleados()->get();
-    return view('seguridad.empleado.index', compact('empleados'));
+    $cargos = Cargo::_allCargos()->get();
+    return view('seguridad.empleado.index', compact('empleados', 'cargos'));
   }
 
   public function create()
