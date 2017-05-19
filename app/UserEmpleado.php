@@ -10,7 +10,7 @@ class UserEmpleado extends Model
 
   protected $fillable = [
     'name', 'foto', 'email', 'password', 'estado', 'idEmpleado',
-    'idEmpresa', 'tipoUser', 'visible'
+    'idEmpresa', 'tipoUser', 'privilegio', 'visible'
   ];
 
   protected $hidden = [
@@ -25,6 +25,7 @@ class UserEmpleado extends Model
     $request['estado'] = '0';
     $request['idEmpresa'] = Auth::user()->idEmpresa;
     $request['tipoUser'] = 'u';
+    $request['privilegio'] = '0';
     $request['foto'] = $persona['foto'];
     $this->create($request->all());
     return;

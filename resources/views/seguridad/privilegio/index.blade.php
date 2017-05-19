@@ -52,7 +52,7 @@
               @foreach($cargos as $cargo)
                 <tr>
                   <td>{{$cargo->nombre}}</td>
-                  {!!Form::open(['route'=> ['privilegio.edit', $cargo->id], 'method'=>'GET'])!!}
+                  {!!Form::open(['route'=> ['privilegio.editCargo', $cargo->id], 'method'=>'GET'])!!}
                   <td>
                     <div class="row">
                       <div class="col-sm-6">
@@ -97,6 +97,98 @@
               </div>
             </div>
           @endif
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <div class="box box-primary">
+          <!-- TITULO DE PANEL -->
+          <div class="box-header with-border">
+            <h3 align="center">Panel de Privilegios de los <span class="text-bold">Usuarios</span></h3>
+          </div>
+          <!-- fin-> TITULO DE PANEL -->
+          @if(count($usuarios) > 0)
+            <!-- CUADRO DE BUSQUEDA -->
+          <div class="panel panel-blue">
+            <div class="panel-body">
+              @include('alertas.logrado')
+              @include('alertas.error')
+              <div class="input-group margin">
+                <input type="text" class="form-control" placeholder="Buscar por Nombre">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-info btn-flat">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+              </div>
+            </div>
+          </div>
+          <!-- fin-> CUADRO DE BUSQUEDA -->
+
+          <!-- TABLA DE DATOS -->
+          <div class="box-body">
+            <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+              <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Privilegio</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($usuarios as $usuario)
+                <tr>
+                  <td class="center">{{$usuario->name}}</td>
+                  <td>{{$usuario->estado}}</td>
+                  {!!Form::open(['route'=> ['privilegio.editUser', $cargo->id], 'method'=>'GET'])!!}
+                  <td>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group-lg">
+                          {!! Form::select('modulo',$modulos, null, [
+                          'class'=>'form-control select2',
+                          'placeholder'=>'Seleccion un modulo...',
+                          'style' => '"width: 100px;"'
+                          ]) !!}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="center">
+                    <button class="btn btn-xs btn-info">
+                      <i class="fa fa-edit"></i>
+                    </button>
+                  </td>
+                  {!! Form::close() !!}
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- fin-> TABLA DE DATOS -->
+          @else
+            <div class="box">
+              <div class="box-header">
+                <h3 align="center"><b>Aun no tiene ningun Usuario...</b></h3>
+              </div>
+              <div class="box-body">
+                <br>
+                <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario, haga click en icono de mas.</p>
+                <br>
+                <div class="col-md-6 col-sm-offset-3">
+                  <a type="button" href="{{ url('admin/create') }}" class="btn btn-danger btn-block">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          @endif
+          <br><br><br><br>
         </div>
       </div>
     </div>

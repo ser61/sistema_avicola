@@ -19,7 +19,7 @@ class User extends Authenticatable
    */
   protected $fillable = [
     'name', 'foto', 'email', 'password', 'estado', 'idEmpleado',
-    'idEmpresa', 'tipoUser', 'visible'
+    'idEmpresa', 'tipoUser', 'privilegio', 'visible'
   ];
 
   public function scope_getUsuarios($query)

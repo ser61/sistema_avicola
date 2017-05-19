@@ -28,16 +28,14 @@ Route::resource('cargo', 'CargoController');
 Route::resource('empleado', 'EmpleadoController');
 Route::resource('telefono', 'TelefonoController');
 Route::resource('privilegio', 'PrevilegioController');
-Route::post('privilegio/updatePrivilegios', 'PrevilegioController@updatePrivilegios')->name('privilegio.updatePrivilegios');
-Route::get('privilegio/deshabilitar/{id}', 'PrevilegioController@deshabilitarPermisos')->name('privilegio.deshabilitar');
+Route::post('privilegio/updatePrivilegios', 'PrevilegioController@updatePrivilegiosCargo')->name('privilegio.updatePrivilegiosCargo');
+Route::get('privilegio/deshabilitar/{id}', 'PrevilegioController@deshabilitarPermisosCargo')->name('privilegio.deshabilitarCargo');
+Route::get('privilegio/editCargo/{id}', 'PrevilegioController@editCargo')->name('privilegio.editCargo');
+Route::post('privilegio/updatePrivilegiosUser', 'PrevilegioController@updatePrivilegiosUser')->name('privilegio.updatePrivilegiosUser');
+Route::get('privilegio/deshabilitarUser/{id}', 'PrevilegioController@deshabilitarPermisosUser')->name('privilegio.deshabilitarUser');
+Route::get('privilegio/editUser/{id}', 'PrevilegioController@editUser')->name('privilegio.editUser');
 Route::resource('bitacora', 'BitacoraController');
 Route::get('facturar','FacturaController@create');
-
-
-
-
-
-
 
 
 

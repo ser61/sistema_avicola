@@ -63,6 +63,7 @@ class RegisterController extends Controller
         'idEmpleado' => null,
         'idEmpresa' => $data['idEmpresa'],
         'tipoUser' => 'a', //a= admin; u= usuario; s= superAdmin
+        'privilegio' => null,
         'visible' => '1',
       ]);
     }

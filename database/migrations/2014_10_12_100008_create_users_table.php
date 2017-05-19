@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('idEmpleado')->unsigned()->nullable();
             $table->string('idEmpresa');
             $table->char('tipoUser');
+            $table->char('privilegio')->nullable();
             $table->char('visible');
             $table->rememberToken();
             $table->timestamps();

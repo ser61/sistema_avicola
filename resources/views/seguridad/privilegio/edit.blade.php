@@ -23,7 +23,7 @@
 
           <div class="box-body">
 
-            {!! Form::open(['route' => 'privilegio.updatePrivilegios','method' => 'POST', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => 'privilegio.updatePrivilegiosCargo','method' => 'POST', 'class' => 'form-horizontal']) !!}
             <div class="col-md-8 col-sm-offset-2">
               @include('alertas.request')
               @include('alertas.error')
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-sm-5">
                   <br>
-                  <a href="{{ route('privilegio.deshabilitar',$privilegio->id) }}" class="btn btn-info">
+                  <a href="{{ route('privilegio.deshabilitarCargo',$privilegio->id) }}" class="btn btn-info">
                     <i class="fa fa-arrow-circle-down"></i> Deshabilitar este Modulo <i class="fa fa-arrow-circle-down"></i>
                   </a>
                   <br>
