@@ -57,9 +57,9 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group-lg">
-                          {!! Form::select('privilegio',$privilegios[$cargo->id], null, [
+                          {!! Form::select('modulo',$modulos, null, [
                           'class'=>'form-control select2',
-                          'placeholder'=>'Seleccion un privilegio...',
+                          'placeholder'=>'Seleccion un modulo...',
                           'style' => '"width: 100px;"'
                           ]) !!}
                         </div>
@@ -85,7 +85,8 @@
               </div>
               <div class="box-body">
                 <br>
-                <p align="center">Bienvenido a la seccion de Cargos, para agregar un nuevo Cargo, haga click en icono de mas.</p>
+                <p align="center">Bienvenido a la seccion de Privilegios, para asignar Privilegios a un Cargo es necesario que haya creado uno.
+                  Haga click en el icono de más para agregar un cargo.</p>
                 <br>
                 <div class="col-md-6 col-sm-offset-3">
                   <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>

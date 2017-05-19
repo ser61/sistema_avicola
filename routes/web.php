@@ -28,6 +28,8 @@ Route::resource('cargo', 'CargoController');
 Route::resource('empleado', 'EmpleadoController');
 Route::resource('telefono', 'TelefonoController');
 Route::resource('privilegio', 'PrevilegioController');
+Route::post('privilegio/updatePrivilegios', 'PrevilegioController@updatePrivilegios')->name('privilegio.updatePrivilegios');
+Route::get('privilegio/deshabilitar/{id}', 'PrevilegioController@deshabilitarPermisos')->name('privilegio.deshabilitar');
 Route::resource('bitacora', 'BitacoraController');
 Route::get('facturar','FacturaController@create');
 
