@@ -4,7 +4,7 @@ namespace sisAvicola\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HuevoFormRequest extends FormRequest
+class CategoriaFormRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class HuevoFormRequest extends FormRequest
   public function rules()
   {
     return [
-      //
+      'nombre'=>'required|max:250',
+      'descripcion'=>'required',
+      'pesoIntervaloSuperior'=>'required',
+      'pesoIntervaloInferior'=>'required',
     ];
   }
 }

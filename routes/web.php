@@ -80,6 +80,17 @@ Route::resource('proceso/produccionalimento','ProduccionAlimentoController');
 
 //81 - FIN DE ROUTES DE SERGIO FRANCO
 //82 - Rodrigo
+Route::resource('venta/tipo','TipoController');
+Route::resource('venta/categoria','CategoriaController');
+Route::resource('venta/huevo','HuevoController');
+Route::resource('venta/pollo','PolloController');
+Route::resource('venta/cliente','ClienteController');
+Route::resource('venta/inventario','ProductoVentaController');
+Route::resource('venta/factura','FacturaController');
+
+
+Route::resource('compra/materia','MateriaController');
+Route::resource('compra/alimento','AlimentoController');
 
 
 
@@ -99,32 +110,4 @@ Route::resource('proceso/produccionalimento','ProduccionAlimentoController');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 30 - FIN DE ROUTES DE RODRIGO
+// 113 - FIN DE ROUTES DE RODRIGO

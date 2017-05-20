@@ -2,16 +2,13 @@
 
 namespace sisAvicola\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-//use sisAvicola\app\Http\Requests\TipoFormRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use sisAvicola\Http\Requests\TipoFormRequest;
 use sisAvicola\Tipo;
 use Illuminate\Support\Facades\Redirect;
-
-use DB;
 
 class TipoController extends Controller
 {

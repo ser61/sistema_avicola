@@ -6,29 +6,28 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FacturaFormRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
+  /**
+   * Determine if the user is authorized to make this request.
+   *
+   * @return bool
+   */
+  public function authorize()
+  {
+    return true;
+  }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-          'nit' => 'digits_between:5,10',
-          'nombre' => 'required|max:100',
-          'fecha' => 'required|date',
-          'monto' => 'required',
-          'idCliente' => 'required'
-        ];
-    }
+  /**
+   * Get the validation rules that apply to the request.
+   *
+   * @return array
+   */
+  public function rules()
+  {
+    return [
+      'nit' => 'digits_between:5,10',
+      'nombre' => 'required|max:100',
+      'montoTotal' => 'required',
+      'idCliente' => 'required'
+    ];
+  }
 }
