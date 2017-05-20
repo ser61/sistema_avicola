@@ -184,32 +184,42 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="table_basic.html"><i class="fa fa-circle-o"></i>
+                <a href="{{asset('venta/cliente')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Clientes</span>
                 </a>
               </li>
               <li>
-                <a href="table_responsive.html"><i class="fa fa-circle-o"></i>
+                <a href="{{asset('venta/factura')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Facturas</span>
                 </a>
               </li>
               <li>
-                <a href="table_data.html"><i class="fa fa-circle-o"></i>
+                <a href="javascript:;"><i class="fa fa-circle-o"></i>
                   <span class="title">Productos</span>
                 </a>
               </li>
               <li>
-                <a href="table_export.html"><i class="fa fa-circle-o"></i>
+                <a href="{{asset('venta/huevo')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Huevo</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{asset('venta/pollo')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Pollo</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{asset('venta/categoria')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Categorias</span>
                 </a>
               </li>
               <li>
-                <a href="table_export.html"><i class="fa fa-circle-o"></i>
+                <a href="{{asset('venta/tipo')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Tipo de Pollo</span>
                 </a>
               </li>
               <li>
-                <a href="table_export.html"><i class="fa fa-circle-o"></i>
+                <a href="{{asset('venta/inventario')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Inventarios</span>
                 </a>
               </li>
