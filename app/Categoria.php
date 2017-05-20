@@ -4,16 +4,17 @@ namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class Categoria extends Model
 {
-  protected $table ='tipo';
+  protected $table ='categoria';
 
   protected $primaryKey = 'id';
 
-  //public $timestamps=false;
-
   protected $fillable = [
     'nombre',
+    'descripcion',
+    'pesoIntervaloSuperior',
+    'pesoIntervaloInferior',
     'idEmpresa',
     'visible'
   ];
