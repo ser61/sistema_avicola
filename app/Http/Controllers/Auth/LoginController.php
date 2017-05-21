@@ -58,6 +58,7 @@ class LoginController extends Controller
   protected function authenticated(Request $request, $user)
   {
     Bitacora::_crearBitacora(Auth::user()->id, Auth::user()->idEmpresa);
+    Accion::_crearAccion('LogIn', Auth::user()->id, Auth::user()->idEmpresa);
   }
 
   public function logout(Request $request)

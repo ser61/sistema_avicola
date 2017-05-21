@@ -39,4 +39,11 @@ class Accion extends Model
       'visible' => '1'
     ]);
   }
+
+  public function scope_getAcciones($query, $idBitacora, $idEmpresa)
+  {
+    $acciones = $query->where('idEmpresa', $idEmpresa)->where('visible', '1')
+      ->where('idBitacora', $idBitacora);
+    return $acciones;
+  }
 }

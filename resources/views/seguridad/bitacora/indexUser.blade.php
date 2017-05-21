@@ -65,7 +65,7 @@
                       <td>{{$bitacora->id}}</td>
                       <td>{{$bitacora->fecha}}</td>
                       <td class="center">
-                        <a href="{{ route('bitacora.showUser', $bitacora->id) }}" type="button" class="btn btn-xs btn-info">
+                        <a href="{{ route('bitacora.showAccionesUser', [$bitacora->id, $bitacora->idUser]) }}" type="button" class="btn btn-xs btn-info">
                           <i class="fa fa-eye"></i> Ver
                         </a>
                       </td>
