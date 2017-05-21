@@ -3,12 +3,16 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
+use sisAvicola\Persona;
+use sisAvicola\User;
 
 class BitacoraController extends Controller
 {
     public function index()
     {
-      return 'hola';
+      $usuarios = User::_getUsuariosBitacora()->get();
+      $empleados = Persona::_allEmpleados()->get();
+      return view('seguridad.bitacora.index', compact('usuarios', 'empleados'));
     }
 
     public function create()

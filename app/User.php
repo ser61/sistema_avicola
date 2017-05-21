@@ -61,4 +61,16 @@ class User extends Authenticatable
     $query->where('id', $id)->update(['visible' => '0']);
     return;
   }
+
+  public function scope_getUsuariosBitacora($query)
+  {
+    $idEmpresa = Auth::user()->idEmpresa;
+    $usuarios = $query->select('users.id as id', 'users.name as name', 'p.nombre as nombre', 'p.apellido as apellido', 'c.nombre as cargo')
+                      ->join('persona as p', 'p.id', '=', 'users.idEmpleado')
+                      ->join('cargo as c', 'c.id', '=', 'p.idCargo')
+                      ->where('users.idEmpresa', $idEmpresa)->where('users.visible','1')
+                      ->where('p.idEmpresa', $idEmpresa)->where('p.visible','1')->where('p.tipo','e')
+                      ->where('c.idEmpresa', $idEmpresa)->where('c.visible','1');
+    return $usuarios;
+  }
 }
