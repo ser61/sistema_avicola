@@ -2,18 +2,17 @@
 
 namespace sisAvicola\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use League\Flysystem\Exception;
+use Illuminate\Support\Facades\Auth;
+use sisAvicola\CasoPUsers;
 use sisAvicola\Http\Requests\UserRequest;
 use sisAvicola\Http\Requests\UserUpdateRequest;
 use sisAvicola\Persona;
+use sisAvicola\PrivilegioUsers;
 use sisAvicola\User;
 use sisAvicola\UserEmpleado;
 
 class AdminUsersController extends Controller
 {
-
   public function index()
   {
     $usuarios = User::_getUsuarios()->get();
@@ -30,15 +29,12 @@ class AdminUsersController extends Controller
   public function store(UserRequest $request)
   {
     UserEmpleado::_createUsuarioEmpleado($request);
+    $empleado = UserEmpleado::_getLastAdded();
+    $modulos = Modulo::all();
+    PrivilegioUsers::_createPrivilegiosDefault($empleado->id, $modulos);
+    $privilegios = PrivilegioUsers::_getPrivilegios($empleado->id, Auth::user()->idEmpresa)->get();
+    CasoPUsers::_createCasoUsoDefault($privilegios, Auth::user()->idEmpresa);
     return redirect('admin/')->with('msj','El usuario '.$request['name'].' se registro exitosamente.');
-    try {
-      DB::beginTransaction();
-
-      DB::commit();
-    } catch (Exception $e) {
-      DB::rollback();
-      return back()->with('error', 'Hubo un problema al intentar registra el usuario.');
-    }
   }
 
   public function show($id)

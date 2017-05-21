@@ -5,9 +5,12 @@ namespace sisAvicola\Http\Controllers;
 use Illuminate\Http\Request;
 use sisAvicola\Cargo;
 use sisAvicola\CasoPCargo;
+use sisAvicola\CasoPUsers;
 use sisAvicola\Modulo;
 use sisAvicola\PrivilegioCargo;
+use sisAvicola\PrivilegioUsers;
 use sisAvicola\User;
+use sisAvicola\UserEmpleado;
 
 class PrevilegioController extends Controller
 {
@@ -53,6 +56,11 @@ class PrevilegioController extends Controller
 
   public function editUser(Request $request, $id)
   {
-    return 'hola';
+    $modulo = Modulo::find($request['modulo']);
+    $privilegio = PrivilegioUsers::_getPrivilegio($id, $request['modulo'])->get()->first();
+    $casosUsoActual = CasoPUsers::_getCasosUsos($privilegio->id())->get();
+    $permiso = ['n' => 'Oculto', 's' => 'Solo lectura', 'c' => 'Control total'];
+    $usuario = UserEmpleado::find($id);
+    return view('seguridad.privilegio.edit', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'usuario'));
   }
 }

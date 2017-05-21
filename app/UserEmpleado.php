@@ -44,4 +44,11 @@ class UserEmpleado extends Model
     $usuraio->save();
     return;
   }
+
+  public function scope_getLastAdded($query)
+  {
+    $empleado = $query->where('idEmpresa', Auth::user()->idEmpresa)
+                      ->where('visible', '1')->get()->last();
+    return $empleado;
+  }
 }

@@ -31,7 +31,6 @@ class PrivilegioCargo extends Model
 
   public function scope_getPrivilegios($query, $idCargo, $idEmpresa)
   {
-
     $privilegios = $query->where('idCargo',$idCargo)->where('idEmpresa', $idEmpresa)->where('visible', '1');
     return $privilegios;
   }
