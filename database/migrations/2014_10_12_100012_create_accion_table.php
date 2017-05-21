@@ -18,8 +18,8 @@ class CreateAccionTable extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->string('accion');
-            $table->string('tabla');
-            $table->integer('idTupla');
+            $table->string('tabla')->nullable();
+            $table->integer('idTupla')->nullable();
             $table->integer('idBitacora')->unsigned();
             $table->string('idEmpresa');
             $table->char('visible');

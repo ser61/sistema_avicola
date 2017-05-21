@@ -3,6 +3,7 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Accion;
 use sisAvicola\CasoPCargo;
 use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
@@ -13,12 +14,14 @@ class CargoController extends Controller
 {
   public function index()
   {
+    Accion::_crearAccion('Ingreso a la pagina de Cargo', Auth::user()->id, Auth::user()->idEmpresa);
     $cargos = Cargo::_allCargos()->get();
     return view('seguridad.cargo.index', compact('cargos'));
   }
 
   public function create()
   {
+    Accion::_crearAccion('Ingreso a la pagina de Crear Cargo', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.cargo.crear');
   }
 
@@ -26,6 +29,8 @@ class CargoController extends Controller
   {
     Cargo::_insertCargo($request);
     $cargo = Cargo::_getLastAdded();
+    Accion::_crearAccionOnTable('Creo un nuevo Cargo', 'cargo', $cargo->id, Auth::user()->id, Auth::user()->idEmpresa);
+
     $modulos = Modulo::all();
     PrivilegioCargo::_createPrivilegiosDefault($cargo->id, $modulos);
     $privilegios = PrivilegioCargo::_getPrivilegios($cargo->id, Auth::user()->idEmpresa)->get();
@@ -40,6 +45,7 @@ class CargoController extends Controller
 
   public function edit($id)
   {
+    Accion::_crearAccionOnTable('Ingreso a la pagina de Editar Cargo', 'cargo', $id, Auth::user()->id, Auth::user()->idEmpresa);
     $cargo = Cargo::find($id);
     return view('seguridad.cargo.editar', compact('cargo'));
   }
@@ -47,12 +53,14 @@ class CargoController extends Controller
   public function update(CargoFormRequest $request, $id)
   {
     $name = Cargo::_updateCargo($request, $id);
+    Accion::_crearAccionOnTable('Actualizo datos de un Cargo', 'cargo', $id, Auth::user()->id, Auth::user()->idEmpresa);
     return redirect('cargo/')->with('msj','El cargo: '.$name.' se edito exitosamente.');
   }
 
   public function destroy($id)
   {
     $cargo = Cargo::_eliminarCargo($id);
+    Accion::_crearAccionOnTable('Elimino un Cargo', 'cargo', $id, Auth::user()->id, Auth::user()->idEmpresa);
     return back()->with('msj', 'El Cargo: '.$cargo->nombre.' se elimino exitosamente.');
   }
 }

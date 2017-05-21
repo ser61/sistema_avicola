@@ -8,7 +8,7 @@ class BitacoraController extends Controller
 {
     public function index()
     {
-        //
+      return 'hola';
     }
 
     public function create()

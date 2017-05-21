@@ -2,6 +2,9 @@
 
 namespace sisAvicola\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use sisAvicola\Accion;
+use sisAvicola\Bitacora;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -50,5 +53,23 @@ class LoginController extends Controller
   public function username()
   {
     return 'name';
+  }
+
+  protected function authenticated(Request $request, $user)
+  {
+    Bitacora::_crearBitacora(Auth::user()->id, Auth::user()->idEmpresa);
+  }
+
+  public function logout(Request $request)
+  {
+    Accion::_crearAccion('LogOut', Auth::user()->id, Auth::user()->idEmpresa);
+
+    $this->guard()->logout();
+
+    $request->session()->flush();
+
+    $request->session()->regenerate();
+
+    return redirect('/');
   }
 }

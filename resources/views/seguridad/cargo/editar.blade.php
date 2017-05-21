@@ -18,7 +18,7 @@
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
-            <h3 align="center">Panel de control de los <span class="text-bold">Cargos</span></h3>
+            <h3 align="center">Panel de Edicion del cargo: <span class="text-bold">{{ $cargo->nombre }}</span></h3>
           </div>
 
           <div class="box-body">
