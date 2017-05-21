@@ -26,4 +26,13 @@ class Bitacora extends Model
                       ->where('visible', '1');
     return $bitacora;
   }
+
+  public function scope_getBitacoras($query, $idUser, $idEmpresa)
+  {
+    $bitacoras = $query->select('bitacora.id as id', 'a.fecha as fecha')
+      ->join('accion as a', 'a.idBitacora', '=', 'bitacora.id')
+      ->where('a.visible', '1')->where('a.idEmpresa', $idEmpresa)
+      ->where('bitacora.idEmpresa', $idEmpresa)->where('bitacora.visible', '1')->where('bitacora.idUser', $idUser);
+    return $bitacoras;
+  }
 }

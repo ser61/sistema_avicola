@@ -78,7 +78,7 @@
                   <td>{{$usuario->apellido}}</td>
                   <td>{{$usuario->cargo}}</td>
                   <td class="center">
-                    <a href="{{ route('admin.show', $usuario->id) }}" type="button" class="btn btn-xs btn-info">
+                    <a href="{{ route('bitacora.showUser', $usuario->id) }}" type="button" class="btn btn-xs btn-info">
                       <i class="fa fa-eye"></i> Ver
                     </a>
                   </td>

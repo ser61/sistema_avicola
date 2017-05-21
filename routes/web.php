@@ -35,8 +35,8 @@ Route::post('privilegio/updatePrivilegiosUser', 'PrevilegioController@updatePriv
 Route::get('privilegio/deshabilitarUser/{id}', 'PrevilegioController@deshabilitarPermisosUser')->name('privilegio.deshabilitarUser');
 Route::get('privilegio/editUser/{id}', 'PrevilegioController@editUser')->name('privilegio.editUser');
 Route::resource('bitacora', 'BitacoraController');
+Route::get('bitacora/showBitacoraUser/{id}', 'BitacoraController@showBitacoraUser')->name('bitacora.showUser');
 Route::get('facturar','FacturaController@create');
-
 
 
 

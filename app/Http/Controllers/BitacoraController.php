@@ -3,6 +3,8 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use sisAvicola\Bitacora;
 use sisAvicola\Persona;
 use sisAvicola\User;
 
@@ -25,9 +27,11 @@ class BitacoraController extends Controller
         //
     }
 
-    public function show($id)
+    public function showBitacoraUser($id)
     {
-        //
+      $bitacoras = Bitacora::_getBitacoras($id, Auth::user()->idEmpresa)->get();
+      $user = User::find($id);
+      return view('seguridad.bitacora.indexUser', compact('bitacoras', 'user'));
     }
 
     public function edit($id)
