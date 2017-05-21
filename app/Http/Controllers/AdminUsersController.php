@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use sisAvicola\CasoPUsers;
 use sisAvicola\Http\Requests\UserRequest;
 use sisAvicola\Http\Requests\UserUpdateRequest;
+use sisAvicola\Modulo;
 use sisAvicola\Persona;
 use sisAvicola\PrivilegioUsers;
 use sisAvicola\User;

@@ -145,7 +145,7 @@
                 <tr>
                   <td class="center">{{$usuario->name}}</td>
                   <td>{{$usuario->estado}}</td>
-                  {!!Form::open(['route'=> ['privilegio.editUser', $cargo->id], 'method'=>'GET'])!!}
+                  {!!Form::open(['route'=> ['privilegio.editUser', $usuario->id], 'method'=>'GET'])!!}
                   <td>
                     <div class="row">
                       <div class="col-sm-6">

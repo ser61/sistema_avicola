@@ -4,6 +4,7 @@ namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PrivilegioUsers extends Model
 {
@@ -34,10 +35,10 @@ class PrivilegioUsers extends Model
     return $privilegios;
   }
 
-  public function scope_getPrivilegio($query, $idUsuario, $modulo)
+  public function scope_getPrivilegioUser($query, $idUsuario, $modulo)
   {
     $privilegio = $query->where('visible', '1')->where('idEmpresa', Auth::user()->idEmpresa)
-                        ->where('idUsuario', $idUsuario)->where('idModulo', $modulo->id);
+                        ->where('idUsuario', $idUsuario)->where('idModulo', $modulo);
     return $privilegio;
   }
 }

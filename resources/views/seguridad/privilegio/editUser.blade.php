@@ -6,8 +6,8 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{url('/home')}}">Index</a></li>
-      <li><a href="{{url('/home')}}">Editar</a></li>
+      <li><a href="{{url('/privilegio')}}">Index</a></li>
+      <li><a href="#">Editar</a></li>
     </ol>
   </section>
   <br>
@@ -18,12 +18,12 @@
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
             <h3 align="center">Panel de Privilegios de <span class="text-bold">{{ $modulo->nombre }}</span> para:</h3>
-            <h3 align="center"><span class="text-bold">{{ $cargo->nombre  }}</span></h3>
+            <h3 align="center"><span class="text-bold">{{ $usuario->nombre  }}</span></h3>
           </div>
 
           <div class="box-body">
 
-            {!! Form::open(['route' => 'privilegio.updatePrivilegiosCargo','method' => 'POST', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => 'privilegio.updatePrivilegiosUser','method' => 'POST', 'class' => 'form-horizontal']) !!}
             <div class="col-md-8 col-sm-offset-2">
               @include('alertas.request')
               @include('alertas.error')
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-sm-5">
                   <br>
-                  <a href="{{ route('privilegio.deshabilitarCargo',$privilegio->id) }}" class="btn btn-info">
+                  <a href="{{ route('privilegio.deshabilitarUser',$privilegio->id) }}" class="btn btn-info">
                     <i class="fa fa-arrow-circle-down"></i> Deshabilitar este Modulo <i class="fa fa-arrow-circle-down"></i>
                   </a>
                   <br>

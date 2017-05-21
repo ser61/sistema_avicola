@@ -41,26 +41,28 @@ class PrevilegioController extends Controller
     $casosUsoActual = CasoPCargo::_getCasosUsos($privilegio->id)->get();
     $permiso = ['n' => 'Oculto', 's' => 'Solo lectura', 'c' => 'Control total'];
     $cargo = Cargo::find($id);
-    return view('seguridad.privilegio.edit', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'cargo'));
+    return view('seguridad.privilegio.editCargo', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'cargo'));
   }
 
-  public function udatePrivilegiosUser(Request $request)
+  public function updatePrivilegiosUser(Request $request)
   {
-
+    CasoPUsers::_updatePermisos($request);
+    return redirect('privilegio/')->with('msj', 'Los permisos fueron actualizados exitosamente');
   }
 
   public function deshabilitarPermisosUser($id)
   {
-
+    CasoPUsers::_deshabilitarPermisos($id);
+    return redirect('privilegio/')->with('msj', 'Los permisos fueron deshabilitados exitosamente');
   }
 
   public function editUser(Request $request, $id)
   {
     $modulo = Modulo::find($request['modulo']);
-    $privilegio = PrivilegioUsers::_getPrivilegio($id, $request['modulo'])->get()->first();
-    $casosUsoActual = CasoPUsers::_getCasosUsos($privilegio->id())->get();
+    $privilegio = PrivilegioUsers::_getPrivilegioUser($id, $request['modulo'])->get()->first();
+    $casosUsoActual = CasoPUsers::_getCasosUsos($privilegio->id)->get();
     $permiso = ['n' => 'Oculto', 's' => 'Solo lectura', 'c' => 'Control total'];
     $usuario = UserEmpleado::find($id);
-    return view('seguridad.privilegio.edit', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'usuario'));
+    return view('seguridad.privilegio.editUser', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'usuario'));
   }
 }
