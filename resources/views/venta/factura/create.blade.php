@@ -155,14 +155,14 @@
     total_precio = 0;
     subtotal=[];
 
-    $(document).ready(function(){
-        mostrarValores();
-        $('#bt_add').click(function(){
-            agregar();
-            limpiar();
-            
-        });
-    });
+    function comenzar(){
+      mostrarValores();
+      $('#bt_add').click(function(){
+        agregar();
+        limpiar();
+
+      });
+    }
 
     $("#pidProd").change(mostrarValores);
    
@@ -198,7 +198,7 @@
         $("#fila" + index).remove();
     }
 
-
+    window.addEventListener("load",comenzar, false);
 </script>
 @endpush
 @endsection
