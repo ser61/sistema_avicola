@@ -1,5 +1,7 @@
-@extends ('index')
-@section ('contenido')
+@extends ('layouts.fondo')
+@section ('content')
+<br>
+<div class="panel panel-white panel-body">
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<h3>Editar Tipo: {{ $tipo->nombre}}</h3>
@@ -17,7 +19,7 @@
 			{{Form::token()}}			
 			<div class="form-group">
 				<label for="nombre">Nombre</label>
-				<input type="text" name="nombre" class="form-control" value="{{$tipo->nombre}}" placeholder="Nombre..">
+				<input type="text" name="nombre" class="form-control" value="{{$tipo->nombre}}">
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>
@@ -27,4 +29,5 @@
 
 		</div>
 	</div>
+</div>
 @endsection
