@@ -141,6 +141,11 @@
                   <span class="title"> Bitacora </span>
                 </a>
               </li>
+              <li>
+                <a href="{{ url('/backup') }}"><i class="fa fa-circle-o"></i>
+                  <span class="title"> BackUp </span>
+                </a>
+              </li>
             </ul>
           </li>
 

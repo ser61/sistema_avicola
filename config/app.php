@@ -179,6 +179,8 @@ return [
         sisAvicola\Providers\EventServiceProvider::class,
         sisAvicola\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
+        Backpack\BackupManager\BackupManagerServiceProvider::class,
 
     ],
 

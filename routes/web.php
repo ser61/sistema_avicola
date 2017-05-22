@@ -38,12 +38,11 @@ Route::resource('bitacora', 'BitacoraController');
 Route::get('bitacora/showBitacoraUser/{id}', 'BitacoraController@showBitacoraUser')->name('bitacora.showUser');
 Route::get('bitacora/showAccionesUser/{id}{idUser}', 'BitacoraController@showAccionesUser')->name('bitacora.showAccionesUser');
 Route::get('facturar','FacturaController@create');
-
-
-
-
-
-
+// Backup routes
+Route::get('backup', 'BackupController@index');
+Route::get('backup/create', 'BackupController@create');
+Route::get('backup/download/{file_name?}', 'BackupController@download');
+Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
 
 
