@@ -51,16 +51,16 @@ Route::get('facturar','FacturaController@create');
 
 //52 - FIN DE ROUTES DE SERGIO WEIMAR
 //53 - SERGIO FRANCO
-Route::resource('administracion/persona','PersonaController');
+//Route::resource('administracion/persona','PersonaController');
 //Route::resource('administracion/cargo','CargoController');
-Route::resource('administracion/empleado','EmpleadoController');
-
-
-
-
-
-
-
+//Route::resource('administracion/empleado','EmpleadoController');
+Route::resource('proceso/parvadaengorde','ParvadaEngordeController');
+Route::resource('proceso/parvadaponedora','ParvadaPonedoraController');
+Route::resource('proceso/parvadareproductora','ParvadaReproductoraController');
+Route::resource('proceso/etapa','EtapaController');
+Route::resource('proceso/traspasoparvada','TraspasoParvadaController');
+Route::resource('proceso/ordenproduccion','OrdenProduccionController');
+Route::resource('proceso/produccionalimento','ProduccionAlimentoController');
 
 
 
