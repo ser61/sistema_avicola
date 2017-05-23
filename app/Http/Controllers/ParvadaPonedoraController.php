@@ -26,7 +26,10 @@ class ParvadaPonedoraController extends Controller
             ->where('id','LIKE','%'.$query.'%')
             ->where('tipo','=','Ponedora')
             ->paginate(7);
-            return view('proceso.parvadaponedora.index',["parvadas"=>$parvadas,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.parvadaponedora.index',["cantidad"=>$cantidad,"parvadas"=>$parvadas,"searchText"=>$query]);   
         }
     }
 

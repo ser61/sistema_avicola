@@ -26,7 +26,10 @@ class ParvadaEngordeController extends Controller
             ->where('id','LIKE','%'.$query.'%')
             ->where('tipo','=','Engorde')
             ->paginate(7);
-            return view('proceso.parvadaengorde.index',["parvadas"=>$parvadas,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.parvadaengorde.index',["cantidad"=>$cantidad,"parvadas"=>$parvadas,"searchText"=>$query]);   
         }
     }
 

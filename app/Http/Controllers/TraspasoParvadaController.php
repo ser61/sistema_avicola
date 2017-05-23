@@ -27,7 +27,10 @@ class TraspasoParvadaController extends Controller
             //->where('tipo','=','Engorde')
             ->orderby('idParvada','asc')
             ->paginate(7);
-            return view('proceso.traspasoparvada.index',["traspasoparvadas"=>$traspasoparvadas,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.traspasoparvada.index',["cantidad"=>$cantidad,"traspasoparvadas"=>$traspasoparvadas,"searchText"=>$query]);   
         }
     }
 

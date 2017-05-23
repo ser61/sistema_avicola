@@ -26,7 +26,10 @@ class ParvadaReproductoraController extends Controller
             ->where('id','LIKE','%'.$query.'%')
             ->where('tipo','=','Reproductora')
             ->paginate(7);
-            return view('proceso.parvadareproductora.index',["parvadas"=>$parvadas,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.parvadareproductora.index',["cantidad"=>$cantidad,"parvadas"=>$parvadas,"searchText"=>$query]);   
         }
     }
 

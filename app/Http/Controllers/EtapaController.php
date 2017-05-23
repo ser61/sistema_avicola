@@ -26,7 +26,10 @@ class EtapaController extends Controller
             ->where('id','LIKE','%'.$query.'%')
             ->where('visible','=','1')
             ->paginate(7);
-            return view('proceso.etapa.index',["etapas"=>$etapas,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.etapa.index',["cantidad"=>$cantidad,"etapas"=>$etapas,"searchText"=>$query]);   
         }
     }
 

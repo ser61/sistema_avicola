@@ -1,42 +1,25 @@
 @extends('layouts.fondo')
 @section('content')
-  <!-- start: PAGE HEADER -->
-  <!-- start: TOOLBAR -->
-  <div class="toolbar row">
-    <div class="page-header">
-      <h1 style="text-align: center;">* * * P R O C E S O * * *
-        <small> Sección de Orden de Produccion </small>
-      </h1>
-    </div>
-  </div>
-  <!-- end: TOOLBAR -->
-  <!-- end: PAGE HEADER -->
+  <section class="content-header">
+    <h1 align="center">
+      * * * * * <b>P R O C E S O</b> * * * * *
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">show</a></li>
+    </ol>
+  </section>
   <br>
 
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
-      <div class="panel panel-white">
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <div class="box box-primary">
+        <!-- TITULO DE PANEL -->
+        <div class="box-header with-border">
+          <h3 align="center">Panel de control de  <span class="text-bold">Orden de Produccion</span></h3>
 
-        <div class="panel-heading">
-          <h2 class="panel-title center">Panel de Registro de <span class="text-bold">Orden de Produccion</span></h2>
-          <div class="panel-tools">
-            <div class="dropdown">
-              <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-                <i class="fa fa-cog"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-light pull-right" role="menu">
-                <li>
-                  <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-                </li>
-                <li>
-                  <a class="panel-expand" href="#"> <i class="fa fa-expand"></i> <span>Fullscreen</span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-body">
+          <div class="panel-body">
           	<div class="row">
 			        
 			        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -109,8 +92,15 @@
 			    </div>
 			</div>
         </div>
+
+
+        </div>
+       
+          <!-- fin-> TITULO DE PANEL -->
+        
+      </div>
       </div>
     </div>
-  </div>
-
+    <br>
+  </section>
 @endsection

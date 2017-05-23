@@ -2,21 +2,23 @@
 
 		  <div class="panel panel-blue">
             <div class="panel-body">
-              <div class="input-group">
+              <div class="input-group margin">
                 <input type="text" class="form-control" name="searchText" placeholder="Buscar Por ID la Etapa..." values="{{$searchText}}">
                 <span class="input-group-btn">
-                  <button type="submit" class="btn btn-main-color btn-squared" id="mos" value="mos">
+                  <button type="submit" class="btn btn-info btn-flat" id="mos" value="mos">
                     <i class="fa fa-search"></i>
                   </button> </span>
                 </span>
                 <span class="input-group-btn">
-                  <a href="etapa/create" class="btn btn-red btn-squared">
+                  <a href="etapa/create" class="btn btn-danger btn-flat">
                     <i class="fa fa-plus"></i>
                   </a>
                 </span>
+
+
               </div>
             </div>
-          </div>
+        </div>
         
 
 {{Form::close()}}

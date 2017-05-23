@@ -25,7 +25,10 @@ class OrdenProduccionController extends Controller
             ->where('id','LIKE','%'.$query.'%')
             //->where('tipo','=','Engorde')
             ->paginate(7);
-            return view('proceso.ordenproduccion.index',["ordenes"=>$ordenes,"searchText"=>$query]);   
+            $cantidad=DB::table('etapa')
+            ->where('visible','=','1')
+            ->paginate(7);
+            return view('proceso.ordenproduccion.index',["cantidad"=>$cantidad,"ordenes"=>$ordenes,"searchText"=>$query]);   
         }
     }
 

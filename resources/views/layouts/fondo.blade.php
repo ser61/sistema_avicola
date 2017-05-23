@@ -307,48 +307,38 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages_user_profile.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/proceso/parvadaengorde')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Engorde</span>
                 </a>
               </li>
               <li>
-                <a href="pages_invoice.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/proceso/parvadaponedora')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Ponedora</span>
                 </a>
               </li>
               <li>
-                <a href="pages_gallery.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/proceso/parvadareproductora')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Roproductora</span>
                 </a>
               </li>
               <li>
-                <a href="pages_timeline.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Dieta Alimenticia</span>
+                <a href="{{ url('/proceso/etapa')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Etapa de Parvada</span>
                 </a>
               </li>
               <li>
-                <a href="pages_calendar.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Lote de Huevos Incubables</span>
+                <a href="{{ url('/proceso/traspasoparvada')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Traspaso de Parvada</span>
                 </a>
               </li>
               <li>
-                <a href="pages_messages.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Medicación</span>
+                <a href="{{ url('/proceso/produccionalimento')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Produccion Alimento</span>
                 </a>
               </li>
               <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Produccion de Alimento</span>
-                </a>
-              </li>
-              <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Traspasos de Parvadas</span>
-                </a>
-              </li>
-              <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Etapas de Parvada</span>
+                <a href="{{ url('/proceso/ordenproduccion')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Orden de Produccion</span>
                 </a>
               </li>
               <li>
@@ -363,7 +353,7 @@
               </li>
               <li>
                 <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Orden de Producción</span>
+                  <span class="title">Lote de Huevos Incubables</span>
                 </a>
               </li>
             </ul>
