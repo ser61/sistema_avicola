@@ -19,6 +19,7 @@ class CreateInfraestructuraTable extends Migration
             $table->string('estado');
             $table->char('tipo');
             $table->integer('idGranja')->unsigned();
+            $table->integer('idEmpresa')->unsigned();
             //Planta De Incubacion
             $table->integer('cantidadHuevosAlmacenados')->nullable();
 
