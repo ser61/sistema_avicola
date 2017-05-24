@@ -342,17 +342,17 @@
                 </a>
               </li>
               <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/proceso/etapaincubacion')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Etapas de Incubación</span>
                 </a>
               </li>
               <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Traspasos de Huevos</span>
+                <a href="{{ url('/proceso/traspasolotehuevo')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Traspasos Lote de Huevos</span>
                 </a>
               </li>
               <li>
-                <a href="pages_blank_page.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('/proceso/lotehuevoincubable')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Lote de Huevos Incubables</span>
                 </a>
               </li>

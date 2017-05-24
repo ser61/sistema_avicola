@@ -51,6 +51,14 @@ class EtapaController extends Controller
      */
     public function store(EtapaFormRequest $request)
     {
+        $db_host='127.0.0.1';
+        $db_name='sistema_avicola_g';
+        $db_user='root';
+        $db_pass='';
+
+        $salida_sql = $db_name.'.sql';
+        //$dump = "mysqldump -h$db_host -u$db_user -p$db_pass --opt $db_name > $salida_sql";
+        //system($dump,$output);
 
         $etapa=new Etapa;
         $etapa->nombre=$request->get('nombre');
@@ -62,7 +70,8 @@ class EtapaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specifie
+     d resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

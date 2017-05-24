@@ -62,9 +62,9 @@ Route::resource('proceso/etapa','EtapaController');
 Route::resource('proceso/traspasoparvada','TraspasoParvadaController');
 Route::resource('proceso/ordenproduccion','OrdenProduccionController');
 Route::resource('proceso/produccionalimento','ProduccionAlimentoController');
-
-
-
+Route::resource('proceso/etapalotehuevo','EtapaLoteHuevoController');
+Route::resource('proceso/lotehuevoincubable','LoteHuevoIncubableController');
+Route::resource('proceso/traspasolotehuevo','TraspasoLoteHuevoController');
 
 
 
