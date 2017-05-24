@@ -65,11 +65,11 @@ Route::resource('proceso/produccionalimento','ProduccionAlimentoController');
 Route::resource('proceso/etapaincubacion','EtapaIncubacionController');
 Route::resource('proceso/lotehuevoincubable','LoteHuevoIncubableController');
 Route::resource('proceso/traspasolotehuevo','TraspasoLoteHuevoController');
-
-
-
-
-
+Route::get('venta/factura/reporte',function(){
+	$facturas=DB::table('factura')->get();
+	$pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);
+	return $pdf->download('ReporteFacturas.pdf');
+});
 
 
 
