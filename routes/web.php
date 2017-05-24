@@ -88,7 +88,7 @@ Route::resource('venta/pollo','PolloController');
 Route::resource('venta/cliente','ClienteController');
 Route::resource('venta/inventario','ProductoVentaController');
 Route::resource('venta/factura','FacturaController');
-
+Route::resource('venta/reporteventa','ReporteVentaController');
 
 Route::resource('compra/materia','MateriaController');
 Route::resource('compra/alimento','AlimentoController');
