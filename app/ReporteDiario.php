@@ -45,14 +45,16 @@ class ReporteDiario extends Model
 		return $reportes;
 	}
 
-	public function scope_addReporteDiario($query, $request,$etapas,$parvadas)
+	public function scope_addReporteDiario($query, $request,$etapas,$parvadas)//////////////////AQUIII ANALISAR!
 	{
 		$request['visible'] = '1';
 		$request['idEmpresa'] = Auth::user()->idEmpresa;
-		//$request['idEmpresa'] = '456789';
 		$request['idDietaAlimenticia'] = '1';
 		if($request['idParvada'] == $this->id && $request['tipoParvada'] == 'Reproductoras') {
-			Infraestructura::_updateCantPlantaIncubacion($request['cantidadHuevos'],$request['idPlanta']);
+			Infraestructura::_updateCantPlantaIncubacion($request['idPlanta'],$request['cantidadHuevos'],$request['idParvada']);
+			$request['idReporteDiario'] = $this->id;
+			$request['idPlantaIncubacion'] = $request['idPlanta'];
+			IngresoHuevoIncubable::_addIngresoHuevoIncubable($request);
 		}
 		$this->create($request->all());
 		return;

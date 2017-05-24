@@ -21,6 +21,7 @@ class IngresoHuevoIncubable extends Model
 	public function scope_addIngresoHuevoIncubable($query,$request) {
 		$request['visible'] = '1';
 		$request['idEmpresa'] = Auth::users()->idEmpresa;
-
+		$this->create($request->all());
+		return;
 	}
 }

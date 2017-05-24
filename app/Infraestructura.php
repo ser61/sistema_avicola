@@ -26,10 +26,12 @@ class Infraestructura extends Model
     ];
 	// $request tiene la tupla con la cantidad de huevos almacenados q fueron ingresados
 	// $id tiene el id
-	public function scope_updateCantPlantaIncubacion($query, $cantHuevosO,$idParvada)
+	public function scope_updateCantPlantaIncubacion($query,$idPlanta,$cantHuevosO,$idParvada)
 	{
 		$cantHuevos = $query->select('infraestructura.cantidadHuevosAlmacenados as cantidadHuevosAlmacenados')
-			->where('infraestructura.id',$idParvada)
+
+			->where('infraestructura.idParvada',$idParvada)
+			->where('infraestructura.id',$idPlanta)
 			->where('infraestructura.visible','1')
 			->where('infraestructura.estado','Disponible')
 			->where('infraestructura.cantidadHuevosAlmacenados',0)
