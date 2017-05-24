@@ -17,12 +17,12 @@
         <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
-          <h3 align="center">Panel de control de <span class="text-bold">Traspaso de Parvada</span></h3>
+          <h3 align="center">Panel de control de las <span class="text-bold">Etapas de Huevos</span></h3>
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
         @if(count($cantidad) > 0)
-        @include('proceso.traspasoparvada.search')
+        @include('proceso.etapaincubacion.search')
           <!-- CUADRO DE BUSQUEDA -->
         
         <!-- fin-> CUADRO DE BUSQUEDA -->
@@ -34,24 +34,21 @@
             <thead>
             <tr>
               <th class="center">id</th>
-              <th class="center">Fecha</th>
-              <th class="center">Cantidad</th>
-              <th class="center">Id Galpon</th>
-              <th class="center">id Parvada</th>
-              <th class="center">Id Etapa</th>
+              <th class="center">Nombre de Etapa</th>
+              <th class="center">Opciones</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($traspasoparvadas as $par)
+            @foreach($etapas as $eta)
               <tr>
-                <td class="center">{{$par->id}}</td>
-                <td class="center">{{$par->fecha}}</td>
-                <td class="center">{{$par->cantidad}}</td>
-                <td class="center">{{$par->idGalpon}}</td>
-                <td class="center">{{$par->idParvada}}</td>
-                <td class="center">{{$par->idEtapa}}</td>
-                
+                <td class="center">{{$eta->id}}</td>
+                <td class="center">{{$eta->nombre}}</td>
+                <td class="center">
+                  <a href="{{URL::action('EtapaIncubacionController@edit',$eta->id)}}" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                 <a href="" data-target="#modal-delete-{{$eta->id}}" data-toggle="modal" class="btn btn-danger" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                </td>
               </tr>
+            @include('proceso.etapaincubacion.modal')
             @endforeach
             </tbody>
           </table>
@@ -60,14 +57,14 @@
         @else
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ningun Traspaso de Parvada...</b></h3>
+              <h3 align="center"><b>Aun no tiene ninguna Etapa de Huevo...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Traspaso de Parvada, para agregar un nuevo Traspaso, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Etapas de Huevo, para agregar una nueva Etapa, haga click en icono de mas.</p>
               <br>
               <div class="col-md-6 col-sm-offset-3">
-                <a href="traspasoparvada/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                <a href="etapaincubacion/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button></a>
                 

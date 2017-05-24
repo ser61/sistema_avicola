@@ -73,14 +73,14 @@
         @else
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ninguna Etapa de Parvada...</b></h3>
+              <h3 align="center"><b>Aun no tiene ninguna Parvada de Engorde...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Etapas, para agregar una nueva Etapa, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Parvada de Engorde, para agregar una nueva Parvada, haga click en icono de mas.</p>
               <br>
               <div class="col-md-6 col-sm-offset-3">
-                <a href="etapa/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                <a href="parvadaengorde/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button></a>
                 

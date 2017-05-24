@@ -17,12 +17,12 @@
         <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
-          <h3 align="center">Panel de control de <span class="text-bold">Traspaso de Parvada</span></h3>
+          <h3 align="center">Panel de control de los <span class="text-bold">Lotes de Huevos Incubables</span></h3>
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
         @if(count($cantidad) > 0)
-        @include('proceso.traspasoparvada.search')
+        @include('proceso.lotehuevoincubable.search')
           <!-- CUADRO DE BUSQUEDA -->
         
         <!-- fin-> CUADRO DE BUSQUEDA -->
@@ -34,24 +34,25 @@
             <thead>
             <tr>
               <th class="center">id</th>
-              <th class="center">Fecha</th>
-              <th class="center">Cantidad</th>
-              <th class="center">Id Galpon</th>
-              <th class="center">id Parvada</th>
-              <th class="center">Id Etapa</th>
+              <th class="center">Cant. Huevos</th>
+              <th class="center">id Planta de Incubacion</th>
+              <th class="center">Estado</th>
+              <th>Opciones</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($traspasoparvadas as $par)
+            @foreach($lotes as $lot)
               <tr>
-                <td class="center">{{$par->id}}</td>
-                <td class="center">{{$par->fecha}}</td>
-                <td class="center">{{$par->cantidad}}</td>
-                <td class="center">{{$par->idGalpon}}</td>
-                <td class="center">{{$par->idParvada}}</td>
-                <td class="center">{{$par->idEtapa}}</td>
-                
+                <td class="center">{{$lot->id}}</td>
+                <td class="center">{{$lot->cantidad}}</td>
+                <td class="center">{{$lot->idPlantaIncubacion}}</td>
+                <td class="center"><span class="text-bold">{{$lot->visible}}</span></td>
+                <td class="center">
+                  
+                   <a href="" data-target="#modal-delete-{{$lot->id}}" data-toggle="modal" class="btn btn-danger" data-placement="top" data-original-title="Finalizar Ciclo Reproductivo"><i class="fa fa-times fa fa-white"></i></a>
+                </td>
               </tr>
+              @include('proceso.lotehuevoincubable.modal')
             @endforeach
             </tbody>
           </table>
@@ -60,14 +61,14 @@
         @else
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ningun Traspaso de Parvada...</b></h3>
+              <h3 align="center"><b>Aun no tiene ningun Lote de Huevo...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Traspaso de Parvada, para agregar un nuevo Traspaso, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Lote de Huevos Incubable, para agregar una nuevo Lote, haga click en icono de mas.</p>
               <br>
               <div class="col-md-6 col-sm-offset-3">
-                <a href="traspasoparvada/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                <a href="lotehuevoincubable/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button></a>
                 

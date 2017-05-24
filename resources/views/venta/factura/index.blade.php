@@ -2,7 +2,7 @@
 @section('content')
   <section class="content-header">
     <h1 align="center">
-      * * * * * <b>P R O C E S O</b> * * * * *
+      * * * * * <b>V E N T A</b> * * * * *
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -17,12 +17,12 @@
         <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
-          <h3 align="center">Panel de control de  <span class="text-bold">Orden de Produccion</span></h3>
+          <h3 align="center">Panel de control de  <span class="text-bold">Factura de Ventas</span></h3>
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(count($cantidad) > 0)
-        @include('proceso.ordenproduccion.search')
+        @if(5 > 0)
+        @include('venta.factura.search')
           <!-- CUADRO DE BUSQUEDA -->
         
         <!-- fin-> CUADRO DE BUSQUEDA -->
@@ -33,28 +33,35 @@
           <table class="table table-bordered" style="border-top-color: #00AEFF">
             <thead>
             <tr>
-              <th class="center">id</th>
-              <th class="center">Fecha</th>
-              <th class="center">Hora</th>
-              <th class="center">Observacion</th>
-              <th class="center">Id empleado</th>
-              <th>Opciones</th>
+              <th>Id</th>						
+				<th>Nombre</th>
+				<th>NIT</th>
+				<th>Fecha</th>
+				<th>Monto Total</th>
+				<th>Estado</th>
+				<th>Empleado</th>
+				<th>Cliente</th>
+				<th>Opciones</th>	
             </tr>
             </thead>
             <tbody>
-            @foreach($ordenes as $ord)
-              <tr>
-                <td class="center">{{$ord->id}}</td>
-                <td class="center">{{$ord->fecha}}</td>
-                <td class="center">{{$ord->hora}}</td>
-                <td class="center">{{$ord->observacion}}</td>
-                <td class="center">{{$ord->idEmpleado}}</td>
-                <td>
-                  <a href="{{URL::action('OrdenProduccionController@show',$ord->id)}}" class="btn btn-info" data-placement="top" data-original-title="Ver Detalle de Orden de Produccion"><i class="fa fa-bars"></i></a>
-                  
-                </td>
-              </tr>
-            @endforeach
+            @foreach($factura as $fac)
+					<tr>
+						<td>{{ $fac->id }}</td>
+						<td>{{ $fac->nombre }}</td>
+						<td>{{ $fac->nit }}</td>
+						<td>{{ $fac->fecha }}</td>
+						<td>{{ $fac->montoTotal }}</td>
+						<td>{{ $fac->estado }}</td>
+						<td>{{ $fac->nombEmp }}</td>
+						<td>{{ $fac->nombCli }}</td>
+						<td>
+							<a href="{{URL::action('FacturaController@show',$fac->id)}}" class="btn btn-info" data-placement="top" data-original-title="Ver Detalle de Orden de Produccion"><i class="fa fa-bars"></i></a>
+							<a href="" data-target="#modal-delete-{{$fac->id}}" data-toggle="modal" class="btn btn-danger" data-placement="top" data-original-title="Finalizar Ciclo Reproductivo"><i class="fa fa-times fa fa-white"></i></a>
+						</td>
+					</tr>
+			@include('venta.factura.modal')
+			@endforeach
             </tbody>
           </table>
         </div>
