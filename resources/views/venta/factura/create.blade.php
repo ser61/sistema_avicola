@@ -176,7 +176,7 @@ function comenzar(){
     total_precio = 0;
     subtotal=[];
 
-<<<<<<< HEAD
+
     //$(document).ready(function(){
         //mostrarValores();
         //$('#bt_add').click(function(){
@@ -185,7 +185,7 @@ function comenzar(){
             
         //});
     //});
-=======
+
     function comenzar(){
       mostrarValores();
       $('#bt_add').click(function(){
@@ -194,7 +194,7 @@ function comenzar(){
 
       });
     }
->>>>>>> origin/master
+
 
     $("#pidProd").change(mostrarValores);
    
@@ -230,11 +230,11 @@ function comenzar(){
         $("#fila" + index).remove();
     }
 
-<<<<<<< HEAD
+
 window.addEventListener("load",comenzar, false);
-=======
+
     window.addEventListener("load",comenzar, false);
->>>>>>> origin/master
+
 </script>
 @endpush
 @endsection
