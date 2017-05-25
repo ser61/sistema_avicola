@@ -1,18 +1,33 @@
 @extends('layouts.fondo')
-
 @section('content')
-  <h3>Administer Database Backups</h3>
-  <div class="row">
-    <div class="col-xs-12 clearfix">
+  <section class="content-header">
+    <h1 align="center">
+      * * * * * <b>S E G U R I D A D</b> * * * * *
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">index</a></li>
+    </ol>
+  </section>
+  <br>
+
+  <section class="content">
+    <div class="row">
+    
+      <div class="col-sm-12 col-xs-12">
+        <div class="box box-primary">
+        <!-- TITULO DE PANEL -->
+        <div class="box-header with-border">
+          <h3 align="center">Panel de control de <span class="text-bold">Backups</span></h3>
+        </div>
+        <div class="col-xs-12 clearfix">
       <a id="create-new-backup-button" href="{{ url('backup/create') }}" class="btn btn-primary pull-right"
          style="margin-bottom:2em;"><i
           class="fa fa-plus"></i> Create New Backup
       </a>
     </div>
-    <div class="col-xs-12">
-      @include('alertas.logrado')
-      @include('alertas.error')
-      @if (count($backups))
+          <!-- fin-> TITULO DE PANEL -->
+        @if (count($backups))
 
         <table class="table table-striped table-bordered">
           <thead>
@@ -46,9 +61,11 @@
           <h4>There are no backups</h4>
         </div>
       @endif
+      </div>
+      </div>
     </div>
-  </div>
-
+    
+  </section>
   <script>
     function comenzar(){
       
