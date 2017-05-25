@@ -47,13 +47,14 @@ class BackupController extends Controller
 
   public function create()
   {
-    try {
+    //try {
       ini_set('max_execution_time', 300);
-      Artisan::call('backup:run');
-      return redirect()->back()->with('msj','Se creo una copia exitosamente.');
-    } catch (Exception $e) {
+      //Artisan::call('backup:run', ['--only-db']);
+      Artisan::call('backup:mysql-dump');
+      return back()->with('msj','Se creo una copia exitosamente.');
+    /*} catch (Exception $e) {
       return redirect()->back()->with('error','Hubo un problema.');
-    }
+    }*/
   }
   /**
    * Downloads a backup zip file.

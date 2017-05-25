@@ -181,7 +181,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         Backpack\BackupManager\BackupManagerServiceProvider::class,
-
+        Backup\BackupServiceProvider::class,
     ],
 
     /*

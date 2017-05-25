@@ -28,7 +28,8 @@
     </div>
           <!-- fin-> TITULO DE PANEL -->
         @if (count($backups))
-
+          @include('alertas.error')
+          @include('alertas.logrado')
         <table class="table table-striped table-bordered">
           <thead>
           <tr>
