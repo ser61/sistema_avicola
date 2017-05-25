@@ -281,7 +281,7 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="{{ url('reporte/reporte_diario') }}"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('reportes/reporte_diario') }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Reportes Diarios </span>
                 </a>
               </li>
