@@ -239,33 +239,29 @@
               </span>
             </a>
             <ul class="treeview-menu">
+	            <li>
+		            <a href="{{ url('infraestructura/infraestructura') }}"><i class="fa fa-circle-o"></i>
+			            <span class="title">Infraestructura</span>
+		            </a>
+	            </li>
               <li>
-                <a href="form_elements.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('infraestructura/equipo') }}"><i class="fa fa-circle-o"></i>
                   <span class="title">Equipos</span>
                 </a>
               </li>
+
               <li>
-                <a href="form_wizard.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Planta de Incubación</span>
-                </a>
-              </li>
-              <li>
-                <a href="form_validation.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Galpones</span>
-                </a>
-              </li>
-              <li>
-                <a href="form_inline.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('infraestructura/bateria') }}"><i class="fa fa-circle-o"></i>
                   <span class="title">Baterias</span>
                 </a>
               </li>
               <li>
-                <a href="form_x_editable.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('infraestructura/granja') }}"><i class="fa fa-circle-o"></i>
                   <span class="title">Granjas</span>
                 </a>
               </li>
               <li>
-                <a href="form_image_cropping.html"><i class="fa fa-circle-o"></i>
+                <a href="#"><i class="fa fa-circle-o"></i>
                   <span class="title">Procesos de Sanitización</span>
                 </a>
               </li>
