@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegistroCompraTabla extends Migration
+class CreateDetalleCompraTabla extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateRegistroCompraTabla extends Migration
      */
     public function up()
     {
-        Schema::create('registrar_compra', function (Blueprint $table) {
+        Schema::create('detalle_compra', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha');
-            $table->string('observaciones');
-            $table->integer('idEmpleado');
-            $table->integer('idProveedor');
+            $table->integer('idRegistrarCompra');
+            $table->integer('idInsumo');
+            $table->integer('cantidad');
+            $table->float('precio');
             $table->integer('idEmpresa');
             $table->char('visible');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateRegistroCompraTabla extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registro_compra');
+        Schema::dropIfExists('detalle_compra');
     }
 }

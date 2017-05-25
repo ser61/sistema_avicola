@@ -17,7 +17,6 @@ class CreateInsumoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('marca');
             $table->integer('cantidadTotal');
             $table->char('tipo')->nullable();
             $table->char('tipoInsumo');
