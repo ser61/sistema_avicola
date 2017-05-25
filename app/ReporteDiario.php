@@ -41,7 +41,7 @@ class ReporteDiario extends Model
 				'reporte_diario.idEmpleado as idEmpleado','pe.nombre','pe.apellido','reporte_diario.visible')
 			->where('reporte_diario.id','LIKE','%'.$searchText.'%')
 			->where('reporte_diario.visible','LIKE','1')
-			->orderBy('reporte_diario.id','desc');
+			->orderBy('reporte_diario.idParvada','desc');
 		return $reportes;
 	}
 
