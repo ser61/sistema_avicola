@@ -68,7 +68,7 @@
   </section>
   <script>
     function comenzar(){
-      
+
 
       // capture the delete button
       $("[data-button-type=delete]").click(function(e) {

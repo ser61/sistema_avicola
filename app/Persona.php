@@ -11,7 +11,7 @@ use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class Persona extends Model
 {
-  protected $table = 'Persona';
+  protected $table = 'persona';
 
   protected $fillable = ['ci', 'nombre', 'apellido',
     'direccion', 'email', 'nombreEmpresa', 'fechaNacimiento',
