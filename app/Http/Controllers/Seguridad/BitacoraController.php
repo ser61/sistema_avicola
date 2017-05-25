@@ -1,11 +1,12 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
+use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use sisAvicola\Accion;
-use sisAvicola\Bitacora;
+use sisAvicola\Models\seguridad\Accion;
+use sisAvicola\Models\seguridad\Bitacora;
 use sisAvicola\Persona;
 use sisAvicola\User;
 

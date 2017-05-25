@@ -1,11 +1,11 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
+use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Alert;
 use Artisan;
-use Log;
 use Storage;
 
 class BackupController extends Controller

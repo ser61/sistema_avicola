@@ -3,13 +3,11 @@
 namespace sisAvicola\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
-use sisAvicola\Accion;
-use sisAvicola\Bitacora;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use sisAvicola\Persona;
-use sisAvicola\User;
+use sisAvicola\Models\seguridad\Accion;
+use sisAvicola\Models\seguridad\Bitacora;
 
 class LoginController extends Controller
 {

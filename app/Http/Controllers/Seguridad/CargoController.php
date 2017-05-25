@@ -1,14 +1,15 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
+use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use sisAvicola\Accion;
-use sisAvicola\Cargo;
 use sisAvicola\Http\Requests\CargoFormRequest;
+use sisAvicola\Models\seguridad\Accion;
+use sisAvicola\Models\seguridad\Cargo;
 use sisAvicola\Models\seguridad\CasoPCargo;
-use sisAvicola\Modulo;
-use sisAvicola\PrivilegioCargo;
+use sisAvicola\Models\seguridad\Modulo;
+use sisAvicola\Models\seguridad\PrivilegioCargo;
 
 class CargoController extends Controller
 {

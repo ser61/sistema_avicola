@@ -1,9 +1,9 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
-use Illuminate\Http\Request;
-use sisAvicola\Telefono;
+use sisAvicola\Http\Controllers\Controller;
+use sisAvicola\Models\seguridad\Telefono;
 
 class TelefonoController extends Controller
 {

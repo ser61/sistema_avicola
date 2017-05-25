@@ -1,6 +1,6 @@
 <?php
 
-namespace sisAvicola;
+namespace sisAvicola\Models\seguridad;
 
 use Illuminate\Database\Eloquent\Model;
 

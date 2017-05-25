@@ -1,13 +1,14 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
+use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use sisAvicola\Http\Requests\EmpleadoFormRequest;
-use sisAvicola\Cargo;
+use sisAvicola\Models\seguridad\Cargo;
+use sisAvicola\Models\seguridad\Telefono;
 use sisAvicola\Persona;
-use sisAvicola\Telefono;
 
 class EmpleadoController extends Controller
 {

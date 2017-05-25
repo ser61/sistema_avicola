@@ -1,16 +1,17 @@
 <?php
 
-namespace sisAvicola\Http\Controllers;
+namespace sisAvicola\Http\Controllers\Seguridad;
 
+use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use sisAvicola\CasoPUsers;
 use sisAvicola\Http\Requests\UserRequest;
 use sisAvicola\Http\Requests\UserUpdateRequest;
-use sisAvicola\Modulo;
+use sisAvicola\Models\seguridad\CasoPUsers;
+use sisAvicola\Models\seguridad\Modulo;
+use sisAvicola\Models\seguridad\PrivilegioUsers;
+use sisAvicola\Models\seguridad\UserEmpleado;
 use sisAvicola\Persona;
-use sisAvicola\PrivilegioUsers;
 use sisAvicola\User;
-use sisAvicola\UserEmpleado;
 
 class AdminUsersController extends Controller
 {

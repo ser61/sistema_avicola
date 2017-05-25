@@ -1,10 +1,9 @@
 <?php
 
-namespace sisAvicola;
+namespace sisAvicola\Models\seguridad;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class PrivilegioUsers extends Model
 {
