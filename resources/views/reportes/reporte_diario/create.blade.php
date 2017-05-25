@@ -84,13 +84,13 @@
 
 			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 				<div class="form-group">
-					<label for="cantidadHuevos">Cantidad de Huevos</label>
+					<label for="cantidadHuevos">Cantidad de Huevos Recolectados</label>
 					<input type="number" name="cantidadHuevos" class="form-control" placeholder="Inserte la cantidad de Huevos..">
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 				<div class="form-group">
-					<label for="pesoPromedio">Precio Promedio</label>
+					<label for="pesoPromedio">Peso Promedio</label>
 					<input type="number" step="any" name="pesoPromedio" class="form-control" placeholder="Insertar precio promedio..">
 				</div>
 			</div>
@@ -99,7 +99,7 @@
 					<label>Etapa</label>
 					<select name="idEtapa" class="form-control selectpicker" data-live-search="true">
 						@foreach($etapas as $etapa)
-						<option value="{{ $etapa->idEtapa }}">{{ $etapa->nombre }}</option>
+					<option value="{{ $etapa->idEtapa }}">{{ $etapa->nombre }}</option>
 						@endforeach
 					</select>
 				</div>
@@ -110,7 +110,7 @@
 			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 				<div class="form-group">
 					<label>Plantas de Incubación Disponibles</label>
-					<select name="idEtapa" class="form-control selectpicker" data-live-search="true">
+					<select name="idPlantaIncubacion" class="form-control selectpicker" data-live-search="true">
 						@foreach($plantas as $planta)
 						<option value="{{ $planta->idPlantaIncubacion}}">(Id:) {{ $planta->idPlantaIncubacion }} (Estado:) {{ $planta->estado }} (Tipo:) {{ $planta->tipo }}</option>
 						@endforeach

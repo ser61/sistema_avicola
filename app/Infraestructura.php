@@ -26,32 +26,38 @@ class Infraestructura extends Model
     ];
 	// $request tiene la tupla con la cantidad de huevos almacenados q fueron ingresados
 	// $id tiene el id
-	public function scope_updateCantPlantaIncubacion($query,$idPlanta,$cantHuevosO,$idParvada)
+	public function scope_updateCantPlantaIncubacion($query,$idPlanta,$cantHuevosO)
 	{
-		$cantHuevos = $query->select('infraestructura.cantidadHuevosAlmacenados as cantidadHuevosAlmacenados')
-
-			->where('infraestructura.idParvada',$idParvada)
+		/*$cantHuevos = $query->
+			select('infraestructura.cantidadHuevosAlmacenados')
+			//->where('infraestructura.idParvada',$idParvada)
 			->where('infraestructura.id',$idPlanta)
 			->where('infraestructura.visible','1')
+			->where('infraestructura.tipo','Planta de Incubación')
 			->where('infraestructura.estado','Disponible')
 			->where('infraestructura.cantidadHuevosAlmacenados',0)
 			->where('infraestructura.idEmpresa',Auth::user()->idEmpresa)
-			->get()->first();
-		$cantHuevos = $cantHuevos + $cantHuevosO;
-		$query->where('id',$idParvada)
-			->update(['cantidadHuevosAlmacenados' => $cantHuevos]);
+			->get()->first();*/
+
+		$planta = $query->findOrFail($idPlanta);
+			//$query->where('infraestuctura.id',$idPlanta)
+		$c = $planta->cantidadHuevosAlmacenados;
+		$c = $c + $cantHuevosO;
+		$planta->cantidadHuevosAlmacenados = $c;
+		//$planta->update(['cantidadHuevosAlmacenados' => $cantHuevos]);
+		$planta->update();
 		return;
 	}
 
 	public function scope_getPlantasIncubacionDisponibles($query)
 	{
-		$plantaDisponible = $query
+		$plantasDisponible = $query
 			->select('infraestructura.id as idPlantaIncubacion','infraestructura.estado as estado','infraestructura.tipo as tipo')
-			->where('tipo','Planta de Incubación')
+			->where('infraestructura.tipo','Planta de Incubación')
 			->where('infraestructura.visible','1')
 			->where('infraestructura.estado','Disponible')
 			->where('infraestructura.cantidadHuevosAlmacenados',0)
 			->get();
-		return $plantaDisponible;
+		return $plantasDisponible;
 	}
 }

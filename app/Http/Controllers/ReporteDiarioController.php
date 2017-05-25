@@ -3,10 +3,12 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use sisAvicola\DietaAlimenticia;
 use sisAvicola\Etapa;
 use sisAvicola\Infraestructura;
+use sisAvicola\IngresoHuevoIncubable;
 use sisAvicola\Parvada;
 use sisAvicola\ReporteDiario;
 use DB;
@@ -55,11 +57,50 @@ class ReporteDiarioController extends Controller
      */
     public function store(Request $request)
     {
-	    $etapa = Etapa::findOrFail($request['idEtapa']);
-	    $parvada = Parvada::findOrFail($request['idParvada']);
-	    ReporteDiario::_addReporteDiario($request,$etapa,$parvada);
-	    return redirect('reportes/reporte_diario')->with('msj','El reporte diario: # '.$request['idReporte'].' se creo exitósamente.');
-	    //return Redirect::to("reportes/reporte_diario");
+	    //$etapa = Etapa::findOrFail($request['idEtapa']);
+	    //$parvada = Parvada::findOrFail($request['idParvada']);
+	    //ReporteDiario::_addReporteDiario($request);
+		//try{
+		//	DB::beginTransaction();
+			$reporte = new ReporteDiario();
+			//$reporte->id = $request->get('idReporteDiario');
+			$reporte->fecha = $request->get('fecha');
+			$reporte->mortalidad = $request->get('mortalidad');
+			$reporte->cantidadHuevos = $request->get('cantidadHuevos');
+			$reporte->pesoPromedio = $request->get('pesoPromedio');
+			$reporte->observaciones = $request->get('observaciones');
+			$reporte->idDietaAlimenticia = '1';
+			$reporte->idEmpleado = $request->get('idEmpleado');
+			$reporte->idEtapa = $request->get('idEtapa');
+			$reporte->idParvada = $request->get('idParvada');
+			$reporte->idEmpresa = Auth::user()->idEmpresa;
+			$reporte->visible = '1';
+			$reporte->save();
+
+			$parvada = Parvada::findOrFail($request->get('idParvada'));
+
+			if($parvada->tipo == "Reproductoras" && $request->get('idEtapa') == '3') {
+
+				$planta = Infraestructura::findOrFail($request->get('idPlantaIncubacion'));
+				$cantH = $planta->cantidadHuevosAlmacenados;
+				$cantH = $cantH + $request->get('cantidadHuevos');
+				$planta->cantidadHuevosAlmacenados = $cantH;
+				$planta->update();
+
+				$ingreso = new IngresoHuevoIncubable();
+				//$ingreso->idReporteDiario = $request->get('idReporteDiario');
+				$ingreso->idReporteDiario = $reporte->id;
+				$ingreso->idPlantaIncubacion = $request->get('idPlantaIncubacion');
+				$ingreso->visible = '1';
+				$ingreso->idEmpresa = Auth::user()->idEmpresa;
+				$ingreso->save();
+			}
+
+		/*}catch (Exception $e) {
+			DB::rollback();
+		}*/
+	    return redirect('reportes/reporte_diario')->with('msj','El reporte diario: # '.$request['id'].' se creo exitósamente.');
+
     }
 
     /**
