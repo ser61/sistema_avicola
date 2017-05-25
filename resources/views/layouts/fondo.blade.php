@@ -194,8 +194,8 @@
                 </a>
               </li>
               <li>
-                <a href="javascript:;"><i class="fa fa-circle-o"></i>
-                  <span class="title">Productos</span>
+                <a href="{{asset('venta/reporteventa')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Reportes de Venta</span>
                 </a>
               </li>
               <li>

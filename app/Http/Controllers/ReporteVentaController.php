@@ -4,6 +4,16 @@ namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Response;
+use sisAvicola\DetalleFactura;
+use sisAvicola\Factura;
+use sisAvicola\Http\Requests;
+use sisAvicola\Http\Requests\FacturaFormRequest;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use PDF;
+
 class ReporteVentaController extends Controller
 {
     /**
@@ -23,7 +33,10 @@ class ReporteVentaController extends Controller
      */
     public function create()
     {
-        return view('venta.reporteventa.create');
+        $cliente = DB::table('persona')
+          ->where('visible','=','1')
+          ->where('tipo','=','cliente') -> get();
+        return view('venta.reporteventa.create',['cliente'=>$cliente]);
     }
 
     /**
@@ -32,9 +45,20 @@ class ReporteVentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FacturaFormRequest $request)
     {
-        //
+        
+        //$fecha=$request->get('fecha');
+        $idcliente=$request->get('idCliente');
+
+        //Route::get('venta/factura/reporte',function(){
+            $facturas=DB::table('factura')
+            //->where('fecha','=',$fecha)
+            ->where('idCliente','=',$idcliente)
+            ->get();
+            $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);
+            return $pdf->download('ReporteFacturas.pdf');
+        //});
     }
 
     /**

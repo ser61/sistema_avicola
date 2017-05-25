@@ -25,9 +25,10 @@ class FacturaFormRequest extends FormRequest
   {
     return [
       'nit' => 'digits_between:5,10',
-      'nombre' => 'required|max:100',
-      'montoTotal' => 'required',
-      'idCliente' => 'required'
+      'nombre' => 'max:100',
+      'montoTotal' => 'max:100',
+      'fecha' => 'max:100',
+      'idCliente' => 'max:100'
     ];
   }
 }
