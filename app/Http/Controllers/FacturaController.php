@@ -11,6 +11,8 @@ use sisAvicola\Http\Requests;
 use sisAvicola\Http\Requests\FacturaFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
+use sisAvicola\Accion;
+use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
 {
@@ -21,6 +23,7 @@ class FacturaController extends Controller
    */
   public function index(Request $request)
   {
+    Accion::_crearAccion('Ingreso a la pagina de Factura', Auth::user()->id, Auth::user()->idEmpresa);
     if($request){
       $factura = Factura::_getAllFactura($request['searchText'])->paginate(7);
       $searchText = $request['searchText'];
@@ -35,6 +38,7 @@ class FacturaController extends Controller
    */
   public function create()
   {
+    Accion::_crearAccion('Ingreso a la pagina de Crear Factura', Auth::user()->id, Auth::user()->idEmpresa);
     $cliente = DB::table('persona')
       ->where('visible','=','1')
       ->where('tipo','=','cliente') -> get();
@@ -69,7 +73,7 @@ class FacturaController extends Controller
       $factura -> idCliente = $request -> get('idCliente');
       $factura -> idEmpleado = $request -> get('idEmpleado');
       $factura -> estado = 'activa';
-      $factura -> idEmpresa = '123456';
+      $factura -> idEmpresa = Auth::user()->idEmpresa;
       $factura -> save();
 
       $idProducto = $request ->get('pidProd1');
@@ -82,13 +86,14 @@ class FacturaController extends Controller
         $detalle -> idProducto = $idProducto[$cont];
         $detalle -> cantidad = $cant[$cont];
         $detalle -> visible = '1';
-        $detalle -> idEmpresa = '123456';
+        $detalle -> idEmpresa = Auth::user()->idEmpresa;
         $detalle -> save();
         $cont = $cont + 1;
       }
 
 
       DB::commit();
+      Accion::_crearAccionOnTable('Creo una nueva Factura', 'factura', $factura->id, Auth::user()->id, Auth::user()->idEmpresa);
 
     } catch (Exception $e){
       DB::rollabck();

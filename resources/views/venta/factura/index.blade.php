@@ -65,6 +65,7 @@
             </tbody>
           </table>
         </div>
+        {{$factura->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

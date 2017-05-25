@@ -12,6 +12,7 @@ use DB;
 use sisAvicola\Parvada;
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\ProductoVenta;
+use sisAvicola\Accion;
 
 class ParvadaEngordeController extends Controller
 {

@@ -53,7 +53,7 @@ class Infraestructura extends Model
 	{
 		$plantasDisponible = $query
 			->select('infraestructura.id as idPlantaIncubacion','infraestructura.estado as estado','infraestructura.tipo as tipo')
-			->where('infraestructura.tipo','Planta de Incubación')
+			->where('infraestructura.tipo','Planta de Incubacion')
 			->where('infraestructura.visible','1')
 			->where('infraestructura.estado','Disponible')
 			->where('infraestructura.cantidadHuevosAlmacenados',0)

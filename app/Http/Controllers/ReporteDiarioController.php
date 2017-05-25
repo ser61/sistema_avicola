@@ -80,7 +80,7 @@ class ReporteDiarioController extends Controller
 
 			$parvada = Parvada::findOrFail($request->get('idParvada'));
 
-			if($parvada->tipo == "Reproductoras" && $request->get('idEtapa') == '3') {
+			if($parvada->tipo == "Reproductora" && $request->get('idEtapa') == '2') {
 
 				$planta = Infraestructura::findOrFail($request->get('idPlantaIncubacion'));
 				$cantH = $planta->cantidadHuevosAlmacenados;
