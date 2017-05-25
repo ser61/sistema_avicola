@@ -15,6 +15,10 @@ class CreateRegistroCompraTabla extends Migration
     {
         Schema::create('registro_compra', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->string('observaciones');
+            $table->integer('idEmpleado');
+            $table->integer('idProveedor');
             $table->timestamps();
         });
     }
