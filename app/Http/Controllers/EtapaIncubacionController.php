@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\EtapaIncubacionFormRequest;
 use DB;
 use sisAvicola\EtapaIncubacion;
+use Illuminate\Support\Facades\Auth;
 
 class EtapaIncubacionController extends Controller
 {
@@ -52,7 +53,7 @@ class EtapaIncubacionController extends Controller
         $etapa=new EtapaIncubacion;
         $etapa->nombre=$request->get('nombre');
         $etapa->visible='1';
-        $etapa->idEmpresa=123456;
+        $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
 
         return Redirect::to('proceso/etapaincubacion');

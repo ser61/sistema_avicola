@@ -10,6 +10,8 @@ use sisAvicola\Http\Requests\TraspasoParvadaFormRequest;
 use sisAvicola\TraspasoParvada;
 use DB;
 use sisAvicola\Parvada;
+use Illuminate\Support\Facades\Auth;
+use sisAvicola\ProductoVenta;
 
 class ParvadaEngordeController extends Controller
 {
@@ -66,7 +68,7 @@ class ParvadaEngordeController extends Controller
         $parvada->tipo='Engorde';
         $parvada->mortalidad=0;
         $parvada->visible='Activo';
-        $parvada->idEmpresa=123456;
+        $parvada->idEmpresa=Auth::user()->idEmpresa;
         $parvada->save();
 
         $traspaso=new TraspasoParvada;
@@ -76,7 +78,7 @@ class ParvadaEngordeController extends Controller
         $traspaso->idParvada=$parvada->id;
         $traspaso->idEtapa='1';
         $traspaso->visible='1';
-        $traspaso->idEmpresa=123456;
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
         
@@ -128,6 +130,12 @@ class ParvadaEngordeController extends Controller
     {
         $parvada=Parvada::findOrFail($id);
         $parvada->visible='Inactivo';
+        
+
+        $producto=ProductoVenta::findOrFail(7);
+        $c=$producto->stock;
+        $producto->stock=$c+$parvada->cantidadPollos;
+        $producto->update();
         $parvada->update();
 
         return Redirect::to('proceso/parvadaengorde');

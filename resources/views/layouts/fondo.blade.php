@@ -210,7 +210,7 @@
               </li>
               <li>
                 <a href="{{asset('venta/categoria')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Categorias</span>
+                  <span class="title">Categorias de Huevos</span>
                 </a>
               </li>
               <li>

@@ -48,12 +48,12 @@ class ReporteVentaController extends Controller
     public function store(FacturaFormRequest $request)
     {
         
-        //$fecha=$request->get('fecha');
+        $fecha=$request->get('fecha');
         $idcliente=$request->get('idCliente');
 
         //Route::get('venta/factura/reporte',function(){
             $facturas=DB::table('factura')
-            //->where('fecha','=',$fecha)
+            ->where('fecha','=',$fecha)
             ->where('idCliente','=',$idcliente)
             ->get();
             $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);

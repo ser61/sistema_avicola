@@ -10,6 +10,8 @@ use sisAvicola\Http\Requests\TraspasoParvadaFormRequest;
 use sisAvicola\TraspasoParvada;
 use DB;
 use sisAvicola\Parvada;
+use sisAvicola\ProductoVenta;
+use Illuminate\Support\Facades\Auth;
 
 class ParvadaPonedoraController extends Controller
 {
@@ -66,7 +68,7 @@ class ParvadaPonedoraController extends Controller
         $parvada->tipo='Ponedora';
         $parvada->mortalidad=0;
         $parvada->visible='Activo';
-        $parvada->idEmpresa=123;
+        $parvada->idEmpresa=Auth::user()->idEmpresa;
         $parvada->save();
 
         $traspaso=new TraspasoParvada;
@@ -76,7 +78,7 @@ class ParvadaPonedoraController extends Controller
         $traspaso->idParvada=$parvada->id;
         $traspaso->idEtapa='1';
         $traspaso->visible='1';
-        $traspaso->idEmpresa=123;
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
         return Redirect::to('proceso/parvadaponedora');
@@ -127,7 +129,7 @@ class ParvadaPonedoraController extends Controller
         $parvada=Parvada::findOrFail($id);
         $parvada->visible='Inactivo';
         $parvada->update();
-
+        
         return Redirect::to('proceso/parvadaponedora');
     }
 

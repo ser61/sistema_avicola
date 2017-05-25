@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use sisAvicola\Http\Requests\TipoFormRequest;
 use sisAvicola\Tipo;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class TipoController extends Controller
 {
@@ -19,11 +20,11 @@ class TipoController extends Controller
     public function index(Request $request) {
         if ($request) {
             $query = trim($request->get('searchText'));
-            $tipos=DB::table('tipo')
+            $tipo=DB::table('tipo')
                 ->where('nombre','LIKE','%'.$query.'%')
                 ->orderBy('id','asc')
                 ->paginate(7);
-            return view('venta.tipo.index',["tipos"=>$tipos,"searchText"=>$query]);
+            return view('venta.tipo.index',["tipo"=>$tipo,"searchText"=>$query]);
         }
     }
 
@@ -33,6 +34,7 @@ class TipoController extends Controller
 
     public function store(TipoFormRequest $request) {
 	    $request['visible'] = '1';
+        $request['idEmpresa'] = Auth::user()->idEmpresa;
 	    /*Tipo::create([
 		    'nombre'=>$request['nombre'],
 	        'visible' => '1',

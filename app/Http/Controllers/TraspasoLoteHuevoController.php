@@ -11,6 +11,7 @@ use sisAvicola\TraspasoLoteHuevo;
 use sisAvicola\LoteHuevoIncubable;
 use sisAvicola\Etapa;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TraspasoLoteHuevoController extends Controller
 {
@@ -74,7 +75,7 @@ class TraspasoLoteHuevoController extends Controller
 
         $traspaso->idEquipo=$request->get('idequipo');
         $traspaso->visible='1';
-        $traspaso->idEmpresa=123456;
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
 

@@ -9,6 +9,7 @@ use sisAvicola\Http\Requests\OrdenProduccionFormRequest;
 use sisAvicola\OrdenProduccion;
 use sisAvicola\DetalleOrden;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrdenProduccionController extends Controller
 {
@@ -61,7 +62,7 @@ class OrdenProduccionController extends Controller
             $ordenproduccion->hora=date("H:i:s");
             $ordenproduccion->observacion=$request->get('observacion');
             $ordenproduccion->idEmpleado=$request->get('idempleado');
-            $ordenproduccion->idEmpresa=123456;
+            $ordenproduccion->idEmpresa=Auth::user()->idEmpresa;
             $ordenproduccion->visible='1';
             $ordenproduccion->save();
 
@@ -75,7 +76,7 @@ class OrdenProduccionController extends Controller
                 $detalleorden->idOrdenProduccion=$ordenproduccion->id;
                 $detalleorden->idAlimento=$idAlimento[$cont];
                 $detalleorden->peso=$peso[$cont];
-                $detalleorden->idEmpresa=123456;
+                $detalleorden->idEmpresa=Auth::user()->idEmpresa;
                 $detalleorden->visible='1';
                 $detalleorden->save();
                 $cont=$cont+1;

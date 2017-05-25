@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use sisAvicola\Http\Requests\EtapaFormRequest;
 use DB;
 use sisAvicola\Etapa;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class EtapaController extends Controller
@@ -63,7 +63,7 @@ class EtapaController extends Controller
         $etapa=new Etapa;
         $etapa->nombre=$request->get('nombre');
         $etapa->visible='1';
-        $etapa->idEmpresa=123456;
+        $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
 
         return Redirect::to('proceso/etapa');

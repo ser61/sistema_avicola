@@ -18,14 +18,22 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de  <span class="text-bold">Reporte de Ventas</span></h3>
+           <div class="row">
+              <div class="col-md-6 col-sm-offset-3">
+                  <a href="reporteventa/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                    Realizar reporte Personalizado de Factura
+                  </button></a>
+              </div>   
+           </div> 
+           <br>
+          <div class="row">
+            <div class="col-md-6 col-sm-offset-3">
+                <a href="factura/reporte"><button class="btn btn-primary btn-block">
+                    Realizar Reporte de Todas las Facturas <i class="fa fa-arrow-circle-right"></i>
+                  </button></a>
+            </div>   
+          </div>
           
-        <div class="col-md-6 col-sm-offset-3">
-                <a href="reporteventa/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
-                  Realizar reporte Factura
-                </button></a>
-                
-
-        </div>  
 
         </div>
        

@@ -10,6 +10,7 @@ use DB;
 use sisAvicola\TraspasoParvada;
 use sisAvicola\Parvada;
 use sisAvicola\Etapa;
+use Illuminate\Support\Facades\Auth;
 
 class TraspasoParvadaController extends Controller
 {
@@ -71,7 +72,7 @@ class TraspasoParvadaController extends Controller
         $traspaso->idParvada=$request->get('idparvada');
         $traspaso->idEtapa=$request->get('idetapa');
         $traspaso->visible='1';
-        $traspaso->idEmpresa=123456;
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
         return Redirect::to('proceso/traspasoparvada');

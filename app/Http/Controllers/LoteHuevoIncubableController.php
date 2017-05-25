@@ -12,6 +12,7 @@ use DB;
 use sisAvicola\LoteHuevoIncubable;
 use sisAvicola\Infraestructura;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LoteHuevoIncubableController extends Controller
 {
@@ -65,7 +66,7 @@ class LoteHuevoIncubableController extends Controller
         $lote->cantidad=$planta->cantidadHuevosAlmacenados;
         $lote->idPlantaIncubacion=$request->get('idplantaincubacion');
         $lote->visible='Activo';
-        $lote->idEmpresa=123456;
+        $lote->idEmpresa=Auth::user()->idEmpresa;
         $lote->save();
 
         $traspaso = new TraspasoLoteHuevo;
@@ -76,7 +77,7 @@ class LoteHuevoIncubableController extends Controller
         $traspaso->fecha=$my_time -> toDateTimeString();
         $traspaso->idEquipo=$requestt->get('idequipo');
         $traspaso->visible='1';
-        $traspaso->idEmpresa=123456;
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
 
