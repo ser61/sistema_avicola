@@ -118,7 +118,7 @@
 							@foreach($reportes as $rep)
 							@if($rep->visible == '1')
 							<tr>
-								<td>{{ $rep->id }}</td>
+								<td>{{ $rep->idReporte }}</td>
 								<td>{{ $rep->fecha }}</td>
 								<td>{{ $rep->mortalidad }}</td>
 								<td>{{ $rep->cantidadHuevos }}</td>
