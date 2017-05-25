@@ -130,7 +130,9 @@
 								<td>{{ $rep->cantidadPollos }}</td>
 								<td>{{ $rep->idEmpleado }} {{ $rep->nombre }} {{ $rep->apellido }}</td>
 								<td>
-									<a href="" data-target="#modal-delete-{{$rep->id}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+									<a href="{{URL::action('ReporteDiarioController@show',$rep->idReporte)}}">
+										<button class="btn btn-primary">Ver más</button>
+									</a>
 								</td>
 							</tr>
 							@endif

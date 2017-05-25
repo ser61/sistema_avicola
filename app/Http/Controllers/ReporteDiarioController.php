@@ -10,6 +10,7 @@ use sisAvicola\Etapa;
 use sisAvicola\Infraestructura;
 use sisAvicola\IngresoHuevoIncubable;
 use sisAvicola\Parvada;
+use sisAvicola\Persona;
 use sisAvicola\ReporteDiario;
 use DB;
 
@@ -111,7 +112,16 @@ class ReporteDiarioController extends Controller
      */
     public function show($id)
     {
-        //
+	    $reporte = ReporteDiario::findOrFail($id);
+	    $parvada = Parvada::findOrFail($reporte->idParvada);
+	    $empleado = Persona::findOrFail($reporte->idEmpleado);
+	    $etapa = Etapa::findOrFail($reporte->idEtapa);
+	    $planta = DB::table('ingreso_huevo_incubable as ing')
+	        ->join('infraestructura as i','i.id','ing.idPlantaIncubacion')
+			->select('i.id as idPlantaIncubacion')
+			->where('ing.idReporteDiario',$id)
+		    ->get()->first();
+        return view('reportes.reporte_diario.show',["reporte"=>$reporte,"parvada"=>$parvada,"empleado"=>$empleado,"etapa"=>$etapa,"planta"=>$planta]);
     }
 
     /**
