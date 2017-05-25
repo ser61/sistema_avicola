@@ -4,9 +4,9 @@ namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\Accion;
-use sisAvicola\CasoPCargo;
-use sisAvicola\Http\Requests\CargoFormRequest;
 use sisAvicola\Cargo;
+use sisAvicola\Http\Requests\CargoFormRequest;
+use sisAvicola\Models\seguridad\CasoPCargo;
 use sisAvicola\Modulo;
 use sisAvicola\PrivilegioCargo;
 

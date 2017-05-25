@@ -21,7 +21,8 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/Models/seguridad/"
         ],
         "psr-4": {
             "sisAvicola\\": "app/"

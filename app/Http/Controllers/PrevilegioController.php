@@ -4,7 +4,7 @@ namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
 use sisAvicola\Cargo;
-use sisAvicola\CasoPCargo;
+use sisAvicola\Models\seguridad\CasoPCargo;
 use sisAvicola\CasoPUsers;
 use sisAvicola\Modulo;
 use sisAvicola\PrivilegioCargo;
