@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        {!!Html::style('bootstrap/css/bootstrap.min.css')!!}
         <!-- Styles -->
         <style>
             html, body {
@@ -65,20 +65,44 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+      <div class="wrapper">
+        <header>
+          <div class="flex-center position-ref">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Iniciar Sesion</a>
-                    <a href="{{ url('/register') }}">Registrarse</a>
-                </div>
+              <div class="top-right links">
+                <a href="{{ url('/login') }}">Iniciar Sesion</a>
+                <a href="{{ url('/register') }}">Registrarse</a>
+              </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Sistema Avicola
-                </div>
+          </div>
+        </header>
+
+        <div class="content-wrapper">
+          <section class="content visible-md visible-lg hidden-sm hidden-xs" style="margin-top:200px">
+            <div class="flex-center ">
+              <div class="title m-b-md col-lg-12">
+                Sistema Avicola
+                <br>
                 <img src={{ asset('images/logo-g.png')}} alt="Rapido"/>
+              </div>
             </div>
+          </section>
+
+          <section class="content visible-xs visible-sm hidden-md hidden-lg" style="margin-top:80px">
+            <div class="flex-center ">
+              <div class="title m-b-md col-lg-12">
+                Sistema Avicola
+                <br>
+                <img src={{ asset('images/logo-g.png')}} alt="Rapido"/>
+              </div>
+            </div>
+          </section>
         </div>
+
+      </div>
+
+
+        {!!Html::script('bootstrap/js/bootstrap.min.js')!!}
     </body>
 </html>
