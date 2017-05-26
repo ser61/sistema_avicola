@@ -24,19 +24,14 @@
             @if(count($empleados) > 0)
             <div class="row">
 
-              <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
-                <a href="{{ url('/privilegio') }}" class="btn-info btn-lg btn-block" style="text-align: center">
+              <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2" style="margin-bottom: 5px">
+                <a href="{{ url('/bitacora') }}" class="btn-info btn-lg btn-block" style="text-align: center">
                   Usuarios
                 </a>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
                 <a class="btn-info btn-lg btn-block" style="text-align: center">
-                  Cargos
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
-                <a class="btn-info btn-lg btn-block" style="text-align: center">
-                  Casos de Usos
+                  Bitacoras
                 </a>
               </div>
 
