@@ -21,25 +21,27 @@
           </div>
           <!-- fin-> TITULO DE PANEL -->
           <div class="box-body table-responsive">
+            @if(count($empleados) > 0)
             <div class="row">
 
-              <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
                 <a href="{{ url('/privilegio') }}" class="btn-info btn-lg btn-block" style="text-align: center">
                   Usuarios
                 </a>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
                 <a class="btn-info btn-lg btn-block" style="text-align: center">
                   Cargos
                 </a>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
                 <a class="btn-info btn-lg btn-block" style="text-align: center">
                   Casos de Usos
                 </a>
               </div>
 
             </div>
+            @endif
 
             @if(count($empleados) > 0 && count($usuarios) > 0)
               <!-- CUADRO DE BUSQUEDA -->
@@ -91,16 +93,16 @@
               <div class="box">
                 @if(count($empleados) == 0)
                   <div class="box-header">
-                    <h3 align="center"><b>Aun no tiene ningun Empleado...</b></h3>
+                    <h3 align="center"><b>Aun no tiene ningun Usuario...</b></h3>
                   </div>
                   <div class="box-body">
                     <br>
-                    <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario,</p>
-                    <p align="center">es necesario que registre al menos a un empleado.</p>
-                    <p align="center">Para registra un nuevo empleado haga click en el icono de más.</p>
+                    <p align="center">Bienvenido a la seccion de Bitacora, para ver la Bitacora de los Usuarios,</p>
+                    <p align="center">es necesario que registre al menos a un Usuario.</p>
+                    <p align="center">Para registra un nuevo usuario haga click en el icono de más.</p>
                     <br>
                     <div class="col-md-6 col-sm-offset-3">
-                      <a type="button" href="{{ url('empleado/create') }}" class="btn btn-danger btn-block">
+                      <a type="button" href="{{ url('/admin') }}" class="btn btn-danger btn-block">
                         <i class="fa fa-plus"></i>
                       </a>
                     </div>
@@ -122,7 +124,7 @@
                 @endif
               </div>
             @endif
-            <br><br><br><br>
+            <br>
           </div>
         </div>
       </div>

@@ -15,13 +15,16 @@ class CreateDetalleCompraTabla extends Migration
     {
         Schema::create('detalle_compra', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idRegistrarCompra');
-            $table->integer('idInsumo');
+            $table->integer('idRegistrarCompra')->unsigned();
+            $table->integer('idInsumo')->unsigned();
             $table->integer('cantidad');
             $table->float('precio');
             $table->integer('idEmpresa');
             $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idRegistrarCompra')->references('id')->on('registrar_compra');
+            $table->foreign('idInsumo')->references('id')->on('insumo');
         });
     }
 

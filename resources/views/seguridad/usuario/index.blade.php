@@ -124,7 +124,7 @@
                     <p align="center">Para registra un nuevo empleado haga click en el icono de más.</p>
                     <br>
                     <div class="col-md-6 col-sm-offset-3">
-                      <a type="button" href="{{ url('empleado/create') }}" class="btn btn-danger btn-block">
+                      <a type="button" href="{{ url('/empleado') }}" class="btn btn-danger btn-block">
                         <i class="fa fa-plus"></i>
                       </a>
                     </div>

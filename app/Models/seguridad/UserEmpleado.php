@@ -4,6 +4,7 @@ namespace sisAvicola\Models\seguridad;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Persona;
 
 class UserEmpleado extends Model
 {

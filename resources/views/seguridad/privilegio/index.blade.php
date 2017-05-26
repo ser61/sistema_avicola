@@ -85,13 +85,13 @@
               </div>
               <div class="box-body">
                 <br>
-                <p align="center">Bienvenido a la seccion de Privilegios, para asignar Privilegios a un Cargo es necesario que haya creado uno.
-                  Haga click en el icono de más para agregar un cargo.</p>
+                <p align="center">Bienvenido a la seccion de Privilegios, para asignar Privilegios a un Cargo es necesario que haya creado al menos un cargo.</p>
+                <p align="center">Haga click en el icono de más para agregar un cargo.</p>
                 <br>
                 <div class="col-md-6 col-sm-offset-3">
-                  <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                  <a href="{{ url('/cargo') }}" type="button" class="btn btn-danger btn-block">
                     <i class="fa fa-plus"></i>
-                  </button>
+                  </a>
 
                 </div>
               </div>
@@ -178,10 +178,11 @@
               </div>
               <div class="box-body">
                 <br>
-                <p align="center">Bienvenido a la seccion de Usuario, para agregar un nuevo Usuario, haga click en icono de mas.</p>
+                <p align="center">Bienvenido a la seccion de Privilegios, para asignar Privilegios a un Usuario es necesario que haya creado al menos uno.</p>
+                <p align="center">haga click en icono de mas.</p>
                 <br>
                 <div class="col-md-6 col-sm-offset-3">
-                  <a type="button" href="{{ url('admin/create') }}" class="btn btn-danger btn-block">
+                  <a type="button" href="{{ url('/admin') }}" class="btn btn-danger btn-block">
                     <i class="fa fa-plus"></i>
                   </a>
                 </div>

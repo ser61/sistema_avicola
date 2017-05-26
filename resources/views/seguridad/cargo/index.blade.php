@@ -124,9 +124,9 @@
                 <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#create" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button>
-
               </div>
             </div>
+            <br>
           </div>
         @endif
       </div>

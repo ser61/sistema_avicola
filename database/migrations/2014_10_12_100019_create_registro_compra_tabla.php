@@ -17,11 +17,14 @@ class CreateRegistroCompraTabla extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->string('observaciones');
-            $table->integer('idEmpleado');
-            $table->integer('idProveedor');
+            $table->integer('idEmpleado')->unsigned();
+            $table->integer('idProveedor')->unsigned();
             $table->integer('idEmpresa');
             $table->char('visible');
             $table->timestamps();
+
+            $table->foreign('idEmpleado')->references('id')->on('persona');
+            $table->foreign('idProveedor')->references('id')->on('persona');
         });
     }
 

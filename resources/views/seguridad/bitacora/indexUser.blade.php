@@ -14,7 +14,7 @@
 
   <section class="content">
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 col-xs-8">
+      <div class="col-lg-8 col-lg-offset-2">
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
@@ -23,35 +23,11 @@
           <!-- fin-> TITULO DE PANEL -->
           <div class="box-body">
 
-              <!-- CUADRO DE BUSQUEDA -->
-            <div class="panel panel-blue">
-              <div class="panel-body">
-                @include('alertas.logrado')
-                @include('alertas.error')
-
-                {{--<div class="row">
-
-                  <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{ url('/privilegio') }}" class="btn-info btn-lg btn-block" style="text-align: center">
-                      Usuarios
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a class="btn-info btn-lg btn-block" style="text-align: center">
-                      Cargos
-                    </a>
-                  </div>
-
-                </div>--}}
-
-              </div>
-            </div>
-            <!-- fin-> CUADRO DE BUSQUEDA -->
-
             <!-- TABLA DE DATOS -->
             <div class="row">
               <div class="col-lg-6 col-lg-offset-3">
-                <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+                @if(count($bitacoras) > 0)
+                  <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
                   <thead>
                   <tr>
                     <th class="col-sm-2">Nro</th>
@@ -73,6 +49,11 @@
                   @endforeach
                   </tbody>
                 </table>
+                @else
+                  <div class="box-header">
+                    <h3 align="center"><b>El usuario: {{ $user->name }} aun no ha iniciado sesión.</b></h3>
+                  </div>
+                @endif
               </div>
             </div>
 

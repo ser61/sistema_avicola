@@ -62,7 +62,7 @@
                 <tr>
                   <td class="center">{{$empleado->ci}}</td>
                   <td class="hidden-xs">
-                    <img src='usuarios/{{$empleado->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
+                    <img src='usuarios/{{$empleado->foto}}' class="img-circle" alt=""  style="width: 30px; height: 30px;">
                   </td>
                   <td>{{$empleado->nombre}}</td>
                   <td>{{$empleado->apellido}}</td>

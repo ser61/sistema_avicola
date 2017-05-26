@@ -18,7 +18,8 @@
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
-            <h3 align="center">Panel de Edicion del cargo: <span class="text-bold">{{ $cargo->nombre }}</span></h3>
+            <h3 align="center">Panel de Edicion del cargo:</h3>
+            <h3 align="center"><span class="text-bold">{{ $cargo->nombre }}</span></h3>
           </div>
 
           <div class="box-body">
@@ -40,7 +41,7 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <br>
                 <button class="btn btn-primary btn-block">
-                  Registrar Cargo <i class="fa fa-arrow-circle-right"></i>
+                  Actualizar Datos del Cargo <i class="fa fa-arrow-circle-right"></i>
                 </button>
                 <br>
               </div>

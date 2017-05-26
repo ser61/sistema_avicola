@@ -5,6 +5,7 @@ namespace sisAvicola\Models\seguridad;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Models\seguridad\Bitacora;
 
 class Accion extends Model
 {
