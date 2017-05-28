@@ -41,8 +41,9 @@ Route::get('facturar','FacturaController@create');
 // Backup routes
 Route::get('backup', 'Seguridad\BackupController@index');
 Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.create');
-Route::get('backup/download/{file_name?}', 'Seguridad\BackupController@download');
-Route::get('backup/delete/{file_name}', 'Seguridad\BackupController@delete');
+Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->name('backup.download');
+Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
+Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
 
 
 

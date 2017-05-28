@@ -5,7 +5,6 @@ namespace sisAvicola\Http\Controllers\Seguridad;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Alert;
 use Artisan;
 use sisAvicola\Http\Requests\BackupRequest;
@@ -16,7 +15,7 @@ class BackupController extends Controller
 {
   public function index()
   {
-    $backups = Backup::all();
+    $backups = Backup::_getBackups(Auth::user()->idEmpresa)->get();
     return view('seguridad.backup.backups', compact('backups'));
   }
 
@@ -24,7 +23,7 @@ class BackupController extends Controller
   {
     $request['idEmpresa'] = Auth::user()->idEmpresa;
     $request['visible'] = '1';
-    $request['fecha'] = Carbon::now();
+    $request['fecha'] = Carbon::now('America/La_Paz');
     //try {
       //ini_set('max_execution_time', 300);
       Artisan::call('backup:mysql-dump',[ 'filename' => $request['nombre']]);
@@ -35,37 +34,27 @@ class BackupController extends Controller
     }*/
   }
 
-  public function download()
+  public function download(Backup $backup)
   {
-    $file_name = Request::input('file_name');
+    //$file = Storage::disk('backups')->getDriver()->getAdapter()->getPathPrefix();
+    $file = storage_path('backups\\'.$backup['nombre'].'.sql');
+    return response()->download($file);
+  }
 
-    $file = config('laravel-backup.backup.name') . '/' . $file_name;
-    $disk = Storage::disk(config('laravel-backup.backup.destination.disks')[0]);
-    if ($disk->exists($file)) {
-      $fs = Storage::disk(config('laravel-backup.backup.destination.disks')[0])->getDriver();
-      $stream = $fs->readStream($file);
-      return \Response::stream(function () use ($stream) {
-        fpassthru($stream);
-      }, 200, [
-        "Content-Type" => $fs->getMimetype($file),
-        "Content-Length" => $fs->getSize($file),
-        "Content-disposition" => "attachment; filename=\"" . basename($file) . "\"",
-      ]);
-    } else {
-      abort(404, "The backup file doesn't exist.");
+  public function delete(Backup $backup)
+  {
+    $disk = Storage::disk('backups');
+    if ($disk->exists($backup['nombre'] . '.sql')) {
+      //$disk->delete($backup['nombre'] . '.sql');
+      Backup::_eliminar($backup['id']);
+      return back()->with('msj', 'El BackUp fue eliminado exitosamente.');
+    }else{
+      return back()->with('error', 'El BackUp ya no existe en la memoria.');
     }
   }
-  /**
-   * Deletes a backup file.
-   */
-  public function delete($file_name)
+
+  public function restore(Backup $backup)
   {
-    $disk = Storage::disk(config('laravel-backup.backup.destination.disks')[0]);
-    if ($disk->exists(config('laravel-backup.backup.name') . '/' . $file_name)) {
-      $disk->delete(config('laravel-backup.backup.name') . '/' . $file_name);
-      return redirect()->back();
-    } else {
-      abort(404, "The backup file doesn't exist.");
-    }
+    return 'hola';
   }
 }

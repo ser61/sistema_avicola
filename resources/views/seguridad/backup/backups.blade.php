@@ -27,7 +27,7 @@
                   @include('alertas.logrado')
                   @include('alertas.error')
                   <div class="col-xs-12 clearfix">
-                    <button class="btn btn-danger pull-right" style="margin-bottom:2em;" data-toggle="modal" data-target=".bs-example-modal-sm">
+                    <button class="btn btn-primary pull-right" style="margin-bottom:2em;" data-toggle="modal" data-target=".bs-example-modal-sm">
                       <i class="fa fa-plus"></i> Crear un Nuevo Backup
                     </button>
                   </div>
@@ -41,7 +41,7 @@
                     <th>Nro</th>
                     <th>Nombre</th>
                     <th>Fecha</th>
-                    <th>Opciones</th>
+                    <th class="text-center">Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,11 +49,19 @@
                   <tr>
                     <td>{{ $backup['id'] }}</td>
                     <td>{{ $backup['nombre'] }}</td>
-                    <td>
-                      {{ \Carbon\Carbon::createFromTimeStamp($backup['last_modified'])->formatLocalized('%d %B %Y, %H:%M') }}
-                    </td>
-                    <td class="text-right">
-
+                    <td>{{ $backup['fecha']}}</td>
+                    <td class="text-center">
+                      {!! Form::open(['method'=>'DELETE', 'route'=>['backup.delete',$backup->id]]) !!}
+                      <a href="{{ route('backup.download', $backup->id) }}" class="btn btn-xs btn-success">
+                        <i class="fa fa-download"></i> Bajar
+                      </a>
+                      <a href="{{ route('backup.restore', $backup->id) }}" class="btn btn-xs btn-info">
+                        <i class="fa fa-upload"></i> Restaurar
+                      </a>
+                      <button class="btn btn-xs btn-danger">
+                        <i class="fa fa-trash"></i> Eliminar
+                      </button>
+                      {!! Form::close() !!}
                     </td>
                   </tr>
                 @endforeach
