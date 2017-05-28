@@ -182,6 +182,7 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         Backpack\BackupManager\BackupManagerServiceProvider::class,
         Backup\BackupServiceProvider::class,
+        Collective\Remote\RemoteServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'SSH' => Collective\Remote\RemoteFacade::class,
 
     ],
 

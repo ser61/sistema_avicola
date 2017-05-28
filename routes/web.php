@@ -40,7 +40,7 @@ Route::get('bitacora/showAccionesUser/{id}{idUser}', 'Seguridad\BitacoraControll
 Route::get('facturar','FacturaController@create');
 // Backup routes
 Route::get('backup', 'Seguridad\BackupController@index');
-Route::get('backup/create', 'Seguridad\BackupController@create');
+Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.create');
 Route::get('backup/download/{file_name?}', 'Seguridad\BackupController@download');
 Route::get('backup/delete/{file_name}', 'Seguridad\BackupController@delete');
 

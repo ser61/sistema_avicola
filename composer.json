@@ -10,6 +10,7 @@
         "barryvdh/laravel-dompdf": "^0.8.0",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3.0",
+        "laravelcollective/remote":"^5.3.0",
         "nesbot/carbon": "^1.22",
         "paulvl/backup": "3.*"
     },
