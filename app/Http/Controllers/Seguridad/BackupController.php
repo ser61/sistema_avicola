@@ -27,7 +27,7 @@ class BackupController extends Controller
     $request['visible'] = '1';
     $request['fecha'] = Carbon::now('America/La_Paz');
     //try {
-      //ini_set('max_execution_time', 300);
+      ini_set('max_execution_time', 300);
       Artisan::call('backup:mysql-dump',[ 'filename' => $request['nombre']]);
       Backup::create($request->all());
       return back()->with('msj','Se creo una copia exitosamente.');
@@ -59,11 +59,8 @@ class BackupController extends Controller
   {
       ini_set('max_execution_time', 300);
       $process = new Process('cd ' . base_path() .
-        ' && php artisan backup:mysql-restore --filename=cuarto.sql -y');
+        ' && php artisan backup:mysql-restore --filename='.$backup['nombre'].'.sql -y');
       $process->run();
       return back()->with('msj', 'El BackUp se restauro exitosamente.');
-    /*} catch (Exception $e) {
-      return back()->with('error', 'Hubo un problema en la restauración');
-    }*/
   }
 }
