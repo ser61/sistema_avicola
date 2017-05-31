@@ -13,6 +13,7 @@ use sisAvicola\Parvada;
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\ProductoVenta;
 use sisAvicola\Accion;
+use Carbon\Carbon;
 
 class ParvadaEngordeController extends Controller
 {
@@ -73,7 +74,8 @@ class ParvadaEngordeController extends Controller
         $parvada->save();
 
         $traspaso=new TraspasoParvada;
-        $traspaso->fecha=date("j/ n/ Y");
+        $my_time = Carbon::now('America/La_Paz');
+        $traspaso->fecha = $my_time -> toDateTimeString();
         $traspaso->cantidad=$requestt->get('cantidadpollos');
         $traspaso->idGalpon=$requestt->get('idgalpon');
         $traspaso->idParvada=$parvada->id;

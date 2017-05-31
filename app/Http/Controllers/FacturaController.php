@@ -11,7 +11,7 @@ use sisAvicola\Http\Requests;
 use sisAvicola\Http\Requests\FacturaFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
-use sisAvicola\Accion;
+use sisAvicola\Models\seguridad\Accion;
 use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
