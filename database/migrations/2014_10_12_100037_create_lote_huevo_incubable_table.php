@@ -17,6 +17,7 @@ class CreateLoteHuevoIncubableTable extends Migration
             $table->increments('id');
             $table->integer('cantidad');
             $table->integer('idPlantaIncubacion')->unsigned();
+            $table->string('tipoLote');
             $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
