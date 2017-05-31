@@ -18,11 +18,15 @@ class CreateTraspasoParvadaTable extends Migration
             $table->date('fecha');
             $table->integer('cantidad');
             $table->integer('idGalpon')->unsigned();
+            $table->integer('idParvada')->unsigned();
+            $table->integer('idEtapa')->unsigned();
             $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 
             $table->foreign('idGalpon')->references('id')->on('infraestructura');
+            $table->foreign('idParvada')->references('id')->on('parvada');
+            $table->foreign('idEtapa')->references('id')->on('etapa');
         });
     }
 

@@ -4,6 +4,7 @@ namespace sisAvicola\Http\Controllers\Seguridad;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Mockery\CountValidator\Exception;
 use sisAvicola\Http\Controllers\Controller;
 use Alert;
 use Artisan;
@@ -55,6 +56,13 @@ class BackupController extends Controller
 
   public function restore(Backup $backup)
   {
-    return 'hola';
+    //try {
+      Artisan::call('backup:mysql-restore',['--filename'=>'-f '.$backup['nombre'].'.sql' ]);
+      Artisan::call('backup:mysql-restore',['--yes'=>'-y ']);
+
+      return back()->with('msj', 'El BackUp se restauro exitosamente.');
+    /*} catch (Exception $e) {
+      return back()->with('error', 'Hubo un problema en la restauración');
+    }*/
   }
 }
