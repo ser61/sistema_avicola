@@ -1,4 +1,4 @@
--- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
+  -- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: 127.0.0.1
 -- ------------------------------------------------------

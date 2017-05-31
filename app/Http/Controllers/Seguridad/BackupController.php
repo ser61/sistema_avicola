@@ -11,6 +11,7 @@ use Artisan;
 use sisAvicola\Http\Requests\BackupRequest;
 use sisAvicola\Models\seguridad\Backup;
 use Storage;
+use Symfony\Component\Process\Process;
 
 class BackupController extends Controller
 {
@@ -56,10 +57,10 @@ class BackupController extends Controller
 
   public function restore(Backup $backup)
   {
-    //try {
-      Artisan::call('backup:mysql-restore',['--filename'=>'-f '.$backup['nombre'].'.sql' ]);
-      Artisan::call('backup:mysql-restore',['--yes'=>'-y ']);
-
+      ini_set('max_execution_time', 300);
+      $process = new Process('cd ' . base_path() .
+        ' && php artisan backup:mysql-restore --filename=cuarto.sql -y');
+      $process->run();
       return back()->with('msj', 'El BackUp se restauro exitosamente.');
     /*} catch (Exception $e) {
       return back()->with('error', 'Hubo un problema en la restauración');
