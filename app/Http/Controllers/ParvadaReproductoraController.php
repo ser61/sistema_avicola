@@ -74,12 +74,18 @@ class ParvadaReproductoraController extends Controller
         $traspaso->cantidad=$requestt->get('cantidadpollos');
         $traspaso->idGalpon=$requestt->get('idgalpon');
         $traspaso->idParvada=$parvada->id;
-        $traspaso->idEtapa='1';
+
+        $etapa=DB::table('etapa')
+        ->where('nombre','=','Etapa de Crianza')
+        ->select('id')
+        ->first();
+        $traspaso->idEtapa=$etapa->id;
+        
         $traspaso->visible='1';
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
-        return Redirect::to('proceso/parvadareproductora');
+        return redirect('proceso/parvadareproductora')->with('msj','La Parvada :"'.$parvada->id.'" se creo exitósamente.');
     }
 
     /**
@@ -125,10 +131,13 @@ class ParvadaReproductoraController extends Controller
     public function destroy($id)
     {
         $parvada=Parvada::findOrFail($id);
+        if($parvada->visible=='Inactivo'){
+            return redirect('proceso/parvadareproductora')->with('msj','Error al Finalizar La Parvada :"'.$id.'" Esta Parvada ya Fue Finalizada Anteriormente.');            
+        }
         $parvada->visible='Inactivo';
         $parvada->update();
 
-        return Redirect::to('proceso/parvadareproductora');
+        return redirect('proceso/parvadareproductora')->with('msj','La Parvada :"'.$id.'" Fue Finalizada exitósamente.');
     }
 
 }

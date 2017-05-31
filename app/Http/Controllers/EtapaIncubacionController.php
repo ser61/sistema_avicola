@@ -39,6 +39,12 @@ class EtapaIncubacionController extends Controller
      */
     public function create()
     {
+        $etapas=DB::table('etapa_incubacion')
+        ->where('visible','=','1')
+        ->get();
+        if(count($etapas)==2){
+         return redirect('proceso/etapaincubacion')->with('msj','Ya No Puede Crear Mas Etapas en Este Sector de  Etapas de Huevos');
+        }
         return view('proceso.etapaincubacion.create');
     }
 
@@ -50,13 +56,20 @@ class EtapaIncubacionController extends Controller
      */
     public function store(EtapaIncubacionFormRequest $request)
     {
+        $etapas=DB::table('etapa_incubacion')
+        ->where('nombre','=',$request->get('nombre'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($etapas)>0){
+         return redirect('proceso/etapaincubacion')->with('msj','Ya existe la Etapa: "'.$request['nombre'].'" Intente crear otra.');
+        }
         $etapa=new EtapaIncubacion;
         $etapa->nombre=$request->get('nombre');
         $etapa->visible='1';
         $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
 
-        return Redirect::to('proceso/etapaincubacion');
+        return redirect('proceso/etapaincubacion')->with('msj','La Etapa :"'.$request['nombre'].'" se creo exitósamente.');
     }
 
     /**

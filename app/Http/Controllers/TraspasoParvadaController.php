@@ -42,7 +42,9 @@ class TraspasoParvadaController extends Controller
     public function create()
     {
         $parvadas=DB::table('parvada')->get();
-        $etapas=DB::table('etapa')->get();
+        $etapas=DB::table('etapa')
+        ->where('nombre','!=','Etapa de Crianza')
+        ->get();
         $galpones=DB::table('infraestructura as i')
         ->join('granja as g','i.idGranja','=','g.id')
         ->select('i.id','i.estado','i.tipo','g.tipo as tipog','g.ubicacion','i.capacidad')
@@ -64,6 +66,13 @@ class TraspasoParvadaController extends Controller
         $traspaso=new TraspasoParvada;
         $traspaso->fecha=date("j/ n/ Y");
 
+        $cant=DB::table('traspaso_parvada')
+        ->where('idParvada','=',$request->get('idparvada'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($cant)==2){
+         return redirect('proceso/traspasoparvada')->with('msj','Error al Hacer Traspaso de La Parvada: "'.$request['idparvada'].'" Ya no se Puede Hacer mas Traspaso');
+        }
 
         $parvada=Parvada::findOrFail($request->get('idparvada'));
         $traspaso->cantidad=$parvada->cantidadPollos;

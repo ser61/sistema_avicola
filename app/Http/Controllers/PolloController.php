@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use sisAvicola\Http\Requests;
 use sisAvicola\ProductoVenta;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Input;//
 
 class PolloController extends Controller
 {

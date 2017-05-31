@@ -26,7 +26,27 @@
 		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
 			<div class="form-group">
 				<label for="cantidadpollos">Cantidad de Pollos</label>
-				<input type="text" name="cantidadpollos"  class="form-control" placeholder="Cantidad de Pollos...">
+				<input type="number" name="cantidadpollos"  class="form-control" placeholder="Cantidad de Pollos...">
+
+			</div>
+		</div>	
+	</div>
+	<div class="row">
+    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+      <div class="form-group">
+        <label for="sexo">Sexo</label>
+                 <select name="sexo" id="sexo" class="form-control selectpicker">
+                      <option value="Machos">Machos</option>
+                      <option value="Hembras">Hembras</option>
+          </select>
+      </div>
+    </div>  
+  </div>
+	<div class="row">
+		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+			<div class="form-group">
+				<label for="edad">Edad (Dias)</label>
+				<input type="number" name="edad"  class="form-control" placeholder="Edad...">
 
 			</div>
 		</div>	
@@ -34,26 +54,8 @@
 	<div class="row">
 		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
 			<div class="form-group">
-				<label for="sexo">Sexo</label>
-				<input type="text" name="sexo"  class="form-control" placeholder="Sexo...">
-
-			</div>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
-			<div class="form-group">
-				<label for="edad">Edad</label>
-				<input type="text" name="edad"  class="form-control" placeholder="Edad...">
-
-			</div>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
-			<div class="form-group">
-				<label for="pesopromedio">Peso Promedio</label>
-				<input type="text" name="pesopromedio"  class="form-control" placeholder="Peso Promedio...">
+				<label for="pesopromedio">Peso Promedio ()</label>
+				<input type="number" step="any" name="pesopromedio"  class="form-control" placeholder="Peso Promedio...">
 
 			</div>
 		</div>	
@@ -71,7 +73,7 @@
 		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
 			<div class="form-group">
 				<label for="productividad">Productividad</label>
-				<input type="text" name="productividad"  class="form-control" placeholder="Productividad...">
+				<input type="number" name="productividad"  class="form-control" placeholder="Productividad...">
 
 			</div>
 		</div>	

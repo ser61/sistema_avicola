@@ -308,25 +308,31 @@
             </a>
             <ul class="treeview-menu">
               <li>
+                <a href="{{ url('/proceso/etapa')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Etapas de Parvada</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url('/proceso/etapaincubacion')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Etapas de Lote de Huevos</span>
+                </a>
+              </li>
+              <li>
                 <a href="{{ url('/proceso/parvadaengorde')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Engorde</span>
+                  <span class="title">Parvadas de Engorde</span>
                 </a>
               </li>
               <li>
                 <a href="{{ url('/proceso/parvadaponedora')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Ponedora</span>
+                  <span class="title">Parvadas de Ponedora</span>
                 </a>
               </li>
               <li>
                 <a href="{{ url('/proceso/parvadareproductora')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Roproductora</span>
+                  <span class="title">Parvadas de Roproductora</span>
                 </a>
               </li>
-              <li>
-                <a href="{{ url('/proceso/etapa')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Etapa de Parvada</span>
-                </a>
-              </li>
+
               <li>
                 <a href="{{ url('/proceso/traspasoparvada')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Traspaso de Parvada</span>
@@ -342,11 +348,7 @@
                   <span class="title">Orden de Produccion</span>
                 </a>
               </li>
-              <li>
-                <a href="{{ url('/proceso/etapaincubacion')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Etapas de Incubación</span>
-                </a>
-              </li>
+              
               <li>
                 <a href="{{ url('/proceso/traspasolotehuevo')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Traspasos Lote de Huevos</span>

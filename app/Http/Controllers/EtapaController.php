@@ -40,6 +40,12 @@ class EtapaController extends Controller
      */
     public function create()
     {
+        $parvadas=DB::table('etapa')
+        ->where('visible','=','1')
+        ->get();
+        if(count($parvadas)==2){
+         return redirect('proceso/etapa')->with('msj','Ya No Puede Crear Mas Etapas en Este Sector de  Etapas de Parvadas');
+        }
         return view('proceso.etapa.create');
     }
 
@@ -51,22 +57,19 @@ class EtapaController extends Controller
      */
     public function store(EtapaFormRequest $request)
     {
-        $db_host='127.0.0.1';
-        $db_name='sistema_avicola_g';
-        $db_user='root';
-        $db_pass='';
-
-        $salida_sql = $db_name.'.sql';
-        //$dump = "mysqldump -h$db_host -u$db_user -p$db_pass --opt $db_name > $salida_sql";
-        //system($dump,$output);
-
+        $parvadas=DB::table('etapa')
+        ->where('nombre','=',$request->get('nombre'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($parvadas)>0){
+         return redirect('proceso/etapa')->with('msj','Ya existe la Etapa: "'.$request['nombre'].'" Intente crear otra.');
+        }
         $etapa=new Etapa;
         $etapa->nombre=$request->get('nombre');
         $etapa->visible='1';
         $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
-
-        return Redirect::to('proceso/etapa');
+        return redirect('proceso/etapa')->with('msj','La Etapa :"'.$request['nombre'].'" se creo exitósamente.');
     }
 
     /**
@@ -99,7 +102,7 @@ class EtapaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EtapaFormRequest $request, $id)
     {
         $etapa = Etapa::findOrFail($id);
         $etapa->nombre = $request->get('nombre');

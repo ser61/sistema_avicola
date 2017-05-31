@@ -53,6 +53,8 @@ class ReporteVentaController extends Controller
 
         //Route::get('venta/factura/reporte',function(){
             $facturas=DB::table('factura')
+            ->select('factura.*', 'p.nombre as nombreC')
+            ->join('persona as p', 'p.id', '=', 'factura.idEmpleado')
             ->where('fecha','=',$fecha)
             ->where('idCliente','=',$idcliente)
             ->get();

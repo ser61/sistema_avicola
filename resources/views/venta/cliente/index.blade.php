@@ -21,7 +21,7 @@
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(count($cantidad) > 0)
+        @if(5 > 0)
         @include('venta.cliente.search')
           <!-- CUADRO DE BUSQUEDA -->
         

@@ -18,9 +18,11 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de las <span class="text-bold">Etapas de Parvada</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
+
         @if(count($cantidad) > 0)
         @include('proceso.etapa.search')
           <!-- CUADRO DE BUSQUEDA -->
@@ -44,7 +46,7 @@
                 <td class="center">{{$eta->id}}</td>
                 <td class="center">{{$eta->nombre}}</td>
                 <td class="center">
-                  <a href="{{URL::action('EtapaController@edit',$eta->id)}}" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                  <a href="" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                  <a href="" data-target="#modal-delete-{{$eta->id}}" data-toggle="modal" class="btn btn-danger" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i></a>
                 </td>
               </tr>
@@ -53,6 +55,7 @@
             </tbody>
           </table>
         </div>
+        {{$etapas->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

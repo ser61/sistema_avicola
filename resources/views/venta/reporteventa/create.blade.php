@@ -30,7 +30,7 @@
 				
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			    		<div class="form-group">
-			    			<label>Cliente de la Factura Para el Reporte</label>
+			    			<label>Encargado de la Venta Para el Reporte</label>
 			    			<select name="idCliente" class="form-control">
 			    				@foreach ($cliente as $cli)
 			    				   <option value="{{$cli -> id}}">{{$cli -> nombre}}</option>	 

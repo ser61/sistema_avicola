@@ -24,7 +24,7 @@ class EtapaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'max:100',
+            'nombre'=>'required|max:100',
         ];
     }
 }

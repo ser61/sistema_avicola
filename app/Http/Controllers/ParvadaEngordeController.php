@@ -77,14 +77,18 @@ class ParvadaEngordeController extends Controller
         $traspaso->cantidad=$requestt->get('cantidadpollos');
         $traspaso->idGalpon=$requestt->get('idgalpon');
         $traspaso->idParvada=$parvada->id;
-        $traspaso->idEtapa='1';
+        $etapa=DB::table('etapa')
+        ->where('nombre','=','Etapa de Crianza')
+        ->select('id')
+        ->first();
+        $traspaso->idEtapa=$etapa->id;
         $traspaso->visible='1';
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
         
 
-        return Redirect::to('proceso/parvadaengorde');
+        return redirect('proceso/parvadaengorde')->with('msj','La Parvada :"'.$parvada->id.'" se creo exitósamente.');
     }
 
     /**
@@ -130,16 +134,18 @@ class ParvadaEngordeController extends Controller
     public function destroy($id)
     {
         $parvada=Parvada::findOrFail($id);
-        $parvada->visible='Inactivo';
-        
-
+        if($parvada->visible=='Inactivo'){
+            return redirect('proceso/parvadaengorde')->with('msj','Error al Finalizar La Parvada :"'.$id.'" Esta Parvada ya Fue Finalizada Anteriormente.');            
+        }
+        $parvada->visible='Inactivo';        
         $producto=ProductoVenta::findOrFail(7);
         $c=$producto->stock;
         $producto->stock=$c+$parvada->cantidadPollos;
         $producto->update();
         $parvada->update();
 
-        return Redirect::to('proceso/parvadaengorde');
+        return redirect('proceso/parvadaengorde')->with('msj','La Parvada :"'.$id.'" Fue Finalizada exitósamente.');
+        
     }
 
 }

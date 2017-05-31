@@ -18,6 +18,7 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de las <span class="text-bold">Parvada Reproductora</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
@@ -69,6 +70,7 @@
             </tbody>
           </table>
         </div>
+        {{$parvadas->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

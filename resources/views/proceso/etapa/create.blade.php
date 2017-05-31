@@ -25,9 +25,11 @@
   <div class="row">
     <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
       <div class="form-group">
-        <label for="nombre">Nombre de la Etapa</label>
-        <input type="text" name="nombre"  class="form-control" placeholder="nombre...">
-
+        <label for="nombre">Etapas de Parvada</label>
+                 <select name="nombre" id="idparvada" class="form-control selectpicker">
+                      <option value="Etapa de Crianza">Etapa de Crianza</option>
+                      <option value="Etapa de Ciclo Reproductivo">Etapa de Ciclo Reproductivo</option>
+          </select>
       </div>
     </div>  
   </div>

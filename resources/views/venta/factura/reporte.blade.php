@@ -40,6 +40,7 @@
 										<th>Fecha</th>
 										<th>Monto Total</th>
 										<th>Estado</th>
+										<th>ID Empleado</th>
 										<th>Empleado</th>
 										<th>Cliente</th>
 			                        </thead>
@@ -54,6 +55,7 @@
 											<td>{{ $fac->montoTotal }}</td>
 											<td>{{ $fac->estado }}</td>
 											<td>{{ $fac->idEmpleado }}</td>
+											<td>{{ $fac->nombreC}}</td>
 											<td>{{ $fac->idCliente }}</td>
 															
 											</tr>
