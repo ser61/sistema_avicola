@@ -5,6 +5,7 @@ namespace sisAvicola\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use sisAvicola\Categoria;
 use sisAvicola\DietaAlimenticia;
 use sisAvicola\Etapa;
 use sisAvicola\Infraestructura;
@@ -47,7 +48,8 @@ class ReporteDiarioController extends Controller
 		    ->select('pa.id as idParvada','pa.tipo as tipoParvada','pa.created_at')->get();
 	    //return view('reportes.reporte_diario.create',compact('empleados','etapas','parvadas'));
 	    $plantas = Infraestructura::_getPlantasIncubacionDisponibles();
-	    return view('reportes.reporte_diario.create',["empleados"=>$empleados,"etapas"=>$etapas,"parvadas"=>$parvadas,"plantas"=>$plantas]);
+	    $categorias = Categoria::all();
+	    return view('reportes.reporte_diario.create',["empleados"=>$empleados,"etapas"=>$etapas,"parvadas"=>$parvadas,"plantas"=>$plantas,"categorias"=>$categorias]);
     }
 
     /**
@@ -77,10 +79,12 @@ class ReporteDiarioController extends Controller
 			$reporte->idEmpresa = Auth::user()->idEmpresa;
 			$reporte->visible = '1';
 			$reporte->save();
+	        $idPar = $request->get('idParvada');
+	        $mortalidad = $request->get('mortalidad');
+			DB::statement('call upd_mortalidad_parvada('.$idPar.','.$mortalidad.')');
 
-			$parvada = Parvada::findOrFail($request->get('idParvada'));
-
-			if($parvada->tipo == "Reproductora" && $request->get('idEtapa') == '2') {
+	    $parvada = Parvada::findOrFail($request->get('idParvada'));
+			if($parvada->tipo == "Reproductora" && $request->get('idEtapa') == '3') {
 
 				$planta = Infraestructura::findOrFail($request->get('idPlantaIncubacion'));
 				$cantH = $planta->cantidadHuevosAlmacenados;
@@ -89,12 +93,17 @@ class ReporteDiarioController extends Controller
 				$planta->update();
 
 				$ingreso = new IngresoHuevoIncubable();
-				//$ingreso->idReporteDiario = $request->get('idReporteDiario');
 				$ingreso->idReporteDiario = $reporte->id;
 				$ingreso->idPlantaIncubacion = $request->get('idPlantaIncubacion');
 				$ingreso->visible = '1';
 				$ingreso->idEmpresa = Auth::user()->idEmpresa;
 				$ingreso->save();
+			}
+			if($parvada->tipo == "Ponedora" && $request->get('idEtapa') == '3') {
+
+				$idCat = $request->get('idCategoria');
+				$cantHu = $request->get('cantidadHuevos');
+				DB::statement('call upd_stock_productov('.$idCat.','.$cantHu.')');
 			}
 
 		/*}catch (Exception $e) {

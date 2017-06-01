@@ -63,3 +63,14 @@ BEGIN
 		and p.idCargo = cargo
 		);
 END//
+
+CREATE PROCEDURE upd_stock_productov (id_categoria int,cant_huevos int)
+BEGIN
+	UPDATE producto_venta as pv SET pv.stock = pv.stock + cant_huevos
+    WHERE pv.idCategoria = id_categoria and pv.tipo = 'huevo';
+END//
+
+CREATE PROCEDURE upd_mortalidad_parvada (idParvada int,mortalidad int)
+BEGIN
+UPDATE parvada as p SET p.mortalidad = p.mortalidad + mortalidad WHERE p.id = idParvada;
+END//

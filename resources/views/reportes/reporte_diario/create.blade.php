@@ -124,7 +124,16 @@
 					<input type="date" name="fecha" class="form-control" placeholder="Introducir la fecha..">
 				</div>
 			</div>
-
+			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+				<div class="form-group">
+					<label>Categoría del Huevo</label>
+					<select name="idCategoria" class="form-control selectpicker" data-live-search="true">
+						@foreach($categorias as $categoria)
+						<option value="{{ $categoria->id }}">{{ $categoria->id }} {{ $categoria->nombre }} {{ $categoria->descripcion }} ({{ $categoria->pesoIntervaloInferior }} - {{ $categoria->pesoIntervaloSuperior }})</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
 
 		</div>
 		<div class="row">
@@ -147,5 +156,7 @@
 
 </section>
 @push('scripts')
+
+
 @endpush
 @endsection
