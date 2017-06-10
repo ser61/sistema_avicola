@@ -4,22 +4,18 @@ namespace sisAvicola;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Granja extends Model
+class Equipo extends Model
 {
-    protected $table ='Granja';
+    protected $table = 'equipo';
 
     protected $primaryKey = 'id';
 
-    //public $timestamps=false;
-
     protected $fillable = [
-        'ubicacion',
+        'nombre',
+        'capacidad',
+        'idPlantaIncubacion',
         'tipo',
-	    'idEmpresa',
+        'idEmpresa',
         'visible'
-    ];
-
-    protected $hidden = [
-
     ];
 }

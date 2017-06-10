@@ -3,7 +3,9 @@
 namespace sisAvicola\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use sisAvicola\Http\Requests\ArticuloFormRequest;
 use sisAvicola\Infraestructura;
 use DB;
@@ -43,6 +45,7 @@ class InfraestructuraController extends Controller
 	*/
 	public function store(Request $request){
 		$request['visible'] = '1';
+		$request['idEmpresa'] = Auth::user()->idEmpresa;
 		if($request->get('tipo')=="Galpón"){
 			$request['cantidadHuevosAlmacenados'] = 0;
 		}
@@ -54,7 +57,7 @@ class InfraestructuraController extends Controller
 		'cantidadHuevosAlmacenados' => $request['cantidadHuevosAlmacenados'],
 		'visible' => $request['visible'],
 	]);*/
-		return Redirect::to('infraestructura/infraestructura');
+		return Redirect::to('infraestructura/infraestructura')->with('msj','La/el '.$request['tipo'].' se ha creado exitósamente');
 	}
 
 	public function show($id){
@@ -72,6 +75,7 @@ class InfraestructuraController extends Controller
 		$inf = Infraestructura::findOrFail($id);
 		$inf->update($request->all());
 		$inf->save();
+		Session::flash('msj','La/el '.$inf->tipo.' se editó exitósamente.');
 		return Redirect::to('infraestructura/infraestructura');
 	}
 

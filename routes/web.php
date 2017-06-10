@@ -199,6 +199,12 @@ Route::resource('compra/alimento','AlimentoController');
 //200 Inicio de rutas de Eliot
 Route::resource('reportes/reporte_diario','ReporteDiarioController');
 Route::resource('infraestructura/granja','GranjaController');
+Route::get('infraestructura.pdf',function() {
+	$granjas = \sisAvicola\Granja::all();
+	$pdfGranjas = PDF::loadView('infraestructura.granja.reporteGranja',['granjas'=>$granjas]);
+	return $pdfGranjas->stream('reporteGranja.pdf');
+	//return $pdfGranjas->stream();
+});
 Route::resource('infraestructura/infraestructura','InfraestructuraController');
 Route::resource('infraestructura/equipo','EquipoController');
 Route::resource('infraestructura/bateria','BateriaController');

@@ -18,6 +18,7 @@ class Infraestructura extends Model
         'tipo',
         'idGranja',
         'cantidadHuevosAlmacenados',
+	    'idEmpresa',
         'visible'
     ];
 
