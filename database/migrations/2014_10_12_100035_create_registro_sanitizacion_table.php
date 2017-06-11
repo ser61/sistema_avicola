@@ -17,11 +17,13 @@ class CreateRegistroSanitizacionTable extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->integer('idInfraestructura')->unsigned();
+            $table->integer('idEmpleado')->unsigned();
             $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();
 
             $table->foreign('idInfraestructura')->references('id')->on('infraestructura');
+            $table->foreign('idEmpleado')->references('id')->on('persona');
         });
     }
 
