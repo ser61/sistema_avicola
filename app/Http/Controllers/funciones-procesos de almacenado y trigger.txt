@@ -74,3 +74,10 @@ CREATE PROCEDURE upd_mortalidad_parvada (idParvada int,mortalidad int)
 BEGIN
 UPDATE parvada as p SET p.mortalidad = p.mortalidad + mortalidad WHERE p.id = idParvada;
 END//
+
+CREATE TRIGGER upd_cantTotal_insumo BEFORE INSERT ON detalle_producto
+FOR EACH ROW
+BEGIN
+	UPDATE insumo as i SET i.cantidadTotal = i.cantidadTotal - NEW.cantidad
+    WHERE i.id = NEW.idProductoSanitario;
+END//

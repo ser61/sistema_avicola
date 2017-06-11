@@ -261,13 +261,13 @@
                 </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-circle-o"></i>
-                  <span class="title">Procesos de Sanitización</span>
+                <a href="{{ url('infraestructura/proceso_sanitario') }}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Procesos Sanitarios</span>
                 </a>
               </li>
               <li>
-                <a href="form_multiple_upload.html"><i class="fa fa-circle-o"></i>
-                  <span class="title">Registros Sanitarios</span>
+                <a href="{{ url('infraestructura/granja') }}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Registros de Sanitización</span>
                 </a>
               </li>
             </ul>
