@@ -2,6 +2,7 @@
 
 namespace sisAvicola\Http\Controllers\Seguridad;
 
+use Illuminate\Http\Request;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\Http\Requests\CargoFormRequest;
@@ -16,7 +17,7 @@ class CargoController extends Controller
   public function index()
   {
     Accion::_crearAccion('Ingreso a la pagina de Cargo', Auth::user()->id, Auth::user()->idEmpresa);
-    $cargos = Cargo::_allCargos()->get();
+    $cargos = Cargo::_allCargos()->paginate(6);
     return view('seguridad.cargo.index', compact('cargos'));
   }
 
@@ -63,5 +64,25 @@ class CargoController extends Controller
     $cargo = Cargo::_eliminarCargo($id);
     Accion::_crearAccionOnTable('Elimino un Cargo', 'cargo', $id, Auth::user()->id, Auth::user()->idEmpresa);
     return back()->with('msj', 'El Cargo: '.$cargo->nombre.' se elimino exitosamente.');
+  }
+  
+  public function searchCargos(Request $request)
+  {
+    if ($request->ajax()) {
+      $cargos = Cargo::_buscarCargos($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.cargo.ajax.getListSearch', compact('cargos', 'search'));
+      return Response($view);
+    }
+  }
+
+  public function searchPaginateCargos(Request $request)
+  {
+    if ($request->ajax()) {
+      $cargos = Cargo::_buscarCargos($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.cargo.ajax.getListSearch', compact('cargos', 'search'));
+      return Response($view);
+    }
   }
 }

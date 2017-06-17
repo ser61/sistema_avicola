@@ -28,7 +28,7 @@
             @include('alertas.logrado')
             @include('alertas.request')
             <div class="input-group margin">
-              <input type="text" class="form-control" placeholder="Buscar por Nombre">
+              <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-info btn-flat">
                   <i class="fa fa-search"></i>
@@ -43,7 +43,7 @@
         <!-- fin-> CUADRO DE BUSQUEDA -->
 
         <!-- TABLA DE DATOS -->
-        <div class="box-body">
+        <div id="tbody" class="box-body">
           <table class="table table-bordered" style="border-top-color: #00AEFF">
             <thead>
             <tr>
@@ -71,9 +71,9 @@
                     <button class="btn btn-danger">
                       <i class="fa fa-trash"></i>
                     </button>
-                    <a href="#" class="btn btn-success">
+                    <!-- <a href="#" class="btn btn-success">
                       <i class="fa fa-eye"></i>
-                    </a>
+                    </a> -->
                     {!! Form::close() !!}
                   </div>
                   <!-- CUANDO ESTE EN MODO CELL -->
@@ -96,11 +96,11 @@
                           {!! Form::open(['method'=>'DELETE', 'route'=>['cargo.destroy',$cargo->id], 'id'=>'delete']) !!}
                           {!! Form::close() !!}
                         </li>
-                        <li>
+                        {{--<li>
                           <a href="#" role="menuitem" tabindex="-1">
                             <i class="fa fa-eye"></i> Editar
                           </a>
-                        </li>
+                        </li>--}}
                       </ul>
                     </div>
                   </div>
@@ -109,6 +109,7 @@
             @endforeach
             </tbody>
           </table>
+          {{ $cargos->links() }}
         </div>
         <!-- fin-> TABLA DE DATOS -->
         @else
@@ -135,3 +136,36 @@
     <br>
   </section>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+  $('#search').on('keyup', function () {
+    $value = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: "{{url('searchCargos/')}}",
+      data: {'search': $value},
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
+  });
+
+  $(document).on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    cargos(page, $('#search').val());
+  });
+
+  function cargos(page, search) {
+    var url = "{{url('searchPaginateCargos/')}}";
+    $.ajax({
+      type: 'GET',
+      url: url + '?page=' + page,
+      data: {'search': search},
+    }).done(function (data) {
+      $('#tbody').html(data);
+    })
+  }
+</script>
+@endpush

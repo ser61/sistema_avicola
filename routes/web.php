@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('homeCondicional', 'Controller@home');
 Route::resource('admin', 'Seguridad\AdminUsersController');
 Route::resource('cargo', 'Seguridad\CargoController');
+Route::get('searchCargos/', 'Seguridad\CargoController@searchCargos');
+Route::get('searchPaginateCargos/', 'Seguridad\CargoController@searchPaginateCargos');
 Route::resource('empleado', 'Seguridad\EmpleadoController');
 Route::resource('telefono', 'Seguridad\TelefonoController');
 Route::resource('privilegio', 'Seguridad\PrevilegioController');
@@ -44,7 +46,6 @@ Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.
 Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->name('backup.download');
 Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
-
 
 
 
