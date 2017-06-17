@@ -18,10 +18,11 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de <span class="text-bold">Clientes</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(5 > 0)
+        @if(count($cantidad) > 0)
         @include('venta.cliente.search')
           <!-- CUADRO DE BUSQUEDA -->
         

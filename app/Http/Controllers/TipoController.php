@@ -24,16 +24,33 @@ class TipoController extends Controller
                 ->where('nombre','LIKE','%'.$query.'%')
                 ->orderBy('id','asc')
                 ->paginate(7);
-            return view('venta.tipo.index',["tipo"=>$tipo,"searchText"=>$query]);
+            $cantidad=DB::table('tipo')
+                ->where('visible','=','1')
+                ->paginate(7);
+            return view('venta.tipo.index',["cantidad"=>$cantidad,"tipo"=>$tipo,"searchText"=>$query]);
         }
     }
 
     public function create() {
+        $tipos=DB::table('tipo')
+        ->where('visible','=','1')
+        ->get();
+        if(count($tipos)==3){
+         return redirect('venta/tipo')->with('msj','Ya No Puede Crear Mas Tipos de Pollos en Este Sector de  Tipos de Pollos');
+        }
         return view('venta.tipo.create');
     }
 
     public function store(TipoFormRequest $request) {
-	    $request['visible'] = '1';
+	    $tipos=DB::table('tipo')
+        ->where('nombre','=',$request->get('nombre'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($tipos)>0){
+         return redirect('venta/tipo')->with('msj','Ya existe el Tipo de pollo: "'.$request['nombre'].'" Intente crear otra.');
+        }
+
+        $request['visible'] = '1';
         $request['idEmpresa'] = Auth::user()->idEmpresa;
 	    /*Tipo::create([
 		    'nombre'=>$request['nombre'],
@@ -41,8 +58,7 @@ class TipoController extends Controller
 		    'created_at' => Carbon::now('America/La_Paz')
 	    ]);*/
 	    Tipo::create($request->all());
-	    Session::flash('message','Tipo creado exitósamente');
-        return redirect('/venta/tipo');
+	    return redirect('venta/tipo')->with('msj','El Tipo de Pollo :"'.$request['nombre'].'" se creo exitósamente.');
 
     }
 

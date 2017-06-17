@@ -9,7 +9,7 @@ use sisAvicola\Http\Requests\EtapaFormRequest;
 use DB;
 use sisAvicola\Etapa;
 use Illuminate\Support\Facades\Auth;
-
+use sisAvicola\Models\seguridad\Accion;
 
 class EtapaController extends Controller
 {
@@ -20,6 +20,7 @@ class EtapaController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Etapa de Parvadas', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
             $etapas=DB::table('etapa')
@@ -69,7 +70,9 @@ class EtapaController extends Controller
         $etapa->visible='1';
         $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
+        Accion::_crearAccionOnTable('Creo una nueva Etapa', 'etapa', $etapa->id, Auth::user()->id, Auth::user()->idEmpresa);
         return redirect('proceso/etapa')->with('msj','La Etapa :"'.$request['nombre'].'" se creo exitósamente.');
+
     }
 
     /**

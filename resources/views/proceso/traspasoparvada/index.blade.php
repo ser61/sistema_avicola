@@ -35,11 +35,11 @@
             <thead>
             <tr>
               <th class="center">id</th>
-              <th class="center">Fecha</th>
-              <th class="center">Cantidad</th>
-              <th class="center">Id Galpon</th>
+              <th class="center">Fecha de Traspaso</th>
+              <th class="center">Cant. Entrante al Traspaso</th>
+              <th class="center">Galpon alojado</th>
               <th class="center">id Parvada</th>
-              <th class="center">Id Etapa</th>
+              <th class="center">Etapa de Traspaso</th>
             </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                 <td class="center">{{$par->cantidad}}</td>
                 <td class="center">{{$par->idGalpon}}</td>
                 <td class="center">{{$par->idParvada}}</td>
-                <td class="center">{{$par->idEtapa}}</td>
+                <td class="center">{{$par->nombre}}</td>
                 
               </tr>
             @endforeach

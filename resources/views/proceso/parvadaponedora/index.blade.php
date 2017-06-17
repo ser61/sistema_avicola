@@ -40,7 +40,7 @@
               <th class="center">Edad</th>
               <th class="center">Peso Prom.</th>
               <th class="center">Caracteristicas</th>
-              <th class="center">Productividad</th>
+              <th class="center">Huevos Recolectados</th>
               <th class="center">Tipo</th>
               <th class="center">Mortalidad</th>
               <th class="center">Estado</th>

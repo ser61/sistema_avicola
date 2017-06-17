@@ -21,7 +21,7 @@
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(5 > 0)
+        @if(count($cantidad) > 0)
         @include('venta.inventario.search')
           <!-- CUADRO DE BUSQUEDA -->
         
@@ -55,19 +55,29 @@
         @else
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ninguna Etapa de Parvada...</b></h3>
+              <h3 align="center"><b>Aun no tiene ninguna Producto Para su Invertario...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Etapas, para agregar una nueva Etapa, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Invetario, para agregar una nuevo Producto de Venta, Dirijase a la Area de Productos de Venta.</p>
               <br>
-              <div class="col-md-6 col-sm-offset-3">
-                <a href="etapa/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
-                  <i class="fa fa-plus"></i>
-                </button></a>
-                
-
+              <div class="row">
+                  <div class="col-md-6 col-sm-offset-3">
+                      <a href="pollo"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                        Area de Producto de Pollo<i class="fa fa-arrow-circle-right"></i>
+                      </button></a>
+                  </div>
               </div>
+              
+              <br>
+              <div class="row">
+                  <div class="col-md-6 col-sm-offset-3">
+                      <a href="huevo"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                        Area de Producto de Huevo<i class="fa fa-arrow-circle-right"></i>
+                      </button></a>
+                  </div>
+              </div>
+              
             </div>
           </div>
         @endif

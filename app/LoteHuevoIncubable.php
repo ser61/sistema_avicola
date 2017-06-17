@@ -13,6 +13,7 @@ class LoteHuevoIncubable extends Model
     protected $fillable = [
 
     	'cantidad',
+        'tipoLote',
     	'idPlantaIncubacion',
     	'idEmpresa',
     	'visible'

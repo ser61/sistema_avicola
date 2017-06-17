@@ -17,35 +17,35 @@
         <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
-          <h3 align="center">Panel de control de <span class="text-bold">Categoria</span></h3>
+          <h3 align="center">Panel de control de <span class="text-bold">Categoria de Huevo</span></h3>
           @include('alertas.request')
           {!! Form::open(array('url'=>'venta/categoria','method'=>'POST','autocomplete'=>'off'))!!}
 				{{Form::token()}}			
 				<div class="form-group">
-					<label for="nombre">Nombre</label>
+					<label for="nombre">Nombre de la Categoria</label>
 					<input type="text" name="nombre" class="form-control" >
 				</div>
 
 				<div class="form-group">
-					<label for="descripcion">Descripcion</label>
+					<label for="descripcion">Descripcion de la Categoria</label>
 					<input type="text" name="descripcion" class="form-control" >
 				</div>
 
 				<div class="form-group">
-					<label for="pesoIntervaloSuperior">Peso Intervalo Superior</label>
-					<input type="text" name="pesoIntervaloSuperior" class="form-control">
+					<label for="pesoIntervaloSuperior">Peso Intervalo Superior del Huevo</label>
+					<input type="number" step="any" name="pesoIntervaloSuperior" class="form-control">
 				</div>
 
 				<div class="form-group">
-					<label for="pesoIntervaloInferior">Peso Intervalo Inferior</label>
-					<input type="text" name="pesoIntervaloInferior" class="form-control" >
+					<label for="pesoIntervaloInferior">Peso Intervalo Inferior del Huevo</label>
+					<input type="number" step="any" name="pesoIntervaloInferior" class="form-control" >
 				</div>
 
 				<div class="form-group">
 		            <div class="col-sm-8 col-sm-offset-2">
 		              <br>
 		              <button class="btn btn-primary btn-block">
-		                Registrar Categoria <i class="fa fa-arrow-circle-right"></i>
+		                Registrar Categoria de Huevo <i class="fa fa-arrow-circle-right"></i>
 		              </button>
 		              <br>
 		            </div>

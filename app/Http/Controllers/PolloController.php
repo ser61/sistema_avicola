@@ -9,6 +9,7 @@ use sisAvicola\Http\Requests;
 use sisAvicola\ProductoVenta;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;//
+use Illuminate\Support\Facades\Auth;
 
 class PolloController extends Controller
 {
@@ -29,7 +30,14 @@ class PolloController extends Controller
         ->where('producto_venta.tipo','=','pollo')
         ->orderby('producto_venta.id','asc')
         ->paginate(7);
-      return view('venta.pollo.index',["productoVenta"=>$productoVenta,"searchText"=>$query]);
+      $cantidad = DB::table('producto_venta')
+        ->where('visible','=','1')
+        ->where('tipo','=','pollo')
+        ->paginate(7);
+      $cant_t = DB::table('tipo')
+        ->where('visible', '=', '1')
+        ->paginate(7);
+      return view('venta.pollo.index',["cant_t"=>$cant_t,"cantidad"=>$cantidad,"productoVenta"=>$productoVenta,"searchText"=>$query]);
     }
   }
 
@@ -53,26 +61,33 @@ class PolloController extends Controller
    */
   public function store(Request $request)
   {
-    $productoVenta = new ProductoVenta;
-    $productoVenta->nombre=$request->get('nombre');
-    if (Input::hasFile('imagen')) {
-      $file = Input::file('imagen');
-      $file -> move(public_path().'/imagenes/productos/', $file->getClientOriginalName());
-      $productoVenta -> imagen = $file->getClientOriginalName();
-    }
-    $productoVenta->stock=$request->get('stock');
-    $productoVenta->precioUnitario=$request->get('precioUnitario');
-    $productoVenta->edad=$request->get('edad');
-    $productoVenta->sexo=$request->get('sexo');
-    $productoVenta->pesoPromedio=$request->get('pesoPromedio');
-    $productoVenta->productividad=$request->get('productividad');
-    $productoVenta->caracteristicas=$request->get('caracteristicas');
-    $productoVenta->idTipo=$request->get('idTipo');
-    $productoVenta->idEmpresa='123456';
-    $productoVenta->tipo='pollo';
-    $productoVenta->visible='1';
-    $productoVenta->save();
-    return  Redirect::to('venta/pollo');
+        $pollos=DB::table('producto_venta')
+        ->where('idTipo','=',$request->get('idTipo'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($pollos)>0){
+         return redirect('venta/pollo')->with('msj','Ya existe El tipo de Pollo: "'.$request->get('idTipo').'" Intente crear otra.');
+        }
+
+        $productoVenta = new ProductoVenta;
+        $productoVenta->nombre=$request->get('nombre');
+        if (Input::hasFile('imagen')) {
+          $file = Input::file('imagen');
+          $file -> move(public_path().'/imagenes/productos/', $file->getClientOriginalName());
+          $productoVenta -> imagen = $file->getClientOriginalName();
+        }
+        $productoVenta->stock=$request->get('stock');
+        $productoVenta->precioUnitario=$request->get('precioUnitario');
+        $productoVenta->edad=$request->get('edad');
+        $productoVenta->sexo=$request->get('sexo');
+        $productoVenta->pesoPromedio=$request->get('pesoPromedio');
+        $productoVenta->caracteristicas=$request->get('caracteristicas');
+        $productoVenta->idTipo=$request->get('idTipo');
+        $productoVenta->idEmpresa= Auth::user()->idEmpresa;
+        $productoVenta->tipo='pollo';
+        $productoVenta->visible='1';
+        $productoVenta->save();
+        return redirect('venta/pollo')->with('msj','El Pollo :"'.$request['nombre'].'" se creo exitósamente.');
   }
 
   /**
@@ -123,9 +138,8 @@ class PolloController extends Controller
     $productoVenta->pesoPromedio=$request->get('pesoPromedio');
     $productoVenta->productividad=$request->get('productividad');
     $productoVenta->caracteristicas=$request->get('caracteristicas');
-    $productoVenta->idTipo=$request->get('idTipo');
     $productoVenta->update();
-    return  Redirect::to('venta/pollo');
+    return redirect('venta/pollo')->with('msj','El Pollo: '.$productoVenta->nombre.' se edito exitosamente.');
   }
 
   /**

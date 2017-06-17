@@ -9,6 +9,7 @@ use sisAvicola\Http\Requests;
 use sisAvicola\ProductoVenta;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class HuevoController extends Controller
 {
@@ -29,7 +30,14 @@ class HuevoController extends Controller
         ->where('producto_venta.tipo','=','huevo')
         ->orderby('producto_venta.id','asc')
         ->paginate(7);
-      return view('venta.huevo.index',["productoVenta"=>$productoVenta,"searchText"=>$query]);
+      $cantidad = DB::table('producto_venta')
+        ->where('producto_venta.visible','=','1')
+        ->where('producto_venta.tipo','=','huevo')
+        ->paginate(7);
+      $cant_c = DB::table('categoria')
+        ->where('visible','=','1')
+        ->paginate(7);
+      return view('venta.huevo.index',["cant_c"=>$cant_c,"cantidad"=>$cantidad,"productoVenta"=>$productoVenta,"searchText"=>$query]);
     }
   }
 
@@ -63,11 +71,11 @@ class HuevoController extends Controller
     $productoVenta->stock=$request->get('stock');
     $productoVenta->precioUnitario=$request->get('precioUnitario');
     $productoVenta->idCategoria=$request->get('idCategoria');
-    $productoVenta->idEmpresa='123456';
+    $productoVenta->Auth::user()->idEmpresa;
     $productoVenta->tipo='huevo';
     $productoVenta->visible='1';
     $productoVenta->save();
-    return  Redirect::to('venta/huevo');
+    return redirect('venta/huevo')->with('msj','El huevo :"'.$request['nombre'].'" se creo exitósamente.');
   }
 
   /**

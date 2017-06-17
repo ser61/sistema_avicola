@@ -18,10 +18,11 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de <span class="text-bold">Lista Tipos Pollos</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(5 > 0)
+        @if(count($cantidad) > 0)
         @include('venta.tipo.search')
           <!-- CUADRO DE BUSQUEDA -->
         
@@ -44,7 +45,7 @@
 						<td>{{ $ti->id }}</td>
 						<td>{{ $ti->nombre }}</td>
 						<td>
-							<a href="{{URL::action('TipoController@edit',$ti->id)}}" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+							<a href="" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                  			<a href="" data-target="#modal-delete-{{$ti->id}}" data-toggle="modal" class="btn btn-danger" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i></a>
 						</td>
 					</tr>
@@ -57,14 +58,14 @@
         @else
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ninguna Etapa de Parvada...</b></h3>
+              <h3 align="center"><b>Aun no tiene ningun Tipo de Pollo...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Etapas, para agregar una nueva Etapa, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Tipos de Pollo, para agregar un nuevo Tipo de Pollo, haga click en icono de mas.</p>
               <br>
               <div class="col-md-6 col-sm-offset-3">
-                <a href="etapa/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                <a href="tipo/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button></a>
                 

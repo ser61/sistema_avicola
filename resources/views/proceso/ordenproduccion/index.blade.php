@@ -58,6 +58,7 @@
             </tbody>
           </table>
         </div>
+        {{$ordenes->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

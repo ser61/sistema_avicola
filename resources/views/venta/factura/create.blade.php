@@ -20,6 +20,7 @@
           <h3 align="center">Panel de control de  <span class="text-bold">Venta de Factura</span></h3>
 
           <div class="panel-body">
+          @include('alertas.request')
           {!!Form::open(array('url'=>'venta/factura','method'=>'POST','autocomplete'=>'off'))!!}
             {{Form::token()}}
 			    <div class="row">
@@ -42,7 +43,7 @@
 
 			    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			    		<div class="form-group">
-			    			<label>Cliente</label>
+			    			<label>Cliente a Realizar Factura</label>
 			    			<select name="idCliente" class="form-control">
 			    				@foreach ($cliente as $cli)
 			    				   <option value="{{$cli -> id}}">{{$cli -> nombre}}</option>	 
@@ -53,7 +54,7 @@
 
 			    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			    		<div class="form-group">
-			    			<label>Empleado</label>
+			    			<label>Empleado a Cargo</label>
 			    			<select name="idEmpleado" class="form-control">
 			    				@foreach ($empleado as $emp)
 			    				   <option value="{{$emp -> id}}">{{$emp -> nombre}}</option>	 
@@ -65,7 +66,7 @@
 
 			        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			            <div class="form-group">
-			                <label>Monto Total</label>
+			                <label>Monto Total de la Factura</label>
 			                <input readonly id="montoTotal" type="text" name="montoTotal" class="form-control">
 			            </div>
 			        </div>
@@ -75,13 +76,14 @@
 			    <div class="container">
 			    <div class="row">
 			        <div class="panel panel-info">
-			        <div class="panel-heading">Detalle</div>
+			        <div class="panel-heading">Detalle de la Factura</div>
 			            <div class="panel-body">
 
 			                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			                    <div class="form-group">
-			                        <label>Productos</label>
+			                        <label>Productos en Venta</label>
 			                        <select name="pidProd" class="form-control" id="pidProd"  data-size="6">
+			                            <option></option>
 			                            @foreach($producto as $pro)
 			                            <option value="{{$pro -> id}}_{{$pro -> precioUnitario}}">{{$pro -> nombre}}</option>
 			                            @endforeach
@@ -92,13 +94,13 @@
 
 			                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			                    <div class="form-group">
-			                        <label for="cant">Cantidad</label>
-			                        <input type="text" name="pcant" id="pcant" class="form-control">    
+			                        <label for="cant">Cantidad del Producto</label>
+			                        <input type="number" name="pcant" id="pcant" class="form-control">    
 			                    </div>
 			                </div>
 			                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			                    <div class="form-group">
-			                        <label for="precio">Precio</label>
+			                        <label for="precio">Precio del Producto</label>
 			                        <input readonly type="text" name="pprecio" id="pprecio" class="form-control">
 			                    </div>
 			                </div>
@@ -134,12 +136,15 @@
 			            </div> 
 			        </div>
 
-			        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
-			           <div class="form-group">
-			                <button class="btn btn-primary" type="submit">Guardar</button>
-			                <button class="btn btn-danger" type="reset">Cancelar</button>
-			            </div> 
-			        </div>
+			        <div class="col-sm-8 col-sm-offset-2" id="guardar">
+				          <div class="form-group">
+				            
+				              <button class="btn btn-primary btn-block" type="submit">
+				                Registrar Factura <i class="fa fa-arrow-circle-right"></i>
+				              </button>
+				             
+				            </div>
+				    </div>
 			            
 			    </div>
         		</div>
@@ -211,14 +216,17 @@ function comenzar(){
         pprecio = $("#pprecio").val();
         subtotal[cont] = (cant * pprecio);
         total_precio = total_precio + subtotal[cont];
-      
-        var fila = '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type = "hidden" name = "pidProd1[]" value = "'+pidProd1+'" >'+nombre+'</td><td><input  type = "hidden" name = "cant[]" value = "'+cant+'" > '+cant+' </td><td><input  type = "hidden" name = "pprecio[]" value = "'+pprecio+'" >'+pprecio+'</td><td><input  type = "hidden" name = "subtotal[]" value = "'+subtotal[cont]+'" >'+subtotal[cont]+'</td></tr>';
-        cont++;
-   
-   		$("#total_precio").html("Bs. " + total_precio);
-        $('#carrito').append(fila);
-        $("#montoTotal").val(total_precio);
-
+      	if(cant!=""){
+	        var fila = '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type = "hidden" name = "pidProd1[]" value = "'+pidProd1+'" >'+nombre+'</td><td><input  type = "hidden" name = "cant[]" value = "'+cant+'" > '+cant+' </td><td><input  type = "hidden" name = "pprecio[]" value = "'+pprecio+'" >'+pprecio+'</td><td><input  type = "hidden" name = "subtotal[]" value = "'+subtotal[cont]+'" >'+subtotal[cont]+'</td></tr>';
+	        cont++;
+	   
+	   		$("#total_precio").html("Bs. " + total_precio);
+	        $('#carrito').append(fila);
+	        $("#montoTotal").val(total_precio);
+    	}
+    	else{
+    		alert("Error al ingresar el detalle ");
+    	}
         
     }
 

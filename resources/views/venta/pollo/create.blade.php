@@ -22,59 +22,94 @@
           {!! Form::open(array('url'=>'venta/pollo','method'=>'POST','autocomplete'=>'off', 'files'=>'true'))!!}
 				{{Form::token()}}			
 				
-				<div class="form-group">
-					<label for="nombre">Nombre</label>
-					<input type="text" name="nombre" class="form-control" >
-				</div>
-
-				<div class="form-group">
-					<label for="stock">Stock</label>
-					<input type="text" name="stock" class="form-control">
-				</div>
-
-        		<div class="form-group">
-	            	<label for="imagen">Imagen</label>
-	            	<input type="file" name="imagen" class="form-control">
-       			 </div>
-
-				<div class="form-group">
-					<label for="precioUnitario">Precio Unitario</label>
-					<input type="text" name="precioUnitario" class="form-control" >
-				</div>
-
-        		<div class="form-group">
-	            	<label for="edad">Edad</label>
-	            	<input type="text" name="edad" class="form-control">
-       			</div>
+				<div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		            <div class="form-group">
+						<label for="nombre">Nombre del Producto de Venta (Pollo)</label>
+						<input type="text" name="nombre" class="form-control" >
+					</div>
+		          </div>  
+		        </div>
+				
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	<div class="form-group">
+						<label for="stock">Stock del Producto Pollo</label>
+						<input type="number" name="stock" class="form-control">
+					</div>    
+		          </div>  
+		        </div>
+				
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	 <div class="form-group">
+		            	<label for="imagen">Imagen del Producto Pollo</label>
+		            	<input type="file" name="imagen" class="form-control">
+	       			 </div>  
+		          </div>  
+		        </div>
         		
-        		<div class="form-group">
-	            	<label for="sexo">Sexo</label>
-	            	<input type="text" name="sexo" class="form-control">
-       			</div>
-
-        		<div class="form-group">
-	            	<label for="pesoPromedio">Peso Promedio</label>
-	            	<input type="text" name="pesoPromedio" class="form-control">
-       			</div>
-
-       			<div class="form-group">
-	            	<label for="productividad">Productividad</label>
-	            	<input type="text" name="productividad" class="form-control">
-       			</div>
-
-       			<div class="form-group">
-	            	<label for="caracteristicas">Caracteristicas</label>
-	            	<input type="text" name="caracteristicas" class="form-control">
-       			</div>
-
-				<div class="form-group">
-	    			<label>Tipo de Pollo</label>
-	    			<select name="idTipo" class="form-control">
-	    				@foreach ($tipo as $tip)
-	    				   <option value="{{$tip -> id}}">{{$tip -> nombre}}</option>	 
-	    				@endforeach
-	    			</select>
-    			</div>
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	 <div class="form-group">
+						<label for="precioUnitario">Precio Unitario  del Producto (Bs)</label>
+						<input type="number" step="any" name="precioUnitario" class="form-control" >
+					</div>  
+		          </div>  
+		        </div>
+				
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	 <div class="form-group">
+		            	<label for="edad">Edad Aprox. del Pollo (Dias)</label>
+		            	<input type="number" name="edad" class="form-control">
+	       			</div>  
+		          </div>  
+		        </div>
+        		
+        		<div class="row">
+				    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+				      <div class="form-group">
+				        <label for="sexo">Sexo</label>
+				                 <select name="sexo" id="sexo" class="form-control selectpicker">
+				                      <option value="Machos">Machos</option>
+				                      <option value="Hembras">Hembras</option>
+				          </select>
+				      </div>
+				    </div>  
+				</div>
+        		
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	<div class="form-group">
+		            	<label for="pesoPromedio">Peso Promedio (Kg)</label>
+		            	<input type="number" step="any" name="pesoPromedio" class="form-control">
+	       			</div>  
+		          </div>  
+		        </div>
+        		
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	<div class="form-group">
+		            	<label for="caracteristicas">Caracteristicas del Producto</label>
+		            	<input type="text" name="caracteristicas" class="form-control">
+	       			</div>  
+		          </div>  
+		        </div>
+       			
+		        <div class="row">
+		          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+		        	<div class="form-group">
+		    			<label>Tipo de Pollo del Producto</label>
+		    			<select name="idTipo" class="form-control">
+		    				@foreach ($tipo as $tip)
+		    				   <option value="{{$tip -> id}}">{{$tip -> nombre}}</option>	 
+		    				@endforeach
+		    			</select>
+	    			</div>   
+		          </div>  
+		        </div>
+				
 
 				  <div class="form-group">
 		            <div class="col-sm-8 col-sm-offset-2">

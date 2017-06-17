@@ -203,14 +203,15 @@
                   <span class="title">Reportes de Venta</span>
                 </a>
               </li>
+              
               <li>
-                <a href="{{asset('venta/huevo')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Huevo</span>
+                <a href="{{asset('venta/tipo')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Tipos de Pollo</span>
                 </a>
               </li>
               <li>
                 <a href="{{asset('venta/pollo')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Pollo</span>
+                  <span class="title">Producto Pollo</span>
                 </a>
               </li>
               <li>
@@ -219,8 +220,8 @@
                 </a>
               </li>
               <li>
-                <a href="{{asset('venta/tipo')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Tipo de Pollo</span>
+                <a href="{{asset('venta/huevo')}}"><i class="fa fa-circle-o"></i>
+                  <span class="title">Producto Huevo</span>
                 </a>
               </li>
               <li>

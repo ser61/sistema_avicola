@@ -8,6 +8,7 @@ use sisAvicola\Http\Requests\CategoriaFormRequest;
 use sisAvicola\Categoria;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -17,10 +18,12 @@ class CategoriaController extends Controller
       $query=trim($request->get('searchText'));
       $categoria=DB::table('categoria')->where('nombre','LIKE','%'.$query.'%')
         ->where ('visible','=','1')
-        ->where ('idEmpresa','=','123456')
         ->orderBy('id','asc')
         ->paginate(7);
-      return view('venta.categoria.index',["categoria"=>$categoria,"searchText"=>$query]);
+      $cantidad=DB::table('categoria')
+        ->where ('visible','=','1')
+        ->paginate(7);
+      return view('venta.categoria.index',["cantidad"=>$cantidad,"categoria"=>$categoria,"searchText"=>$query]);
     }
   }
 
@@ -34,10 +37,10 @@ class CategoriaController extends Controller
     $categoria -> descripcion = $request->get('descripcion');
     $categoria -> pesoIntervaloSuperior = $request->get('pesoIntervaloSuperior');
     $categoria -> pesoIntervaloInferior = $request->get('pesoIntervaloInferior');
-    $categoria -> idEmpresa = '123456';
+    $categoria -> idEmpresa = Auth::user()->idEmpresa;
     $categoria -> visible = '1';
     $categoria -> save();
-    return Redirect::to('venta/categoria');
+    return redirect('venta/categoria')->with('msj','La Categoria :"'.$request['nombre'].'" se creo exitósamente.');
   }
 
   public function edit($id) {

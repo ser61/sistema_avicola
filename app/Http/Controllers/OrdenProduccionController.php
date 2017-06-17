@@ -10,6 +10,7 @@ use sisAvicola\OrdenProduccion;
 use sisAvicola\DetalleOrden;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Models\seguridad\Accion;
 
 class OrdenProduccionController extends Controller
 {
@@ -20,6 +21,7 @@ class OrdenProduccionController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Lote de Orden de Produccion', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
             $ordenes=DB::table('orden_produccion')
@@ -82,6 +84,7 @@ class OrdenProduccionController extends Controller
                 $cont=$cont+1;
             }               
             DB::commit();
+            Accion::_crearAccionOnTable('Creo una nueva orden de Produccion', 'orden Produccion', $ordenproduccion->id, Auth::user()->id, Auth::user()->idEmpresa);
 
         }catch(\Exception $e)
         {

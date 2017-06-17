@@ -69,15 +69,7 @@
 			</div>
 		</div>	
 	</div>
-	<div class="row">
-		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
-			<div class="form-group">
-				<label for="productividad">Productividad</label>
-				<input type="number" name="productividad"  class="form-control" placeholder="Productividad...">
-
-			</div>
-		</div>	
-	</div>
+	
 	<div class="row">
 		<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
 			<div class="form-group">

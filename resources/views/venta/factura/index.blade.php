@@ -18,10 +18,11 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de  <span class="text-bold">Factura de Ventas</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
-        @if(5 > 0)
+        @if(count($cantidad) > 0)
         @include('venta.factura.search')
           <!-- CUADRO DE BUSQUEDA -->
         
@@ -68,16 +69,74 @@
         {{$factura->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
+          @if(count($cant_c)==0)
+            <div class="box">
+              <div class="box-header">
+                <h3 align="center"><b>Aun no tiene ningun Cliente Registrado...</b></h3>
+              </div>
+              <div class="box-body">
+                <br>
+                <p align="center">Para agregar un nuevo Cliente, Dirijase a la Area de Cliente.</p>
+                <br>
+                <div class="col-md-6 col-sm-offset-3">
+                  <a href="cliente"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                    Area de Clientes<i class="fa fa-arrow-circle-right"></i>
+                  </button></a>
+                  
+
+                </div>
+              </div>
+            </div>
+          @endif
+          @if(count($cant_p)==0)
+            <div class="box">
+              <div class="box-header">
+                <h3 align="center"><b>Aun no tiene ningun Producto de Venta Registrado...</b></h3>
+              </div>
+              <div class="box-body">
+                <br>
+                <p align="center">Para agregar un nuevo Producto, Dirijase a la Area de Producto de Venta.</p>
+                <br>
+                <div class="col-md-6 col-sm-offset-3">
+                  <a href="pollo"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                    Area de Producto de Venta<i class="fa fa-arrow-circle-right"></i>
+                  </button></a>
+                  
+
+                </div>
+              </div>
+            </div>
+          @endif
+          @if(count($cant_e)==0)
+            <div class="box">
+              <div class="box-header">
+                <h3 align="center"><b>Aun no tiene ningun Empleado Registrado...</b></h3>
+              </div>
+              <div class="box-body">
+                <br>
+                <p align="center">Para agregar un nuevo Empleado, Dirijase a la Area de Empleados.</p>
+                <br>
+                <div class="col-md-6 col-sm-offset-3">
+                  <a href="{{url('emplea')}}"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                    Area de Empleado<i class="fa fa-arrow-circle-right"></i>
+                  </button></a>
+                  
+
+                </div>
+              </div>
+            </div>
+          @endif
+          @if(count($cant_c)>0 and count($cant_e)>0 and count($cant_p)>0 )
           <div class="box">
             <div class="box-header">
-              <h3 align="center"><b>Aun no tiene ningun Orden de Produccion...</b></h3>
+              <h3 align="center"><b>Aun no tiene ninguna Factura Realizada...</b></h3>
             </div>
             <div class="box-body">
               <br>
-              <p align="center">Bienvenido a la seccion de Orden de Produccion, para agregar una nueva Orden, haga click en icono de mas.</p>
+              <p align="center">Bienvenido a la seccion de Facturas, para agregar una nueva Factura, haga click en icono de mas.</p>
               <br>
               <div class="col-md-6 col-sm-offset-3">
-                <a href="ordenproduccion/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
+                <a href="factura/create"><button type="button" class="btn btn-danger btn-block" data-backdrop=”false”>
                   <i class="fa fa-plus"></i>
                 </button></a>
                 
@@ -85,6 +144,7 @@
               </div>
             </div>
           </div>
+          @endif
         @endif
       </div>
       </div>

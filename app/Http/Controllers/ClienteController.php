@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use sisAvicola\Http\Requests\ClienteFormRequest;
 use sisAvicola\Persona;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -20,10 +21,14 @@ class ClienteController extends Controller
       $query = trim($request->get('searchText'));
       $persona = DB::table('persona')
         ->where('persona.nombre','LIKE','%'.$query.'%')
-        ->where('persona.tipo', '=', 'cliente')
+        ->where('persona.tipo', '=', 'c')
         ->where('persona.visible','=','1')
         ->paginate(7);
-      return view('venta.cliente.index',["persona"=>$persona,"searchText"=>$query]);
+      $cantidad = DB::table('persona')
+        ->where('persona.tipo', '=', 'c')
+        ->where('persona.visible','=','1')
+        ->paginate(7);
+      return view('venta.cliente.index',["cantidad"=>$cantidad,"persona"=>$persona,"searchText"=>$query]);
     }
   }
 
@@ -50,12 +55,12 @@ class ClienteController extends Controller
     $persona -> nombre = $request -> get('nombre');
     $persona -> apellido = $request -> get('apellido');
     $persona -> direccion = $request -> get('direccion');
-    $persona -> idEmpresa = '123456';
-    $persona -> tipo = 'cliente';
+    $persona -> idEmpresa = Auth::user()->idEmpresa;
+    $persona -> tipo = 'c';
     $persona -> visible = '1';
     $persona -> save();
 
-    return redirect('venta/cliente');
+    return redirect('venta/cliente')->with('msj','El Cliente :"'.$request['nombre'].'" se creo exitósamente.');
   }
 
   /**
@@ -95,7 +100,7 @@ class ClienteController extends Controller
     $persona -> apellido = $request -> get('apellido');
     $persona -> direccion = $request -> get('direccion');
     $persona -> update();
-    return redirect('venta/cliente');
+    return redirect('venta/cliente')->with('msj','El Cliente: '.$persona->nombre.' se edito exitosamente.');
   }
 
   /**

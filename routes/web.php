@@ -66,13 +66,13 @@ Route::resource('proceso/etapaincubacion','EtapaIncubacionController');
 Route::resource('proceso/lotehuevoincubable','LoteHuevoIncubableController');
 Route::resource('proceso/traspasolotehuevo','TraspasoLoteHuevoController');
 Route::get('venta/factura/reporte',function(){
-	$facturas=DB::table('factura')->get();
+	$facturas=DB::table('factura')
+            ->select('factura.*', 'p.nombre as nombreC')
+            ->join('persona as p', 'p.id', '=', 'factura.idEmpleado')->get();
 	$pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);
 	return $pdf->download('ReporteFacturas.pdf');
 });
-
-
-
+Route::resource('emplea','Seguridad\EmpleadoController@index');
 
 
 

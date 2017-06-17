@@ -22,22 +22,22 @@
           {!! Form::open(array('url'=>'venta/cliente','method'=>'POST','autocomplete'=>'off'))!!}
 				{{Form::token()}}			
 				<div class="form-group">
-					<label for="ci">Carnet de Identidad</label>
+					<label for="ci">Carnet de Identidad del Cliente</label>
 					<input type="text" name="ci" class="form-control" >
 				</div>
 
 				<div class="form-group">
-					<label for="nombre">Nombres</label>
+					<label for="nombre">Nombres del Cliente</label>
 					<input type="text" name="nombre" class="form-control" >
 				</div>
 
 				<div class="form-group">
-					<label for="apellido">Apellidos</label>
+					<label for="apellido">Apellidos del Cliente</label>
 					<input type="text" name="apellido" class="form-control">
 				</div>
 
 				<div class="form-group">
-					<label for="direccion">Direccion</label>
+					<label for="direccion">Direccion del Cliente</label>
 					<input type="text" name="direccion" class="form-control" >
 				</div>
 

@@ -27,7 +27,20 @@ class FacturaController extends Controller
     if($request){
       $factura = Factura::_getAllFactura($request['searchText'])->paginate(7);
       $searchText = $request['searchText'];
-      return view('venta.factura.index',["factura"=>$factura,"searchText"=>$searchText]);
+      $cantidad=DB::table('factura')
+            ->paginate(7);
+      $cant_c = DB::table('persona')
+        ->where('persona.tipo', '=', 'c')
+        ->where('persona.visible','=','1')
+        ->paginate(7);
+      $cant_e = DB::table('persona')
+        ->where('persona.tipo', '=', 'e')
+        ->where('persona.visible','=','1')
+        ->paginate(7);
+      $cant_p = DB::table('producto_venta')
+        ->where('visible','=','1')
+        ->paginate(7);
+      return view('venta.factura.index',["cant_p"=>$cant_p,"cant_c"=>$cant_c,"cant_e"=>$cant_e,"cantidad"=>$cantidad,"factura"=>$factura,"searchText"=>$searchText]);
     }
   }
 
@@ -41,10 +54,10 @@ class FacturaController extends Controller
     Accion::_crearAccion('Ingreso a la pagina de Crear Factura', Auth::user()->id, Auth::user()->idEmpresa);
     $cliente = DB::table('persona')
       ->where('visible','=','1')
-      ->where('tipo','=','cliente') -> get();
+      ->where('tipo','=','c') -> get();
     $empleado = DB::table('persona')
       ->where('visible','=','1')
-      ->where('tipo','=','empleado') -> get();
+      ->where('tipo','=','e') -> get();
     $producto = DB::table('producto_venta')
       ->where('visible','=','1')
       ->orderBy('tipo','asc') -> get();
@@ -98,7 +111,7 @@ class FacturaController extends Controller
     } catch (Exception $e){
       DB::rollabck();
     }
-    return  Redirect::to('venta/factura');
+    return redirect('venta/factura')->with('msj','La Factura :"'.$factura->id.'" se creo exitósamente.');
   }
 
   /**
@@ -155,6 +168,10 @@ class FacturaController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function destroy($id)
+  {
+    //
+  }
+  public function diri()
   {
     //
   }

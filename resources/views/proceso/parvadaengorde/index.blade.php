@@ -40,9 +40,8 @@
               <th class="center">Edad</th>
               <th class="center">Peso Prom.</th>
               <th class="center">Caracteristicas</th>
-              <th class="center">Productividad</th>
               <th class="center">Tipo</th>
-              <th class="center">Mortalidad</th>
+              <th class="center">Mortalidad T.</th>
               <th class="center">Estado</th>
               <th>Opciones</th>
             </tr>
@@ -56,7 +55,6 @@
                 <td class="center">{{$par->edad}}</td>
                 <td class="center">{{$par->pesoPromedio}}</td>
                 <td class="center">{{$par->caracteristicas}}</td>
-                <td class="center">{{$par->productividad}}</td>
                 <td class="center">{{$par->tipo}}</td>
                 <td class="center">{{$par->mortalidad}}</td>
                 <td class="center"><span class="text-bold">{{$par->visible}}</span></td>

@@ -9,10 +9,13 @@ use sisAvicola\Http\Requests\LoteHuevoIncubableFormRequest;
 use sisAvicola\Http\Requests\TraspasoLoteHuevoFormRequest;
 use sisAvicola\TraspasoLoteHuevo;
 use DB;
+use sisAvicola\TraspasoParvada;
 use sisAvicola\LoteHuevoIncubable;
 use sisAvicola\Infraestructura;
 use Carbon\Carbon;
+use sisAvicola\Parvada;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Models\seguridad\Accion;
 
 class LoteHuevoIncubableController extends Controller
 {
@@ -23,6 +26,7 @@ class LoteHuevoIncubableController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Lote de Huevo incubables', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
             $lotes=DB::table('lote_huevo_incubable')
@@ -64,6 +68,7 @@ class LoteHuevoIncubableController extends Controller
         $lote=new LoteHuevoIncubable;
         $planta=Infraestructura::findOrFail($request->get('idplantaincubacion'));
         $lote->cantidad=$planta->cantidadHuevosAlmacenados;
+        $lote->tipoLote=$request->get('tipolote');
         $lote->idPlantaIncubacion=$request->get('idplantaincubacion');
         $lote->visible='Activo';
         $lote->idEmpresa=Auth::user()->idEmpresa;
@@ -80,8 +85,8 @@ class LoteHuevoIncubableController extends Controller
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
-
-        return Redirect::to('proceso/lotehuevoincubable');
+        Accion::_crearAccionOnTable('Creo un nuevo lote de huevo', 'lote huevo', $lote->id, Auth::user()->id, Auth::user()->idEmpresa);
+        return redirect('proceso/lotehuevoincubable')->with('msj','El Lote :"'.$lote->id.'" se creo exitósamente.');
     }
 
     /**
@@ -127,9 +132,47 @@ class LoteHuevoIncubableController extends Controller
     public function destroy($id)
     {
         $lote=LoteHuevoIncubable::findOrFail($id);
+        if($lote->visible=='Inactivo'){
+            return redirect('proceso/lotehuevoincubable')->with('msj','Error al Finalizar El Lote :"'.$id.'", Este Lote ya Fue Finalizada Anteriormente.');            
+        }
+        $cant=DB::table('traspaso_huevo')
+        ->where('idLoteHuevoIncubable','=',$id)
+        ->where('visible','=','1')
+        ->get();
+        if(count($cant)==1){
+         return redirect('proceso/lotehuevoincubable')->with('msj','Error al Finalizar El Lote :"'.$id.'", Este Lote aun sigue en Etapa de Incubacion, Dirijase a Traspaso de Lote de Huevos');
+        }
+
         $lote->visible='Inactivo';
         $lote->update();
 
-        return Redirect::to('proceso/lotehuevoincubable');
+        $parvada=new Parvada;
+        $parvada->cantidadPollos=$lote->cantidad;
+        $parvada->sexo='Machos';
+        $parvada->edad=5;
+        $parvada->pesoPromedio=5.5;
+        $parvada->caracteristicas='Proviniente de Nacedoras';
+        $parvada->productividad=0;
+        $parvada->tipo=$lote->tipoLote;
+        $parvada->mortalidad=0;
+        $parvada->visible='Activo';
+        $parvada->idEmpresa=Auth::user()->idEmpresa;
+        $parvada->save();
+
+        $traspaso=new TraspasoParvada;
+        $my_time = Carbon::now('America/La_Paz');
+        $traspaso->fecha = $my_time -> toDateTimeString();
+        $traspaso->cantidad=$lote->cantidad;
+        $traspaso->idParvada=$parvada->id;
+        $etapa=DB::table('etapa')
+        ->where('nombre','=','Etapa de Crianza')
+        ->select('id')
+        ->first();
+        $traspaso->idEtapa=$etapa->id;
+        $traspaso->visible='1';
+        $traspaso->idEmpresa=Auth::user()->idEmpresa;
+        $traspaso->save();
+
+        return redirect('proceso/lotehuevoincubable')->with('msj','El Lote :"'.$id.'" Fue Finalizada exitósamente.');
     }
 }

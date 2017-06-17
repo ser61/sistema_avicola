@@ -12,6 +12,8 @@ use DB;
 use sisAvicola\Parvada;
 use sisAvicola\ProductoVenta;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class ParvadaPonedoraController extends Controller
 {
@@ -64,7 +66,7 @@ class ParvadaPonedoraController extends Controller
         $parvada->edad=$request->get('edad');
         $parvada->pesoPromedio=$request->get('pesopromedio');
         $parvada->caracteristicas=$request->get('caracteristica');
-        $parvada->productividad=$request->get('productividad');
+        $parvada->productividad=0;
         $parvada->tipo='Ponedora';
         $parvada->mortalidad=0;
         $parvada->visible='Activo';
@@ -72,7 +74,8 @@ class ParvadaPonedoraController extends Controller
         $parvada->save();
 
         $traspaso=new TraspasoParvada;
-        $traspaso->fecha=date("j/ n/ Y");
+        $my_time = Carbon::now('America/La_Paz');
+        $traspaso->fecha = $my_time -> toDateTimeString();
         $traspaso->cantidad=$requestt->get('cantidadpollos');
         $traspaso->idGalpon=$requestt->get('idgalpon');
         $traspaso->idParvada=$parvada->id;
@@ -135,7 +138,28 @@ class ParvadaPonedoraController extends Controller
         if($parvada->visible=='Inactivo'){
             return redirect('proceso/parvadaponedora')->with('msj','Error al Finalizar La Parvada :"'.$id.'" Esta Parvada ya Fue Finalizada Anteriormente.');            
         }
-        $parvada->visible='Inactivo';
+        $cant=DB::table('traspaso_parvada')
+        ->where('idParvada','=',$id)
+        ->where('visible','=','1')
+        ->get();
+        if(count($cant)==1){
+         return redirect('proceso/parvadaponedora')->with('msj','Error al Finalizar La Parvada :"'.$id.'", Esta Parvada aun sigue en Etapa de Crianza, Dirijase a Traspaso de Parvada');
+        }
+        $tipos=DB::table('tipo')
+        ->where('nombre','=','Pollo Tipo Ponedora')
+        ->where('visible','=','1')
+        ->select('id')
+        ->first();
+        $productoVenta=DB::table('producto_venta')
+        ->where ('visible','=','1')
+        ->where('idTipo','=',$tipos->id)
+        ->select('id')
+        ->first();
+        $parvada->visible='Inactivo';        
+        $producto=ProductoVenta::findOrFail($productoVenta->id);
+        $c=$producto->stock;
+        $producto->stock=$c+($parvada->cantidadPollos-$parvada->mortalidad);
+        $producto->update();
         $parvada->update();
         
         return redirect('proceso/parvadaponedora')->with('msj','La Parvada :"'.$id.'" Fue Finalizada exitósamente.');

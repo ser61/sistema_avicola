@@ -49,6 +49,18 @@
 			</div>
 		</div>	
 	</div>
+  <div class="row">
+    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+      <div class="form-group">
+        <label for="tipolote">Tipo de Lote</label>
+                 <select name="tipolote" id="idparvada" class="form-control selectpicker">
+                      <option value="Engorde">Engorde</option>
+                      <option value="Ponedora">Ponedora</option>
+                      <option value="Reproductora">Reproductora</option>
+          </select>
+      </div>
+    </div>  
+  </div>
 	
           <div class="form-group">
             <div class="col-sm-8 col-sm-offset-2">

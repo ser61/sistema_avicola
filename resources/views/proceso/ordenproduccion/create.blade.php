@@ -151,19 +151,19 @@ function agregar()
 			alimento=$("#pidalimento option:selected").text();
 			peso=$("#ppeso").val();
 			
-		if (idalimento!="" && peso!="" && peso>0)
-		{
-		var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idalimento[]" value="'+idalimento+'">'+alimento+'</td><td><input type="number" name="peso[]" value="'+peso+'"></td></tr>';
-		cont++;
-		limpiar();
-		evaluar();
-		  $('#detalles').append(fila);
-		
-		}
-	else
-	{
-		alert("Error al ingresar el detalle ");
-	}
+			if (idalimento!="" && peso!="" && peso>0)
+			{
+			var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idalimento[]" value="'+idalimento+'">'+alimento+'</td><td><input type="number" name="peso[]" value="'+peso+'"></td></tr>';
+			cont++;
+			limpiar();
+			evaluar();
+			  $('#detalles').append(fila);
+			
+			}
+			else
+			{
+				alert("Error al ingresar el detalle ");
+			}
 		}
 function limpiar()
 			 {

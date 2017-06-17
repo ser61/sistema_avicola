@@ -11,6 +11,8 @@ use sisAvicola\TraspasoParvada;
 use sisAvicola\Parvada;
 use sisAvicola\Etapa;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use sisAvicola\Models\seguridad\Accion;
 
 class TraspasoParvadaController extends Controller
 {
@@ -21,13 +23,15 @@ class TraspasoParvadaController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Traspaso de Parvada', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
-            $traspasoparvadas=DB::table('traspaso_parvada')
-            ->where('id','LIKE','%'.$query.'%')
-            //->where('tipo','=','Engorde')
+            $traspasoparvadas=DB::table('traspaso_parvada as tp')
+            ->join('etapa as e','e.id','=','tp.idEtapa')
+            ->select('tp.id','tp.fecha','tp.cantidad','tp.idGalpon','tp.idParvada','tp.idEtapa','e.nombre')
+            ->where('tp.id','LIKE','%'.$query.'%')
             ->orderby('idParvada','asc')
-            ->paginate(7);
+            ->paginate(10);
             $cantidad=DB::table('traspaso_parvada')
             ->paginate(7);
             return view('proceso.traspasoparvada.index',["cantidad"=>$cantidad,"traspasoparvadas"=>$traspasoparvadas,"searchText"=>$query]);   
@@ -63,8 +67,6 @@ class TraspasoParvadaController extends Controller
      */
     public function store(TraspasoParvadaFormRequest $request)
     {
-        $traspaso=new TraspasoParvada;
-        $traspaso->fecha=date("j/ n/ Y");
 
         $cant=DB::table('traspaso_parvada')
         ->where('idParvada','=',$request->get('idparvada'))
@@ -73,9 +75,13 @@ class TraspasoParvadaController extends Controller
         if(count($cant)==2){
          return redirect('proceso/traspasoparvada')->with('msj','Error al Hacer Traspaso de La Parvada: "'.$request['idparvada'].'" Ya no se Puede Hacer mas Traspaso');
         }
+        
+        $traspaso=new TraspasoParvada;
+        $my_time = Carbon::now('America/La_Paz');
+        $traspaso->fecha = $my_time -> toDateTimeString();
 
         $parvada=Parvada::findOrFail($request->get('idparvada'));
-        $traspaso->cantidad=$parvada->cantidadPollos;
+        $traspaso->cantidad=($parvada->cantidadPollos-$parvada->mortalidad);
 
         $traspaso->idGalpon=$request->get('idgalpon');
         $traspaso->idParvada=$request->get('idparvada');
@@ -84,7 +90,9 @@ class TraspasoParvadaController extends Controller
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
-        return Redirect::to('proceso/traspasoparvada');
+        Accion::_crearAccionOnTable('Creo un nuevo Traspaso de Parvada', 'traspaso parvada', $traspaso->id, Auth::user()->id, Auth::user()->idEmpresa);
+
+        return redirect('proceso/traspasoparvada')->with('msj','El Traspaso :"'.$traspaso->id.'" se creo exitósamente.');
     }
 
     /**

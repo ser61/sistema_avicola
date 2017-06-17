@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use sisAvicola\ProductoVenta;
 use sisAvicola\Accion;
 use Carbon\Carbon;
+use sisAvicola\Models\seguridad\Accion;
 
 class ParvadaEngordeController extends Controller
 {
@@ -24,6 +25,7 @@ class ParvadaEngordeController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Parvada de Engorde', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
             $parvadas=DB::table('parvada')
@@ -66,7 +68,6 @@ class ParvadaEngordeController extends Controller
         $parvada->edad=$request->get('edad');
         $parvada->pesoPromedio=$request->get('pesopromedio');
         $parvada->caracteristicas=$request->get('caracteristica');
-        $parvada->productividad=$request->get('productividad');
         $parvada->tipo='Engorde';
         $parvada->mortalidad=0;
         $parvada->visible='Activo';
@@ -88,7 +89,7 @@ class ParvadaEngordeController extends Controller
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
-        
+        Accion::_crearAccionOnTable('Creo una nueva Parvada de Engorde', 'parvada', $parvada->id, Auth::user()->id, Auth::user()->idEmpresa);       
 
         return redirect('proceso/parvadaengorde')->with('msj','La Parvada :"'.$parvada->id.'" se creo exitósamente.');
     }
@@ -139,10 +140,27 @@ class ParvadaEngordeController extends Controller
         if($parvada->visible=='Inactivo'){
             return redirect('proceso/parvadaengorde')->with('msj','Error al Finalizar La Parvada :"'.$id.'" Esta Parvada ya Fue Finalizada Anteriormente.');            
         }
+        $cant=DB::table('traspaso_parvada')
+        ->where('idParvada','=',$id)
+        ->where('visible','=','1')
+        ->get();
+        if(count($cant)==1){
+         return redirect('proceso/parvadaengorde')->with('msj','Error al Finalizar La Parvada :"'.$id.'", Esta Parvada aun sigue en Etapa de Crianza, Dirijase a Traspaso de Parvada');
+        }
+        $tipos=DB::table('tipo')
+        ->where('nombre','=','Pollo Tipo Engorde')
+        ->where('visible','=','1')
+        ->select('id')
+        ->first();
+        $productoVenta=DB::table('producto_venta')
+        ->where ('visible','=','1')
+        ->where('idTipo','=',$tipos->id)
+        ->select('id')
+        ->first();
         $parvada->visible='Inactivo';        
-        $producto=ProductoVenta::findOrFail(7);
+        $producto=ProductoVenta::findOrFail($productoVenta->id);
         $c=$producto->stock;
-        $producto->stock=$c+$parvada->cantidadPollos;
+        $producto->stock=$c+($parvada->cantidadPollos-$parvada->mortalidad);
         $producto->update();
         $parvada->update();
 

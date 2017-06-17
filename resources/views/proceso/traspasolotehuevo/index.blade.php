@@ -18,6 +18,7 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de <span class="text-bold">Traspaso de Lote de Huevos</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
@@ -34,11 +35,11 @@
             <thead>
             <tr>
               <th class="center">id</th>
-              <th class="center">id Lote Huevo</th>
-              <th class="center">id Etapa</th>
-              <th class="center">Fecha</th>
-              <th class="center">Cantidad</th>
-              <th class="center">Id Equipo</th>
+              <th class="center">Lote Huevo</th>
+              <th class="center">Etapa de Traspaso</th>
+              <th class="center">Fecha de Traspaso</th>
+              <th class="center">Cant. Entrante al Traspaso</th>
+              <th class="center">Equipo Alojado</th>
             </tr>
             </thead>
             <tbody>
@@ -46,7 +47,7 @@
               <tr>
                 <td class="center">{{$lot->id}}</td>
                 <td class="center">{{$lot->idLoteHuevoIncubable}}</td>
-                <td class="center">{{$lot->idEtapaIncubacion}}</td>
+                <td class="center">{{$lot->nombre}}</td>
                 <td class="center">{{$lot->fecha}}</td>
                 <td class="center">{{$lot->cantidad}}</td>
                 <td class="center">{{$lot->idEquipo}}</td>
@@ -56,6 +57,7 @@
             </tbody>
           </table>
         </div>
+        {{$traspasolotes->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

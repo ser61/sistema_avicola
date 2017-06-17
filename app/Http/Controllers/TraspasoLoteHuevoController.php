@@ -12,6 +12,7 @@ use sisAvicola\LoteHuevoIncubable;
 use sisAvicola\Etapa;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Models\seguridad\Accion; 
 
 class TraspasoLoteHuevoController extends Controller
 {
@@ -23,12 +24,15 @@ class TraspasoLoteHuevoController extends Controller
     public function index(Request $request)
     {
         if($request){
+            Accion::_crearAccion('Ingreso a la pagina de Traspaso de lote de Huevo', Auth::user()->id, Auth::user()->idEmpresa);
             $query = trim($request->get('searchText'));
-            $traspasolotes=DB::table('traspaso_huevo')
-            ->where('id','LIKE','%'.$query.'%')
+            $traspasolotes=DB::table('traspaso_huevo as th')
+            ->join('etapa_incubacion as e','e.id','=','th.idEtapaIncubacion')
+            ->select('th.id','th.idLoteHuevoIncubable','th.idEtapaIncubacion','th.cantidad','th.fecha','th.idEquipo','e.nombre')
+            ->where('th.id','LIKE','%'.$query.'%')
             //->where('tipo','=','Engorde')
             ->orderby('idLoteHuevoIncubable','asc')
-            ->paginate(7);
+            ->paginate(10);
            $cantidad=DB::table('traspaso_huevo')
             //->where('tipo','=','Engorde')
             //->orderby('idParvada','asc')
@@ -62,6 +66,15 @@ class TraspasoLoteHuevoController extends Controller
      */
     public function store(TraspasoLoteHuevoFormRequest $request)
     {
+        
+        $cant=DB::table('traspaso_huevo')
+        ->where('idLoteHuevoIncubable','=',$request->get('idlotehuevoincubable'))
+        ->where('visible','=','1')
+        ->get();
+        if(count($cant)==2){
+         return redirect('proceso/traspasolotehuevo')->with('msj','Error al Hacer Traspaso del Lote de Huevo: "'.$request['idlotehuevoincubable'].'" Ya no se Puede Hacer mas Traspaso');
+        }
+
         $traspaso=new TraspasoLoteHuevo;
 
         $lote=LoteHuevoIncubable::findOrFail($request->get('idlotehuevoincubable'));
@@ -78,9 +91,9 @@ class TraspasoLoteHuevoController extends Controller
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
 
+        Accion::_crearAccionOnTable('Creo un nuevo Traspaso de lote de Huevo', 'traspaso lote', $traspaso->id, Auth::user()->id, Auth::user()->idEmpresa);
 
-
-        return Redirect::to('proceso/traspasolotehuevo');
+        return redirect('proceso/traspasolotehuevo')->with('msj','El Traspaso :"'.$traspaso->id.'" se creo exitósamente.');
     }
 
     /**

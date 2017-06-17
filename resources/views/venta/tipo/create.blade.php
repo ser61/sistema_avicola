@@ -21,10 +21,19 @@
           @include('alertas.request')
           {!! Form::open(array('url'=>'venta/tipo','method'=>'POST','autocomplete'=>'off'))!!}
 				{{Form::token()}}			
-				<div class="form-group">
-					<label for="descripcion">Nombre</label>
-					<input type="text" name="nombre" class="form-control" placeholder="Nombre..">
-				</div>
+				
+        <div class="row">
+          <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 col-sm-offset-2">
+            <div class="form-group">
+              <label for="nombre">Tipos de Pollo</label>
+                       <select name="nombre" id="idparvada" class="form-control selectpicker">
+                            <option value="Pollo Tipo Engorde">Pollo Tipo Engorde</option>
+                            <option value="Pollo Tipo Ponedora">Pollo Tipo Ponedora</option>
+                            <option value="Pollo Tipo Reproductora">Pollo Tipo Reproductora</option>
+                </select>
+            </div>
+          </div>  
+        </div>
 
 		<div class="form-group">
             <div class="col-sm-8 col-sm-offset-2">

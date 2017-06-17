@@ -22,28 +22,28 @@
           {!! Form::open(array('url'=>'venta/huevo','method'=>'POST','autocomplete'=>'off', 'files'=>'true'))!!}
 				{{Form::token()}}			
 				<div class="form-group">
-					<label for="nombre">Nombre</label>
+					<label for="nombre">Nombre del Producto Huevo</label>
 					<input type="text" name="nombre" class="form-control" >
 				</div>
 
 				<div class="form-group">
-					<label for="stock">Stock</label>
-					<input type="text" name="stock" class="form-control">
+					<label for="stock">Stock del Producto</label>
+					<input type="number" name="stock" class="form-control">
 				</div>
 
             		<div class="form-group">
-		            	<label for="imagen">Imagen</label>
+		            	<label for="imagen">Imagen del Producto</label>
 		            	<input type="file" name="imagen" class="form-control">
            			 </div>
 
 					<div class="form-group">
-						<label for="precioUnitario">Precio Unitario</label>
-						<input type="text" name="precioUnitario" class="form-control" >
+						<label for="precioUnitario">Precio Unitario del Producto (Bs)</label>
+						<input type="number" step="any" name="precioUnitario" class="form-control" >
 					</div>
 
 
 				<div class="form-group">
-	    			<label>Categoria</label>
+	    			<label>Categoria de Huevo</label>
 	    			<select name="idCategoria" class="form-control">
 	    				@foreach ($categoria as $cat)
 	    				   <option value="{{$cat -> id}}">{{$cat -> nombre}}</option>	 

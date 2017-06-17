@@ -25,6 +25,7 @@ class LoteHuevoIncubableFormRequest extends FormRequest
     {
         return [
             'cantidad'=>'max:100',
+            'tipolote'=>'max:100',
             'idplantaincubacion'=>'max:200',
         ];
     }

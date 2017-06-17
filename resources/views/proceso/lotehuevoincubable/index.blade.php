@@ -18,6 +18,7 @@
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
           <h3 align="center">Panel de control de los <span class="text-bold">Lotes de Huevos Incubables</span></h3>
+          @include('alertas.logrado')
         </div>
        
           <!-- fin-> TITULO DE PANEL -->
@@ -34,7 +35,8 @@
             <thead>
             <tr>
               <th class="center">id</th>
-              <th class="center">Cant. Huevos</th>
+              <th class="center">Cant. Huevos o Pollitos</th>
+              <th class="center">Tipo de Lote</th>
               <th class="center">id Planta de Incubacion</th>
               <th class="center">Estado</th>
               <th>Opciones</th>
@@ -45,6 +47,7 @@
               <tr>
                 <td class="center">{{$lot->id}}</td>
                 <td class="center">{{$lot->cantidad}}</td>
+                <td class="center">{{$lot->tipoLote}}</td>
                 <td class="center">{{$lot->idPlantaIncubacion}}</td>
                 <td class="center"><span class="text-bold">{{$lot->visible}}</span></td>
                 <td class="center">
@@ -57,6 +60,7 @@
             </tbody>
           </table>
         </div>
+        {{$lotes->links()}}
         <!-- fin-> TABLA DE DATOS -->
         @else
           <div class="box">

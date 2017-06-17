@@ -9,6 +9,7 @@ use sisAvicola\Http\Requests\EtapaIncubacionFormRequest;
 use DB;
 use sisAvicola\EtapaIncubacion;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\Models\seguridad\Accion;
 
 class EtapaIncubacionController extends Controller
 {
@@ -19,6 +20,7 @@ class EtapaIncubacionController extends Controller
      */
     public function index(Request $request)
     {
+        Accion::_crearAccion('Ingreso a la pagina de Etapa de Huevos', Auth::user()->id, Auth::user()->idEmpresa);
         if($request){
             $query = trim($request->get('searchText'));
             $etapas=DB::table('etapa_incubacion')
@@ -68,7 +70,7 @@ class EtapaIncubacionController extends Controller
         $etapa->visible='1';
         $etapa->idEmpresa=Auth::user()->idEmpresa;
         $etapa->save();
-
+        Accion::_crearAccionOnTable('Creo una nueva Etapa de Lote de Huevo', 'etapa huevo', $etapa->id, Auth::user()->id, Auth::user()->idEmpresa);
         return redirect('proceso/etapaincubacion')->with('msj','La Etapa :"'.$request['nombre'].'" se creo exitósamente.');
     }
 
