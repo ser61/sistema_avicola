@@ -25,6 +25,16 @@
             {!! Form::open(['route' => 'admin.store','method' => 'POST']) !!}
             <div class="col-sm-8 col-sm-offset-2">
               @include('alertas.error')
+              <div class="form-group{{ $errors->has('idEmpleado') ? ' has-error' : '' }}">
+                <label for="idEmpleado">Seleccione un Empleado para la cuenta:</label>
+                {!! Form::select('idEmpleado',$empleados, null, ['class'=>'form-control select2', 'id' => 'idEmpleado', 'placeholder'=>'Seleccion un empleado...']) !!}
+                @if ($errors->has('idEmpleado'))
+                  <span class="help-block">
+                    <strong>Este campo es obligatorio</strong>
+                  </span>
+                @endif
+              </div>
+
               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name">Ingrese el nombre de usuario:</label>
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
@@ -58,16 +68,6 @@
               <div class="form-group">
                 <label for="password-confirm">Confirme el password del usuario:</label>
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-              </div>
-
-              <div class="form-group{{ $errors->has('idEmpleado') ? ' has-error' : '' }}">
-                <label for="idEmpleado">Seleccione un Empleado para la cuenta:</label>
-                {!! Form::select('idEmpleado',$empleados, null, ['class'=>'form-control select2', 'id' => 'idEmpleado', 'placeholder'=>'Seleccion un empleado...']) !!}
-                @if ($errors->has('idEmpleado'))
-                  <span class="help-block">
-                    <strong>Este campo es obligatorio</strong>
-                  </span>
-                @endif
               </div>
             </div>
 

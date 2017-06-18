@@ -23,6 +23,15 @@ class User extends Authenticatable
     'idEmpresa', 'tipoUser', 'privilegio', 'visible'
   ];
 
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [
+    'password', 'remember_token',
+  ];
+
   public function scope_getUsuarios($query)
   {
     $idEmpresa = Auth::user()->idEmpresa;
@@ -35,14 +44,6 @@ class User extends Authenticatable
                       ->where('p.tipo','e')->where('users.tipoUser','u');
     return $usuarios;
   }
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [
-    'password', 'remember_token',
-  ];
 
   public function setFotoAttribute($foto)
   {
@@ -72,5 +73,13 @@ class User extends Authenticatable
                       ->where('p.idEmpresa', $idEmpresa)->where('p.visible','1')->where('p.tipo','e')
                       ->where('c.idEmpresa', $idEmpresa)->where('c.visible','1');
     return $usuarios;
+  }
+
+  public function scope_buscarUsuarios($query, $search)
+  {
+    $lista = $this->_getUsuarios()->where('users.name','LIKE','%'.$search.'%')
+      ->orWhere('c.nombre','LIKE','%'.$search.'%')
+      ->orWhere('users.email','LIKE','%'.$search.'%');
+    return $lista;
   }
 }

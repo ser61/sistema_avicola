@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index');
 //24 - SERGIO WEIMAR
 Route::get('homeCondicional', 'Controller@home');
 Route::resource('admin', 'Seguridad\AdminUsersController');
+Route::get('searchUsuarios', 'Seguridad\AdminUsersController@searchUsuarios');
+Route::get('searchPaginateUsuarios', 'Seguridad\AdminUsersController@searchPaginateUsuarios');
 Route::resource('cargo', 'Seguridad\CargoController');
 Route::get('searchCargos/', 'Seguridad\CargoController@searchCargos');
 Route::get('searchPaginateCargos/', 'Seguridad\CargoController@searchPaginateCargos');

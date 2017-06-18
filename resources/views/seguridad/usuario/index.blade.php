@@ -28,7 +28,7 @@
                 @include('alertas.logrado')
                 @include('alertas.error')
                 <div class="input-group margin">
-                  <input type="text" class="form-control" placeholder="Buscar por Nombre">
+                  <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
@@ -43,73 +43,76 @@
             <!-- fin-> CUADRO DE BUSQUEDA -->
 
             <!-- TABLA DE DATOS -->
-            <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
-              <thead>
-              <tr>
-                <th>Nombre</th>
-                <th class="hidden-xs">Foto</th>
-                <th>Email</th>
-                <th>Estado</th>
-                <th>Cargo</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-              @foreach($usuarios as $usuario)
+            <div id="tbody" class="box-body table-responsive">
+              <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+                <thead>
                 <tr>
-                  <td class="center">{{$usuario->name}}</td>
-                  <td class="hidden-xs">
-                    <img src='usuarios/{{$usuario->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
-                  </td>
-                  <td>{{$usuario->email}}</td>
-                  <td>{{$usuario->estado}}</td>
-                  <td>{{$usuario->cargo}}</td>
-                  <td class="center">
-                    <div class="visible-md visible-lg hidden-sm hidden-xs">
-                      {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id]]) !!}
-                      <a href="{{ route('admin.edit', $usuario->id) }}" class="btn btn-xs btn-info">
-                        <i class="fa fa-edit"></i>
-                      </a>
-                      <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-trash"></i>
-                      </button>
-                      <a href="#" class="btn btn-xs btn-success">
-                        <i class="fa fa-eye"></i>
-                      </a>
-                      {!! Form::close() !!}
-                    </div>
-                    <div class="visible-xs visible-sm hidden-md hidden-lg">
-                      <div class="btn-group">
-                        <a class="btn btn-green dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
-                          <i class="fa fa-cog"></i> <span class="caret"></span>
-                        </a>
-                        <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
-                          <li>
-                            <a href="{{ route('admin.edit', $usuario->id) }}" role="menuitem" tabindex="-1">
-                              <i class="fa fa-edit"></i> Edit
-                            </a>
-                          </li>
-                          <li>
-                            <a href="{{ route('admin.destroy', $usuario->id) }}"
-                               onclick="event.preventDefault();document.getElementById('delete').submit();">
-                              <i class="fa fa-trash"></i> Remove
-                            </a>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id], 'id'=>'delete']) !!}
-                            {!! Form::close() !!}
-                          </li>
-                          <li>
-                            <a href="{{ route('admin.show', $usuario->id) }}" role="menuitem" tabindex="-1">
-                              <i class="fa fa-eye"></i> Ver
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </td>
+                  <th>Nombre</th>
+                  <th class="hidden-xs">Foto</th>
+                  <th>Email</th>
+                  <th>Estado</th>
+                  <th>Cargo</th>
+                  <th>Opciones</th>
                 </tr>
-              @endforeach
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                @foreach($usuarios as $usuario)
+                  <tr>
+                    <td class="center">{{$usuario->name}}</td>
+                    <td class="hidden-xs">
+                      <img src='usuarios/{{$usuario->foto}}' class="img-circle" alt=""  style="width: 60px; height: 60px;">
+                    </td>
+                    <td>{{$usuario->email}}</td>
+                    <td>{{$usuario->estado}}</td>
+                    <td>{{$usuario->cargo}}</td>
+                    <td class="center">
+                      <div class="visible-md visible-lg hidden-sm hidden-xs">
+                        {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id]]) !!}
+                        <a href="{{ route('admin.edit', $usuario->id) }}" class="btn btn-xs btn-info">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <button class="btn btn-xs btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                        <a href="#" class="btn btn-xs btn-success">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        {!! Form::close() !!}
+                      </div>
+                      <div class="visible-xs visible-sm hidden-md hidden-lg">
+                        <div class="btn-group">
+                          <a class="btn btn-green dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
+                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                          </a>
+                          <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
+                            <li>
+                              <a href="{{ route('admin.edit', $usuario->id) }}" role="menuitem" tabindex="-1">
+                                <i class="fa fa-edit"></i> Edit
+                              </a>
+                            </li>
+                            <li>
+                              <a href="{{ route('admin.destroy', $usuario->id) }}"
+                                 onclick="event.preventDefault();document.getElementById('delete').submit();">
+                                <i class="fa fa-trash"></i> Remove
+                              </a>
+                              {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id], 'id'=>'delete']) !!}
+                              {!! Form::close() !!}
+                            </li>
+                            <li>
+                              <a href="{{ route('admin.show', $usuario->id) }}" role="menuitem" tabindex="-1">
+                                <i class="fa fa-eye"></i> Ver
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
+                </tbody>
+              </table>
+              {{ $usuarios->links() }}
+            </div>
             <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
@@ -146,7 +149,6 @@
                 @endif
               </div>
             @endif
-            <br><br><br><br>
           </div>
 
         </div>
@@ -154,3 +156,36 @@
     </div>
   </section>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+  $('#search').on('keyup', function () {
+    $value = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: "{{url('searchUsuarios/')}}",
+      data: {'search': $value},
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
+  });
+
+  $(document).on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    usuarios(page, $('#search').val());
+  });
+
+  function usuarios(page, search) {
+    var url = "{{url('searchPaginateUsuarios/')}}";
+    $.ajax({
+      type: 'GET',
+      url: url + '?page=' + page,
+      data: {'search': search},
+    }).done(function (data) {
+      $('#tbody').html(data);
+    })
+  }
+</script>
+@endpush
