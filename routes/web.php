@@ -49,7 +49,25 @@ Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->n
 Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
 
-//52 - FIN DE ROUTES DE SERGIO WEIMAR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//70 - FIN DE ROUTES DE SERGIO WEIMAR
 //53 - SERGIO FRANCO
 //Route::resource('administracion/persona','PersonaController');
 //Route::resource('administracion/cargo','CargoController');
