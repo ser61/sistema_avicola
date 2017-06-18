@@ -13,6 +13,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
+  {!!Html::style('css/jquery.dataTables.min.css')!!}
   {!!Html::style('plugins/jvectormap/jquery-jvectormap-1.2.2.css')!!}
   {!!Html::style('plugins/iCheck/all.css')!!}
   {!!Html::style('plugins/select2/select2.min.css')!!}
@@ -410,6 +411,7 @@
 {!!Html::script('plugins/input-mask/jquery.inputmask.js')!!}
 {!!Html::script('plugins/input-mask/jquery.inputmask.date.extensions.js')!!}
 {!!Html::script('plugins/input-mask/jquery.inputmask.extensions.js')!!}
+{!!Html::script('js/jquery.dataTables.min.js')!!}
 {!!Html::script('js/fileinput.min.js')!!}
 {!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
 {!!Html::script('plugins/iCheck/icheck.min.js')!!}

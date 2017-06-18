@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
   public function create()
   {
     $cargos = Cargo::_allCargos()->get()->pluck('nombre','id');
-    Accion::_crearAccion('Ingreso a la pagina de Registro de Empleados.', Auth::user()->id, Auth::user()->idEmpresa);
+    Accion::_crearAccion('Ingreso: Registro de Empleados.', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.empleado.crear',compact('cargos'));
   }
 

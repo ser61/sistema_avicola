@@ -2,8 +2,10 @@
 
 namespace sisAvicola\Http\Controllers\Seguridad;
 
+use Illuminate\Support\Facades\Auth;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use sisAvicola\Models\seguridad\Accion;
 use sisAvicola\Models\seguridad\Cargo;
 use sisAvicola\Models\seguridad\CasoPCargo;
 use sisAvicola\Models\seguridad\CasoPUsers;
@@ -20,18 +22,21 @@ class PrevilegioController extends Controller
     $cargos = Cargo::_allCargos()->get();
     $usuarios = User::_getUsuarios()->get();
     $modulos = Modulo::all()->pluck('nombre', 'id');
+    Accion::_crearAccion('Ingreso: Indice de Privilegios.', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.privilegio.index', compact('cargos', 'modulos','usuarios'));
   }
 
   public function updatePrivilegiosCargo(Request $request)
   {
     CasoPCargo::_updatePermisos($request);
+    Accion::_crearAccion('Edito: Privilegios de cargo.', Auth::user()->id, Auth::user()->idEmpresa);
     return redirect('privilegio/')->with('msj', 'Los permisos fueron actualizados exitosamente');
   }
 
   public function deshabilitarPermisosCargo($id)
   {
     CasoPCargo::_deshabilitarPermisos($id);
+    Accion::_crearAccion('Deshabilito: Privilegios de cargo.', Auth::user()->id, Auth::user()->idEmpresa);
     return redirect('privilegio/')->with('msj', 'Los permisos fueron deshabilitados exitosamente');
   }
 
@@ -42,18 +47,21 @@ class PrevilegioController extends Controller
     $casosUsoActual = CasoPCargo::_getCasosUsos($privilegio->id)->get();
     $permiso = ['n' => 'Oculto', 's' => 'Solo lectura', 'c' => 'Control total'];
     $cargo = Cargo::find($id);
+    Accion::_crearAccion('Ingreso: Edicion de privilegio cargo.', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.privilegio.editCargo', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'cargo'));
   }
 
   public function updatePrivilegiosUser(Request $request)
   {
     CasoPUsers::_updatePermisos($request);
+    Accion::_crearAccion('Edito: Privilegios de usuario.', Auth::user()->id, Auth::user()->idEmpresa);
     return redirect('privilegio/')->with('msj', 'Los permisos fueron actualizados exitosamente');
   }
 
   public function deshabilitarPermisosUser($id)
   {
     CasoPUsers::_deshabilitarPermisos($id);
+    Accion::_crearAccion('Deshabilito: Privilegios de usuario.', Auth::user()->id, Auth::user()->idEmpresa);
     return redirect('privilegio/')->with('msj', 'Los permisos fueron deshabilitados exitosamente');
   }
 
@@ -64,6 +72,8 @@ class PrevilegioController extends Controller
     $casosUsoActual = CasoPUsers::_getCasosUsos($privilegio->id)->get();
     $permiso = ['n' => 'Oculto', 's' => 'Solo lectura', 'c' => 'Control total'];
     $usuario = UserEmpleado::find($id);
+    Accion::_crearAccion('Ingreso: Edicion de privilegio de usuario.', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.privilegio.editUser', compact('modulo', 'permiso', 'casosUsoActual', 'privilegio', 'usuario'));
   }
+
 }

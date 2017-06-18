@@ -26,21 +26,14 @@
             <div class="panel-body">
               @include('alertas.logrado')
               @include('alertas.request')
-              <div class="input-group margin">
-                <input type="text" class="form-control" placeholder="Buscar por Nombre">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-              </div>
             </div>
           </div>
           <!-- fin-> CUADRO DE BUSQUEDA -->
 
           <!-- TABLA DE DATOS -->
-          <div class="box-body">
-            <table class="table table-bordered" style="border-top-color: #00AEFF">
+          <div class="panel panel-default" style="margin: 10px">
+            <div class="panel-body table-responsive">
+              <table id="mitabla2" class="table table-bordered table-hover" style="border-top-color: #00AEFF">
               <thead>
               <tr>
                 <th>Cargo</th>
@@ -76,6 +69,7 @@
               @endforeach
               </tbody>
             </table>
+            </div>
           </div>
           <!-- fin-> TABLA DE DATOS -->
           @else
@@ -117,27 +111,20 @@
             <div class="panel-body">
               @include('alertas.logrado')
               @include('alertas.error')
-              <div class="input-group margin">
-                <input type="text" class="form-control" placeholder="Buscar por Nombre">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-              </div>
             </div>
           </div>
           <!-- fin-> CUADRO DE BUSQUEDA -->
 
           <!-- TABLA DE DATOS -->
-          <div class="box-body">
-            <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+          <div class="panel panel-default" style="margin: 10px">
+            <div class="panel-body table-responsive">
+              <table id="mitabla" class="table table-bordered table-hover" style="border-top-color: #00AEFF">
               <thead>
               <tr>
                 <th>Nombre</th>
                 <th>Estado</th>
                 <th>Privilegio</th>
-                <th></th>
+                <th>Opciones</th>
               </tr>
               </thead>
               <tbody>
@@ -169,6 +156,7 @@
               @endforeach
               </tbody>
             </table>
+            </div>
           </div>
           <!-- fin-> TABLA DE DATOS -->
           @else
@@ -199,6 +187,8 @@
 <script>
   function comenzar(){
     $(".select2").select2();
+    $('#mitabla').DataTable();
+    $('#mitabla2').DataTable();
   }
   window.addEventListener("load",comenzar, false);
 </script>

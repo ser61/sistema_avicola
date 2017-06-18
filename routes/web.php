@@ -23,23 +23,29 @@ Route::get('/home', 'HomeController@index');
 
 //24 - SERGIO WEIMAR
 Route::get('homeCondicional', 'Controller@home');
+
 Route::resource('admin', 'Seguridad\AdminUsersController');
 Route::get('searchUsuarios', 'Seguridad\AdminUsersController@searchUsuarios');
 Route::get('searchPaginateUsuarios', 'Seguridad\AdminUsersController@searchPaginateUsuarios');
+
 Route::resource('cargo', 'Seguridad\CargoController');
 Route::get('searchCargos/', 'Seguridad\CargoController@searchCargos');
 Route::get('searchPaginateCargos/', 'Seguridad\CargoController@searchPaginateCargos');
+
 Route::resource('empleado', 'Seguridad\EmpleadoController');
 Route::get('searchEmpleados/', 'Seguridad\EmpleadoController@searchEmpleados');
 Route::get('searchPaginateEmpleados/', 'Seguridad\EmpleadoController@searchPaginateEmpleados');
+
 Route::resource('telefono', 'Seguridad\TelefonoController');
+
 Route::resource('privilegio', 'Seguridad\PrevilegioController');
-Route::post('privilegio/updatePrivilegios', 'Seguridad\PrevilegioController@updatePrivilegiosCargo')->name('privilegio.updatePrivilegiosCargo');
-Route::get('privilegio/deshabilitar/{id}', 'Seguridad\PrevilegioController@deshabilitarPermisosCargo')->name('privilegio.deshabilitarCargo');
 Route::get('privilegio/editCargo/{id}', 'Seguridad\PrevilegioController@editCargo')->name('privilegio.editCargo');
+Route::get('privilegio/deshabilitar/{id}', 'Seguridad\PrevilegioController@deshabilitarPermisosCargo')->name('privilegio.deshabilitarCargo');
+Route::post('privilegio/updatePrivilegios', 'Seguridad\PrevilegioController@updatePrivilegiosCargo')->name('privilegio.updatePrivilegiosCargo');
 Route::post('privilegio/updatePrivilegiosUser', 'Seguridad\PrevilegioController@updatePrivilegiosUser')->name('privilegio.updatePrivilegiosUser');
 Route::get('privilegio/deshabilitarUser/{id}', 'Seguridad\PrevilegioController@deshabilitarPermisosUser')->name('privilegio.deshabilitarUser');
 Route::get('privilegio/editUser/{id}', 'Seguridad\PrevilegioController@editUser')->name('privilegio.editUser');
+
 Route::resource('bitacora', 'Seguridad\BitacoraController');
 Route::get('bitacora/showBitacoraUser/{id}', 'Seguridad\BitacoraController@showBitacoraUser')->name('bitacora.showUser');
 Route::get('bitacora/showAccionesUser/{id}{idUser}', 'Seguridad\BitacoraController@showAccionesUser')->name('bitacora.showAccionesUser');
@@ -50,14 +56,6 @@ Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.
 Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->name('backup.download');
 Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
-
-
-
-
-
-
-
-
 
 
 
