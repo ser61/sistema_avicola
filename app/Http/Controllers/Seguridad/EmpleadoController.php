@@ -3,6 +3,7 @@
 namespace sisAvicola\Http\Controllers\Seguridad;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
@@ -16,7 +17,7 @@ class EmpleadoController extends Controller
 {
   public function index()
   {
-    $empleados = Persona::_allEmpleados()->get();
+    $empleados = Persona::_allEmpleados()->paginate(6);
     $cargos = Cargo::_allCargos()->get();
     Accion::_crearAccion('Ingreso: Indice de Empleados.', Auth::user()->id, Auth::user()->idEmpresa);
     return view('seguridad.empleado.index', compact('empleados', 'cargos'));
@@ -80,5 +81,15 @@ class EmpleadoController extends Controller
     Persona::_eliminarEmpleado($id);
     Accion::_crearAccionOnTable('Eliminar: Empleado', 'persona', $id, Auth::user()->id, Auth::user()->idEmpresa);
     return back()->with('msj', 'El empleado fue eliminado exitosamente');
+  }
+
+  public function searchEmpleados(Request $request)
+  {
+
+  }
+
+  public function searchPaginateEmpleados(Request $request)
+  {
+
   }
 }

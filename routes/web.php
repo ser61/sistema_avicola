@@ -28,6 +28,8 @@ Route::resource('cargo', 'Seguridad\CargoController');
 Route::get('searchCargos/', 'Seguridad\CargoController@searchCargos');
 Route::get('searchPaginateCargos/', 'Seguridad\CargoController@searchPaginateCargos');
 Route::resource('empleado', 'Seguridad\EmpleadoController');
+Route::get('searchEmpleados/', 'Seguridad\EmpleadoController@searchEmpleados');
+Route::get('searchPaginateEmpleados/', 'Seguridad\EmpleadoController@searchPaginateEmpleados');
 Route::resource('telefono', 'Seguridad\TelefonoController');
 Route::resource('privilegio', 'Seguridad\PrevilegioController');
 Route::post('privilegio/updatePrivilegios', 'Seguridad\PrevilegioController@updatePrivilegiosCargo')->name('privilegio.updatePrivilegiosCargo');
@@ -46,9 +48,6 @@ Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.
 Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->name('backup.download');
 Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
-
-
-
 
 //52 - FIN DE ROUTES DE SERGIO WEIMAR
 //53 - SERGIO FRANCO

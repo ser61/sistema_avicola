@@ -28,7 +28,7 @@
                   @include('alertas.logrado')
                   @include('alertas.request')
                   <div class="input-group margin">
-                    <input type="text" class="form-control" placeholder="Buscar por Nombre">
+                    <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
@@ -43,7 +43,8 @@
               <!-- fin-> CUADRO DE BUSQUEDA -->
 
               <!-- TABLA DE DATOS -->
-              <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+              <div id="tbody" class="box-body table-responsive">
+                <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
                 <thead>
               <tr>
                 <th class="center">ci</th>
@@ -54,7 +55,7 @@
                 <th class="hidden-xs">Fecha Nacimiento</th>
                 <th>Fecha Ingreso</th>
                 <th>Cargo</th>
-                <th></th>
+                <th>Opcion</th>
               </tr>
               </thead>
                 <tbody>
@@ -79,9 +80,9 @@
                       <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash"></i>
                       </button>
-                      <a href="#" class="btn btn-xs btn-success">
+                      {{--<a href="#" class="btn btn-xs btn-success">
                         <i class="fa fa-eye"></i>
-                      </a>
+                      </a>--}}
                       {!! Form::close() !!}
                     </div>
                     <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -103,11 +104,11 @@
                             {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
                             {!! Form::close() !!}
                           </li>
-                          <li>
+                          {{--<li>
                             <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
                               <i class="fa fa-eye"></i> Ver
                             </a>
-                          </li>
+                          </li>--}}
                         </ul>
                       </div>
                     </div>
@@ -116,6 +117,8 @@
               @endforeach
               </tbody>
               </table>
+                {{ $empleados->links() }}
+              </div>
               <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
@@ -152,7 +155,6 @@
                 @endif
               </div>
             @endif
-            <br><br><br><br>
           </div>
         </div>
       </div>
@@ -160,3 +162,38 @@
     <br>
   </section>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+
+  $('#search').on('keyup', function () {
+    $value = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: "{{url('searchEmpleados/')}}",
+      data: {'search': $value},
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
+  });
+
+  $(document).on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    empleados(page, $('#search').val());
+  });
+
+  function empleados(page, search) {
+    var url = "{{url('searchPaginateEmpleados/')}}";
+    $.ajax({
+      type: 'GET',
+      url: url + '?page=' + page,
+      data: {'search': search},
+    }).done(function (data) {
+      $('#tbody').html(data);
+    })
+  }
+
+</script>
+@endpush
