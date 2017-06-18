@@ -28,7 +28,7 @@
                   @include('alertas.logrado')
                   @include('alertas.request')
                   <div class="input-group margin">
-                    <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre">
+                    <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre, apellido, ci o cargo...">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>

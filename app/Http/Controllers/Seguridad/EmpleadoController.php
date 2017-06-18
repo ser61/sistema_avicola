@@ -3,7 +3,7 @@
 namespace sisAvicola\Http\Controllers\Seguridad;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use sisAvicola\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
@@ -85,11 +85,21 @@ class EmpleadoController extends Controller
 
   public function searchEmpleados(Request $request)
   {
-
+    if ($request->ajax()) {
+      $empleados = Persona::_buscarEmpleados($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search'));
+      return Response($view);
+    }
   }
 
   public function searchPaginateEmpleados(Request $request)
   {
-
+    if ($request->ajax()) {
+      $empleados = Persona::_buscarEmpleados($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search'));
+      return Response($view);
+    }
   }
 }
