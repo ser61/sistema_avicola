@@ -22,3 +22,18 @@ $factory->define(sisAvicola\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(sisAvicola\Persona::class, function (Faker\Generator $faker) {
+  return [
+    'ci' => $faker->numberBetween(10000000,99999999),
+    'nombre' => $faker->name,
+    'apellido' => $faker->lastName,
+    'foto' => 'user.png',
+    'fechaIngreso' => null,
+    'direccion' => $faker->address,
+    'idCargo' => sisAvicola\Models\seguridad\Cargo::all()->random()->id,
+    'tipo' => 'e',
+    'idEmpresa' => '123456',
+    'visible' => '1'
+  ];
+});
