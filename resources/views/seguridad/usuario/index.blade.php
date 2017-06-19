@@ -74,9 +74,9 @@
                         <button class="btn btn-xs btn-danger">
                           <i class="fa fa-trash"></i>
                         </button>
-                        <a href="#" class="btn btn-xs btn-success">
+                        {{--<a href="#" class="btn btn-xs btn-success">
                           <i class="fa fa-eye"></i>
-                        </a>
+                        </a>--}}
                         {!! Form::close() !!}
                       </div>
                       <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -98,11 +98,11 @@
                               {!! Form::open(['method'=>'DELETE', 'route'=>['admin.destroy',$usuario->id], 'id'=>'delete']) !!}
                               {!! Form::close() !!}
                             </li>
-                            <li>
+                          {{--  <li>
                               <a href="{{ route('admin.show', $usuario->id) }}" role="menuitem" tabindex="-1">
                                 <i class="fa fa-eye"></i> Ver
                               </a>
-                            </li>
+                            </li>--}}
                           </ul>
                         </div>
                       </div>

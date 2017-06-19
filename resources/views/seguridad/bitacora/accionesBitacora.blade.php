@@ -6,7 +6,6 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{ url('/bitacora') }}">index</a></li>
       <li><a href="javascript:window.history.go(-1);">Bitacora</a></li>
       <li><a href="#">Acciones</a></li>
     </ol>
@@ -19,9 +18,9 @@
         <div class="box box-primary">
           <!-- TITULO DE PANEL -->
           <div class="box-header with-border">
-            <h3 align="center">Panel de control de Acciones de: <span class="text-bold">{{ $user->name }}</span></h3>
+            <h3 align="center">Panel de control de <span>Acciones</span></h3>
           </div>
-            <!-- fin-> TITULO DE PANEL -->
+          <!-- fin-> TITULO DE PANEL -->
           <!-- CUADRO DE BUSQUEDA -->
           <div class="panel panel-blue">
             <div class="panel-body">
@@ -29,7 +28,7 @@
               @include('alertas.request')
               <div class="input-group margin">
                 <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre">
-                <span class="input-group-btn">
+              <span class="input-group-btn">
                 <button type="button" class="btn btn-info btn-flat">
                   <i class="fa fa-search"></i>
                 </button>

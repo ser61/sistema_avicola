@@ -47,4 +47,11 @@ class Accion extends Model
       ->where('idBitacora', $idBitacora);
     return $acciones;
   }
+
+  public function scope_buscarAcciones($query, $search, $id)
+  {
+    $lista = $this->_getAcciones($id, Auth::user()->idEmpresa)
+      ->where('accion.accion','LIKE','%'.$search.'%');
+    return $lista;
+  }
 }

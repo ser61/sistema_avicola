@@ -46,18 +46,18 @@
               <div id="tbody" class="box-body table-responsive">
                 <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
                 <thead>
-              <tr>
-                <th class="center">ci</th>
-                <th class="hidden-xs">Foto</th>
-                <th>Nombre(s)</th>
-                <th>Apellido(s)</th>
-                <th class="hidden-xs">Direccion</th>
-                <th class="hidden-xs">Fecha Nacimiento</th>
-                <th>Fecha Ingreso</th>
-                <th>Cargo</th>
-                <th>Opcion</th>
-              </tr>
-              </thead>
+                <tr>
+                  <th class="center">ci</th>
+                  <th class="hidden-xs">Foto</th>
+                  <th>Nombre(s)</th>
+                  <th>Apellido(s)</th>
+                  <th class="hidden-xs">Direccion</th>
+                  <th class="hidden-xs">Fecha Nacimiento</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Cargo</th>
+                  <th>Opcion</th>
+                </tr>
+                </thead>
                 <tbody>
               @foreach($empleados as $empleado)
                 <tr>

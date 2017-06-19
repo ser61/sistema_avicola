@@ -30,7 +30,7 @@
                 </a>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px">
-                <a class="btn-info btn-lg btn-block" style="text-align: center">
+                <a href="{{ url('/bitacoras') }}" class="btn-info btn-lg btn-block" style="text-align: center">
                   Bitacoras
                 </a>
               </div>
