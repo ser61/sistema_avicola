@@ -14,7 +14,7 @@ class BitacoraController extends Controller
 {
   public function index()
   {
-    $usuarios = User::_getUsuariosBitacora()->get();
+    $usuarios = User::_getUsuariosBitacora()->paginate(6);
     $empleados = Persona::_allEmpleados()->get();
     return view('seguridad.bitacora.index', compact('usuarios', 'empleados'));
   }
@@ -41,6 +41,27 @@ class BitacoraController extends Controller
     $acciones = Accion::_getAcciones($id, Auth::user()->idEmpresa)->get();
     $user = User::find($idUser);
     return view('seguridad.bitacora.accionesUser', compact('acciones', 'user'));
+  }
+
+  public function searchUserBitacora(Request $request)
+  {
+    if ($request->ajax()) {
+      $usuarios = User::_buscarUserBit($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.bitacora.ajax.getListUserBitacora', compact('usuarios', 'search'));
+      return Response($view);
+    }
+
+  }
+
+  public function searchPaginateUserBitacora(Request $request)
+  {
+    if ($request->ajax()) {
+      $usuarios = User::_buscarUserBit($request['search'])->paginate(6);
+      $search = $request['search'];
+      $view = view('seguridad.bitacora.ajax.getListUserBitacora', compact('usuarios', 'search'));
+      return Response($view);
+    }
   }
 
   public function edit($id)

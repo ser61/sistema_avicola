@@ -45,7 +45,7 @@
                 @include('alertas.logrado')
                 @include('alertas.error')
                 <div class="input-group margin">
-                  <input type="text" class="form-control" placeholder="Buscar por Nombre">
+                  <input id="search" type="text" class="form-control" placeholder="Buscar por cuenta, nombre, apellido o cargo">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
@@ -57,32 +57,35 @@
             <!-- fin-> CUADRO DE BUSQUEDA -->
 
             <!-- TABLA DE DATOS -->
-            <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
-              <thead>
-              <tr>
-                <th class="col-sm-2">Cuenta</th>
-                <th class="col-sm-2">Nombre</th>
-                <th class="col-sm-2">Apellido</th>
-                <th class="col-sm-3">Cargo</th>
-                <th class="col-sm-1"></th>
-              </tr>
-              </thead>
-              <tbody>
-              @foreach($usuarios as $usuario)
+            <div id="tbody" class="box-body table-responsive">
+              <table class="table table-bordered table-hover" style="border-top-color: #00AEFF">
+                <thead>
                 <tr>
-                  <td>{{$usuario->name}}</td>
-                  <td>{{ $usuario->nombre }}</td>
-                  <td>{{$usuario->apellido}}</td>
-                  <td>{{$usuario->cargo}}</td>
-                  <td class="center">
-                    <a href="{{ route('bitacora.showUser', $usuario->id) }}" type="button" class="btn btn-xs btn-info">
-                      <i class="fa fa-eye"></i> Ver
-                    </a>
-                  </td>
+                  <th class="col-sm-2">Cuenta</th>
+                  <th class="col-sm-2">Nombre</th>
+                  <th class="col-sm-2">Apellido</th>
+                  <th class="col-sm-3">Cargo</th>
+                  <th class="col-sm-1">Opcion</th>
                 </tr>
-              @endforeach
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                @foreach($usuarios as $usuario)
+                  <tr>
+                    <td>{{$usuario->name}}</td>
+                    <td>{{ $usuario->nombre }}</td>
+                    <td>{{$usuario->apellido}}</td>
+                    <td>{{$usuario->cargo}}</td>
+                    <td class="center">
+                      <a href="{{ route('bitacora.showUser', $usuario->id) }}" type="button" class="btn btn-xs btn-info">
+                        <i class="fa fa-eye"></i> Ver
+                      </a>
+                    </td>
+                  </tr>
+                @endforeach
+                </tbody>
+              </table>
+              {{ $usuarios->links() }}
+            </div>
             <!-- fin-> TABLA DE DATOS -->
             @else
               <div class="box">
@@ -126,3 +129,36 @@
     </div>
   </section>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+  $('#search').on('keyup', function () {
+    $value = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: "{{url('searchUserBitacora/')}}",
+      data: {'search': $value},
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
+  });
+
+  $(document).on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    userBit(page, $('#search').val());
+  });
+
+  function userBit(page, search) {
+    var url = "{{url('searchPaginateUserBitacora/')}}";
+    $.ajax({
+      type: 'GET',
+      url: url + '?page=' + page,
+      data: {'search': search},
+    }).done(function (data) {
+      $('#tbody').html(data);
+    })
+  }
+</script>
+@endpush

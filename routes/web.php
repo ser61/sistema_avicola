@@ -50,6 +50,8 @@ Route::resource('bitacora', 'Seguridad\BitacoraController');
 Route::get('bitacora/showBitacoraUser/{id}', 'Seguridad\BitacoraController@showBitacoraUser')->name('bitacora.showUser');
 Route::get('bitacora/showAccionesUser/{id}{idUser}', 'Seguridad\BitacoraController@showAccionesUser')->name('bitacora.showAccionesUser');
 Route::get('facturar','FacturaController@create');
+Route::get('searchUserBitacora/', 'Seguridad\BitacoraController@searchUserBitacora');
+Route::get('searchPaginateUserBitacora/', 'Seguridad\BitacoraController@searchPaginateUserBitacora');
 // Backup routes
 Route::get('backup', 'Seguridad\BackupController@index');
 Route::post('backup/create', 'Seguridad\BackupController@create')->name('backup.create');
