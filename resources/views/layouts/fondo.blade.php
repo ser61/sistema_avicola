@@ -170,12 +170,12 @@
               </li>
               <li>
                 <a href="ui_icons.html"><i class="fa fa-circle-o"></i>
-                  <span class="title"> Adquisición de Parvada </span>
+                  <span class="title"> Facturas </span>
                 </a>
               </li>
               <li>
                 <a href="ui_animations.html"><i class="fa fa-circle-o"></i>
-                  <span class="title"> Unidad de Medidas </span>
+                  <span class="title"> Inventario </span>
                 </a>
               </li>
             </ul>
