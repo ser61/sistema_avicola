@@ -235,3 +235,4 @@ Route::resource('infraestructura/infraestructura','InfraestructuraController');
 Route::resource('infraestructura/equipo','EquipoController');
 Route::resource('infraestructura/bateria','BateriaController');
 Route::resource('infraestructura/proceso_sanitario','ProcesoSanitarioController');
+Route::resource('infraestructura/registro_sanitizacion','RegistroSanitizacionController');
