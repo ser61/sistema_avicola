@@ -120,21 +120,20 @@ class RegistroSanitizacionController extends Controller
     public function show($id)
     {
         $registro=DB::table('registro_sanitizacion as rs')
-            ->join('persona as p','i.idEmpleado','=','p.id')
+            ->join('persona as p','rs.idEmpleado','=','p.id')
             ->join('infraestructura as i','rs.idInfraestructura','i.id')
             ->select('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
-                'c.nombre as cargo',DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
+                DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
             ->where('rs.id','=',$id)
-            ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
-                'c.nombre as cargo')
+            ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido')
             ->first();
 
         $detalles=DB::table('detalle_sanitizacion as d')
             ->join('proceso_sanitario as p','d.idProcesoSanitario','=','p.id')
-            ->select('p.nombre','p.descripcion')
-            ->where('d.idProcesoSanitario','=',$id)
+            ->select('p.id','p.nombre','p.descripcion')
+            ->where('d.idRegistroSanitizacion','=',$id)
             ->get();//Con el método get obtengo todos los detalles
-        return view('compras.ingreso.show',["registro"=>$registro,"detalles"=>$detalles]);
+        return view('infraestructura.registro_sanitizacion.show',["registro"=>$registro,"detalles"=>$detalles]);
     }
 
     /**

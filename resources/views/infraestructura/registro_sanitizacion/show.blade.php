@@ -21,64 +21,71 @@
 
 					<!-- TITULO DEL PANEL-->
 					<div class="box-header with-border">
-						<h3 align="center">Panel de Detalle de un <span class="text-bold">Proceso Sanitario</span></h3>
+						<h3 align="center">Panel de Detalle de un <span class="text-bold">Registro de Sanitización</span></h3>
 					</div>
 
 					<div class="box-body">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								<h3>Proceso Sanitario {{$proceso->id}}</h3>
+								<h3>Registro de Sanitización {{$registro->id}}</h3>
 							</div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <h3>Fecha registrada: {{$registro->fecha}}</h3>
+                            </div>
 						</div>
 
-						<div class="row">
-							<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-								<div class="form-group">
-									<label for="nombre">Nombre</label>
-									<p>{{ $proceso->nombre }}</p>
-								</div>
-							</div>
-							<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-								<div class="form-group">
-									<label for="descripcion">Descripción</label>
-									<p>{{ $proceso->descripcion }}</p>
-								</div>
-							</div>
-						</div>
-						<br>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Empleado:</label>
+                                    <p>{{$registro->nombre}} {{$registro->apellido}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Infraestructura:</label>
+                                    <p>{{$registro->infraestuctura}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
 
-						<div class="row">
-							<div class="panel panel-primary">
-								<div class="panel-body">
+                        <div class="row">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <br>
 
-									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-										<div class="table-responsive">
-											<table id="detalles" class="table table-striped table-bordered table-condensed table-hover>
-										<thead style="background-color: #A9D0F5">
-											<th>Insumo</th>
-											<th>Cantidad</th>
-											</thead>
-											<tbody>
-											@foreach($detalles as $detalle)
-												<tr>
-													<td>{{ $detalle->insumo }}</td>
-													<td>{{ $detalle->cantidad }}</td>
-												</tr>
-											@endforeach
-											</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
-								<div class="form-group">
-									<a href="{{ url('infraestructura/proceso_sanitario') }}">
-										<button class="btn btn-primary" type="">Volver</button>
-									</a>
-								</div>
-							</div>
-						</div>
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <div class="table-responsive">
+                                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover>
+									<thead style="background-color: #A9D0F5">
+
+                                            <th>ID Proceso</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            </thead>
+
+                                            <tbody>
+                                            @foreach($detalles as $det)
+                                            <tr>
+                                                <td>{{$det->id}}</td>
+                                                <td>{{$det->nombre}}</td>
+                                                <td>{{$det->descripcion}}</td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <div>
+                                            <a href="{{url('infraestructura/registro_sanitizacion')}}"><button class="btn btn-success">
+                                                    Volver
+                                                </button></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
