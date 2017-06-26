@@ -23,7 +23,7 @@
 				<div class="box-header with-border">
 					<h3 align="center">Panel de Registro de un <span class="text-bold">Proceso Sanitario</span></h3>
 				</div>
-
+		@if(count($articulos) >= 0)
 				<div class="box-body">
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -114,7 +114,25 @@
 
 				{!!Form::close()!!}
                 </div>
-            </div>
+				@else
+					<div class="box-header">
+						<h3 align="center"><b>Aun no tiene ningún Insumo registrado...</b></h3>
+					</div>
+					<div class="box-body">
+						<br>
+						<p align="center">Bienvenido a la seccion de Procesos Sanitarios, para agregar un nuevo Proceso,</p>
+						<p align="center">es necesario que tenga almacenado mínimo un Insumo en la Base de Datos</p>
+						<p align="center">haga click en el icono de más.</p>
+						<br>
+						<div class="col-md-6 col-sm-offset-3">
+							<!-- Agregar la ruta de create Insumo-->
+							<a href="{{ url('infraestructura/proceso_sanitario/create') }}" type="button" class="btn btn-danger btn-block">
+								<i class="fa fa-plus"></i>
+							</a>
+						</div>
+					</div>
+				@endif
+			</div>
         </div>
     </div>
 </section>

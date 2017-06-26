@@ -1,7 +1,9 @@
 @extends ('layouts.fondo')
 @section ('content')
 <section class="content-header" xmlns:background-color="http://www.w3.org/1999/xhtml"
-		 xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:background-color="http://www.w3.org/1999/xhtml">
+         xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:background-color="http://www.w3.org/1999/xhtml"
+         xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:background-color="http://www.w3.org/1999/xhtml"
+         xmlns:background-color="http://www.w3.org/1999/xhtml">
 	<h1 align="center">
 		<b>I N F R A E S T R U C T U R A</b>
 	</h1>
@@ -31,50 +33,48 @@
 					</div>
 				</div>
 
-		{!! Form::open(array('url'=>'infraestructura/proceso_sanitario','method'=>'POST','autocomplete'=>'off'))!!}
+		{!! Form::open(array('url'=>'infraestructura/registro_sanitizacion','method'=>'POST','autocomplete'=>'off'))!!}
 		{{Form::token()}}
 
 				<div class="row">
-					<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label for="nombre">Nombre</label>
-							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Ingresar nombre del proceso sanitario..">
+							<label>Empleado:</label>
+							<select name="idEmpleado" id="idEmpleado" class="form-control selectpicker" data-live-search="true">
+								@foreach($empleados as $empleado)
+									<option value="{{$empleado->id}}">{{$empleado->id}} {{$empleado->nombre}} {{$empleado->apellido}}</option>
+								@endforeach
+							</select>
 						</div>
 					</div>
-					<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-						<div class="form-group">
-							<label for="descripcion">Descripción</label>
-							<input type="text" name="descripcion" value="{{old('descripcion')}}" class="form-control" placeholder="Ingresar una descripción..">
-						</div>
-					</div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Infraestructura:</label>
+                            <select name="idInfraestructura" id="idInfraestructura" class="form-control selectpicker" data-live-search="true">
+                                @foreach($infraestructuras as $inf)
+                                    <option value="{{$inf->id}}">{{$inf->id}} {{$inf->capacidad}}  Tipo: {{$inf->tipo}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
 				</div>
                     <br>
 
 				<div class="row">
 					<div class="panel panel-primary">
 						<div class="panel-body">
-							<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+							<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 								<div class="form-group">
-									<label>Insumo</label>
+									<label>Procesos</label>
 									<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
-										@foreach($articulos as $articulo)
-											<option value="{{$articulo->id}}_{{$articulo->cantidadTotal}}">{{$articulo->nombre}}</option>
+										@foreach($procesos as $proceso)
+											<option value="{{$proceso->id}}_{{$proceso->nombre}}_{{$proceso->descripcion}}">{{$proceso->nombre}} {{$proceso->descripcion}}</option>
 										@endforeach
 									</select>
 								</div>
 							</div>
-							<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-								<div class="form-group">
-									<label for="cantidad">Cantidad</label>
-									<input type="number" name="pcantidad" id="pcantidad" class="form-control" placeholder="Cantidad">
-								</div>
-							</div>
-                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-                                <div class="form-group">
-                                    <label for="stock">Stock</label>
-                                    <input type="number" disabled name="pstock" id="pstock" class="form-control" placeholder="Stock">
-                                </div>
-                            </div>
+
                             <br>
 							<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 								<div class="form-group">
@@ -85,17 +85,13 @@
 							<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 								<div class="table-responsive">
 									<table id="detalles" class="table table-striped table-bordered table-condensed table-hover>
-										<thead style="background-color: #A9D0F5">
+									<thead style="background-color: #A9D0F5">
 									<th>Opciones</th>
-									<th>Insumo</th>
-									<th>Cantidad</th>
+									<th>ID Proceso</th>
+                                    <th>Nombre</th>
+									<th>Descripción</th>
 									</thead>
-									<tfoot>
-									<th>TOTAL</th>
-									<th></th>
 
-									<th><h4 id="total">Cantidad Total: </h4></th>
-									</tfoot>
 									<tbody>
 									</tbody>
 									</table>
@@ -138,46 +134,23 @@
 
     var cont = 0;
     total = 0;
-    subtotal=[];//Sirve para capturar todos los subtotales de cada una de las líneas de los detalles
     $("#guardar").hide();
-    $("#pidarticulo").change(mostrarValores);
-    function mostrarValores(){
-        datosArticulos = document.getElementById('pidarticulo').value.split('_');
-        $("#pstock").val(datosArticulos[1]);
-    }
     function agregar(){
         datosArticulos = document.getElementById('pidarticulo').value.split('_');
         idarticulo=datosArticulos[0];
-        articulo=$("#pidarticulo option:selected").text();
-        cantidad=$("#pcantidad").val();
-        stock=$("#pstock").val();
+        //articulo=$("#pidarticulo option:selected").text();
+        nombre=datosArticulos[1];
+        descripcion=datosArticulos[2];
 
-        if (idarticulo!="" && cantidad!="" && cantidad>0) {
-            stock = stock*1;
-            if(stock >=cantidad) {
-
-                subtotal[cont] = (cantidad * 1);
-                total = total + subtotal[cont];
-                alert(total);
-
-
-                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">X</button></td><td><input type="hidden" name="idarticulo[]" value="' + idarticulo + '">' + articulo + '</td><td><input type="number" name="cantidad[]" value="' + cantidad + '"></td></tr>';
-                cont++;
-                limpiar();
-                $("#total").html("Cantidad total: " + total);
-                evaluar();
-                $("#detalles").append(fila);
-            } else {
-                alert("La cantidad supera el stock actual del Insumo. Se recomienda comprar más insumos para continuar.")
-            }
+        if (idarticulo!="") {
+            total++;
+            var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">X</button></td><td><input type="hidden" name="idarticulo[]" value="' + idarticulo + '">' + idarticulo + '</td><td>'+nombre+'</td><td>'+descripcion+'</td></tr>';
+            cont++;
+            evaluar();
+            $("#detalles").append(fila);
         }else{
-            alert("Error al ingresar el detalle del producto, revise los datos del insumo.");
+            alert("Error al ingresar el detalle del Proceso Sanitario, revise los datos.");
         }
-    }
-
-    //Jquery toma los id para identificar
-    function limpiar(){
-        $("#pcantidad").val("");
     }
 
     function evaluar(){
@@ -189,13 +162,10 @@
     }
 
     function eliminar(index){
-        total = total - subtotal[index];
-        $("#total").html("Cantidad total: "+total);
+        total--;
         $("#fila" + index).remove();
         evaluar();
     }
-    window.addEventListener("load",comenzar, false);
-
     window.addEventListener("load",comenzar, false);
 </script>
 @endpush

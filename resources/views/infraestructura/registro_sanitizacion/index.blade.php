@@ -20,7 +20,7 @@
 			<div class="box box-primary">
 				<!-- TITULO DE PANEL -->
 				<div class="box-header with-border">
-					<h3 align="center">Panel de control de los <span class="text-bold">Procesos Sanitarios</span></h3>
+					<h3 align="center">Panel de control de los <span class="text-bold">Registros Sanitarios</span></h3>
 				</div>
 			@include('alertas.logrado')
 			@include('alertas.request')
@@ -38,7 +38,6 @@
 												<th>Id</th>
 												<th>Fecha</th>
 												<th>Empleado</th>
-												<th>Cargo</th>
 												<th>Infraestructura</th>
 												<th>Opciones</th>
 											</tr>
@@ -49,15 +48,14 @@
 
 											<td>{{ $registro->id }}</td>
 											<td>{{ $registro->fecha }}</td>
-											<td>{{ $registro->nombre }} {{ $registro->apellido }} {{ $registro->cargo }}</td>
-											<td>{{ $registro->infraestructura }}</td>
+											<td>{{$registro->idEmpleado}} {{ $registro->nombre }} {{ $registro->apellido }}</td>
+											<td>{{ $registro->infraestuctura }}</td>
 											<td>
 												<a href="{{URL::action('RegistroSanitizacionController@show',$registro->id)}}">
 													<button class="btn btn-primary">Detalles</button>
 												</a>
 											</td>
 										</tr>
-										@include('infraestructura.registro_sanitizacion.modal')
 										@endforeach
 
 									</table>

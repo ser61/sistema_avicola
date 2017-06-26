@@ -5,11 +5,12 @@ namespace sisAvicola\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use sisAvicola\DetalleProducto;
+use DB;
 use sisAvicola\DetalleSanitizacion;
 use sisAvicola\ProcesoSanitario;
 use sisAvicola\RegistroSanitizacion;
+use Illuminate\Support\Facades\Redirect;
+
 
 class RegistroSanitizacionController extends Controller
 {
@@ -26,18 +27,23 @@ class RegistroSanitizacionController extends Controller
             $registros=DB::table('registro_sanitizacion as rs')
                 ->join('persona as p','rs.idEmpleado','=','p.id')
                 ->join('infraestructura as i','rs.idInfraestructura','i.id')
-                ->join('cargo as c','p.idCargo','c.id')
-                ->select('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
-                    'c.nombre as cargo',DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
+                ->select('rs.id','rs.fecha','rs.visible','rs.idEmpleado','p.nombre','p.apellido',
+                    DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
+                ->where('p.tipo','=','e')
                 ->where('rs.id','LIKE','%'.$query.'%')
                 ->where('rs.visible','=','1')
                 ->orwhere('p.nombre','LIKE','%'.$query.'%')
                 ->orderBy('rs.id','desc')
-                ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
-                    'c.nombre as cargo')
+                ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido')
                 ->paginate(7);
-
-            return view('infraestructura.registro_sanitizacion.index',["registros"=>$registros,"searchText"=>$query]);
+            $idCargo=DB::table('registro_sanitizacion as rs')
+                ->join('persona as p','rs.idEmpleado','=','p.id')
+                ->select('p.idCargo');
+            $cargo = DB::table('cargo as c')
+                ->select('c.nombre as cargo')
+                ->where('c.id','=',$idCargo);
+            $procesos=ProcesoSanitario::all();
+            return view('infraestructura.registro_sanitizacion.index',["registros"=>$registros,"searchText"=>$query,"procesos"=>$procesos]);
 
         }
     }
@@ -72,7 +78,7 @@ class RegistroSanitizacionController extends Controller
             $registro=new RegistroSanitizacion;
             $registro->idEmpleado=$request->get('idEmpleado');
             $registro->idInfraestructura=$request->get('idInfraestructura');
-            $mytime = Carbon::now('America/La_paz');//Clase carbon
+            $mytime = Carbon::now('America/La_Paz');//Clase carbon
             $registro->fecha=$mytime->toDateTimeString();
             $registro->visible='1';
             $registro->idEmpresa=Auth::user()->idEmpresa;
@@ -88,8 +94,8 @@ class RegistroSanitizacionController extends Controller
                 $detalle = new DetalleSanitizacion();
                 $detalle->idRegistroSanitizacion=$registro->id;
                 $detalle->idProcesoSanitario=$idarticulo[$cont];
-                $detalle->cantidad='1';
                 $detalle->idEmpresa=Auth::user()->idEmpresa;
+                $detalle->visible='1';
                 $detalle->save();
                 $cont = $cont + 1;
             }

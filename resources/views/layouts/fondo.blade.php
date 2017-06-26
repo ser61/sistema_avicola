@@ -268,7 +268,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ url('infraestructura/granja') }}"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('infraestructura/registro_sanitizacion') }}"><i class="fa fa-circle-o"></i>
                   <span class="title">Registros de Sanitización</span>
                 </a>
               </li>
