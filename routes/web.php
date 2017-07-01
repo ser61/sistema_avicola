@@ -75,7 +75,19 @@ Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->na
 
 
 
-//70 - FIN DE ROUTES DE SERGIO WEIMAR
+
+
+
+
+
+
+
+
+
+
+
+
+//90 - FIN DE ROUTES DE SERGIO WEIMAR
 //53 - SERGIO FRANCO
 //Route::resource('administracion/persona','PersonaController');
 //Route::resource('administracion/cargo','CargoController');
