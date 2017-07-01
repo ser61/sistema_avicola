@@ -59,7 +59,7 @@
                 </tr>
                 </thead>
                 <tbody>
-              @foreach($empleados as $empleado)
+                @foreach($empleados as $empleado)
                 <tr>
                   <td class="center">{{$empleado->ci}}</td>
                   <td class="hidden-xs">
@@ -72,6 +72,7 @@
                   <td>{{$empleado->fechaIngreso}}</td>
                   <td>{{$empleado->cargo}}</td>
                   <td class="center">
+                    @include("seguridad.empleado.phones")
                     <div class="visible-md visible-lg hidden-sm hidden-xs">
                       {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id]]) !!}
                       <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-xs btn-info">
@@ -80,9 +81,9 @@
                       <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash"></i>
                       </button>
-                      {{--<a href="#" class="btn btn-xs btn-success">
-                        <i class="fa fa-eye"></i>
-                      </a>--}}
+                      <a type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones">
+                        <i class="fa fa-phone"></i>
+                      </a>
                       {!! Form::close() !!}
                     </div>
                     <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -104,11 +105,11 @@
                             {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
                             {!! Form::close() !!}
                           </li>
-                          {{--<li>
-                            <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
-                              <i class="fa fa-eye"></i> Ver
+                          <li>
+                            <a type="button" href="" role="menuitem" tabindex="-1" data-toggle="modal" data-target="#phones">
+                              <i class="fa fa-phone"></i> Ver
                             </a>
-                          </li>--}}
+                          </li>
                         </ul>
                       </div>
                     </div>

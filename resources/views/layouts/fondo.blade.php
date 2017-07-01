@@ -159,22 +159,22 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="ui_elements.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/proveedor") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Proveedores </span>
                 </a>
               </li>
               <li>
-                <a href="ui_buttons.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/insumo") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Insumos </span>
                 </a>
               </li>
               <li>
-                <a href="ui_icons.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/factura") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Facturas </span>
                 </a>
               </li>
               <li>
-                <a href="ui_animations.html"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/inventario") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Inventario </span>
                 </a>
               </li>

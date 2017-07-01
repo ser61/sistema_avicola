@@ -65,7 +65,7 @@ Route::get('backup/download/{backup}', 'Seguridad\BackupController@download')->n
 Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->name('backup.restore');
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
 
-
+Route::resource('proveedor', 'Compra\ProveedorController');
 
 
 

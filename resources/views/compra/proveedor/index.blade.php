@@ -33,7 +33,7 @@
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
                   </button>
-                  <a href="{{ url('empleado/create') }}" class="btn btn-danger btn-flat">
+                  <a href="{{ url('proveedor/create') }}" class="btn btn-danger btn-flat">
                     <i class="fa fa-plus"></i>
                   </a>
                 </span>
@@ -48,41 +48,32 @@
                 <thead>
                 <tr>
                   <th class="center">ci</th>
-                  <th class="hidden-xs">Foto</th>
                   <th>Nombre(s)</th>
                   <th>Apellido(s)</th>
                   <th class="hidden-xs">Direccion</th>
-                  <th class="hidden-xs">Fecha Nacimiento</th>
-                  <th>Fecha Ingreso</th>
-                  <th>Cargo</th>
+                  <th>E-mail</th>
+                  <th>Empresa</th>
                   <th>Opcion</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($empleados as $empleado)
+                @foreach($proveedores as $proveedor)
                   <tr>
-                    <td class="center">{{$empleado->ci}}</td>
-                    <td class="hidden-xs">
-                      <img src='usuarios/{{$empleado->foto}}' class="img-circle" alt=""  style="width: 30px; height: 30px;">
-                    </td>
-                    <td>{{$empleado->nombre}}</td>
-                    <td>{{$empleado->apellido}}</td>
-                    <td class="hidden-xs">{{$empleado->direccion}}</td>
-                    <td class="hidden-xs">{{$empleado->fechaNacimiento}}</td>
-                    <td>{{$empleado->fechaIngreso}}</td>
-                    <td>{{$empleado->cargo}}</td>
+                    <td class="center">{{$proveedor->ci}}</td>
+                    <td>{{$proveedor->nombre}}</td>
+                    <td>{{$proveedor->apellido}}</td>
+                    <td class="hidden-xs">{{$proveedor->direccion}}</td>
+                    <td>{{$proveedor->email}}</td>
+                    <td>{{$proveedor->empresa}}</td>
                     <td class="center">
                       <div class="visible-md visible-lg hidden-sm hidden-xs">
-                        {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id]]) !!}
-                        <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-xs btn-info">
+                        {!! Form::open(['method'=>'DELETE', 'route'=>['proveedor.destroy',$proveedor->id]]) !!}
+                        <a href="{{ route('proveedor.edit', $proveedor->id) }}" class="btn btn-xs btn-info">
                           <i class="fa fa-edit"></i>
                         </a>
                         <button class="btn btn-xs btn-danger">
                           <i class="fa fa-trash"></i>
                         </button>
-                        {{--<a href="#" class="btn btn-xs btn-success">
-                          <i class="fa fa-eye"></i>
-                        </a>--}}
                         {!! Form::close() !!}
                       </div>
                       <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -92,23 +83,18 @@
                           </a>
                           <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
                             <li>
-                              <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
+                              <a href="{{ route('proveedor.edit', $proveedor->id) }}" role="menuitem" tabindex="-1">
                                 <i class="fa fa-edit"></i> Edit
                               </a>
                             </li>
                             <li>
-                              <a href="{{ route('empleado.destroy', $empleado->id) }}"
+                              <a href="{{ route('proveedor.destroy', $proveedor->id) }}"
                                  onclick="event.preventDefault();document.getElementById('delete').submit();">
                                 <i class="fa fa-trash"></i> Remove
                               </a>
-                              {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
+                              {!! Form::open(['method'=>'DELETE', 'route'=>['proveedor.destroy',$proveedor->id], 'id'=>'delete']) !!}
                               {!! Form::close() !!}
                             </li>
-                            {{--<li>
-                              <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
-                                <i class="fa fa-eye"></i> Ver
-                              </a>
-                            </li>--}}
                           </ul>
                         </div>
                       </div>
@@ -117,7 +103,7 @@
                 @endforeach
                 </tbody>
               </table>
-              {{ $empleados->links() }}
+              {{ $proveedores->links() }}
             </div>
             <!-- fin-> TABLA DE DATOS -->
             @else
@@ -131,7 +117,7 @@
                   <p align="center">haga click en el icono de más.</p>
                   <br>
                   <div class="col-md-6 col-sm-offset-3">
-                    <a href="{{ url('proveedor.create') }}" type="button" class="btn btn-danger btn-block">
+                    <a href="{{ route('proveedor.create') }}" type="button" class="btn btn-danger btn-block">
                       <i class="fa fa-plus"></i>
                     </a>
                   </div>
@@ -152,7 +138,7 @@
     $value = $(this).val();
     $.ajax({
       type: 'GET',
-      url: "{{url('searchEmpleados/')}}",
+      url: "{{url('searchproveedors/')}}",
       data: {'search': $value},
       success: function (data) {
         console.log(data);
@@ -164,11 +150,11 @@
   $(document).on('click', '.pagination a', function (e) {
     e.preventDefault();
     var page = $(this).attr('href').split('page=')[1];
-    empleados(page, $('#search').val());
+    proveedors(page, $('#search').val());
   });
 
-  function empleados(page, search) {
-    var url = "{{url('searchPaginateEmpleados/')}}";
+  function proveedors(page, search) {
+    var url = "{{url('searchPaginateproveedors/')}}";
     $.ajax({
       type: 'GET',
       url: url + '?page=' + page,
