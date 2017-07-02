@@ -35,9 +35,10 @@
             <button class="btn btn-xs btn-danger">
               <i class="fa fa-trash"></i>
             </button>
-            {{--<a href="#" class="btn btn-xs btn-success">
-              <i class="fa fa-eye"></i>
-            </a>--}}
+            <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones">
+              <i class="fa fa-phone"></i>
+            </button>
+            @include("seguridad.empleado.phones")
             {!! Form::close() !!}
           </div>
           <div class="visible-xs visible-sm hidden-md hidden-lg">

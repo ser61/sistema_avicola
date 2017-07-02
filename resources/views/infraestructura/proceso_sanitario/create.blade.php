@@ -125,7 +125,7 @@
 						<p align="center">haga click en el icono de más.</p>
 						<br>
 						<div class="col-md-6 col-sm-offset-3">
-							<!-- Agregar la ruta de create Insumo-->
+							<!-- Agregar la ruta de create insumo-->
 							<a href="{{ url('infraestructura/proceso_sanitario/create') }}" type="button" class="btn btn-danger btn-block">
 								<i class="fa fa-plus"></i>
 							</a>
@@ -186,7 +186,7 @@
                 evaluar();
                 $("#detalles").append(fila);
             } else {
-                alert("La cantidad supera el stock actual del Insumo. Se recomienda comprar más insumos para continuar.")
+                alert("La cantidad supera el stock actual del insumo. Se recomienda comprar más insumos para continuar.")
             }
         }else{
             alert("Error al ingresar el detalle del producto, revise los datos del insumo.");

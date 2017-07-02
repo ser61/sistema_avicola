@@ -1,6 +1,6 @@
 <?php
 
-namespace sisAvicola;
+namespace sisAvicola\Models\Compra;
 
 use Illuminate\Database\Eloquent\Model;
 
