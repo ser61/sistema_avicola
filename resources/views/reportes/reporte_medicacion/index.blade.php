@@ -60,7 +60,7 @@
 								<td>{{ $rep->idEmpleado }} {{ $rep->nombre }} {{ $rep->apellido }}</td>
 								<td>
 									<a href="{{URL::action('ReporteMedicacionController@show',$rep->idReporte)}}">
-										<button class="btn btn-primary">Ver más</button>
+										<button class="btn btn-primary">Ver Detalle</button>
 									</a>
 								</td>
 							</tr>
