@@ -23,7 +23,8 @@ $factory->define(sisAvicola\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(sisAvicola\Persona::class, function (Faker\Generator $faker) {
+$factory->define(sisAvicola\Persona::class, function (Faker\Generator $fake) {
+  $faker = \Faker\Factory::create('es_ES');
   return [
     'ci' => $faker->numberBetween(10000000,99999999),
     'nombre' => $faker->name,

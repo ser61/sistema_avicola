@@ -64,4 +64,10 @@ class Telefono extends Model
       }
     }
   }
+
+  public function scope_allTelefonos($query)
+  {
+    $telefonos = $query->whereVisible('1')->where('idEmpresa', Auth::user()->idEmpresa);
+    return $telefonos;
+  }
 }

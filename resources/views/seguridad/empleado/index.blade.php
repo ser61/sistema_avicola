@@ -81,7 +81,7 @@
                       <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash"></i>
                       </button>
-                      <a type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones">
+                      <a type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones{{$empleado->id}}">
                         <i class="fa fa-phone"></i>
                       </a>
                       {!! Form::close() !!}
@@ -106,7 +106,7 @@
                             {!! Form::close() !!}
                           </li>
                           <li>
-                            <a type="button" href="" role="menuitem" tabindex="-1" data-toggle="modal" data-target="#phones">
+                            <a type="button" href="" role="menuitem" data-toggle="modal" data-target="#phones{{$empleado->id}}">
                               <i class="fa fa-phone"></i> Ver
                             </a>
                           </li>

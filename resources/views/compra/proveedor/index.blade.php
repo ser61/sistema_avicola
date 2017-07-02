@@ -28,7 +28,7 @@
                 @include('alertas.logrado')
                 @include('alertas.request')
                 <div class="input-group margin">
-                  <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre, apellido, ci o cargo...">
+                  <input id="search" type="text" class="form-control" placeholder="Buscar por Nombre, apellido o ci...">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info btn-flat">
                     <i class="fa fa-search"></i>
@@ -66,6 +66,7 @@
                     <td>{{$proveedor->email}}</td>
                     <td>{{$proveedor->empresa}}</td>
                     <td class="center">
+                      @include("compra.proveedor.phone")
                       <div class="visible-md visible-lg hidden-sm hidden-xs">
                         {!! Form::open(['method'=>'DELETE', 'route'=>['proveedor.destroy',$proveedor->id]]) !!}
                         <a href="{{ route('proveedor.edit', $proveedor->id) }}" class="btn btn-xs btn-info">
@@ -74,6 +75,9 @@
                         <button class="btn btn-xs btn-danger">
                           <i class="fa fa-trash"></i>
                         </button>
+                        <a type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones{{$proveedor->id}}">
+                          <i class="fa fa-phone"></i>
+                        </a>
                         {!! Form::close() !!}
                       </div>
                       <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -94,6 +98,11 @@
                               </a>
                               {!! Form::open(['method'=>'DELETE', 'route'=>['proveedor.destroy',$proveedor->id], 'id'=>'delete']) !!}
                               {!! Form::close() !!}
+                            </li>
+                            <li>
+                              <a type="button" href="" role="menuitem" data-toggle="modal" data-target="#phones{{$proveedor->id}}">
+                                <i class="fa fa-phone"></i> Ver
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -138,7 +147,7 @@
     $value = $(this).val();
     $.ajax({
       type: 'GET',
-      url: "{{url('searchproveedors/')}}",
+      url: "{{url('searchProveedores/')}}",
       data: {'search': $value},
       success: function (data) {
         console.log(data);
@@ -150,11 +159,11 @@
   $(document).on('click', '.pagination a', function (e) {
     e.preventDefault();
     var page = $(this).attr('href').split('page=')[1];
-    proveedors(page, $('#search').val());
+    proveedores(page, $('#search').val());
   });
 
-  function proveedors(page, search) {
-    var url = "{{url('searchPaginateproveedors/')}}";
+  function proveedores(page, search) {
+    var url = "{{url('searchPaginateProveedores/')}}";
     $.ajax({
       type: 'GET',
       url: url + '?page=' + page,

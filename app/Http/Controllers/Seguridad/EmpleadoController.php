@@ -19,8 +19,9 @@ class EmpleadoController extends Controller
   {
     $empleados = Persona::_allEmpleados()->paginate(6);
     $cargos = Cargo::_allCargos()->get();
+    $telefonos = Telefono::_allTelefonos()->get();
     Accion::_crearAccion('Ingreso: Indice de Empleados.', Auth::user()->id, Auth::user()->idEmpresa);
-    return view('seguridad.empleado.index', compact('empleados', 'cargos'));
+    return view('seguridad.empleado.index', compact('empleados', 'cargos', 'telefonos'));
   }
 
   public function create()
@@ -88,7 +89,8 @@ class EmpleadoController extends Controller
     if ($request->ajax()) {
       $empleados = Persona::_buscarEmpleados($request['search'])->paginate(6);
       $search = $request['search'];
-      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search'));
+      $telefonos = Telefono::_allTelefonos()->get();
+      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search', 'telefonos'));
       return Response($view);
     }
   }
@@ -98,7 +100,8 @@ class EmpleadoController extends Controller
     if ($request->ajax()) {
       $empleados = Persona::_buscarEmpleados($request['search'])->paginate(6);
       $search = $request['search'];
-      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search'));
+      $telefonos = Telefono::_allTelefonos()->get();
+      $view = view('seguridad.empleado.ajax.getList', compact('empleados', 'search', 'telefonos'));
       return Response($view);
     }
   }
