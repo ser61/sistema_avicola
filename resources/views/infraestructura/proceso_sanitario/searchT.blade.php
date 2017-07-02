@@ -3,7 +3,7 @@
 <div class="panel panel-blue">
 	<div class="panel-body">
 		<div class="input-group margin">
-			<input type="text" class="form-control" name="searchText" placeholder="Buscar por ID de Registro..." values="{{$searchText}}">
+			<input type="text" class="form-control" name="searchText" placeholder="Buscar por ID de proceso..." values="{{$searchText}}">
                 <span class="input-group-btn">
                   <button type="submit" class="btn btn-info btn-flat" id="mos" value="mos">
 	                  <i class="fa fa-search"></i>

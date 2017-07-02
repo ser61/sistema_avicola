@@ -1,4 +1,4 @@
-{!! Form::open(array('url'=>'infraestructura/proceso_sanitario','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
+{!! Form::open(array('url'=>'infraestructura/registro_sanitizacion','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
 
 <div class="panel panel-blue">
 	<div class="panel-body">
@@ -10,7 +10,7 @@
                   </button> </span>
 			</span>
                 <span class="input-group-btn">
-                  <a href="proceso_sanitario/create" class="btn btn-danger btn-flat">
+                  <a href="registro_sanitizacion/create" class="btn btn-danger btn-flat">
 	                  <i class="fa fa-plus"></i>
                   </a>
                 </span>

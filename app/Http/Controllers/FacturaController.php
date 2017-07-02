@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use sisAvicola\Models\seguridad\Accion;
 use Illuminate\Support\Facades\Auth;
+use sisAvicola\ProductoVenta;
 
 class FacturaController extends Controller
 {
@@ -101,6 +102,11 @@ class FacturaController extends Controller
         $detalle -> visible = '1';
         $detalle -> idEmpresa = Auth::user()->idEmpresa;
         $detalle -> save();
+
+        $producto_stock = ProductoVenta::findOrFail($idProducto[$cont]);
+        $producto_stock->stock = $producto_stock->stock - $cant[$cont];
+        $producto_stock->update();
+
         $cont = $cont + 1;
       }
 

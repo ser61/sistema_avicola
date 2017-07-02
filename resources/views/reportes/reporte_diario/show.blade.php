@@ -88,7 +88,12 @@
 			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 				<div class="form-group">
 					<label>Plantas de Incubación al que pertenece el Registro Actual</label>
-					<p> {{ $planta->idPlantaIncubacion }} </p>
+					@if(count($planta) > 0)
+						<p> {{ $planta->idPlantaIncubacion }} </p>
+					@else
+						<p> ---- </p>
+					@endif
+					
 				</div>
 			</div>
 

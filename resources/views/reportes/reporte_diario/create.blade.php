@@ -10,7 +10,7 @@
 @section ('content')
 <section class="content-header">
 	<h1 align="center">
-		<b>R E P O R T E S &ensp;D I A R I O S</b>
+		<b>* * * R E P O R T E S &ensp;D I A R I O S * * *</b>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -29,63 +29,25 @@
 		</div>
 
 		<div class="box-body">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<h3>Nuevo Reporte</h3>
-				</div>
-			</div>
+			
 
 			{!! Form::open(array('url'=>'reportes/reporte_diario','method'=>'POST','autocomplete'=>'off'))!!}
 			{{Form::token()}}
 
 			<div class="row">
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="form-group">
-						<label for="mortalidad">Mortalidad</label>
-						<input type="number" name="mortalidad" class="form-control" placeholder="Inserte la Mortalidad..">
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-					<div class="form-group">
-						<label>Empleados</label>
-						<select name="idEmpleado" class="form-control selectpicker" data-live-search="true">
-							@foreach($empleados as $empleado)
-							<option value="{{ $empleado->idEmpleado }}">{{ $empleado->idEmpleado }} {{ $empleado->nombre }} {{ $empleado->apellido }}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-					<div class="form-group">
-						<label>Parvadas</label>
+						<label>Elija la Parvada a Realizar El Reporte</label>
 						<select name="idParvada" class="form-control selectpicker" data-live-search="true">
 							@foreach($parvadas as $parvada)
-							<option value="{{ $parvada->idParvada }}">{{ $parvada->idParvada }} {{ $parvada->tipoParvada}} {{ $parvada->created_at }}</option>
+							<option value="{{ $parvada->idParvada }}">{{ $parvada->idParvada }} {{ $parvada->tipoParvada}}</option>
 							@endforeach
 						</select>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
-
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="form-group">
-						<label for="cantidadHuevos">Cantidad de Huevos Recolectados</label>
-						<input type="number" name="cantidadHuevos" class="form-control" placeholder="Inserte la cantidad de Huevos..">
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-					<div class="form-group">
-						<label for="pesoPromedio">Peso Promedio</label>
-						<input type="number" step="any" name="pesoPromedio" class="form-control" placeholder="Insertar precio promedio..">
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-					<div class="form-group">
-						<label>Etapa</label>
+						<label>Elija Etapa a la que pertenece la Parvada</label>
 						<select name="idEtapa" id="etapa" class="form-control selectpicker" data-live-search="true">
 							@foreach($etapas as $etapa)
 						<option value="{{ $etapa->idEtapa }}">{{ $etapa->nombre }}</option>
@@ -94,9 +56,46 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row">
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="form-group">
+						<label for="mortalidad">Mortalidad de la Parvada</label>
+						<input type="number" name="mortalidad" class="form-control" placeholder="Inserte la Mortalidad..">
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="form-group">
+						<label for="pesoPromedio">Peso Promedio del Parvada</label>
+						<input type="number" step="any" name="pesoPromedio" class="form-control" placeholder="Insertar precio promedio..">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+					<div class="form-group">
+						<label>Empleado Encargado del Reporte</label>
+						<select name="idEmpleado" class="form-control selectpicker" data-live-search="true">
+							@foreach($empleados as $empleado)
+							<option value="{{ $empleado->idEmpleado }}">{{ $empleado->idEmpleado }} {{ $empleado->nombre }} {{ $empleado->apellido }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="box-header with-border">
+					<h4 align="center"><span class="text-bold">Opciones para Parvada Reproductora o Ponedoras</span></h4>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="form-group">
+						<label for="cantidadHuevos">Cantidad de Huevos Recolectados</label>
+						<input type="number" name="cantidadHuevos" class="form-control" placeholder="Inserte la cantidad de Huevos..">
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="form-group">
 						<label>Plantas de Incubación Disponibles</label>
 						<select name="idPlantaIncubacion" class="form-control selectpicker" data-live-search="true">
@@ -106,40 +105,47 @@
 						</select>
 					</div>
 				</div>
+				
+				
+			</div>
 
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-					<div class="form-group">
-						<label for="fecha">Fecha del Registro</label>
-						<input type="date" name="fecha" class="form-control" placeholder="Introducir la fecha..">
-					</div>
+			<div class="row">
+				
+			<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+					
 				</div>
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="form-group">
 						<label>Categoría del Huevo</label>
 						<select name="idCategoria" class="form-control selectpicker" data-live-search="true">
 							@foreach($categorias as $categoria)
-							<option value="{{ $categoria->id }}">{{ $categoria->id }} {{ $categoria->nombre }} {{ $categoria->descripcion }} ({{ $categoria->pesoIntervaloInferior }} - {{ $categoria->pesoIntervaloSuperior }})</option>
+							<option value="{{ $categoria->id }}">{{ $categoria->id }} {{ $categoria->nombre }} ({{ $categoria->pesoIntervaloInferior }} - {{ $categoria->pesoIntervaloSuperior }})</option>
 							@endforeach
 						</select>
 					</div>
 				</div>
-
+				<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+					
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-					<div class="form-group">
-						<label for="observaciones">Observaciones</label>
-						<input type="text" name="observaciones" class="form-control" placeholder="Insertar observaciones.."/>
-					</div>
-				</div>
+				<div class="col-lg-12 col-md-6 col-dm-12 col-xs-12">
+	              <label for="form-field-24">
+	                Escriba una breve Observacion:
+	              </label>
+	              <textarea class="autosize form-control" id="form-field-24" name="observaciones"></textarea>
+	            </div>
 			</div>
 
-			<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-				<div class="form-group">
-					<button class="btn btn-primary" type="submit">Guardar</button>
-					<button class="btn btn-danger" type="reset">Cancelar</button>
-				</div>
-			</div>
+			<div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+              <br>
+              <button class="btn btn-primary btn-block">
+                Registrar Reporte <i class="fa fa-arrow-circle-right"></i>
+              </button>
+              <br>
+            </div>
+          </div>
 			{!!Form::close()!!}
 		</div>
 	</div>

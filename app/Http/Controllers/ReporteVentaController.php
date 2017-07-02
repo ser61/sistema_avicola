@@ -35,8 +35,18 @@ class ReporteVentaController extends Controller
     {
         $cliente = DB::table('persona')
           ->where('visible','=','1')
-          ->where('tipo','=','cliente') -> get();
-        return view('venta.reporteventa.create',['cliente'=>$cliente]);
+          ->where('tipo','=','c') -> get();
+        $empleado = DB::table('persona')
+          ->where('visible','=','1')
+          ->where('tipo','=','e') -> get();
+        $factura_a = DB::table('factura')
+          ->get();
+        $factura_b = DB::table('factura')
+          ->get();
+        $producto=DB::table('producto_venta')
+            ->where ('visible','=','1')
+            ->get();
+        return view('venta.reporteventa.create',['producto'=>$producto,'empleado'=>$empleado,'cliente'=>$cliente,'factura_a'=>$factura_a,'factura_b'=>$factura_b]);
     }
 
     /**
@@ -48,15 +58,22 @@ class ReporteVentaController extends Controller
     public function store(FacturaFormRequest $request)
     {
         
-        $fecha=$request->get('fecha');
+        //$fecha=$request->get('fecha');
         $idcliente=$request->get('idCliente');
+        $idempleado=$request->get('idEmpleado');
+        $estado=$request->get('estado');
 
+        $fecha_a=$request->get('fecha_a');
+        $fecha_b=$request->get('fecha_b');
         //Route::get('venta/factura/reporte',function(){
             $facturas=DB::table('factura')
             ->select('factura.*', 'p.nombre as nombreC')
             ->join('persona as p', 'p.id', '=', 'factura.idEmpleado')
-            ->where('fecha','=',$fecha)
+            //->where('fecha','=',$fecha_a)
+            ->whereBetween('fecha', [$fecha_a, $fecha_b])
             ->where('idCliente','=',$idcliente)
+            ->where('idEmpleado','=',$idempleado)
+            ->where('estado','=',$estado)
             ->get();
             $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);
             return $pdf->download('ReporteFacturas.pdf');

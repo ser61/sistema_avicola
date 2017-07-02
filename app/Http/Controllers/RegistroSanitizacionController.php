@@ -34,7 +34,7 @@ class RegistroSanitizacionController extends Controller
                 ->where('rs.visible','=','1')
                 ->orwhere('p.nombre','LIKE','%'.$query.'%')
                 ->orderBy('rs.id','desc')
-                ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido')
+                ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido','rs.idEmpleado','i.id','i.capacidad','i.tipo')
                 ->paginate(7);
             $idCargo=DB::table('registro_sanitizacion as rs')
                 ->join('persona as p','rs.idEmpleado','=','p.id')
@@ -123,9 +123,10 @@ class RegistroSanitizacionController extends Controller
             ->join('persona as p','rs.idEmpleado','=','p.id')
             ->join('infraestructura as i','rs.idInfraestructura','i.id')
             ->select('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
-                DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
+                'p.nombre as cargo',DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
             ->where('rs.id','=',$id)
-            ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido')
+            //->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido',
+                //'c.nombre as cargo')
             ->first();
 
         $detalles=DB::table('detalle_sanitizacion as d')

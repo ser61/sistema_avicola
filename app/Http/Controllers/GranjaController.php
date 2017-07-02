@@ -26,7 +26,7 @@ class GranjaController extends Controller
 			    ->where('g.visible','LIKE','1')
 			    ->orwhere('g.tipo','LIKE','%'.$query.'%')
 			    ->orderBy('g.id','desc')
-			    ->paginate(3);
+			    ->paginate(7);
 		    return view('infraestructura.granja.index',["granjas"=>$granjas,"searchText"=>$query]);
 	    }
     }

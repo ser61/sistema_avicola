@@ -23,14 +23,29 @@
 				{{Form::token()}}			
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
-					<label for="fecha">Fecha de Factura</label>
-					<input type="date" name="fecha" class="form-control" >
+					<label for="fecha_a">Desde:</label>
+					<select name="fecha_a" class="form-control">
+			    				@foreach ($factura_a as $fa)
+			    				   <option value="{{$fa -> fecha}}">{{$fa -> fecha}}</option>	 
+			    				@endforeach
+			    	</select>
 				</div>
 				</div>
 				
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="fecha_b">hasta: </label>
+					<select name="fecha_b" class="form-control">
+			    				@foreach ($factura_a as $fa)
+			    				   <option value="{{$fa -> fecha}}">{{$fa -> fecha}}</option>	 
+			    				@endforeach
+			    	</select>
+				</div>
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			    		<div class="form-group">
-			    			<label>Encargado de la Venta Para el Reporte</label>
+			    			<label>Del Cliente:</label>
 			    			<select name="idCliente" class="form-control">
 			    				@foreach ($cliente as $cli)
 			    				   <option value="{{$cli -> id}}">{{$cli -> nombre}}</option>	 
@@ -38,6 +53,26 @@
 			    			</select>
 			    		</div>
 			    	</div>
+			    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			    		<div class="form-group">
+			    			<label>Del Empleado:</label>
+			    			<select name="idEmpleado" class="form-control">
+			    				@foreach ($empleado as $en)
+			    				   <option value="{{$en -> id}}">{{$en -> nombre}}</option>	 
+			    				@endforeach
+			    			</select>
+			    		</div>
+			    </div>
+
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    		<div class="form-group">
+			    			<label>Del Producto:</label>
+			    			<select name="estado" class="form-control">
+			    				<option value="activa">Activa</option>
+			    				<option value="inactivo">Inactiva</option>
+			    			</select>
+			    		</div>
+			    </div>
 
 				<div class="form-group">
 		            <div class="col-sm-8 col-sm-offset-2">

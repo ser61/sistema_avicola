@@ -25,7 +25,7 @@
 			@include('alertas.logrado')
 			@include('alertas.request')
 			@if(count($procesos) > 0 && count($registros) > 0)
-				@include('infraestructura.proceso_sanitario.searchT')
+				@include('infraestructura.registro_sanitizacion.searchT')
 
 				<!-- TABLA DE DATOS -->
 					<div class="box-body">

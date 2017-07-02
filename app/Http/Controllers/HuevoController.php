@@ -71,7 +71,7 @@ class HuevoController extends Controller
     $productoVenta->stock=$request->get('stock');
     $productoVenta->precioUnitario=$request->get('precioUnitario');
     $productoVenta->idCategoria=$request->get('idCategoria');
-    $productoVenta->Auth::user()->idEmpresa;
+    $productoVenta->idEmpresa=Auth::user()->idEmpresa;
     $productoVenta->tipo='huevo';
     $productoVenta->visible='1';
     $productoVenta->save();

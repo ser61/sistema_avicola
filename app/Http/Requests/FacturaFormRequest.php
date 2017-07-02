@@ -24,12 +24,16 @@ class FacturaFormRequest extends FormRequest
   public function rules()
   {
     return [
-      'nit' => 'required|max:100',
-      'nombre' => 'required|max:100',
-      'montoTotal' => 'required|max:100',
+      'nit' => 'max:100',
+      'nombre' => 'max:100',
+      'montoTotal' => 'max:100',
       'fecha' => 'max:100',
-      'idEmpleado' => 'required|max:100',
-      'idCliente' => 'required|max:100'
+      'idEmpleado' => 'max:100',
+      'idCliente' => 'max:100',
+
+      'fecha_a' => 'max:100',
+      'estado' => 'max:100',
+      'fecha_b' => 'max:100'
     ];
   }
 }

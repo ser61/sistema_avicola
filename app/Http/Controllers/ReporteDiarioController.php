@@ -14,6 +14,7 @@ use sisAvicola\Parvada;
 use sisAvicola\Persona;
 use sisAvicola\ReporteDiario;
 use DB;
+use Carbon\Carbon;
 
 class ReporteDiarioController extends Controller
 {
@@ -25,7 +26,7 @@ class ReporteDiarioController extends Controller
     public function index(Request $request)
     {
 		$searchText = trim($request['searchText']);
-	    $reportes = ReporteDiario::_getReporteDiario($searchText)->paginate(4);
+	    $reportes = ReporteDiario::_getReporteDiario($searchText)->paginate(10);
 	    return view ('reportes.reporte_diario.index',compact('reportes','searchText'));
     }
 
@@ -67,9 +68,15 @@ class ReporteDiarioController extends Controller
 		//	DB::beginTransaction();
 			$reporte = new ReporteDiario();
 			//$reporte->id = $request->get('idReporteDiario');
-			$reporte->fecha = $request->get('fecha');
+			$my_time = Carbon::now('America/La_Paz');
+        	$reporte->fecha = $my_time -> toDateTimeString();
 			$reporte->mortalidad = $request->get('mortalidad');
-			$reporte->cantidadHuevos = $request->get('cantidadHuevos');
+			if($request->get('cantidadHuevos')==""){
+				$reporte->cantidadHuevos = null;
+			}else{
+				$reporte->cantidadHuevos = $request->get('cantidadHuevos');
+			}
+			
 			$reporte->pesoPromedio = $request->get('pesoPromedio');
 			$reporte->observaciones = $request->get('observaciones');
 			$reporte->idDietaAlimenticia = '1';
@@ -84,7 +91,7 @@ class ReporteDiarioController extends Controller
 			DB::statement('call upd_mortalidad_parvada('.$idPar.','.$mortalidad.')');
 
 	    $parvada = Parvada::findOrFail($request->get('idParvada'));
-			if($parvada->tipo == "Reproductora" && $request->get('idEtapa') == '3') {
+			if($parvada->tipo == "Reproductora" && $request->get('idEtapa') == '2') {
 
 				$planta = Infraestructura::findOrFail($request->get('idPlantaIncubacion'));
 				$cantH = $planta->cantidadHuevosAlmacenados;
@@ -99,7 +106,7 @@ class ReporteDiarioController extends Controller
 				$ingreso->idEmpresa = Auth::user()->idEmpresa;
 				$ingreso->save();
 			}
-			if($parvada->tipo == "Ponedora" && $request->get('idEtapa') == '3') {
+			if($parvada->tipo == "Ponedora" && $request->get('idEtapa') == '2') {
 
 				$idCat = $request->get('idCategoria');
 				$cantHu = $request->get('cantidadHuevos');
@@ -125,11 +132,20 @@ class ReporteDiarioController extends Controller
 	    $parvada = Parvada::findOrFail($reporte->idParvada);
 	    $empleado = Persona::findOrFail($reporte->idEmpleado);
 	    $etapa = Etapa::findOrFail($reporte->idEtapa);
-	    $planta = DB::table('ingreso_huevo_incubable as ing')
-	        ->join('infraestructura as i','i.id','ing.idPlantaIncubacion')
-			->select('i.id as idPlantaIncubacion')
-			->where('ing.idReporteDiario',$id)
-		    ->get()->first();
+
+	    $cant=Parvada::findOrFail($reporte->idParvada);
+        if($cant->tipo=='Reproductora'){
+	         $planta = DB::table('ingreso_huevo_incubable as ing')
+		        ->join('infraestructura as i','i.id','ing.idPlantaIncubacion')
+				->select('i.id as idPlantaIncubacion')
+				->where('ing.idReporteDiario',$id)
+			    ->get()->first();
+        }else{
+       		 $planta = null;
+        }
+
+
+	    
         return view('reportes.reporte_diario.show',["reporte"=>$reporte,"parvada"=>$parvada,"empleado"=>$empleado,"etapa"=>$etapa,"planta"=>$planta]);
     }
 

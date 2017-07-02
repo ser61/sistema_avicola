@@ -98,8 +98,7 @@ class EquipoController extends Controller
         $equipo = Equipo::findOrFail($id);
         $equipo->update($request->all());
         $equipo->save();
-        Session::flash('msj','El equipo fué editado exitósamente.');
-        return Redirect::to("infraestructura/equipo");
+        return redirect('infraestructura/equipo')->with('msj','El Equipo: '.$equipo->id.' se edito exitosamente.');
     }
 
     /**
