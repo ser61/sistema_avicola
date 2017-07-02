@@ -16,6 +16,5 @@ class DetalleMedicacion extends Model
         'dosis',
         'viaDeAplicacion',
         'idEmpresa',
-        'idEmpresa',
         'visible'];
 }
