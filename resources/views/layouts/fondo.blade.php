@@ -289,7 +289,7 @@
                 </a>
               </li>
               <li>
-                <a href="login_login.html?box=register"><i class="fa fa-circle-o"></i>
+                <a href="{{ url('reportes/reporte_medicacion') }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Reportes de Medicación </span>
                 </a>
               </li>

@@ -236,6 +236,7 @@ Route::resource('compra/alimento','AlimentoController');
 
 //200 Inicio de rutas de Eliot
 Route::resource('reportes/reporte_diario','ReporteDiarioController');
+Route::resource('reportes/reporte_medicacion','ReporteMedicacionController');
 Route::resource('infraestructura/granja','GranjaController');
 Route::get('infraestructura.pdf',function() {
 	$granjas = \sisAvicola\Granja::all();
