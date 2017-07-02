@@ -87,10 +87,13 @@ class Persona extends Model
 
   public function scope_buscarEmpleados($query, $search)
   {
-    $lista = $this->_allEmpleados()->where('persona.nombre','LIKE','%'.$search.'%')
-      ->orWhere('c.nombre','LIKE','%'.$search.'%')
-      ->orWhere('persona.apellido','LIKE','%'.$search.'%')
-      ->orWhere('persona.ci','LIKE','%'.$search.'%');
+    $lista = $this->_allEmpleados()
+      ->where(function($query) use ($search){
+        return $query->where('persona.nombre','LIKE','%'.$search.'%')
+          ->orWhere('c.nombre','LIKE','%'.$search.'%')
+          ->orWhere('persona.apellido','LIKE','%'.$search.'%')
+          ->orWhere('persona.ci','LIKE','%'.$search.'%');
+      });
     return $lista;
   }
 }

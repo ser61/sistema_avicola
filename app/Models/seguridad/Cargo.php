@@ -56,8 +56,11 @@ class Cargo extends Model
 
   public function scope_buscarCargos($query, $search)
   {
-    $lista = $this->_allCargos()->where('cargo.nombre','LIKE','%'.$search.'%')
-      ->orWhere('cargo.id','LIKE','%'.$search.'%');
+    $lista = $this->_allCargos()
+      ->where(function($query) use ($search){
+        return $query->where('cargo.nombre','LIKE','%'.$search.'%')
+          ->orWhere('cargo.id','LIKE','%'.$search.'%');
+      });
     return $lista;
   }
 }
