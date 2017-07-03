@@ -4,8 +4,12 @@ namespace sisAvicola\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use sisAvicola\DetalleMedicacion;
+use sisAvicola\LoteHuevoIncubable;
 use sisAvicola\Models\Compra\Insumo;
+use sisAvicola\Parvada;
+use sisAvicola\Persona;
 use sisAvicola\ReporteMedicacion;
 use DB;
 use Illuminate\Support\Facades\Redirect;
@@ -53,9 +57,9 @@ class ReporteMedicacionController extends Controller
         //	DB::beginTransaction();
         $reporte = new ReporteMedicacion();
         $mytime = Carbon::now('America/La_paz');
-        $reporte->fecha =$mytime->toDateTimeString();
-        $reporte->cantidadHuevos = $request->get('idParvada');
-        $reporte->pesoPromedio = $request->get('idLote');
+        $reporte->fechaMedicacion =$mytime->toDateTimeString();
+        $reporte->idParvada = $request->get('idParvada');
+        $reporte->idLoteHuevoIncubable = $request->get('idLote');
         $reporte->idEmpleado = $request->get('idEmpleado');
         $reporte->idEmpresa = Auth::user()->idEmpresa;
         $reporte->visible = '1';
@@ -101,12 +105,12 @@ class ReporteMedicacionController extends Controller
         $reporte = ReporteMedicacion::findOrFail($id);
         $parvada = Parvada::findOrFail($reporte->idParvada);
         $empleado = Persona::findOrFail($reporte->idEmpleado);
-        $etapa = Etapa::findOrFail($reporte->idLoteHuevoIncubable);
+        $lote = LoteHuevoIncubable::findOrFail($reporte->idLoteHuevoIncubable);
         $detalles = DB::table('detalle_medicacion as d')
             ->join('insumo as i','i.id','=','d.idMedicamento')
             ->where('i.tipoInsumo','=','Medicamento')
             ->where('d.idReporteMedicacion','=',$id)
             ->get();
-        return view('reportes.reporte_diario.show',["reporte"=>$reporte,"parvada"=>$parvada,"empleado"=>$empleado,"etapa"=>$etapa,"planta"=>$planta]);
+        return view('reportes.reporte_medicacion.show',["reporte"=>$reporte,"parvada"=>$parvada,"empleado"=>$empleado,"detalles"=>$detalles,"lote"=>$lote]);
     }
 }

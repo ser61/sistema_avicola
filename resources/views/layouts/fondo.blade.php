@@ -293,11 +293,6 @@
                   <span class="title"> Reportes de Medicación </span>
                 </a>
               </li>
-              <li>
-                <a href="login_login.html?box=forgot"><i class="fa fa-circle-o"></i>
-                  <span class="title"> Reportes de Huevos </span>
-                </a>
-              </li>
             </ul>
           </li>
 
