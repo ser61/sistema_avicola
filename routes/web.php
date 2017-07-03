@@ -66,8 +66,8 @@ Route::get('backup/restore/{backup}', 'Seguridad\BackupController@restore')->nam
 Route::delete('backup/delete/{backup}', 'Seguridad\BackupController@delete')->name('backup.delete');
 
 Route::resource('proveedor', 'Compra\ProveedorController');
-
-
+Route::get('searchProveedores/', 'Compra\ProveedorController@searchProveedores');
+Route::get('searchPaginateProveedores/', 'Compra\ProveedorController@searchPaginateProveedores');
 
 
 
@@ -237,6 +237,7 @@ Route::resource('compra/alimento','AlimentoController');
 
 //200 Inicio de rutas de Eliot
 Route::resource('reportes/reporte_diario','ReporteDiarioController');
+Route::resource('reportes/reporte_medicacion','ReporteMedicacionController');
 Route::resource('infraestructura/granja','GranjaController');
 Route::get('infraestructura.pdf',function() {
 	$granjas = \sisAvicola\Granja::all();

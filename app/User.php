@@ -77,18 +77,24 @@ class User extends Authenticatable
 
   public function scope_buscarUsuarios($query, $search)
   {
-    $lista = $this->_getUsuarios()->where('users.name','LIKE','%'.$search.'%')
-      ->orWhere('c.nombre','LIKE','%'.$search.'%')
-      ->orWhere('users.email','LIKE','%'.$search.'%');
+    $lista = $this->_getUsuarios()
+      ->where(function($query) use ($search){
+        return $query->where('users.name','LIKE','%'.$search.'%')
+          ->orWhere('c.nombre','LIKE','%'.$search.'%')
+          ->orWhere('users.email','LIKE','%'.$search.'%');
+      });
     return $lista;
   }
 
   public function scope_buscarUserBit($query, $search)
   {
-    $lista = $this->_getUsuariosBitacora()->where('users.name','LIKE','%'.$search.'%')
-      ->orWhere('p.nombre','LIKE','%'.$search.'%')
-      ->orWhere('p.apellido','LIKE','%'.$search.'%')
-      ->orWhere('c.nombre','LIKE','%'.$search.'%');
+    $lista = $this->_getUsuariosBitacora()
+      ->where(function($query) use ($search){
+        return $query->where('users.name','LIKE','%'.$search.'%')
+          ->orWhere('p.nombre','LIKE','%'.$search.'%')
+          ->orWhere('p.apellido','LIKE','%'.$search.'%')
+          ->orWhere('c.nombre','LIKE','%'.$search.'%');
+      });
     return $lista;
   }
 }

@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="{{url('/proveedores')}}">Index</a></li>
+      <li><a href="{{url('/proveedor')}}">Index</a></li>
       <li><a href="#">Crear</a></li>
     </ol>
   </section>
@@ -53,7 +53,7 @@
 
               <div class="form-group">
                 <label for="empresa">Escriba el nombre de la Empresa del Proveedor:</label>
-                {!! Form::text('empresa',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre de la Empresa aqui...','id'=>'empresa']) !!}
+                {!! Form::text('nombreEmpresa',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre de la Empresa aqui...','id'=>'empresa']) !!}
               </div>
 
               <div class="form-group">

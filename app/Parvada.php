@@ -11,7 +11,6 @@ class Parvada extends Model
     public $timestamps = true;
 
     protected $fillable = [
-
     	'cantidadPollos',
     	'sexo',
     	'edad',

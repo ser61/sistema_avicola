@@ -27,6 +27,7 @@
         <td>{{$empleado->fechaIngreso}}</td>
         <td>{{$empleado->cargo}}</td>
         <td class="center">
+          @include("seguridad.empleado.phones")
           <div class="visible-md visible-lg hidden-sm hidden-xs">
             {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id]]) !!}
             <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-xs btn-info">
@@ -35,10 +36,9 @@
             <button class="btn btn-xs btn-danger">
               <i class="fa fa-trash"></i>
             </button>
-            <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones">
+            <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#phones{{ $empleado->id }}">
               <i class="fa fa-phone"></i>
             </button>
-            @include("seguridad.empleado.phones")
             {!! Form::close() !!}
           </div>
           <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -60,11 +60,11 @@
                   {!! Form::open(['method'=>'DELETE', 'route'=>['empleado.destroy',$empleado->id], 'id'=>'delete']) !!}
                   {!! Form::close() !!}
                 </li>
-                {{--<li>
-                  <a href="{{ route('empleado.edit', $empleado->id) }}" role="menuitem" tabindex="-1">
+                <li>
+                  <a type="button" href="" role="menuitem" data-toggle="modal" data-target="#phones{{$empleado->id}}">
                     <i class="fa fa-eye"></i> Ver
                   </a>
-                </li>--}}
+                </li>
               </ul>
             </div>
           </div>
