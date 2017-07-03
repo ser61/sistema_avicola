@@ -8,6 +8,7 @@ use sisAvicola\Http\Controllers\Controller;
 use sisAvicola\Models\Compra\FacturaCompra;
 use sisAvicola\Models\Compra\Insumo;
 use sisAvicola\Models\Compra\Proveedor;
+use sisAvicola\Persona;
 
 class FacturaCompraController extends Controller
 {
@@ -80,6 +81,11 @@ class FacturaCompraController extends Controller
 
   public function detallar($id)
   {
-    return 'holaa';
+    $factura = FacturaCompra::find($id);
+    $insumos = Insumo::_getInsumos($factura->id, Auth::user()->idEmpresa)->get();
+    $factura['proveedor'] = Proveedor::find($factura->idProveedor)->nombre;
+    $factura['empleado'] = Persona::find($factura->idEmpleado)->nombre;
+    $factura['total'] = $this->calcTotal($insumos);
+    return view('compra.facturas.detalle_factura', compact("factura", "insumos"));
   }
 }

@@ -50,6 +50,12 @@ class Insumo extends Model
     return $insumos;
   }
 
+  public function scope_getInsumos($query, $idFactura, $idEmpresa)
+  {
+    $insumos = $query->whereVisible('1')->where('idEmpresa',$idEmpresa)->where('idFactura', $idFactura);
+    return $insumos;
+  }
+
   public function scope_clearAll($query, $idEmpresa)
   {
     DB::statement('delete from insumo where idEmpresa = ? and idFactura = ?',[$idEmpresa, '0']);

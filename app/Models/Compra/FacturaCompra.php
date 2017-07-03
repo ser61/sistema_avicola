@@ -20,7 +20,11 @@ class FacturaCompra extends Model
 
   public function scope_allFacturas($query, $idEmpresa)
   {
-    $facturas = $query->whereVisible('1')->where('idEmpresa', $idEmpresa);
+    $facturas = $query->select('factura_compra.id as id', 'factura_compra.fecha as fecha',
+        'factura_compra.montoTotal as montoTotal','p.nombre as nombre')
+        ->join('persona as p', 'p.id','factura_compra.idProveedor')
+        ->where('p.visible','1')->where('p.idEmpresa',$idEmpresa)->where('p.tipo','p')
+        ->where('factura_compra.visible','1')->where('factura_compra.idEmpresa', $idEmpresa);
     return $facturas;
   }
 
