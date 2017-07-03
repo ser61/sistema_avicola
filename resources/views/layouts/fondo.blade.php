@@ -340,11 +340,7 @@
                   <span class="title">Traspaso de Parvada</span>
                 </a>
               </li>
-              <li>
-                <a href="{{ url('/proceso/produccionalimento')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Produccion Alimento</span>
-                </a>
-              </li>
+              
               <li>
                 <a href="{{ url('/proceso/ordenproduccion')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Orden de Produccion</span>

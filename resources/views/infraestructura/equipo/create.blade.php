@@ -64,7 +64,7 @@
 							<label>Plantas Incubadoras</label>
 							<select name="idPlantaIncubacion" class="form-control">
 								@foreach($plantas as $planta)
-									<option value="{{ $planta->idPlantaIncubacion }}">{{$planta->idPlantaIncubacion}} {{$planta->capacidad}} {{$planta->estado}}</option>
+									<option value="{{ $planta->idPlantaIncubacion }}">{{$planta->idPlantaIncubacion}} {{$planta->estado}}</option>
 								@endforeach
 							</select>
 						</div>
