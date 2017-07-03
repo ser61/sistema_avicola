@@ -52,7 +52,7 @@
 							<label>Parvadas</label>
 							<select name="idParvada" class="form-control selectpicker" data-live-search="true">
 								@foreach($parvadas as $parvada)
-									<option value="{{ $parvada->id }}">{{ $parvada->id }} {{ $parvada->tipo}} {{ $parvada->created_at }}</option>
+									<option value="{{ $parvada->id }}">{{ $parvada->id }} {{ $parvada->tipoParvada}} {{ $parvada->created_at }}</option>
 								@endforeach
 							</select>
 						</div>
