@@ -14,6 +14,7 @@
             <label for="nombre">Nombre de Insumo:</label>
             {!! Form::text('nombreM',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del cargo aqui...','id'=>'nombreM']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+            <input type="hidden" name="tipoIM" value="2" id="tipoIM">
           </div>
 
           <div class="form-group">

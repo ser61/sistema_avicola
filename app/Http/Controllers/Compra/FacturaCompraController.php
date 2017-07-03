@@ -40,7 +40,12 @@ class FacturaCompraController extends Controller
 
     public function store(Request $request)
     {
-        //
+      $insumos = Insumo::_getInsumosNuevos(Auth::user()->idEmpresa)->get();
+      $total = $this->calcTotal($insumos);
+      FacturaCompra::_crearFactura($request, Auth::user()->id, $total, Auth::user()->idEmpresa);
+      $factura = FacturaCompra::_getLastAdded(Auth::user()->idEmpresa);
+      Insumo::_confirmarInsumos($factura->id, Auth::user()->idEmpresa);
+      return redirect('factura_compra')->with("msj", "Se registro orden compra exitosamente...");
     }
 
   public function show($id)
@@ -72,4 +77,9 @@ class FacturaCompraController extends Controller
     {
         //
     }
+
+  public function detallar($id)
+  {
+    return 'holaa';
+  }
 }

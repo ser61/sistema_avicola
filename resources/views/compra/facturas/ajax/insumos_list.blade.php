@@ -18,7 +18,7 @@
         <td>{{$insumo->precio}}</td>
         <td class="center">
           {!! Form::open(['method'=>'DELETE', 'route'=>['insumo.destroy',$insumo->id]]) !!}
-          <a href="{{ route('insumo.detallar', $insumo->id) }}" class="btn btn-info">
+          <a href="#" class="btn btn-info" onclick="showModal({{$insumo->id}});"  data-toggle="modal" data-target="#detallar" data-backdrop=”false”>
             <i class="fa fa-edit"></i> Detallar
           </a>
           <button class="btn btn-danger">

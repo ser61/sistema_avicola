@@ -23,18 +23,21 @@
           @include('compra.facturas.models.materia_prima')
           @include('compra.facturas.models.medicamento')
           @include('compra.facturas.models.producto_sanitizacion')
+          @include('compra.facturas.models.detallar')
             <!-- fin-> TITULO DE PANEL -->
             <!-- CUADRO DE BUSQUEDA -->
           <div class="panel panel-blue">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 @include('alertas.logrado')
-                @include('alertas.request')
+                @include('alertas.request2')
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1">
+                  {!! Form::open(['route' => 'factura_compra.store','method' => 'POST', 'id'=>'crear_factura']) !!}
                   <div class="form-group">
-                    <label for="insumo">Seleccione un Proveedor:</label>
-                    {!! Form::select('tipoInsumo',$proveedores,null, ['class'=>'form-control select2', 'id' => 'insumo', 'placeholder'=>'Seleccion tipo...']) !!}
+                    <label for="idProveedor">Seleccione un Proveedor:</label>
+                    {!! Form::select('idProveedor',$proveedores,null, ['class'=>'form-control select2', 'id' => 'idProveedor', 'placeholder'=>'Seleccion tipo...']) !!}
                   </div>
+                  {!! Form::close() !!}
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1">
@@ -75,7 +78,7 @@
                   <td>{{$insumo->precio}}</td>
                   <td class="center">
                     {!! Form::open(['method'=>'DELETE', 'route'=>['insumo.destroy',$insumo->id]]) !!}
-                    <a href="{{ route('insumo.detallar', $insumo->id) }}" class="btn btn-info">
+                    <a href="#" class="btn btn-info" onclick="showModal({{$insumo->id}});"  data-toggle="modal" data-target="#detallar" data-backdrop=”false”>
                       <i class="fa fa-edit"></i> Detallar
                     </a>
                     <button class="btn btn-danger">
@@ -99,14 +102,14 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-lg-offset-6">
-                  <button class="btn btn-danger btn-block">
+                  <a href="{{ url('insumo/clear') }}" class="btn btn-danger btn-block">
                     <i class="fa fa-arrow-left"></i> <b>Volver</b>
-                  </button>
+                  </a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                  <button class="btn btn-primary btn-block">
+                  <a class="btn btn-primary btn-block" onclick="event.preventDefault();document.getElementById('crear_factura').submit();">
                     <i class="fa fa-check"></i> <b>Guardar</b>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -122,69 +125,168 @@
 @push('scripts')
 <script type="text/javascript">
   $('#btnMateria').click(function(){
-    document.getElementById('insumo').disabled = true;
+    document.getElementById('idProveedor').disabled = true;
     var nombre = $('#nombre').val();
     var precio = $('#precio').val();
     var cantidadTotal = $('#cantidadTotal').val();
     var marca = $('#marca').val();
     var descripcion = $('#descripcion').val();
+    var tipoInsumo = $('#tipoInsumo').val();
     var token = $('#token').val();
     $.ajax({
       type: 'POST',
       url: "{{route('insumo.store')}}",
       headers: {'X-CSRF-TOKEN':token},
-      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'marca':marca, 'descripcion':descripcion},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipoInsumo':tipoInsumo, 'marca':marca, 'descripcion':descripcion},
       dataType: 'json',
       success: function (data) {
-        console.log(data);
         $('#tbody').html(data);
+      },
+      error: function(error){
+        var errors = error.responseJSON;
+        if ($.trim(errors)){
+          var errorsHtml= '';
+          $.each( errors, function( key, value ) {
+            errorsHtml += '<li>' + value[0] + '</li>';
+          });
+          $('#miul').html(errorsHtml);
+          $('#msj-errorajax').fadeIn();
+        }
       }
     });
   });
 
   $('#btnMedicamento').click(function(){
-    document.getElementById('insumo').disabled = true;
+    document.getElementById('idProveedor').disabled = true;
     var nombre = $('#nombreM').val();
     var precio = $('#precioM').val();
     var cantidadTotal = $('#cantidadTotalM').val();
     var marca = $('#marcaM').val();
     var descripcion = $('#descripcionM').val();
     var tipo = $('#tipoM').val();
+    var tipoInsumo = $('#tipoIM').val();
     var token = $('#token').val();
     $.ajax({
       type: 'POST',
       url: "{{route('insumo.store')}}",
       headers: {'X-CSRF-TOKEN':token},
-      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipoInsumo':tipoInsumo, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
       dataType: 'json',
       success: function (data) {
-        console.log(data);
         $('#tbody').html(data);
+      },
+      error: function(error){
+        var errors = error.responseJSON;
+        if ($.trim(errors)){
+          var errorsHtml= '';
+          $.each( errors, function( key, value ) {
+            errorsHtml += '<li>' + value[0] + '</li>';
+          });
+          $('#miul').html(errorsHtml);
+          $('#msj-errorajax').fadeIn();
+        }
       }
     });
   });
 
   $('#btnSanitario').click(function(){
-    document.getElementById('insumo').disabled = true;
+    document.getElementById('idProveedor').disabled = true;
     var nombre = $('#nombreS').val();
     var precio = $('#precioS').val();
     var cantidadTotal = $('#cantidadTotalS').val();
     var marca = $('#marcaS').val();
     var descripcion = $('#descripcionS').val();
     var tipo = $('#tipoS').val();
+    var tipoInsumo = $('#tipoIS').val();
     var token = $('#token').val();
     $.ajax({
       type: 'POST',
       url: "{{route('insumo.store')}}",
       headers: {'X-CSRF-TOKEN':token},
-      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipoInsumo':tipoInsumo, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
       dataType: 'json',
       success: function (data) {
-        console.log(data);
         $('#tbody').html(data);
+      },
+      error: function(error){
+        var errors = error.responseJSON;
+        if ($.trim(errors)){
+          var errorsHtml= '';
+          $.each( errors, function( key, value ) {
+            errorsHtml += '<li>' + value[0] + '</li>';
+          });
+          $('#miul').html(errorsHtml);
+          $('#msj-errorajax').fadeIn();
+        }
       }
     });
   });
+
+  $('#btnUpdate').click(function(){
+    var id = $('#id').val();
+    var nombre = $('#nombreG').val();
+    var precio = $('#precioG').val();
+    var cantidadTotal = $('#cantidadTotalG').val();
+    var marca = $('#marcaG').val();
+    var descripcion = $('#descripcionG').val();
+    var tipoInsumo = $('#tipoIM').val();
+    if(tipoInsumo == 2) {
+      var tipo = $('#tipoGM').val();
+    }else if(tipoInsumo == 3){
+      var tipo = $('#tipoGS').val();
+    }else{
+      var tipo = null;
+    }
+    var token = $('#token').val();
+    $.ajax({
+      type: 'PUT',
+      url: "{{route('insumo.update', '0')}}",
+      headers: {'X-CSRF-TOKEN':token},
+      data: {'id':id, 'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipoInsumo':tipoInsumo, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
+      dataType: 'json',
+      error: function(error){
+        var errors = error.responseJSON;
+        if ($.trim(errors)){
+          var errorsHtml= '';
+          $.each( errors, function( key, value ) {
+            errorsHtml += '<li>' + value[0] + '</li>';
+          });
+          $('#miul').html(errorsHtml);
+          $('#msj-errorajax').fadeIn();
+        }
+      }
+    });
+  });
+
+  function showModal(id){
+    $.ajax({
+      type: 'GET',
+      url: "{{route('insumo.edit', '0')}}",
+      data: {'id':id},
+      dataType: 'json',
+    }).done(function(res){
+      $('#id').val(res.id);
+      $('#tipoIM').val(res.tipoInsumo);
+      $('#nombreG').val(res.nombre);
+      $('#precioG').val(res.precio);
+      $('#cantidadTotalG').val(res.cantidadTotal);
+      $('#marcaG').val(res.marca);
+      var tipoInsumo = res.tipoInsumo;
+      if (tipoInsumo == 2){
+        document.getElementById('divM').style.display = 'block';
+        document.getElementById('divS').style.display = 'none';
+        $('#tipoGM').val(res.tipo);
+      }else if(tipoInsumo == 3){
+        document.getElementById('divM').style.display = 'none';
+        document.getElementById('divS').style.display = 'block';
+        $('#tipoGS').val(res.tipo);
+      }else{
+        document.getElementById('divM').style.display = 'none';
+        document.getElementById('divS').style.display = 'none';
+      }
+      $('#descripcionG').val(res.descripcion);
+    });
+  }
 
   $("#create_materia").on('hidden.bs.modal', function (e) {
     e.preventDefault();
@@ -201,6 +303,11 @@
     refrech();
   });
 
+  $("#detallar").on('hidden.bs.modal', function (e) {
+    e.preventDefault();
+    refrech();
+  });
+
   function refrech(){
     $vari = 'p';
     $.ajax({
@@ -208,9 +315,12 @@
       url: "{{url('factura_compra/showList/')}}",
       data: {'dato': $vari },
     }).done(function (data) {
-      console.log(data);
       $('#tbody').html(data);
     })
+  }
+
+  function ocultar(){
+    $('#msj-errorajax').fadeOut();
   }
 </script>
 @endpush

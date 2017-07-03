@@ -4,6 +4,7 @@ namespace sisAvicola\Models\Compra;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Insumo extends Model
 {
@@ -37,7 +38,6 @@ class Insumo extends Model
     if (!isset($request['tipo'])) {
       $request['tipo'] = null;
     }
-    $request['tipoInsumo'] = $this->tipoMateria;
     $request['idFactura'] = '0';
     $request['idEmpresa'] = $idEmpresa;
     $request['visible'] = '1';
@@ -48,5 +48,18 @@ class Insumo extends Model
   {
     $insumos = $query->whereVisible('1')->where('idEmpresa', $idEmpresa)->where('idFactura', '0');
     return $insumos;
+  }
+
+  public function scope_clearAll($query, $idEmpresa)
+  {
+    DB::statement('delete from insumo where idEmpresa = ? and idFactura = ?',[$idEmpresa, '0']);
+  }
+
+  public function scope_confirmarInsumos($query, $idFactura, $idEmpresa)
+  {
+    $query->where('idEmpresa', $idEmpresa)->where('idFactura', '0')
+      ->update([
+        'idFactura'=>$idFactura
+      ]);
   }
 }

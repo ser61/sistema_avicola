@@ -69,13 +69,13 @@ Route::resource('proveedor', 'Compra\ProveedorController');
 Route::get('searchProveedores/', 'Compra\ProveedorController@searchProveedores');
 Route::get('searchPaginateProveedores/', 'Compra\ProveedorController@searchPaginateProveedores');
 
+Route::get('insumo/clear', 'Compra\InsumoController@limpiar');
 Route::resource('insumo','Compra\InsumoController');
 Route::get('insumo/detallar/{id}', 'Compra\InsumoController@detallar')->name('insumo.detallar');
 
 Route::get('factura_compra/showList/', 'Compra\FacturaCompraController@showList');
 Route::resource('factura_compra','Compra\FacturaCompraController');
-
-
+Route::get('factura_compra/detallar', 'Compra\FacturaCompraController@detallar')->name('factura.detallar');
 
 
 
