@@ -3,81 +3,67 @@
 namespace sisAvicola\Http\Controllers\Compra;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use sisAvicola\Http\Controllers\Controller;
+use sisAvicola\Models\Compra\Insumo;
 
 class InventarioInsumoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+      $insumosMP = Insumo::_getAllInsumoMP(Auth::user()->idEmpresa)->get();
+      $insumosM = Insumo::_getAllInsumoM(Auth::user()->idEmpresa)->get();
+      $insumosS = Insumo::_getAllInsumoS(Auth::user()->idEmpresa)->get();
+      return view('compra.inventario.index', compact("insumosMP","insumosM","insumosS"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+  public function editar(Request $request)
+  {
+    $insumo = Insumo::find($request['id']);
+    return response()->json(
+      $insumo->toArray()
+    );
+  }
+
+    public function edit(Request $request, $id)
     {
-        //
+      $insumo = Insumo::find($request['id']);
+      return response()->json(
+        $insumo->toArray()
+      );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  public function refresh(Request $request)
+  {
+    if ($request->ajax()) {
+      $insumosMP = Insumo::_getAllInsumoMP(Auth::user()->idEmpresa)->get();
+      $insumosM = Insumo::_getAllInsumoM(Auth::user()->idEmpresa)->get();
+      $insumosS = Insumo::_getAllInsumoS(Auth::user()->idEmpresa)->get();
+      $view = view('compra.inventario.ajax.list', compact("insumosMP","insumosM","insumosS"));
+      return Response($view);
+    }
+  }
+
     public function update(Request $request, $id)
     {
-        //
+      Insumo::_updateInsumo($request['id'], $request['cantidad']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

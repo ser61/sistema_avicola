@@ -164,17 +164,12 @@
                 </a>
               </li>
               <li>
-                <a href="{{ url("/insumo") }}"><i class="fa fa-circle-o"></i>
-                  <span class="title"> Insumos </span>
-                </a>
-              </li>
-              <li>
                 <a href="{{ url("/factura_compra") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Facturas </span>
                 </a>
               </li>
               <li>
-                <a href="{{ url("/inventario") }}"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/inventario_compra") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Inventario </span>
                 </a>
               </li>

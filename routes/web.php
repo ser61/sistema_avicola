@@ -77,7 +77,9 @@ Route::get('factura_compra/showList/', 'Compra\FacturaCompraController@showList'
 Route::get('factura_compra/detallar/{id}', 'Compra\FacturaCompraController@detallar')->name('factura.detallar');
 Route::resource('factura_compra','Compra\FacturaCompraController');
 
-
+Route::get('inventario_compra/edit', 'Compra\InventarioInsumoController@editar')->name('inventario_compra.editar');
+Route::get('inventario_compra/refresh', 'Compra\InventarioInsumoController@refresh');
+Route::resource('inventario_compra','Compra\InventarioInsumoController');
 
 
 

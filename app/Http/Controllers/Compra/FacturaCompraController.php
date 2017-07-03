@@ -5,6 +5,7 @@ namespace sisAvicola\Http\Controllers\Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use sisAvicola\Http\Controllers\Controller;
+use sisAvicola\Http\Requests\FacturaCompraFormRequest;
 use sisAvicola\Models\Compra\FacturaCompra;
 use sisAvicola\Models\Compra\Insumo;
 use sisAvicola\Models\Compra\Proveedor;
@@ -25,7 +26,7 @@ class FacturaCompraController extends Controller
       $total = $this->calcTotal($insumos);
       return view('compra.facturas.registro_index', compact("insumos", "proveedores", "total"));
     }
-
+  
   public function calcTotal($insumos)
   {
     if (count($insumos) == 0) {
@@ -39,7 +40,7 @@ class FacturaCompraController extends Controller
     return $total;
   }
 
-    public function store(Request $request)
+    public function store(FacturaCompraFormRequest $request)
     {
       $insumos = Insumo::_getInsumosNuevos(Auth::user()->idEmpresa)->get();
       $total = $this->calcTotal($insumos);

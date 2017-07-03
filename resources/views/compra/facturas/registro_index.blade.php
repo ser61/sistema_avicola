@@ -31,6 +31,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 @include('alertas.logrado')
                 @include('alertas.request2')
+                @include('alertas.request')
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1">
                   {!! Form::open(['route' => 'factura_compra.store','method' => 'POST', 'id'=>'crear_factura']) !!}
                   <div class="form-group">

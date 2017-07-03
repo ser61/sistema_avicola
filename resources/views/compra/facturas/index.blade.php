@@ -32,9 +32,9 @@
                 <button type="button" class="btn btn-info btn-flat">
                   <i class="fa fa-search"></i>
                 </button>
-                <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#create" data-backdrop=”false”>
+                <a href="{{ route('factura_compra.create') }}" type="button" class="btn btn-danger btn-flat">
                   <i class="fa fa-plus"></i>
-                </button>
+                </a>
               </span>
               </div>
             </div>

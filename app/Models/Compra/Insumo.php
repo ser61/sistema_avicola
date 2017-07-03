@@ -68,4 +68,35 @@ class Insumo extends Model
         'idFactura'=>$idFactura
       ]);
   }
+
+  public function scope_updateInsumo($query, $id, $cantidad)
+  {
+    $miCant = $this->find($id)->cantidadTotal;
+    $miCant = $miCant - $cantidad;
+    $query->whereId($id)
+      ->update([
+        'cantidadTotal'=>$miCant
+      ]);
+  }
+  
+  public function scope_getAllInsumoMP($query, $idEmpresa)
+  {
+    $insumos = $query->whereVisible('1')->where('idEmpresa',$idEmpresa)
+      ->where('tipoInsumo', $this->tipoMateria)->where('idFactura','<>','0');
+    return $insumos;
+  }
+  
+  public function scope_getAllInsumoM($query, $idEmpresa)
+  {
+    $insumos = $query->whereVisible('1')->where('idEmpresa',$idEmpresa)
+      ->where('tipoInsumo', $this->tipoMedicina)->where('idFactura','<>','0');
+    return $insumos;
+  }
+  
+  public function scope_getAllInsumoS($query, $idEmpresa)
+  {
+    $insumos = $query->whereVisible('1')->where('idEmpresa',$idEmpresa)
+      ->where('tipoInsumo', $this->tipoSanitario)->where('idFactura','<>','0');
+    return $insumos;
+  }
 }

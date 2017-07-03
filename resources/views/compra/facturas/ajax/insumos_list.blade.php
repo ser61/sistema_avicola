@@ -1,4 +1,3 @@
-@if(count($insumos) > 0)
   <table class="table table-bordered" style="border-top-color: #00AEFF">
     <thead>
     <tr>
@@ -37,4 +36,3 @@
     <th><h4>Bs/. {{$total}}</h4></th>
     </tfoot>
   </table>
-@endif
