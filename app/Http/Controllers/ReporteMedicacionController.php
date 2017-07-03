@@ -41,7 +41,7 @@ class ReporteMedicacionController extends Controller
         $lote_huevo_incubables = DB::table('lote_huevo_incubable')->get();
         $articulos = DB::table('insumo as i')
             ->select('i.id','i.nombre','i.descripcion','i.cantidadTotal','i.tipo as tipoMedicamento')
-            ->where('i.tipoInsumo','=','Medicamento')->get();
+            ->where('i.tipoInsumo','=','2')->get();
         return view('reportes.reporte_medicacion.create',["empleados"=>$empleados,"parvadas"=>$parvadas,"lote_huevo_incubables"=>$lote_huevo_incubables,"articulos"=>$articulos]);
     }
 

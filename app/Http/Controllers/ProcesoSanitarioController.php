@@ -44,7 +44,6 @@ class ProcesoSanitarioController extends Controller
     public function create()
     {
         $articulos = DB::table('insumo')
-            ->where('tipoInsumo','=','Producto Sanitario')
             ->where('visible','=','1')
             ->where('cantidadTotal','>','0')
             ->get();
