@@ -70,10 +70,10 @@ Route::get('searchProveedores/', 'Compra\ProveedorController@searchProveedores')
 Route::get('searchPaginateProveedores/', 'Compra\ProveedorController@searchPaginateProveedores');
 
 Route::resource('insumo','Compra\InsumoController');
+Route::get('insumo/detallar/{id}', 'Compra\InsumoController@detallar')->name('insumo.detallar');
 
+Route::get('factura_compra/showList/', 'Compra\FacturaCompraController@showList');
 Route::resource('factura_compra','Compra\FacturaCompraController');
-
-
 
 
 

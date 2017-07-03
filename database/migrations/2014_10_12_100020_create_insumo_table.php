@@ -19,6 +19,7 @@ class CreateInsumoTable extends Migration
             $table->string('descripcion');
             $table->string('marca')->nullable();
             $table->integer('cantidadTotal');
+            $table->float('precio')->nullable();
             $table->char('tipo')->nullable();
             $table->char('tipoInsumo');
             $table->integer('idUnidadMedida')->nullable()->unsigned();

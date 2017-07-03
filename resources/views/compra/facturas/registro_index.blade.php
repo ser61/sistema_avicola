@@ -21,15 +21,15 @@
             <h3 align="center">Panel de control: <span class="text-bold">Registros de Compra</span></h3>
           </div>
           @include('compra.facturas.models.materia_prima')
-          @include('compra.facturas.models.producto_sanitizacion')
           @include('compra.facturas.models.medicamento')
+          @include('compra.facturas.models.producto_sanitizacion')
             <!-- fin-> TITULO DE PANEL -->
             <!-- CUADRO DE BUSQUEDA -->
           <div class="panel panel-blue">
             <div class="row">
-              @include('alertas.logrado')
-              @include('alertas.request')
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                @include('alertas.logrado')
+                @include('alertas.request')
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1">
                   <div class="form-group">
                     <label for="insumo">Seleccione un Proveedor:</label>
@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1">
-                  <button class="btn btn-primary btn-block">
+                  <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#create_materia" data-backdrop=”false”>
                     <i class="fa fa-plus pull-left"></i> <b>MATERIA PRIMA</b>
                   </button>
-                  <button class="btn btn-primary btn-block">
+                  <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#create_medicina" data-backdrop=”false”>
                     <i class="fa fa-plus pull-left"></i> <b>MEDICAMENTO</b>
                   </button>
-                  <button class="btn btn-primary btn-block">
+                  <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#create_producto" data-backdrop=”false”>
                     <i class="fa fa-plus pull-left"></i> <b>PRODUCTO SANITARIO</b>
                   </button>
                 </div>
@@ -71,7 +71,7 @@
                 <tr>
                   <td class="center">{{$insumo->id}}</td>
                   <td>{{$insumo->nombre}}</td>
-                  <td>{{$insumo->cantidad}}</td>
+                  <td>{{$insumo->cantidadTotal}}</td>
                   <td>{{$insumo->precio}}</td>
                   <td class="center">
                     {!! Form::open(['method'=>'DELETE', 'route'=>['insumo.destroy',$insumo->id]]) !!}
@@ -91,7 +91,7 @@
                 <th></th>
                 <th></th>
                 <th><h4><b>TOTAL</b></h4></th>
-                <th><h4>Bs/. 0.00</h4></th>
+                <th><h4>Bs/. {{$total}}</h4></th>
               </tfoot>
             </table>
           </div>
@@ -100,18 +100,18 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-lg-offset-6">
                   <button class="btn btn-danger btn-block">
-                    <i class="fa fa-exit"></i> Cancel
+                    <i class="fa fa-arrow-left"></i> <b>Volver</b>
                   </button>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                   <button class="btn btn-primary btn-block">
-                    <i class="fa fa-exit"></i> Cancel
+                    <i class="fa fa-check"></i> <b>Guardar</b>
                   </button>
                 </div>
-                <br>
               </div>
             </div>
           </div>
+          <br>
           <!-- fin-> TABLA DE DATOS -->
         </div>
       </div>
@@ -121,12 +121,20 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
-  $('#search').on('keyup', function () {
-    $value = $(this).val();
+  $('#btnMateria').click(function(){
+    document.getElementById('insumo').disabled = true;
+    var nombre = $('#nombre').val();
+    var precio = $('#precio').val();
+    var cantidadTotal = $('#cantidadTotal').val();
+    var marca = $('#marca').val();
+    var descripcion = $('#descripcion').val();
+    var token = $('#token').val();
     $.ajax({
-      type: 'GET',
-      url: "{{url('searchinsumos/')}}",
-      data: {'search': $value},
+      type: 'POST',
+      url: "{{route('insumo.store')}}",
+      headers: {'X-CSRF-TOKEN':token},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'marca':marca, 'descripcion':descripcion},
+      dataType: 'json',
       success: function (data) {
         console.log(data);
         $('#tbody').html(data);
@@ -134,66 +142,75 @@
     });
   });
 
-  $(document).on('click', '.pagination a', function (e) {
-    e.preventDefault();
-    var page = $(this).attr('href').split('page=')[1];
-    insumos(page, $('#search').val());
+  $('#btnMedicamento').click(function(){
+    document.getElementById('insumo').disabled = true;
+    var nombre = $('#nombreM').val();
+    var precio = $('#precioM').val();
+    var cantidadTotal = $('#cantidadTotalM').val();
+    var marca = $('#marcaM').val();
+    var descripcion = $('#descripcionM').val();
+    var tipo = $('#tipoM').val();
+    var token = $('#token').val();
+    $.ajax({
+      type: 'POST',
+      url: "{{route('insumo.store')}}",
+      headers: {'X-CSRF-TOKEN':token},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
   });
 
-  function insumos(page, search) {
-    var url = "{{url('searchPaginateinsumos/')}}";
+  $('#btnSanitario').click(function(){
+    document.getElementById('insumo').disabled = true;
+    var nombre = $('#nombreS').val();
+    var precio = $('#precioS').val();
+    var cantidadTotal = $('#cantidadTotalS').val();
+    var marca = $('#marcaS').val();
+    var descripcion = $('#descripcionS').val();
+    var tipo = $('#tipoS').val();
+    var token = $('#token').val();
+    $.ajax({
+      type: 'POST',
+      url: "{{route('insumo.store')}}",
+      headers: {'X-CSRF-TOKEN':token},
+      data: {'nombre': nombre, 'precio':precio, 'cantidadTotal':cantidadTotal, 'tipo':tipo, 'marca':marca, 'descripcion':descripcion},
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        $('#tbody').html(data);
+      }
+    });
+  });
+
+  $("#create_materia").on('hidden.bs.modal', function (e) {
+    e.preventDefault();
+    refrech();
+  });
+
+  $("#create_medicina").on('hidden.bs.modal', function (e) {
+    e.preventDefault();
+    refrech();
+  });
+
+  $("#create_producto").on('hidden.bs.modal', function (e) {
+    e.preventDefault();
+    refrech();
+  });
+
+  function refrech(){
+    $vari = 'p';
     $.ajax({
       type: 'GET',
-      url: url + '?page=' + page,
-      data: {'search': search},
+      url: "{{url('factura_compra/showList/')}}",
+      data: {'dato': $vari },
     }).done(function (data) {
+      console.log(data);
       $('#tbody').html(data);
     })
-  }
-
-  $("#insumo").change(mostrarCampo);
-
-  function mostrarCampo(){
-    var dato = document.getElementById('insumo').value;
-    if (dato == 2){
-      eliminar();
-      var div = $('#insumoBody');
-      var label = '<label id="milabel" for="insumo">Seleccione el tipo Medicamento</label>';
-      var select = ''+
-        '<select name="tipo" class="form-control select2" id="tipo" placeholder="Seleccion un tipo">' +
-        '<option value="1">Aereo</option>' +
-        '<option value="2">Venereo</option>' +
-        '<option value="3">Rozamiento</option>' +
-        '<option value="4">liquido</option>' +
-        '</select>';
-
-      div.append(label);
-      div.append(select);
-      document.getElementById('insumoBody').style.display = 'block';
-    }else if(dato == 3){
-      eliminar();
-      var div = $('#insumoBody');
-      var label = '<label id="milabel" for="insumo">Seleccione el tipo Producto Sanitario</label>';
-      var select = ''+
-        '<select name="tipo" class="form-control select2" id="tipo" placeholder="Seleccion un tipo">' +
-        '<option value="1">Pesticida</option>' +
-        '<option value="2">Bactericida</option>' +
-        '<option value="3">Legia</option>' +
-        '</select>';
-
-      div.append(label);
-      div.append(select);
-      document.getElementById('insumoBody').style.display = 'block';
-    }else{
-      eliminar();
-      document.getElementById('insumoBody').style.display = 'none';
-    }
-
-  }
-
-  function eliminar(){
-    $("#milabel").remove();
-    $("#tipo").remove();
   }
 </script>
 @endpush
