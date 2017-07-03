@@ -17,10 +17,12 @@ class CreateInsumoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('marca')->nullable();
             $table->integer('cantidadTotal');
             $table->char('tipo')->nullable();
             $table->char('tipoInsumo');
             $table->integer('idUnidadMedida')->nullable()->unsigned();
+            $table->integer('idFactura')->nullable()->unsigned();
             $table->string('idEmpresa');
             $table->char('visible');
             $table->timestamps();

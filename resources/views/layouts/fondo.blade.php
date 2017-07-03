@@ -169,7 +169,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ url("/factura") }}"><i class="fa fa-circle-o"></i>
+                <a href="{{ url("/factura_compra") }}"><i class="fa fa-circle-o"></i>
                   <span class="title"> Facturas </span>
                 </a>
               </li>

@@ -2,7 +2,7 @@
 @section('content')
   <section class="content-header">
     <h1 align="center">
-      * * * * * <b>S E G U R I D A D</b> * * * * *
+      * * * * * <b>C O M P R A</b> * * * * *
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>

@@ -69,9 +69,9 @@ Route::resource('proveedor', 'Compra\ProveedorController');
 Route::get('searchProveedores/', 'Compra\ProveedorController@searchProveedores');
 Route::get('searchPaginateProveedores/', 'Compra\ProveedorController@searchPaginateProveedores');
 
+Route::resource('insumo','Compra\InsumoController');
 
-
-
+Route::resource('factura_compra','Compra\FacturaCompraController');
 
 
 
