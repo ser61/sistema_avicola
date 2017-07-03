@@ -31,6 +31,7 @@
 							<thead>
 							<th>Id</th>
 							<th>Capacidad</th>
+							<th>Estado</th>
 							<th>Tipo</th>
 							<th>Ubicacion</th>
 							<th>Cantidad Huevos Almacenados</th>
@@ -43,6 +44,7 @@
 							<tr>
 								<td>{{ $inf->id }}</td>
 								<td>{{ $inf->capacidad }}</td>
+								<td>{{ $inf->estado }}</td>
 								<td>{{ $inf->tipo }}</td>
 								<td>{{ $inf->ubicacion }}</td>
 								<td>{{ $inf->cantidadHuevosAlmacenados }}</td>

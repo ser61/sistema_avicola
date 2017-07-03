@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
   <head>
   	
   </head>
@@ -16,7 +16,7 @@
         <div class="box box-primary">
         <!-- TITULO DE PANEL -->
         <div class="box-header with-border">
-
+        			
 
        <table class="anch-tb" align="center"">
         <tr>
@@ -50,8 +50,11 @@
 			        <div class="panel panel-info">
 			        <div class="panel-heading" align="center"><b>Cantidad de Factuas: {{count($facturas)}}</b></div>
 			        <br>
-			            <div class="panel-body">
+			        <br>
+			        <br>
 
+			        @if(count($fa_c) == 0)
+			            <div class="panel-body">
 			                <div class="row">
 								<div class="container">
 									<div class="table-responsive">
@@ -91,6 +94,75 @@
 								</div>			
 				            </div> 
 			            </div> 
+			            <br>
+			            <br><br>
+			            <b>NOTA: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Porfavor Guarde Su Factura
+			        @else
+			        	<div class="panel-body">
+				          	<div class="row">
+							        <b>Fecha: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $facturas -> fecha }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Nro: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $facturas -> id }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>NIT:</b>&nbsp;&nbsp;{{ $facturas -> nit }}<br>
+
+							        <br>
+
+							        <b>A nombre de: </b>&nbsp;{{ $facturas -> nombre }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Cliente: </b>&nbsp;{{ $facturas -> cliente }} {{ $facturas -> cap }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Empleado: </b>&nbsp;{{ $facturas -> empleado}} {{ $facturas -> eap }}<br>
+
+							        <br>
+							        <br>
+							        
+
+
+
+
+							    </div>      
+
+							    <div class="container">
+							    <div class="row">
+							        <div class="panel panel-info">
+							        <div class="panel-heading" align="center"><b>* * Detalle de la Factura * *</b></div>
+							            <div class="panel-body">
+							            <br>
+							            <br>
+							                <div class="row">
+												<div class="container">
+													<div class="table-responsive">
+							                    		<table align="center" border="1" class="table table-striped table-bordered table-condensed table-hover">
+							                        <thead style="background-color: #A9D0F5">
+							                            <th>Nombre del Producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							                            <th>Cantidad del Producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							                            <th>Precio Por Unidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							                            <th>Sub Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							                        </thead>
+							                        <tbody>
+							                        <tr></tr>
+							                            @foreach($detalle as $det)
+							                                <tr>
+							                                    <td align="center">{{$det -> nombre}}</td>
+							                                    <td align="center">{{$det -> cantidad}}</td>
+							                                    <td align="center">{{$det -> precioUnitario}}</td>
+							                                    <td align="center">{{$det -> precioUnitario * $det -> cantidad}}</td>
+							                                </tr>
+							                            @endforeach
+							                        </tbody>
+							                        <br>
+							                        <tfoot>
+							                            <th>TOTAL</th>             
+							                            <th></th>       
+							                            <th></th>
+							                            <th><h4 id="total">Bs/. {{ $facturas -> montoTotal}}</h4><input type="hidden" name="total" id="total"></th>
+							                        </tfoot>
+						                    			</table>
+							    		            </div>
+												</div>			
+								            </div> 
+							            </div> 
+							        </div>
+							    </div>
+							</div>
+				        </div>
+				        <b>NOTA: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Porfavor Cuide Su Factura Por Si Tiene Algun Reclamo Mas Posterior  :D
+
+			        @endif
+
 			        </div>
 			    </div>
 			</div>

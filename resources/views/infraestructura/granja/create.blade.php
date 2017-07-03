@@ -45,9 +45,9 @@
 					<div class="form-group">
 						<label>Tipo Granja</label>
 						<select name="tipo" class="form-control">
-							<option value="Crianza">Crianza</option>
-							<option value="Engorda">Engorda</option>
-							<option value="Reproducción">Reproducción</option>
+							<option value="Reproductora">Reproductora</option>
+							<option value="Ponedora">Ponedora</option>
+							<option value="Engorde">Engorde</option>
 						</select>
 					</div>
 				</div>

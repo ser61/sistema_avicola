@@ -20,7 +20,8 @@
           <h3 align="center">Panel de control de <span class="text-bold">Reporte de Venta Factura</span></h3>
           @include('alertas.request')
           {!! Form::open(array('url'=>'venta/reporteventa','method'=>'POST','autocomplete'=>'off'))!!}
-				{{Form::token()}}			
+				{{Form::token()}}	
+			<div class="row">		
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="fecha_a">Desde:</label>
@@ -66,14 +67,28 @@
 
 			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			    		<div class="form-group">
-			    			<label>Del Producto:</label>
+			    			<label>Estado de la Factura:</label>
 			    			<select name="estado" class="form-control">
 			    				<option value="activa">Activa</option>
 			    				<option value="inactivo">Inactiva</option>
 			    			</select>
 			    		</div>
 			    </div>
-
+			</div>
+			<div class="panel-heading" align="center"><b>Reporte Unico</b></div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    		<div class="form-group">
+			    			<label>Codigo de la Factura:</label>
+			    			<select name="codigo" class="form-control">
+			    				<option value="-1">Ninguna</option>
+			    				@foreach ($factura_a as $fac)
+			    				   <option value="{{$fac -> id}}">{{$fac -> id}}</option>	 
+			    				@endforeach
+			    			</select>
+			    		</div>
+			    </div>
+			</div>
 				<div class="form-group">
 		            <div class="col-sm-8 col-sm-offset-2">
 		              <br>

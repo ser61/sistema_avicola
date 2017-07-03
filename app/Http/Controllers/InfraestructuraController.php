@@ -24,8 +24,8 @@ class InfraestructuraController extends Controller
 				->select('i.id','i.capacidad','i.estado','i.cantidadHuevosAlmacenados','i.visible','i.tipo','g.id as idGranja','g.ubicacion','g.tipo as tipoGranja')
 				->where('i.tipo','LIKE','%'.$query.'%')
 				->orwhere('i.id','LIKE','%'.$query.'%')
-				->orderBy('i.id','desc')
-				->paginate(7);
+				->orderBy('i.idGranja','desc')
+				->paginate(10);
 			//(qué vista va a retonar,=>: indica de que variable voy a enviar)
 			return view('infraestructura.infraestructura.index',["infraestructuras"=>$infraestructuras,"searchText"=>$query]);
 
@@ -37,7 +37,7 @@ class InfraestructuraController extends Controller
 		$granjas=DB::table('granja as g')
 			->select('g.id as idGranja','g.tipo')
 			->where('visible','=','1')->get();
-		$tipos = ['Galpón','Planta de Incubación'];
+		$tipos = ['Galpon','Planta de Incubación'];
 		return view("infraestructura.infraestructura.create",["granjas"=>$granjas,"tipos"=>$tipos]);
 	}
 	/*store: Para almacenar
@@ -46,7 +46,7 @@ class InfraestructuraController extends Controller
 	public function store(Request $request){
 		$request['visible'] = '1';
 		$request['idEmpresa'] = Auth::user()->idEmpresa;
-		if($request->get('tipo')=="Galpón"){
+		if($request->get('tipo')=="Galpon"){
 			$request['cantidadHuevosAlmacenados'] = 0;
 		}
 		Infraestructura::create($request->all());

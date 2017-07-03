@@ -33,6 +33,7 @@ class FacturaFormRequest extends FormRequest
 
       'fecha_a' => 'max:100',
       'estado' => 'max:100',
+      'codigo' => 'max:100',
       'fecha_b' => 'max:100'
     ];
   }

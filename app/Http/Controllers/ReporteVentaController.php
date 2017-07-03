@@ -63,9 +63,16 @@ class ReporteVentaController extends Controller
         $idempleado=$request->get('idEmpleado');
         $estado=$request->get('estado');
 
+        $id = $request->get('codigo');
+
+        $fa_c=DB::table('factura')
+        ->where('id','=',$id)
+        ->get();
+
         $fecha_a=$request->get('fecha_a');
         $fecha_b=$request->get('fecha_b');
         //Route::get('venta/factura/reporte',function(){
+        if($id==-1){
             $facturas=DB::table('factura')
             ->select('factura.*', 'p.nombre as nombreC')
             ->join('persona as p', 'p.id', '=', 'factura.idEmpleado')
@@ -75,8 +82,26 @@ class ReporteVentaController extends Controller
             ->where('idEmpleado','=',$idempleado)
             ->where('estado','=',$estado)
             ->get();
-            $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas]);
+            $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas , "fa_c"=>$fa_c]);
             return $pdf->download('ReporteFacturas.pdf');
+        }else{
+
+            $facturas = DB::table('factura')
+              ->join('persona as cliente', 'cliente.id', '=', 'factura.idCliente')
+              ->join('persona as empleado', 'empleado.id', '=', 'factura.idEmpleado')
+              ->select('factura.id','factura.nit','factura.nombre','factura.fecha','factura.montoTotal','cliente.nombre as cliente','cliente.apellido as cap','empleado.nombre as empleado','empleado.apellido as eap')
+              ->where('factura.id','=', $id)
+              ->first();
+
+            $detalle = DB::table('detalle_factura')
+              ->join('producto_venta','producto_venta.id', '=', 'detalle_factura.idProducto')
+              ->select('producto_venta.nombre','detalle_factura.cantidad','producto_venta.precioUnitario')
+              ->where('detalle_factura.idFactura','=', $id)
+              ->get();
+
+            $pdf = PDF::loadView('venta/factura/reporte',['facturas' => $facturas,"detalle" => $detalle,"fa_c"=>$fa_c]);
+            return $pdf->download('ReporteFacturas.pdf');
+        }
         //});
     }
 

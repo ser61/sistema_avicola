@@ -28,14 +28,15 @@ class RegistroSanitizacionController extends Controller
                 ->join('persona as p','rs.idEmpleado','=','p.id')
                 ->join('infraestructura as i','rs.idInfraestructura','i.id')
                 ->select('rs.id','rs.fecha','rs.visible','rs.idEmpleado','p.nombre','p.apellido',
-                    DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
+                    DB::raw('CONCAT(i.id," ",i.tipo) as infraestuctura'))
+                    //DB::raw('CONCAT(i.id," ",i.capacidad," ",i.tipo) as infraestuctura'))
                 ->where('p.tipo','=','e')
                 ->where('rs.id','LIKE','%'.$query.'%')
                 ->where('rs.visible','=','1')
                 ->orwhere('p.nombre','LIKE','%'.$query.'%')
                 ->orderBy('rs.id','desc')
                 ->groupBy('rs.id','rs.fecha','rs.visible','p.nombre','p.apellido','rs.idEmpleado','i.id','i.capacidad','i.tipo')
-                ->paginate(7);
+                ->paginate(10);
             $idCargo=DB::table('registro_sanitizacion as rs')
                 ->join('persona as p','rs.idEmpleado','=','p.id')
                 ->select('p.idCargo');
