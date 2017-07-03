@@ -48,6 +48,7 @@ class ParvadaEngordeController extends Controller
         $galpones=DB::table('infraestructura')
         ->where('estado','=','Disponible')
         ->where('idGranja','=','1')
+        ->where('visible','=','1')
         ->get();
         return view('proceso.parvadaengorde.create',['galpones'=>$galpones]);
     }

@@ -14,6 +14,7 @@ use sisAvicola\ProductoVenta;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use sisAvicola\Models\seguridad\Accion;
+use sisAvicola\Infraestructura;
 
 class ParvadaReproductoraController extends Controller
 {
@@ -48,6 +49,7 @@ class ParvadaReproductoraController extends Controller
         $galpones=DB::table('infraestructura')
         ->where('estado','=','Disponible')
         ->where('idGranja','=','3')
+        ->where('visible','=','1')
         ->get();
         return view('proceso.parvadareproductora.create',['galpones'=>$galpones]);
     }
@@ -89,6 +91,10 @@ class ParvadaReproductoraController extends Controller
         $traspaso->visible='1';
         $traspaso->idEmpresa=Auth::user()->idEmpresa;
         $traspaso->save();
+        //actualizo el Galpon donde se alojara la parvada
+        $galpon=Infraestructura::findOrFail($requestt->get('idgalpon'));
+        $galpon->estado = 'No Disponible';
+        $galpon->update();
 
         Accion::_crearAccionOnTable('Creo una nueva Parvada de Reproductora', 'parvada', $parvada->id, Auth::user()->id, Auth::user()->idEmpresa);
 

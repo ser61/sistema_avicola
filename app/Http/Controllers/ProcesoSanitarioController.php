@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use sisAvicola\DetalleProducto;
-use sisAvicola\Insumo;
+//use sisAvicola\Insumo;
+use sisAvicola\Models\Compra\Insumo;
 use DB;
 use sisAvicola\ProcesoSanitario;
 

@@ -39,7 +39,7 @@
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 						<div class="form-group">
-							<label>Empleado:</label>
+							<label>Empleado Encargado:</label>
 							<select name="idEmpleado" id="idEmpleado" class="form-control selectpicker" data-live-search="true">
 								@foreach($empleados as $empleado)
 									<option value="{{$empleado->id}}">{{$empleado->id}} {{$empleado->nombre}} {{$empleado->apellido}}</option>
@@ -49,10 +49,10 @@
 					</div>
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                         <div class="form-group">
-                            <label>Infraestructura:</label>
+                            <label>Infraestructura a Realizar Proceso Sanitario:</label>
                             <select name="idInfraestructura" id="idInfraestructura" class="form-control selectpicker" data-live-search="true">
                                 @foreach($infraestructuras as $inf)
-                                    <option value="{{$inf->id}}">{{$inf->id}} {{$inf->capacidad}}  Tipo: {{$inf->tipo}}</option>
+                                    <option value="{{$inf->id}}">Id:{{$inf->id}} Tipo: {{$inf->tipo}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,7 +69,7 @@
 									<label>Procesos</label>
 									<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
 										@foreach($procesos as $proceso)
-											<option value="{{$proceso->id}}_{{$proceso->nombre}}_{{$proceso->descripcion}}">{{$proceso->nombre}} {{$proceso->descripcion}}</option>
+											<option value="{{$proceso->id}}_{{$proceso->nombre}}_{{$proceso->descripcion}}">{{$proceso->nombre}} Descipcion: {{$proceso->descripcion}}</option>
 										@endforeach
 									</select>
 								</div>

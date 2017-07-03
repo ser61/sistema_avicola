@@ -47,6 +47,7 @@ class ParvadaPonedoraController extends Controller
         $galpones=DB::table('infraestructura')
         ->where('estado','=','Disponible')
         ->where('idGranja','=','2')
+        ->where('visible','=','1')
         ->get();
         return view('proceso.parvadaponedora.create',['galpones'=>$galpones]);
     }
