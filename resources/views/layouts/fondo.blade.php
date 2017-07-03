@@ -288,11 +288,6 @@
                   <span class="title"> Reportes de Medicación </span>
                 </a>
               </li>
-              <li>
-                <a href="login_login.html?box=forgot"><i class="fa fa-circle-o"></i>
-                  <span class="title"> Reportes de Huevos </span>
-                </a>
-              </li>
             </ul>
           </li>
 
@@ -335,11 +330,7 @@
                   <span class="title">Traspaso de Parvada</span>
                 </a>
               </li>
-              <li>
-                <a href="{{ url('/proceso/produccionalimento')}}"><i class="fa fa-circle-o"></i>
-                  <span class="title">Produccion Alimento</span>
-                </a>
-              </li>
+              
               <li>
                 <a href="{{ url('/proceso/ordenproduccion')}}"><i class="fa fa-circle-o"></i>
                   <span class="title">Orden de Produccion</span>

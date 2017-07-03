@@ -40,6 +40,7 @@
 								<th>Peso Promedio (Parvada)</th>
 								<th>Tipo (Parvada)</th>
 								<th>Mortalidad (Parvada)</th>
+								<th>Cantidad Huevos (Lote)</th>
 								<th>Empleado</th>
 								<th>Opciones</th>
 							</tr>
@@ -56,7 +57,7 @@
 								<td>{{ $rep->pesoPromedio }}</td>
 								<td>{{ $rep->tipo }}</td>
 								<td>{{ $rep->mortalidad }}</td>
-								<td>{{ $rep->cantidadPollos }}</td>
+								<td>{{ $rep->cantidadHuevos }}</td>
 								<td>{{ $rep->idEmpleado }} {{ $rep->nombre }} {{ $rep->apellido }}</td>
 								<td>
 									<a href="{{URL::action('ReporteMedicacionController@show',$rep->idReporte)}}">

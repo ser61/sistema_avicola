@@ -24,9 +24,9 @@ class ReporteMedicacion extends Model
             ->join('persona as pe','pe.id','=','reporte_medicacion.idEmpleado')
             ->join('parvada as p','p.id','=','reporte_medicacion.idParvada')
             ->select('reporte_medicacion.id as idReporte','reporte_medicacion.fechaMedicacion',
-                'reporte_diario.idParvada as idParvada','p.cantidadPollos','p.sexo','p.edad','p.pesoPromedio',
-                'p.tipo','p.mortalidad','reporte_diario.idEmpleado','pe.nombre','pe.apellido',
-                'reporte_diario.visible')
+                'reporte_medicacion.idParvada as idParvada','p.cantidadPollos','p.sexo','p.edad','p.pesoPromedio',
+                'p.tipo','p.mortalidad','d.cantidad as cantidadHuevos','reporte_medicacion.idEmpleado','pe.nombre','pe.apellido',
+                'reporte_medicacion.visible')
             ->where('reporte_medicacion.id','LIKE','%'.$searchText.'%')
             ->where('reporte_medicacion.visible','LIKE','1')
             ->orderBy('reporte_medicacion.idParvada','desc');
