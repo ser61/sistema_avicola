@@ -13,6 +13,7 @@ class DetalleMedicacion extends Model
     protected $fillable = [
         'idMedicamento',
         'idReporteMedicacion',
+        'cantidad',
         'dosis',
         'viaDeAplicacion',
         'idEmpresa',

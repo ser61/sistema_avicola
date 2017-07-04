@@ -73,6 +73,7 @@
                                         <td>{{ $detalle->nombre }}</td>
                                         <td>{{ $detalle->dosis }}</td>
                                         <td>{{ $detalle->viaDeAplicacion }}</td>
+                                        <td>{{ $detalle->cantidad }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -83,7 +84,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
                     <div class="form-group">
-                        <a href="{{ url('infraestructura/proceso_sanitario') }}">
+                        <a href="{{ url('reportes/reporte_medicacion') }}">
                             <button class="btn btn-primary" type="">Volver</button>
                         </a>
                     </div>

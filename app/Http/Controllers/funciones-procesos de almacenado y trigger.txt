@@ -532,3 +532,10 @@ BEGIN
 	UPDATE insumo as i SET i.cantidadTotal = i.cantidadTotal - NEW.cantidad
     WHERE i.id = NEW.idProductoSanitario;
 END//
+
+CREATE TRIGGER upd_cantTotal_insumo BEFORE INSERT ON detalle_medicacion
+FOR EACH ROW
+BEGIN
+	UPDATE insumo as i SET i.cantidadTotal = i.cantidadTotal - NEW.cantidad
+    WHERE i.id = NEW.idMedicamento;
+END//

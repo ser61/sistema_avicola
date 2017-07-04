@@ -73,6 +73,7 @@ class ReporteMedicacionController extends Controller
         $cantidad = $request->get('cantidad');
         $dosis = $request->get('dosis');
         $aplicacion = $request->get('aplicacion');
+        $cantidadTotal = 0;
         $cont = 0;
 
         while ($cont < count($idarticulo)) {
@@ -80,17 +81,21 @@ class ReporteMedicacionController extends Controller
             $detalle->idReporteMedicacion = $reporte->id;
             $detalle->idMedicamento=$idarticulo[$cont];
             $detalle->dosis=$dosis[$cont];
+            $detalle->cantidad = $cantidad[$cont];
             $detalle->viaDeAplicacion=$aplicacion[$cont];
             $detalle->idEmpresa = Auth::user()->idEmpresa;
             $detalle->visible='1';
             $detalle->save();
+            $cantidadTotal+=$cantidad[$cont];
             $cont = $cont + 1;
+            //DB::statement('call upd_cantTotal_insumo('.$idarticulo[$cont].','.$cantidad[$cont].')');
         }
+
 
         /*}catch (Exception $e) {
             DB::rollback();
         }*/
-        return redirect('reportes/reporte_diario')->with('msj','El reporte diario: # '.$request['id'].' se creo exitósamente.');
+        return redirect('reportes/reporte_medicacion')->with('msj','El reporte diario: # '.$request['id'].' se creo exitósamente.');
 
     }
 
